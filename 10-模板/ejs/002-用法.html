@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="./lib/ejs-3.1.6.js"></script>
+  </head>
+
+  <body>
+
+    <div id="box"></div>
+    <!--
+      let template = ejs.compile(str, options);
+      template(data);
+      // => 输出渲染后的 HTML 字符串
+
+      ejs.render(str, data, options);
+      // => 输出渲染后的 HTML 字符串
+
+      ejs.renderFile(filename, data, options, function(err, str){
+        // str => 输出渲染后的 HTML 字符串
+      });
+
+      参数：
+        cache 缓存编译后的函数，需要指定 filename
+        filename 被 cache 参数用做键值，同时也用于 include 语句
+        context 函数执行时的上下文环境
+        compileDebug 当值为 false 时不编译调试语句
+        client 返回独立的编译后的函数
+        delimiter 放在角括号中的字符，用于标记标签的开与闭
+        debug 将生成的函数体输出
+        _with 是否使用 with() {} 结构。如果值为 false，所有局部数据将存储在 locals 对象上。
+        localsName 如果不使用 with ，localsName 将作为存储局部变量的对象的名称。默认名称是 locals
+        rmWhitespace 删除所有可安全删除的空白字符，包括开始与结尾处的空格。
+            对于所有标签来说，它提供了一个更安全版本的 -%> 标签（在一行的中间并不会剔除标签后面的换行符)。
+        escape 为 【小于号、百分号、等于号】 结构设置对应的转义（escape）函数。
+            它被用于输出结果以及在生成的客户端函数中通过 .toString() 输出。(默认转义 XML)。
+        outputFunctionName 设置为代表函数名的字符串（例如 'echo' 或 'print'）时，将输出脚本标签之间应该输出的内容。
+        async 当值为 true 时，EJS 将使用异步函数进行渲染。（依赖于 JS 运行环境对 async/await 是否支持）
+    -->
+    <script>
+
+    </script>
+  </body>
+
+</html>

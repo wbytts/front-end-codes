@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(to bottom right, #eee8dd, #e3d9c6);
+}
+
+.card {
+  width: 300px;
+  height: 300px;
+  background-color: #e3d9c6;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease;
+}
+
+.card-outside, .card-inside {
+  position: absolute;
+  right: 0;
+  width: 300px;
+  height: 300px;
+}
+
+.card-outside {
+  z-index: 100;
+  perspective: 1000px;
+}
+
+.card-outside-container {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: all 3s ease;
+}
+
+.card:hover .card-outside-container {
+  transform: rotateY(-180deg);
+}
+
+.card:hover {
+  width: 600px;
+}
+
+.card-front, .card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  background-color: #e39dc6;
+}
+
+.card-front-top {
+  width: 100%;
+  height: 240px;
+  background: linear-gradient(to bottom, #ff73b9, #ff40a1);
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 57% 90%, 50% 100%, 43% 90%, 0 90%);
+}
+
+.card-front-top img {
+   width: 100%;
+  height: 100%;
+}
+
+.card-front-bottom {
+  font-size: 26px;
+  color: #ff40a1;
+  font-weight: 800;
+  text-align: center;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.video-container {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: polygon(0 0, 100% 0, 90% 50%, 100% 100%, 0 100%);
+}
+
+.card-inside {
+  z-index: 99;
+}
+
+.card-inside-container {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-size: 24px;
+  color: #ff40a1;
+  font-weight: 800;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card-inside-container p {
+  color: #333;
+  font-size: 20px;
+}
+
+.card-inside-container .btn {
+  width: 90%;
+  height: 50px;
+  line-height: 50px;
+  border: 3px solid #ff40a1;
+  color: #ff40a1;
+  border-radius: 5px;
+}

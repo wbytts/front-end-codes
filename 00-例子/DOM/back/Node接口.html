@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  /*
+    Node.prototype.nodeType：返回一个整数值，表示节点的类型，Node 对象定义了几个常量，对应这些类型值
+        文档节点（document）：9，对应常量Node.DOCUMENT_NODE
+        元素节点（element）：1，对应常量Node.ELEMENT_NODE
+        属性节点（attr）：2，对应常量Node.ATTRIBUTE_NODE
+        文本节点（text）：3，对应常量Node.TEXT_NODE
+        文档片断节点（DocumentFragment）：11，对应常量Node.DOCUMENT_FRAGMENT_NODE
+        文档类型节点（DocumentType）：10，对应常量Node.DOCUMENT_TYPE_NODE
+        注释节点（Comment）：8，对应常量Node.COMMENT_NODE
+    Node.prototype.nodeName：返回节点的名称
+        文档节点（document）：#document
+        元素节点（element）：大写的标签名
+        属性节点（attr）：属性的名称
+        文本节点（text）：#text
+        文档片断节点（DocumentFragment）：#document-fragment
+        文档类型节点（DocumentType）：文档的类型
+        注释节点（Comment）：#comment
+    Node.prototype.nodeValue：返回一个字符串，表示当前节点本身的文本值，该属性可读写。
+    Node.prototype.textContent：返回当前节点和它的所有后代节点的文本内容，自动忽略当前节点内部的 HTML 标签，返回所有文本内容。
+    Node.prototype.baseURI：返回一个字符串，表示当前网页的绝对路径。浏览器根据这个属性，计算网页上的相对路径的 URL。该属性为只读。如果无法读到网页的 URL，baseURI属性返回null。
+    Node.prototype.ownerDocument：返回当前节点所在的顶层文档对象，即document对象。document对象本身的ownerDocument属性，返回null。
+    Node.prototype.nextSibling：返回紧跟在当前节点后面的第一个同级节点。如果当前节点后面没有同级节点，则返回null。
+    Node.prototype.previousSibling：返回当前节点前面的、距离最近的一个同级节点。如果当前节点前面没有同级节点，则返回null。
+    Node.prototype.parentNode：返回当前节点的父节点。对于一个节点来说，它的父节点只可能是三种类型：元素节点（element）、文档节点（document）和文档片段节点（documentfragment）。
+    Node.prototype.parentElement：返回当前节点的父元素节点。如果当前节点没有父节点，或者父节点类型不是元素节点，则返回null。
+    Node.prototype.firstChild，Node.prototype.lastChild：返回当前节点的第一个子节点或最后一个节点，如果当前节点没有子节点，则返回null。
+    Node.prototype.childNodes：返回一个类似数组的对象（NodeList集合），成员包括当前节点的所有子节点。
+        除了元素节点，childNodes属性的返回值还包括文本节点和注释节点。
+        如果当前节点不包括任何子节点，则返回一个空的NodeList集合。
+        由于NodeList对象是一个动态集合，一旦子节点发生变化，立刻会反映在返回结果之中。
+    Node.prototype.isConnected：返回一个布尔值，表示当前节点是否在文档之中。
+
+
+    Node.prototype.appendChild()：接受一个节点对象作为参数，将其作为最后一个子节点，插入当前节点。该方法的返回值就是插入文档的子节点。
+        如果参数节点是 DOM 已经存在的节点，appendChild()方法会将其从原来的位置，移动到新位置。
+        如果appendChild()方法的参数是DocumentFragment节点，那么插入的是DocumentFragment的所有子节点，而不是DocumentFragment节点本身。返回值是一个空的DocumentFragment节点。
+    Node.prototype.hasChildNodes()：返回一个布尔值，表示当前节点是否有子节点。
+        注意，子节点包括所有类型的节点，并不仅仅是元素节点。哪怕节点只包含一个空格，hasChildNodes方法也会返回true。
+        判断一个节点有没有子节点，有许多种方法，下面是其中的三种。
+          node.hasChildNodes()
+          node.firstChild !== null
+          node.childNodes && node.childNodes.length > 0
+          hasChildNodes方法结合firstChild属性和nextSibling属性，可以遍历当前节点的所有后代节点。
+    Node.prototype.cloneNode()：用于克隆一个节点。它接受一个布尔值作为参数，表示是否同时克隆子节点。它的返回值是一个克隆出来的新节点。
+      （1）克隆一个节点，会拷贝该节点的所有属性，但是会丧失addEventListener方法和on-02-属性（即node.onclick = fn），添加在这个节点上的事件回调函数。
+      （2）该方法返回的节点不在文档之中，即没有任何父节点，必须使用诸如Node.appendChild这样的方法添加到文档之中。
+      （3）克隆一个节点之后，DOM 有可能出现两个有相同id属性（即id="xxx"）的网页元素，这时应该修改其中一个元素的id属性。如果原节点有name属性，可能也需要修改。
+    Node.prototype.insertBefore()：用于将某个节点插入父节点内部的指定位置。
+        insertBefore方法接受两个参数，第一个参数是所要插入的节点newNode，第二个参数是父节点parentNode内部的一个子节点referenceNode。
+        newNode将插在referenceNode这个子节点的前面。返回值是插入的新节点newNode
+        如果insertBefore方法的第二个参数为null，则新节点将插在当前节点内部的最后位置，即变成最后一个子节点。
+        注意，如果所要插入的节点是当前 DOM 现有的节点，则该节点将从原有的位置移除，插入新的位置。
+        由于不存在insertAfter方法，如果新节点要插在父节点的某个子节点后面，可以用insertBefore方法结合nextSibling属性模拟。
+        如果要插入的节点是DocumentFragment类型，那么插入的将是DocumentFragment的所有子节点，而不是DocumentFragment节点本身。返回值将是一个空的DocumentFragment节点。
+    Node.prototype.removeChild()：接受一个子节点作为参数，用于从当前节点移除该子节点。返回值是移除的子节点。
+        被移除的节点依然存在于内存之中，但不再是 DOM 的一部分。所以，一个节点移除以后，依然可以使用它，比如插入到另一个节点下面。
+        如果参数节点不是当前节点的子节点，removeChild方法将报错。
+    Node.prototype.replaceChild()：用于将一个新的节点，替换当前节点的某一个子节点。
+        replaceChild方法接受两个参数，第一个参数newChild是用来替换的新节点，第二个参数oldChild是将要替换走的子节点。返回值是替换走的那个节点oldChild。
+    Node.prototype.contains()：返回一个布尔值，表示参数节点是否满足以下三个条件之一。
+        参数节点为当前节点。
+        参数节点为当前节点的子节点。
+        参数节点为当前节点的后代节点。
+    Node.prototype.compareDocumentPosition()：用法，与contains方法完全一致，返回一个六个比特位的二进制值，表示参数节点与当前节点的关系。
+    Node.prototype.isEqualNode()，Node.prototype.isSameNode()：
+        isEqualNode方法返回一个布尔值，用于检查两个节点是否相等。所谓相等的节点，指的是两个节点的类型相同、属性相同、子节点相同。
+        isSameNode方法返回一个布尔值，表示两个节点是否为同一个节点。
+    Node.prototype.normalize()：
+        用于清理当前节点内部的所有文本节点（text）。它会去除空的文本节点，并且将毗邻的文本节点合并成一个，也就是说不存在空的文本节点，以及毗邻的文本节点。
+    Node.prototype.getRootNode()：返回当前节点所在文档的根节点document，与ownerDocument属性的作用相同。
+        该方法可用于document节点自身，这一点与document.ownerDocument不同。
+
+  */
+</script>
+</body>
+</html>

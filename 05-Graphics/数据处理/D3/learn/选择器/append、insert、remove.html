@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        #box {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+
+<hr>
+<div id="box">
+    box
+</div>
+<hr>
+
+<script>
+    var box = d3.select('#box');
+    var body = d3.select('body');
+
+    // append：在选择集末尾插入元素
+    // 在选择集的末尾插入指定元素
+    box.append('p').text('张三');
+
+    // insert：在选择集前面插入元素
+    // 找到id为box的div，插入元素
+    body.insert('div', '#box').text('李四');
+
+    // remove：删除元素
+
+</script>
+</body>
+</html>

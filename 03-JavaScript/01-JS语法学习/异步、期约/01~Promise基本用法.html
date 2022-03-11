@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="btn">按钮</button>
+
+    <script>
+
+        let btn = document.querySelector('#btn');
+
+        /*
+            new Promise 接收一个函数，这个函数有两个参数 resolve 和 reject
+                resolve：解决
+                reject：拒绝
+                它们的参数，传给接下来处理的函数
+         */
+
+        // 创建一个需要时间的 Promise
+        const p = new Promise(function(resolve, reject) {
+          // 通过打印可知，创建promise时，传进去的函数是会被执行的
+          console.log("这里是Promise内部的东西");
+            setTimeout(() => {
+                resolve('成功读取到数据');
+                // reject('数据读取失败');
+            }, 1000);
+        });
+
+
+        btn.onclick = function() {
+            // 调用 Promise 的 then 方法
+            // p.then(成功回调函数, 失败回调函数)
+            // 触发resolve时成功，触发reject时失败
+            p.then(function(value) {
+                console.log('成功:', value);
+            }, function(reason) {
+                console.log('失败:', reason);
+            });
+        }
+
+        // 也可以使用箭头函数
+        /*
+          p.then(
+              (value) => console.log('成功:', value),
+              (reason) => console.log('失败:', reason)
+          )
+        */
+
+        // p.then 方法的返回结果，也是一个 Promise 对象，对象的状态由回调函数的结果来决定
+        // 1. 如果回调函数中，返回的结果是 非Promise 的数据（包括undefined），则状态为成功，返回值为对象的成功值
+        // 2. 如果返回一个Promise对象，则内部Promise的状态决定then返回的Promise的状态
+        // 3. 抛出错误，则then返回的Promise的状态为失败
+    </script>
+</body>
+
+</html>

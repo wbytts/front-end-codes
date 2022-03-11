@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/mobx/6.3.12/mobx.umd.development.js"></script>
+</head>
+
+<body>
+
+
+  <script>
+
+    const todosById = mobx.observable({
+      "TODO-123": {
+        title: "find a decent task management system",
+        done: false
+      }
+    })
+
+    todosById["TODO-456"] = {
+      title: "close all tickets older than two weeks",
+      done: true
+    }
+
+    // const tags = mobx.observable(["high prio", "medium prio", "low prio"])
+    // tags.push("prio: for fun")
+
+    console.log(todosById);
+
+  </script>
+</body>
+
+</html>

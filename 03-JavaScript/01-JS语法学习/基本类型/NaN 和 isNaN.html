@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>isNaN</title>
+</head>
+<body>
+<!--
+    NaN：not a numbner 不是数值
+    任何涉及 NaN 的操作，返回的都是NaN
+    NaN不等于包括NaN在内的任何值
+
+    isNaN方法可以用来判断一个值是否为NaN
+    只对数值有效，如果传入其他值，会被先转成数值。
+        比如，传入字符串的时候，字符串会被先转成NaN，所以最后返回true，这一点要特别引起注意。
+        也就是说，isNaN为true的值，有可能不是NaN，而是一个字符串
+    出于同样的原因，对于对象和数组，isNaN也返回true
+    但是，对于空数组和只有一个数值成员的数组，isNaN返回false
+
+    isNaN 可以用于测试对象，首先会调用对象的 valueOf 方法，确定返回值是否可以转换成数值
+    如果不能，在调用对象的 toString 方法，并测试其返回值
+
+    使用 isNaN 之前，最好判断一下类型：
+        function myIsNaN(value) {
+          return typeof value === 'number' && isNaN(value);
+        }
+
+    或者：
+        function myIsNaN(value) {
+          return value !== value;
+        }
+-->
+</body>
+</html>

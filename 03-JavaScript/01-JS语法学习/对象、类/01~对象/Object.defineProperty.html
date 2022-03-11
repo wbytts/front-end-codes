@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  // Object.defineProperty
+  let obj = {name: '张三', age: 18};
+  // 让用户名不能修改
+  Object.defineProperty(obj, 'name', {writable: false});
+  console.log(obj);
+  obj.name = '李四';
+  console.log(obj); // 发现name属性没有被修改
+</script>
+</body>
+</html>

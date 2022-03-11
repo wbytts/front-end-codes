@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <!--
+  JavaScript 中存在很多异步操作,Promise 将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。
+        可以通过链式调用多个 Promise 达到我们的目的。
+  Promise 在各种开源库中早已经实现，现在标准化后被浏览器默认支持。
+  promise 是一个拥有 then 方法的对象或函数
+
+  Promise 可以理解为承诺，就像我们去KFC点餐服务员给我们一引取餐票，这就是承诺。
+  如果餐做好了叫我们这就是成功，如果没有办法给我们做出食物这就是拒绝。
+
+  Promise包含pending、fulfilled、rejected三种状态
+    pending 指初始等待状态，初始化 promise 时的状态
+    resolve 指已经解决，将 promise 状态设置为 fulfilled(完成)
+    reject 指拒绝处理，将 promise 状态设置为 rejected(拒绝)
+    promise 是生产者，通过 resolve 与 reject 函数告之结果
+    promise 非常适合需要一定执行时间的异步任务
+    状态一旦改变将不可更改
+
+  let promise = Promise((resolve, reject) => {...});
+
+  promise.then(onFulfilled, onRejected)
+    then 会在 promise 执行完成后执行，then 第一个函数在 resolve成功状态执行,then 中第二个参数在失败状态执行
+    onFulfilled 或 onRejected 不是函数将被忽略
+    两个函数只会被调用一次
+    onFulfilled 在 promise 执行成功时调用
+    onRejected 在 promise 执行拒绝时调用
+
+  每次的 then 都是一个全新的 promise，默认 then 返回的 promise 状态是 fulfilled
+  每次的 then 都是一个全新的 promise，不要认为上一个 promise 状态会影响以后then返回的状态
+  then 是对上个 promise 的 rejected 的处理，每个 then 会是一个新的 promise，默认传递 fulfilled 状态
+
+  catch用于失败状态的处理函数，等同于 then(null,reject){}
+-->
+  <script>
+
+    // 创建Promise对象之后，传递给它的函数会立刻执行
+    // 而且，执行完了才会执行后面的代码
+
+    console.log('111');
+    let p = new Promise((resolve, reject) => {
+      console.log('传递给promise的函数');
+      setTimeout(() => {
+        for (let i = 0;i < 2000;i++) {
+          console.log('传递给promise的函数');
+          resolve()
+        }
+      })
+    });
+    p.then(res => {
+      console.log('333');
+    });
+    console.log('222');
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<script>
+
+   // 有部分属性，不能通过 attr 设置和获取，此时可以使用 property， 典型的比如 value
+    var svg = d3.select('body').append('svg')
+        .attr('width', 4000)
+        .attr('height', 4000);
+
+    var circle = svg.append('circle')
+        .attr('cx', '500px')
+        .attr('cy', '500px')
+        .attr('r', '50px')
+        .attr('fill', 'red');
+
+    var r = 50;
+    setInterval(() => {
+        r++;
+        circle.attr('r', r)
+    }, 100)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+</head>
+<body>
+<script>
+    // 不带参数调用dayjs()将返回一个新的Day.js对象，其中包含当前日期和时间
+    // 直接运行 dayjs()，得到包含当前时间和日期的 Dayjs 对象
+    var d = dayjs();
+    console.log(d);
+
+    // 这种方式会克隆传入的 Date 对象，对date的后续修改不会影响 dayjs 对象
+    var date = new Date();
+    d = dayjs(date);
+    console.log(d);
+
+    // 传入 undefined 会处理为 dayjs()
+    d = dayjs(undefined);
+    console.log(d);
+
+    // 传入 null 会视为无效输入（但貌似也能正常显示？反正不会这么用就是了）
+    d = dayjs(null);
+    console.log(d);
+
+    // 以ISO 8601格式解析给定字符串并返回day.js对象实例
+    d = dayjs('2018-04-04T16:00:00.000Z');
+    console.log(d);
+
+    // 按格式解析字符串
+    d = dayjs('2021-05-29', 'YYYY-MM-DD');
+    console.log(d);
+
+    // 可以再加一个参数，以便使用严格解析。严格的解析要求格式和输入精确匹配，包括分隔符
+    d = dayjs('2021-05-29', 'YYYY-MM-DD', true);
+    console.log(d);
+
+    // 使用 UNIX 时间戳（毫秒）
+    d = dayjs(1318781876406);
+    console.log(d);
+
+    // 使用秒
+    dayjs.unix(1318781876);
+    // 这种方式最终是通过 dayjs(timestamp * 1000) 去实现的，所以可以加小数部分
+    dayjs.unix(1318781876.721);
+
+
+</script>
+</body>
+</html>

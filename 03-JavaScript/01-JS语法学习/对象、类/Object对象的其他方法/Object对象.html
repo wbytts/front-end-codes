@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Object对象</title>
+</head>
+<body>
+<script>
+  /*
+    JavaScript 的所有其他对象都继承自Object对象，即那些对象都是Object的实例。
+    Object对象的原生方法分成两类：Object本身的方法与Object的实例方法。
+
+    Object()
+      Object本身是一个函数，可以当作工具方法使用，将任意值转为对象。这个方法常用于保证某个值一定是对象。
+      如果参数为空（或者为undefined和null），Object()返回一个空对象。
+      如果Object方法的参数是一个对象，它总是返回该对象，即不用转换。
+
+    Object构造函数：
+      Object不仅可以当作工具函数使用，还可以当作构造函数使用，即前面可以使用new命令。
+      Object构造函数的首要用途，是直接通过它来生成新对象。
+      Object构造函数的用法与工具方法很相似，几乎一模一样。
+      使用时，可以接受一个参数，如果该参数是一个对象，则直接返回这个对象；如果是一个原始类型的值，则返回该值对应的包装对象
+
+    Object.keys()：参数是一个对象，返回一个数组。该数组的成员都是该对象自身的（而不是继承的）所有属性名。
+    Object.entries()：
+    Object.getOwnPropertyNames：接受一个对象作为参数，返回一个数组，包含了该对象自身的所有属性名。
+    两者的区别：涉及不可枚举属性时，才会有不一样的结果。Object.keys方法只返回可枚举的属性
+
+    对象属性模型相关：
+      Object.getOwnPropertyDescriptor()：获取某个属性的描述对象。
+      Object.defineProperty()：通过描述对象，定义某个属性。
+      Object.defineProperties()：通过描述对象，定义多个属性。
+
+    对象状态相关：
+      Object.preventExtensions()：防止对象扩展。
+      Object.isExtensible()：判断对象是否可扩展。
+      Object.seal()：禁止对象配置。
+      Object.isSealed()：判断一个对象是否可配置。
+      Object.freeze()：冻结一个对象。
+      Object.isFrozen()：判断一个对象是否被冻结。
+
+    原型链相关
+      Object.create()：该方法可以指定原型对象和属性，返回一个新的对象。
+      Object.getPrototypeOf()：获取对象的Prototype对象。
+
+    实例方法：
+      Object.prototype.valueOf()：返回当前对象对应的值。
+      Object.prototype.toString()：返回当前对象对应的字符串形式。
+      Object.prototype.toLocaleString()：返回当前对象对应的本地字符串形式。
+      Object.prototype.hasOwnProperty()：判断某个属性是否为当前对象自身的属性，还是继承自原型对象的属性。
+      Object.prototype.isPrototypeOf()：判断当前对象是否为另一个对象的原型。
+      Object.prototype.propertyIsEnumerable()：判断某个属性是否可枚举。
+   */
+</script>
+</body>
+</html>

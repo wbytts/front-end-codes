@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>类型转换</title>
+</head>
+<body>
+<script>
+  /*
+    其他类型 -> String：
+      1. 调用被转换对象的 toString 方法，这个方法不会影响原值，会将结果返回。null和undefined不能用这种方法，会报错
+      2. 调用 String() 函数，String(xxx) 将要转换的数据传入，返回转换的结果
+              对于 Number 和 Boolean ，调用底层的 toString 方法
+              对于 null 和 undefined 会将它们转换成对应的 "null" 和 "undefined"
+
+    其他类型 -> Number：
+      1. Number：
+          字符串：如果是纯数字的字符串，则直接将其装换为数字，如果有非数字内容，则转换为NaN，如果是空字符串（或全是空格），转换为0
+          布尔值：true->1，false->0
+          null -> 0
+          undefined -> NaN
+      2. parseInt(x) / parseInt(x, base) 指定进制
+          从左往右，解析字符串，返回成功解析的部分转换成的整数
+          如果第一个就不能解析，则返回 NaN
+          如果参数不是字符串，会先将其转换成字符串，再进行操作
+          不支持科学计数法
+      3. parseFloat(x) 将字符串转换为浮点数
+          如果字符串符合科学计数法，则会进行相应的转换。
+          如果字符串包含不能转为浮点数的字符，则不再进行往后转换，返回已经转好的部分。
+          自动过滤字符串前导的空格。
+          会将空字符串转为NaN。
+
+    其他类型 -> Boolean：
+      1. Boolean(x)
+      2. 直接操作：0，NaN，null，undefined，infinity，空字符串  等视为false
+   */
+
+  let a = 3;
+  let b = "3";
+
+  // Python 强类型，动态类型
+  // JS 弱类型
+  console.log(a == b);
+  console.log(a + b);
+  console.log(b + a);
+  console.log(a + (+b));
+
+  let obj = {};
+
+  console.log(null ?? undefined ?? 123);
+
+
+  // 函数声明语句
+  function add(a, b) {
+    a = a ?? 999
+    b = b ?? a ?? 999 ?? 1 ?? 2 ?? 4;
+    return a + b;
+  }
+
+  // 函数定义表达式
+  let f = function() {}
+
+
+  // 立即执行函数表达式
+  // var
+  // (function(){
+  //   var x = 4;
+  // })();
+
+  // {
+  //   var x = 4;
+  // }
+
+
+  let result = add();
+  console.log(result);
+
+
+    function sum1(a, b) {
+      return a + b;
+    }
+
+    let sum2 = function(a, b) {
+      return a + b;
+    };
+
+    // 箭头函数
+    let sum3 = (a, b) => {
+      return a + b;
+    };
+
+    // 如果剪头函数内部只有一个语句，可以省略大括号
+    let sum4 = (a, b) => a + b;
+
+    // 如果只有一个参数
+    let fang1 = (x) => x * x;
+    let fang2 = x => x * x;
+
+    // (参数) => 返回值
+    let fun = a => b => c => d => e => a + b + c + d + e;
+    console.log(fun(1)(2)(3)(4)(5));
+
+
+</script>
+</body>
+</html>

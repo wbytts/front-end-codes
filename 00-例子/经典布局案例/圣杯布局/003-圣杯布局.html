@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>圣杯布局</title>
+    <style>
+        /*
+            1. 两边固定，中间自适应
+            2. 中间列要完整显示
+            3. 中间要优先加载（middle要在前面）
+
+            步骤：
+                内容三列左浮动
+                内容底部清浮动
+                负margin调整两边的位置
+                内容padding压缩中间
+                两边相对定位移到两边
+        */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #header,#footer {
+            height: 20px;
+            text-align: center;
+            border: 1px solid deeppink;
+            background-color: gray;
+        }
+        #content {
+            overflow: hidden;
+            padding: 0 200px;
+        }
+        #content div {
+            height: 100px;
+        }
+        #content .middle{
+            float: left;
+            width: 100%;
+            background-color: pink;
+        }
+        #content .left{
+            position: relative;
+            left: -200px;
+            float: left;
+            width: 200px;
+            margin-left: -100%;
+            background-color: yellow;
+        }
+        #content .right{
+            position: relative;
+            right: -200px;
+            float: left;
+            width: 200px;
+            margin-left: -200px;
+            background-color: yellow;
+        }
+        #content .middle,#content .left,#content .right {
+            padding-bottom: 10000px;
+            margin-bottom: -10000px;
+        }
+        .clearfix {
+            *zoom: 1;
+        }
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div id="header">header</div>
+<div id="content" class="clearfix">
+    <div class="middle">middle</div>
+    <div class="left">left</div>
+    <div class="right">right</div>
+</div>
+<div id="footer">footer</div>
+</body>
+</html>

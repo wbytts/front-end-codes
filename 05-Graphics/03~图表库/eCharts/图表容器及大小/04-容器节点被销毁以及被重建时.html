@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--    <script src="../echarts-520-all.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.0/dist/echarts.js"></script>
+</head>
+
+<body>
+
+<button id="btn1">销毁</button>
+<button id="btn2">初始化</button>
+
+<div id="main" style="width: 600px;height:400px;"></div>
+
+<script>
+
+    window.onload = function() {
+        let btn1 = document.querySelector('#btn1');
+        let btn2 = document.querySelector('#btn2');
+
+        btn2.onclick = function() {
+            window.myChart = echarts.init(document.getElementById('main'), 'dark');
+            var option = {
+                title: { // 指定图表的标题
+                    text: 'ECharts 入门示例', // 指定图表标题的文字
+                },
+                tooltip: { //提示信息
+
+                },
+                legend: {
+                    data: ['销量'],
+                },
+                xAxis: { // x轴
+                    data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
+                },
+                yAxis: { // y轴
+
+                },
+                series: [{
+                    name: '销量',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20],
+                }, {
+                    name: '销量',
+                    type: 'bar',
+                    data: [6, 18, 32, 8, 8, 16],
+                }],
+
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+
+        btn1.onclick = function() {
+            window.myChart.dispose();
+        }
+    }
+
+
+
+</script>
+</body>
+
+</html>

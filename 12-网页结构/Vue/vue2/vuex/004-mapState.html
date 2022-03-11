@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuex"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <h1>{{a}}</h1>
+    <button @click="add">ADD</button>
+  </div>
+
+  <script>
+    const store = new Vuex.Store({
+      state: {
+        count: 0
+      },
+      mutations: {
+        increment(state) {
+          state.count++
+        }
+      }
+    });
+
+    console.log();
+
+    let vm = new Vue({
+      el: '#app',
+      store,
+      computed: {
+        ...Vuex.mapState({
+          a: 'count',
+          b: state => state.count
+        })
+      },
+      methods: {
+        add() {
+          store.commit('increment');
+        }
+      }
+    });
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>StyleSheet接口</title>
+</head>
+<body>
+<script>
+  /*
+    StyleSheet 接口:
+        StyleSheet接口代表网页的一张样式表，包括<link>元素加载的样式表和<style>元素内嵌的样式表。
+        document对象的styleSheets属性，可以返回当前页面的所有StyleSheet实例（即所有样式表）。它是一个类似数组的对象。
+        如果是<style>元素嵌入的样式表，还有另一种获取StyleSheet实例的方法，就是这个节点元素的sheet属性。
+        严格地说，StyleSheet接口不仅包括网页样式表，还包括 XML 文档的样式表。
+        所以，它有一个子类CSSStyleSheet表示网页的 03-CSS 样式表。我们在网页里面拿到的样式表实例，实际上是CSSStyleSheet的实例。
+        这个子接口继承了StyleSheet的所有属性和方法，并且定义了几个自己的属性
+
+    StyleSheet.disabled：
+        返回一个布尔值，表示该样式表是否处于禁用状态。
+        手动设置disabled属性为true，等同于在<link>元素里面，将这张样式表设为alternate stylesheet，即该样式表将不会生效。
+        注意，disabled属性只能在 JavaScript 脚本中设置，不能在 HTML 语句中设置。
+
+    Stylesheet.href：
+        返回样式表的网址。对于内嵌样式表，该属性返回null。该属性只读。
+
+    StyleSheet.media：
+        返回一个类似数组的对象（MediaList实例），成员是表示适用媒介的字符串。
+        表示当前样式表是用于屏幕（screen），还是用于打印（print）或手持设备（handheld），或各种媒介都适用（all）。
+        该属性只读，默认值是screen。
+        MediaList实例的appendMedium方法，用于增加媒介；deleteMedium方法用于删除媒介。
+
+    StyleSheet.title：
+        返回样式表的title属性。
+
+    StyleSheet.type：
+        返回样式表的type属性，通常是text/css。
+
+    StyleSheet.parentStyleSheet：
+        03-CSS 的@import命令允许在样式表中加载其他样式表。
+        StyleSheet.parentStyleSheet属性返回包含了当前样式表的那张样式表。
+        如果当前样式表是顶层样式表，则该属性返回null。
+
+    StyleSheet.ownerNode：
+        返回StyleSheet对象所在的 DOM 节点，通常是<link>或<style>。
+        对于那些由其他样式表引用的样式表，该属性为null。
+
+    CSSStyleSheet.cssRules：
+        指向一个类似数组的对象（CSSRuleList实例），里面每一个成员就是当前样式表的一条 03-CSS 规则。
+        使用该规则的cssText属性，可以得到 03-CSS 规则对应的字符串。
+        每条 03-CSS 规则还有一个style属性，指向一个对象，用来读写具体的 03-CSS 命令。
+
+    CSSStyleSheet.ownerRule：
+        有些样式表是通过@import规则输入的，它的ownerRule属性会返回一个CSSRule实例，代表那行@import规则。
+        如果当前样式表不是通过@import引入的，ownerRule属性返回null。
+
+    CSSStyleSheet.insertRule()：
+        用来在样式表里面移除一条规则，它的参数是该条规则在cssRules对象中的位置。该方法没有返回值。
+   */
+</script>
+</body>
+</html>

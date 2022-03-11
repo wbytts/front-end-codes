@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pubsub-js/1.9.4/pubsub.js"></script>
+</head>
+
+<body>
+
+  <script>
+    // 引入之后，window上会有一个 PubSub
+    /*
+      clearAllSubscriptions: ƒ clearAllSubscriptions() 清除所有订阅
+      clearSubscriptions: ƒ clearSubscriptions(topic) 清除所有指定topic的订阅
+      countSubscriptions: ƒ countSubscriptions(topic) 统计指定topic的订阅数
+      getSubscriptions: ƒ getSubscriptions(topic) 获取所有订阅
+      publish: ƒ ( message, data ) 同步发布
+      publishSync: ƒ ( message, data ) 异步发布
+      subscribe: ƒ ( message, func ) 订阅指定message
+      subscribeAll: ƒ ( func ) 订阅所有
+      subscribeOnce: ƒ ( message, func ) 订阅一次
+      unsubscribe: ƒ (value) 取消订阅
+    */
+
+    // 订阅一个topic，返回的值传给unsubscribe可以用来取消订阅
+    var token = PubSub.subscribe('MY TOPIC', (msg, data) => {
+      console.log(msg, data);
+    });
+
+    // 发布
+    PubSub.publish('MY TOPIC', 'hello world!');
+  </script>
+</body>
+
+</html>

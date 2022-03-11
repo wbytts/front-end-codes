@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>属性特征</title>
+</head>
+<body>
+<script>
+  /*
+    JS中可以对属性的访问特性进行控制。
+
+    使用 Object.getOwnPropertyDescriptor查看对象属性的描述。
+    使用 Object.getOwnPropertyDescriptors查看对象所有属性的描述
+
+    属性包括以下四种特性（也叫属性描述符）
+      特性	          说明	                                                        默认值
+      configurable	  能否使用delete、能否需改属性特性、或能否修改访问器属性	            true
+      enumerable	    对象属性是否可通过for-in循环，或 Object.keys() 读取              true
+      writable	      对象属性是否可修改                                              true
+      value	          对象属性的默认值                                                undefined
+
+    Object.defineProperty 方法修改属性特性
+    Object.defineProperties 可以一次设置多个属性
+    Object.preventExtensions 禁止向对象添加属性
+    Object.isExtensible 判断是否能向对象中添加属性
+    Object.seal()方法封闭一个对象，阻止添加新属性并将所有现有属性标记为 configurable: false
+    Object.isSealed 如果对象是密封的则返回 true，属性都具有 configurable: false
+    Object.freeze 冻结对象后不允许添加、删除、修改属性，writable、configurable都标记为false
+    Object.isFrozen()方法判断一个对象是否被冻结
+   */
+
+
+
+</script>
+</body>
+</html>

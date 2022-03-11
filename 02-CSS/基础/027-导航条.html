@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>导航条</title>
+    <!--清除默认样式-->
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/reset.css">
+    <style>
+        .nav {
+            width: 1000px;
+            margin: 10px auto;
+            overflow: hidden; /*开启BFC*/
+            background-color: #6495ed;
+        }
+        .nav li {
+            width: 25%;
+            float: left;
+            text-align: center;
+        }
+        .nav li a {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            color: white;
+            text-decoration: none;
+            font-width: blod;
+        }
+        .nav li a:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">新闻</a></li>
+        <li><a href="#">联系</a></li>
+        <li><a href="#">关于</a></li>
+    </ul>
+</body>
+</html>

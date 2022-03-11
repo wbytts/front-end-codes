@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <script src="by-utils.js"></script>
+  <style>
+    canvas {
+      border: 1px solid;
+    }
+
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="800" height="800">
+    您的浏览器不支持 Canvas
+  </canvas>
+  <script>
+    window.onload = function () {
+      var canvas = document.getElementById("myCanvas");
+      if (canvas && canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+        /*
+        bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+
+        quadraticCurveTo(cpx, cpy, x, y)
+
+         */
+      }
+    };
+  </script>
+</body>
+
+</html>

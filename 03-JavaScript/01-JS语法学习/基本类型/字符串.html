@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    在JS中用引号引起来的叫做字符串（单引号、双引号、反引号）
+
+    创建一个字符串对象：
+      let s = "xxx"
+      let s = 'xxx'
+      let s = `xxx`
+      let s = new String('xxx')
+
+    字符串的长度： s.length
+    如果字符串中包含双字节字符，则length可能不是准确的
+
+    字符串是不可变的（immutable）
+
+    转换为字符串：
+      xxx.toString() // 如果是数值，还可以指定进制
+      xxx + ""
+
+-->
+<script>
+  console.log('Hello');
+
+  var str = 'AAAbbbCCCddd';
+  console.log(str);
+  console.log(window.str);
+
+  console.log('字符串的长度：' + str.length);
+  console.log('转大写：' + str.toUpperCase());
+  console.log('转小写：' + str.toLowerCase());
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+  左右移动指针（光标）来改变图像位置 此程序为一张图像叠加在另一张上，通过tint() 函数来改变它的透明度值(alpha value)。
+ */
+let img;
+let offset = 0;
+let easing = 0.05;
+
+function setup() {
+  createCanvas(720, 400);
+  img = loadImage('assets/moonwalk.jpg'); // 加载图像
+}
+
+function draw() {
+  image(img, 0, 0); // 完全不透明
+  let dx = mouseX - img.width / 2 - offset;
+  offset += dx * easing;
+  tint(255, 127); // 半透明
+  image(img, offset, 0);
+}
+
+</script>
+</body>
+</html>

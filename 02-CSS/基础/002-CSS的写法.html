@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CSS的写法</title>
+    <style>
+      #d1 {
+        width: 200px;
+        height: 100px;
+        border: 1px solid skyblue;
+        background-color: rgb(248, 8, 216);
+        border-radius: 30px;
+        text-align: center;
+        line-height: 100px;
+        font-size: 42px;
+        color: rgb(6, 73, 29);
+        font-family: "楷体";
+      }
+
+      #d2 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid;
+        background-color: green;
+      }
+
+      #d3 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid;
+        background-color: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--
+    CSS的写法：
+        CSS有两个部分：02-选择器 声明块
+            通过选择器可以选中页面中指定的元素，并且将声明块中的样式应用到选择器对应的元素上
+            声明块紧跟在选择器的后面，使用一对 {} 括起来，声明块中实际上就是一组一组的名值对结构
+                一组名值对，称为一个声明
+                多个声明之间使用 ; 来隔开
+
+        02-选择器 {
+            属性名: 属性值;
+            属性名: 属性值;
+            属性名: 属性值;
+            属性名: 属性值;
+            属性名: 属性值;
+            ......
+        }
+-->
+    <!-- 块元素 会独占一行-->
+    <div id="d1">按钮</div>
+    <div id="d2"></div>
+    <div id="d3"></div>
+    <!-- 行内元素 -->
+    <span>111</span>
+    <span>222</span>
+    <span>333</span>
+  </body>
+
+</html>

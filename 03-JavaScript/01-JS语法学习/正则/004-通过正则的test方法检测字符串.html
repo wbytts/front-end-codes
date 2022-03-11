@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<script>
+    var reg = /^[0-9].*[a-z]$/;
+    // 正则对象.test(字符串)
+    // 检测字符串是否符合正则
+    console.log(reg.test('asd'));
+    console.log(reg.test('3asdsad'));
+    console.log(reg.test('5+32132'));
+    console.log(reg.test('5+32132g'));
+</script>
+</body>
+</html>

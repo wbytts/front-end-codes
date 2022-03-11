@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--
+  TDZ 又称暂时性死区，指变量在作用域内已经存在，但必须在let/const声明后才可以使用。
+
+  TDZ可以让程序保持先声明后使用的习惯，让程序更稳定。
+
+  变量要先声明后使用
+  建议使用let/const 而少使用var
+
+  使用let/const 声明的变量在声明前存在临时性死区（TDZ）使用会发生错误
+-->
+<script>
+  function fun() {
+    console.log(a);
+    let a = 1;
+  }
+
+  fun();
+</script>
+
+</body>
+</html>

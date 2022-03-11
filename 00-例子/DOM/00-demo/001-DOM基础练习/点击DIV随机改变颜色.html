@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #ddd {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="ddd"></div>
+  <script>
+    var div = document.getElementById('ddd');
+
+    div.onclick = function () {
+      div.style.backgroundColor = getRandomColor();
+    }
+
+    // 获取随机颜色
+    function getRandomColor() {
+      var allc = '0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f';
+      var allc_arr = allc.split(',');
+      var c = '#';
+      for (var i = 0; i < 6; i++) {
+        var random = parseInt(Math.random() * allc_arr.length);
+        c += allc_arr[random];
+      }
+      return c;
+    }
+  </script>
+</body>
+
+</html>

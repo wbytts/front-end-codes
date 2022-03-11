@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id="reactContainer"></div>
+
+<script src="common/react.js"></script>
+<script src="common/react-dom.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/babel-core/5.8.38/browser.js"></script>
+<script type="text/babel">
+    var HelloComponent = React.createClass({
+        render: function() {
+            return <h1>Hello World {this.props.name ? this.props.name : '~~~'}</h1>;
+        }
+    });
+
+    ReactDOM.render(
+        <HelloComponent name='lalala'/>,
+        document.getElementById('reactContainer')
+    )
+</script>
+</body>
+</html>

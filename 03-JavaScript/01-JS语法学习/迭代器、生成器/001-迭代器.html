@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>什么是迭代器？</title>
+</head>
+
+<body>
+<script>
+  /*
+    迭代器 Iterator 是一种接口，为各种不同数据结构提供统一的访问机制
+    任何数据结构只要部署 Iterator 接口，就可以完成遍历操作
+    Iterator 接口主要提供给 for ... of 消费
+
+    工作原理：
+      1. 创建一个指针对象，指向当前数据结构的起始位置
+      2. 第一次调用对象的 next 方法，指针自动指向数据结构的第一个成员
+      3. 接下来不断地调用next方法，指针一直往后移动，直到指向最后一个成员
+      4. 每次调用next方法返回一个包含value和done属性的对象
+   */
+
+  // 声明一个数组
+  const xiyou = ['唐僧', '孙悟空', '猪八戒', '沙僧'];
+  // 使用 for ... of 遍历数组
+  /*
+    for in 遍历的是键值
+    for of 遍历的是项
+  */
+  for (let v of xiyou) {
+    console.log(v);
+  }
+
+  // 创建迭代器对象
+  var iter = xiyou[Symbol.iterator]();
+  // 调用其next方法
+  console.log(iter.next());
+  console.log(iter.next());
+  console.log(iter.next());
+  console.log(iter.next());
+  console.log(iter.next());
+  console.log(iter.next());
+  console.log(iter.next());
+  console.log(iter.next());
+
+  // 当需要自定义遍历数据的时候，要想到迭代器
+  const banji = {
+    name: '三年级四班',
+    stus: ['张三', '李四', '王五', '赵六', '田七'],
+    [Symbol.iterator]() {
+      let index = 0;
+      let _this = this;
+      return {
+        next: function () {
+          if (index < _this.stus.length) {
+            return {value: _this.stus[index++], done: false};
+          } else {
+            return {value: undefined, done: true};
+          }
+        }
+      }
+    }
+  }
+
+  for (let v of banji) {
+    console.log(v);
+  }
+
+</script>
+</body>
+
+</html>

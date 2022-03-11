@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>Title</title>
+
+  <!-- 加载 JsRender -->
+  <script src="https://www.jsviews.com/download/jsrender.js"></script>
+</head>
+<body>
+
+<div id="result"></div>
+
+<script id="myTmpl" type="text/x-jsrender">{{:name}}</script>
+
+<script>
+  // var $ = window.jsrender;                                   // 可选，没有jq可以用jsrender代替 $
+  var markup = document.getElementById("myTmpl").innerHTML;     // 获取模板内容
+  var tmpl = jsrender.templates(markup);                        // 编译模板
+  var data = {name: "Jo"};                                      // 定义数据
+  var html = tmpl.render(data);                                 // 渲染模板
+  document.getElementById("result").innerHTML = html;
+</script>
+</body>
+</html>

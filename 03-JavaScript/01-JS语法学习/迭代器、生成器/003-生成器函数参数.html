@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成器函数参数</title>
+</head>
+
+<body>
+    <script>
+        function * gen(arg) {
+            console.log(arg);
+            let m;
+            m = yield 111;
+            console.log("m=", m);
+            m = yield 222;
+            console.log("m=", m);
+            m = yield 333;
+            console.log("m=", m);
+        }
+
+        let iter = gen('AAA');
+        // next 方法调用的时候可以传参，传的参数其实就是 “上一个” yield 的返回结果
+        console.log(iter.next('一')); // 这个参数没用
+        console.log(iter.next('二')); // 第一个 yield 的返回结果
+        console.log(iter.next('三')); // 第二个 yield 的返回结果
+        console.log(iter.next('四')); // 第三个 yield 的返回结果
+    </script>
+</body>
+
+</html>

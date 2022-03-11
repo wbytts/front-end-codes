@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖测试</title>
+    <script src="./debounce.js"></script>
+</head>
+
+<body>
+    <input type="text">
+    <script>
+        let i = document.querySelector('input');
+        // i.onkeydown = function(e) {
+        //     console.log(e.keyCode)
+        // }
+
+        i.onkeydown = debounce(function(e) {
+            console.log(e.keyCode)
+        }, 1000)
+    </script>
+</body>
+
+</html>

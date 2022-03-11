@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+
+  </head>
+
+  <body>
+    <div id="test">
+
+    </div>
+
+    <!--
+        为什么要使用 JSX？
+            React 认为渲染逻辑本质上与其他 UI 逻辑内在耦合，
+                比如，在 UI 中需要绑定处理事件、在某些时刻状态发生变化时需要通知到 UI，以及需要在 UI 中展示准备好的数据。
+
+            React 并没有采用将标记与逻辑进行分离到不同文件这种人为地分离方式，
+                而是通过将二者共同存放在称之为“组件”的松散耦合单元之中，来实现关注点分离。
+     -->
+    <script type="text/babel">
+      // 创建一个虚拟DOM元素对象（在 JSX 语法中，你可以在大括号内放置任何有效的 JavaScript 表达式）
+      var vDom1 = <h1>Hello World</h1>; // 不是字符串，是一个js对象 JSX，也可以看作是 JSX表达式
+      // 也可以不用JSX的语法进行创建
+      // span
+      var vDom2 = React.createElement('h1', { id: 'myTitle' }, React.createElement('span', {}, React.createElement('a', {}, 'hello123')));
+      // var vDom2 = <h1 id="myTitle"><span><a>hello123</a></span></h1>
+
+      console.log(vDom2);
+
+      // 将虚拟DOM渲染到页面真实DOM容器中
+      // ReactDOM.render(vDom1, document.getElementById('test'))
+      ReactDOM.render(vDom2, document.getElementById('test'));
+    </script>
+  </body>
+
+</html>

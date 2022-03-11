@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/react-router-dom/5.3.0/react-router-dom.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { HashRouter, Route, Link, Redirect, withRouter } = ReactRouterDOM;
+
+    const AuthExample = () => (
+      <HashRouter>
+        <div>
+          <AuthButton />
+          <ul>
+            <li><Link to="/public">公共页面</Link></li>
+            <li><Link to="/protected">受保护的页面</Link></li>
+          </ul>
+          <Route path="/public" component={Public} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/protected" component={Protected} />
+        </div>
+      </HashRouter>
+    );
+
+    const fakeAuth = {
+      isAuthenticated: false,
+      authenticate(cb) {
+        this.isAuthenticated = true;
+        setTimeout(cb, 100); // fake async
+      },
+      signout(cb) {
+        this.isAuthenticated = false;
+        setTimeout(cb, 100);
+      }
+    };
+
+    const AuthButton = withRouter(
+      ({ history }) =>
+        fakeAuth.isAuthenticated ? (
+          <p>
+            欢迎{" "}
+            <button onClick={() => fakeAuth.signout(() => history.push("/"))}>退出</button>
+          </p>
+        ) : (
+          <p>你还没有登录</p>
+        )
+    );
+
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route
+        {...rest}
+        render={props =>
+          fakeAuth.isAuthenticated ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: props.location }
+              }}
+            />
+          )
+        }
+      />
+    );
+
+    const Public = () => <h3>公开...</h3>;
+    const Protected = () => <h3>受保护...</h3>;
+
+    class Login extends React.Component {
+      state = {
+        redirectToReferrer: false
+      };
+
+      login = () => {
+        fakeAuth.authenticate(() => {
+          this.setState({ redirectToReferrer: true });
+        });
+      };
+
+      render() {
+        const { from } = this.props.location.state || { from: { pathname: "/" } };
+        const { redirectToReferrer } = this.state;
+
+        if (redirectToReferrer) {
+          return <Redirect to={from} />;
+        }
+
+        return (
+          <div>
+            <p>你必须登录才能看： {from.pathname}</p>
+            <button onClick={this.login}>点击登录</button>
+          </div>
+        );
+      }
+    }
+    ReactDOM.render(<AuthExample />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

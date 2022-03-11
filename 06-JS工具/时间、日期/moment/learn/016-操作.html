@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>moment</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <!--<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment-with-locales.js"></script>
+</head>
+<body>
+
+<script>
+/*
+一旦有了 Moment，则可能需要以某些方式对其进行操作。 有很多方法可以帮助处理此需求。
+Moment.js 使用流式的接口模式，也称为方法链。 这使得可以执行以下疯狂的操作。
+moment().add(7, 'days').subtract(1, 'months').year(2009).hours(0).minutes(0).seconds(0);
+注意：moment 是可变的。 调用任何一种操作方法都会改变原始的 moment。
+如果要创建副本并对其进行操作，则应在操作 moment 之前使用 moment#clone。
+
+add：通过增加时间来改变原始的 moment。
+    moment().add(Number, String);
+    moment().add(Duration);
+    moment().add(Object);
+    这是一个相当稳健的功能，可以为现有的 moment 增加时间。 若要增加时间，则传入要增加的时间的键、以及要增加的数量。
+    moment().add(7, 'days');
+    如果对希望简短，也有一些快捷的键。y年、Q季度、M月、w星期、d天、h小时、m分钟、s秒、ms毫秒
+    moment().add(7, 'd');
+    如果要同时增加多个不同的键，则可以将它们作为对象字面量传入。
+    moment().add(7, 'days').add(1, 'months'); // 链式
+    moment().add({days:7,months:1}); // 对象字面量
+    数量没有上限，因此可以重载任何参数。
+    moment().add(1000000, 'milliseconds'); // 一百万毫秒
+    moment().add(360, 'days'); // 360 天
+    如果原始日期的月份中的日期大于最终月份中的天数，则该月份中的日期将会更改为最终月份中的最后一天。
+    moment([2010, 0, 31]);                  // 一月 31 号
+    moment([2010, 0, 31]).add(1, 'months'); // 二月 28 号
+    当增加跨越夏时制时间的时间时，还需要记住一些特殊的注意事项。
+    如果要增加年份、月份、周、或天，则原始的小时将始终与增加的小时匹配。
+    增加一个月会将指定的月数增加到日期。
+    moment([2010, 1, 28]);                 // 二月 28 号
+    moment([2010, 1, 28]).add(1, 'month'); // 三月 28 号
+    var m = moment(new Date(2011, 2, 12, 5, 0, 0)); // 美国夏令时开始的前一天
+    m.hours(); // 5
+    m.add(1, 'days').hours(); // 5
+    如果要增加小时、分钟、秒钟或毫秒，则会假设期望精确到小时，这将会导致不同的小时。
+    var m = moment(new Date(2011, 2, 12, 5, 0, 0)); // 美国夏令时开始的前一天
+    m.hours(); // 5
+    m.add(24, 'hours').hours(); // 6（但可能需要先设置时区）
+    另外，可以使用时长来增加时间。
+    var duration = moment.duration({'days' : 1});
+    moment([2012, 0, 31]).add(duration); // 二月 1 号
+    在 2.8.0 版本之前，还支持 moment#add(String, Number) 语法。 不推荐使用它，而使用 moment#add(Number, String)。
+    moment().add('seconds', 1); // 废弃于 2.8.0
+    moment().add(1, 'seconds');
+    从 2.12.0 版本开始，当为日期和月份传入小数时，它们会被四舍五入到最接近的整数。
+    星期、季度、年份会被转换到日期或月份，然后四舍五入到最接近的整数。
+    moment().add(1.5, 'months') == moment().add(2, 'months')
+    moment().add(.7, 'years') == moment().add(8, 'months') //.7*12 = 8.4，取整到 8
+
+
+subtract：通过减去时间来改变原始的 moment。
+    moment().subtract(Number, String);
+    moment().subtract(Duration);
+    moment().subtract(Object);
+    这与 moment#add 完全相同，只是不增加时间，而是减去时间。
+    moment().subtract(7, 'days');
+    在 2.8.0 版本之前，还支持 moment#subtract(String, Number) 语法。 不推荐使用它，而使用 moment#subtract(Number, String)。
+    moment().subtract('seconds', 1); // 废弃于 2.8.0
+    moment().subtract(1, 'seconds');
+    从 2.12.0 版本开始，当为日期和月份传入小数时，它们会被四舍五入到最接近的整数。 星期、季度、年份会被转换到日期或月份，然后四舍五入到最接近的整数。
+    moment().subtract(1.5, 'months') == moment().subtract(2, 'months')
+    moment().subtract(.7, 'years') == moment().subtract(8, 'months') //.7*12 = 8.4，取整到 8
+    注意，为了使操作 moment.add(-.5, 'days') 和 moment.subtract(.5, 'days') 等价，-。5、-1.5、-2.5 等都向下舍入。
+
+
+startOf：通过将原始的 moment 设置为时间单位的开头来对其进行更改。
+    moment().startOf(String);
+    moment().startOf('year');    // 设置为今年一月1日上午 12:00
+    moment().startOf('month');   // 设置为本月1日上午 12:00
+    moment().startOf('quarter');  // 设置为当前季度的开始，即每月的第一天上午 12:00
+    moment().startOf('week');    // 设置为本周的第一天上午 12:00
+    moment().startOf('isoWeek'); // 根据 ISO 8601 设置为本周的第一天上午 12:00
+    moment().startOf('day');     // 设置为今天上午 12:00
+    moment().startOf('date');     // 设置为今天上午 12:00
+    moment().startOf('hour');    // 设置为当前时间，但是 0 分钟、0 秒钟、0 毫秒
+    moment().startOf('minute');  // 设置为当前时间，但是 0 秒钟、0 毫秒
+    moment().startOf('second');  // 与 moment().milliseconds(0); 相同
+    这些快捷方式与以下的基本相同。
+        moment().startOf('year');
+        moment().month(0).date(1).hours(0).minutes(0).seconds(0).milliseconds(0);
+        moment().startOf('hour');
+        moment().minutes(0).seconds(0).milliseconds(0)
+    从 2.0.0 版本开始，moment#startOf('day') 替代 moment#sod。
+    注意：moment#startOf('week') 新增于 2.0.0 版本。
+    从 2.1.0 版本开始，moment#startOf('week') 使用语言环境敏感的星期开始日期。
+    注意：moment#startOf('isoWeek') 新增于 2.2.0 版本。
+    注意：moment#startOf('date') 作为 day 的别名新增于 2.13.0。
+
+
+endOf：通过将原始的 moment 设置为时间单位的末尾来对其进行更改。
+    moment().endOf(String);
+    这与 moment#startOf 相同，只是将其设置为时间单位的末尾，而不是设置为时间单位的开头。
+    moment().endOf("year"); // 将 moment 设置为今年的 12 月 31 日 23:59:59.999
+    从 2.0.0 版本开始，moment#endOf('day') 替代 moment#eod。
+    注意：moment#endOf('week') 新增于 2.0.0 版本。
+    从 2.1.0 版本开始，moment#endOf('week') 使用语言环境敏感的星期开始日期。
+
+local：在原始的 moment 上设置标记，以使用本地时间（而不是原始的 moment 时间）显示 moment。
+    var a = moment.utc([2011, 0, 1, 8]);
+    a.hours(); // 8 UTC
+    a.local();
+    a.hours(); // 0 PST
+    也可以用于转换出固定的偏移模式：
+    moment.parseZone('2016-05-03T22:15:01+02:00').local().format(); // "2016-05-03T15:15:01-05:00"
+    有关 UTC 模式的更多信息，参阅 moment.utc()。
+
+utc：在原始的 moment 上设置标记，以使用 UTC（而不是原始的 moment 时间）显示 moment。
+    var a = moment([2011, 0, 1, 8]);
+    a.hours(); // 8 PST
+    a.utc();
+    a.hours(); // 16 UTC
+    也可以用于转换出固定的偏移模式：
+    moment.parseZone('2016-05-03T22:15:01+02:00').utc().format(); //"2016-05-03T20:15:01Z"
+    有关 UTC 模式的更多信息，参阅 moment.utc()。
+
+utcOffset：获取 UTC 偏移量（以分钟为单位）。
+    注意：与 moment.fn.zone 不同，此函数返回 UTC 的实际偏移量，而不是反向偏移量（类似 Date.prototype.getTimezoneOffset 返回的）。
+    获取当前对象的 utcOffset：moment().utcOffset(); // (-240、-120、-60、0、60、120、240 等)
+    通过提供分钟数来设置 UTC 偏移量。 在调用 utcOffset() 的 moment 对象上设置偏移量。 如果想要全局地设置偏移量，则尝试使用 moment-timezone。 注意，一旦设置了偏移量，则它便会固定且不会单独更改（即没有 DST 规则）。 如果想要一个实际的时区（特定位置的时间），例如 America/Los_Angeles，则考虑使用 moment-timezone。
+    moment().utcOffset(120);
+    如果输入小于 16 且大于 -16，则会将输入解释为小时。
+    // 这些是等效的。
+    moment().utcOffset(8);  // 设置小时偏移
+    moment().utcOffset(480);  // 设置分钟偏移 (8 * 60)
+    也可以设置字符串的 UTC 偏移量。
+    // 这些是等效的。
+    moment().utcOffset("+08:00");
+    moment().utcOffset(8);
+    moment().utcOffset(480);
+    moment#utcOffset 会在字符串中搜索 +00:00 +0000 -00:00 -0000 Z 的第一个匹配项，因此甚至可以传入 ISO8601 格式的字符串，且 moment 将会更改为 UTC 偏移量。
+    注意，如果字符串不是 'Z'，则必须以 + 或 - 字符开头。
+    moment().utcOffset("2013-03-07T07:00:00+08:00");
+    utcOffset 函数具有可选的第二个参数，该参数接受一个布尔值，该布尔值表明是否保留日期中的现有时间。
+        传入 false（默认）将会在世界标准时间中保持不变，但本地时间将会改变。
+        传入 true 将保留相同的本地时间，但要以在世界标准时间中选择其他时间为代价。
+    此特性的一种用法是，如果只想使用数字型输入值来构造具有特定时区偏移量的 moment：
+    moment([2016, 0, 1, 0, 0, 0]).utcOffset(-5, true) // 等效于 "2016-01-01T00:00:00-05:00"
+
+
+zone：
+
+
+
+
+*/
+</script>
+</body>
+</html>

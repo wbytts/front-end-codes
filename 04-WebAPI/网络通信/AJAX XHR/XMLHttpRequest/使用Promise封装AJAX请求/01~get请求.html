@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="pajax.js"></script>
+</head>
+<body>
+
+<button id="btn">按钮</button>
+
+<script>
+    let btn = document.querySelector('#btn');
+    btn.onclick = function() {
+        sendAJAX('https://api.apiopen.top/getJoke')
+        .then(value => console.log(value))
+        .catch(err => console.log(err))
+    }
+</script>
+</body>
+</html>

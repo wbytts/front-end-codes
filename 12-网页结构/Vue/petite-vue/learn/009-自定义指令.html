@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/petite-vue?module';
+
+    const autoFocus = (ctx) => {
+      ctx.el.focus()
+      /*
+          ctx.el：访问当前指令所挂载的元素
+          ctx.exp：指令后面的值，v-xxx:exp
+          ctx.arg：v-xxx:arg
+          ctx.modifiers: v-xxx.mod
+          ctx.get()：表达式求值并获取值
+          ctx.get(`${ctx.exp} + 10`)：在当前scope里求值
+          ctx.effect(() => { ......  })：响应式副作用
+      */
+      return () => {
+        // clean up if the element is unmounted
+      }
+    }
+
+    createApp({})
+      .directive('auto-focus', autoFocus) // 注册指令
+      .mount()
+  </script>
+
+  <div v-scope>
+    <span>{{ store.count }}</span>
+  </div>
+
+  <div v-scope>
+    <input v-auto-focus />
+  </div>
+
+</body>
+
+</html>

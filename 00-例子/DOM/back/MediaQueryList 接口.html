@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>MediaQueryList 接口</title>
+</head>
+<body>
+<script>
+  /*
+    window.matchMedia()：
+        用来将 03-CSS 的MediaQuery条件语句，转换成一个 MediaQueryList 实例。
+        注意，如果参数不是有效的MediaQuery条件语句，window.matchMedia不会报错，依然返回一个 MediaQueryList 实例。
+
+    MediaQueryList.media：返回一个字符串，表示对应的 MediaQuery 条件语句。
+
+    MediaQueryList.matches：返回一个布尔值，表示当前页面是否符合指定的 MediaQuery 条件语句。
+
+    MediaQueryList.onchange：
+        如果 MediaQuery 条件语句的适配环境发生变化，会触发change事件。MediaQueryList.onchange属性用来指定change事件的监听函数。
+        该函数的参数是change事件对象（MediaQueryListEvent 实例），该对象与 MediaQueryList 实例类似，也有media和matches属性。
+
+    MediaQueryList 实例有两个方法MediaQueryList.addListener()和MediaQueryList.removeListener()，用来为change事件添加或撤销监听函数。
+    注意，MediaQueryList.removeListener()方法不能撤销MediaQueryList.onchange属性指定的监听函数。
+
+   */
+</script>
+</body>
+</html>

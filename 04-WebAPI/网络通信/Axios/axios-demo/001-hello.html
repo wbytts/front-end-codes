@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/qs/6.10.1/qs.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+<body>
+
+<script>
+  let url = 'http://item.taobao.com/item.htm?a=1&b=2&c=&d=xxx&e';
+  let data = Qs.parse(url.split('?')[1]);
+  console.log(data);
+
+  data.e = 123;
+  data.c = 'qwe';
+  const str = Qs.stringify(data);
+  console.log(str);
+
+
+</script>
+</body>
+</html>

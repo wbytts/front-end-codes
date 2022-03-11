@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>'Hello, world!' example</title>
+</head>
+<body>
+<canvas id="the-canvas" style="border: 1px solid black; direction: ltr;"></canvas>
+<script src="./pdfjs-2.13.216-dist/build/pdf.js"></script>
+<script id="script">
+  const url = 'https://img.zczy56.com/FPZF-202201261354580062871j8GJcJAW.pdf'
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    './pdfjs-2.13.216-dist/build/pdf.worker.js';
+  const loadingTask = pdfjsLib.getDocument(url);
+  (async () => {
+    const pdf = await loadingTask.promise;
+    const page = await pdf.getPage(3);
+    const scale = 1.5;
+    const viewport = page.getViewport({ scale });
+    const outputScale = window.devicePixelRatio || 1;
+    const canvas = document.getElementById("the-canvas");
+    const context = canvas.getContext("2d");
+    canvas.width = Math.floor(viewport.width * outputScale);
+    canvas.height = Math.floor(viewport.height * outputScale);
+    canvas.style.width = Math.floor(viewport.width) + "px";
+    canvas.style.height = Math.floor(viewport.height) + "px";
+    const transform = outputScale !== 1
+      ? [outputScale, 0, 0, outputScale, 0, 0]
+      : null;
+    const renderContext = {
+      canvasContext: context,
+      transform,
+      viewport,
+    };
+    page.render(renderContext);
+  })();
+</script>
+
+<hr>
+<h2>JavaScript code:</h2>
+<pre id="code"></pre>
+<script>
+  document.getElementById('code').textContent =
+      document.getElementById('script').text;
+</script>
+</body>
+</html>

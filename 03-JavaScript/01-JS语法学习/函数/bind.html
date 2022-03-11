@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>bind</title>
+</head>
+
+<body>
+  <script>
+    /*
+      bind()是将函数绑定到某个对象，比如 a.bind(hd) 可以理解为将a函数绑定到hd对象上即 hd.a()。
+        与 call/apply 不同，bind不会立即执行
+
+      bind是复制函数行为，返回新的函数
+     */
+
+    function xxx() {
+      console.log(this);
+    }
+
+    var yyy = xxx.bind(new Date());
+    yyy();
+
+  </script>
+</body>
+
+</html>

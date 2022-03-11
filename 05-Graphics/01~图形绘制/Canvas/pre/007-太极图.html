@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <script src="by-utils.js"></script>
+  <style>
+    #myCanvas {
+      width: 250px;
+      height: 250px;
+      margin: 100px;
+      border: 1px solid #000;
+    }
+
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="500" height="500">
+    您的浏览器不支持 Canvas
+  </canvas>
+  <script>
+    window.onload = function () {
+      var canvas = document.getElementById("myCanvas");
+      let cxt = canvas.getContext('2d');
+      let lw = canvas.width / 2;
+      let lh = canvas.height / 2;
+      const PI = Math.PI;
+      cxt.translate(lw, lh);
+
+      let createTaiChi = () => {
+        cxt.clearRect(-lw, -lh, lw, lh);
+        cxt.arc(0, 0, lw, 0, 2 * PI, 0);
+        cxt.stroke();
+
+        cxt.beginPath();
+        cxt.arc(0, -lh / 2, lw / 2, -PI / 2, PI / 2, 0);
+        cxt.arc(0, lh / 2, lw / 2, 3 / 2 * PI, PI / 2, 1);
+        cxt.arc(0, 0, lw, PI / 2, PI * 3 / 2, 0);
+        cxt.fill();
+
+        cxt.beginPath();
+        cxt.fillStyle = '#fff';
+        cxt.arc(0, -lh / 2, lw / 7, 0, PI * 2, 0);
+        cxt.fill();
+
+        cxt.beginPath();
+        cxt.fillStyle = '#000';
+        cxt.arc(0, lh / 2, lw / 7, 0, PI * 2, 0);
+        cxt.fill();
+      };
+
+      createTaiChi();
+    };
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UNIX时间戳</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+</head>
+<body>
+<script>
+
+    // 这将返回Day.js对象在Unix纪元以来的毫秒数
+    dayjs('2019-01-25').valueOf() // 1548381600000
+    +dayjs(1548381600000) // 1548381600000
+
+    // 返回Day.js对象的Unix时间戳(自Unix纪元以来的秒数)
+    // 此值按最接近的秒排列，不包含毫秒组件
+    dayjs('2019-01-25').unix() // 1548381600
+</script>
+</body>
+</html>

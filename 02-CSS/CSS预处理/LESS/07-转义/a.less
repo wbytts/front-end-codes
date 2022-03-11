@@ -1,0 +1,19 @@
+﻿/*
+转义（Escaping）允许你使用任意字符串作为属性或变量值。
+任何 ~"anything" 或 ~'anything' 形式的内容都将按原样输出，除非 interpolation。
+*/
+@min768: ~"(min-width: 768px)";
+.element {
+  @media @min768 {
+    font-size: 1.2rem;
+  }
+}
+
+// 注意，从 Less 3.5 开始，可以简写为：
+@min768: (min-width: 768px);
+.element {
+  @media @min768 {
+    font-size: 1.2rem;
+  }
+}
+// 在 Less 3.5+ 版本中，许多以前需要“引号转义”的情况就不再需要了。

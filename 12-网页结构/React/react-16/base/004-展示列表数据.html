@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Title</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script>
+    let a = 1;
+  </script>
+  <script type="text/babel">
+
+    const names = ['aaaaa', 'bbbbb', 'ccccc'];
+
+    // 将数据的数组转换为标签的数组
+    const ul = (
+      <ul>
+        { // 这里加上index是因为DOM渲染的问题，后面会学
+          names.map((name, index) => <li id={index}>{name}</li>)
+        }
+      </ul>
+    );
+
+    ReactDOM.render(ul, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

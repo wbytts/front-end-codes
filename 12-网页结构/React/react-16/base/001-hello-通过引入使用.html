@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <!--react核心库，React-->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!--提供操作dom的react扩展库，ReactDOM-->
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!--这里的babel主要用来解析JSX语法-->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!--用来进行类型检查-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <hr />
+
+    <div id="reactContainer"></div>
+
+    <!-- 如果我们需要使用 JSX，则 <script> 标签的 type 属性需要设置为 text/babel -->
+    <!-- 设置type="text/babel"，说明了要使用babel，来解析这些代码 -->
+    <script type="text/babel">
+      // 创建一个虚拟DOM对象
+      var name = 'XXX'; // 一样的
+      // JSX语法
+      var vDom = <h1>Hello {name}</h1>;
+
+      // 获取页面的DOM容器
+      var root = document.querySelector('#root');
+      // 将虚拟DOM对象渲染到页面真实的DOM容器中
+      ReactDOM.render(vDom, root);
+    </script>
+  </body>
+</html>

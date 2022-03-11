@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  </head>
+
+  <body>
+
+
+    <div id="app">
+      <h1>文本：{{msg}}</h1>
+      <h1>大写：{{msg.toUpperCase()}}</h1>
+      <h1>小写：{{msg.toLowerCase()}}</h1>
+    </div>
+
+    <script>
+
+      /*
+        使用 new Vue 可以创建一个实例
+        Vue接收配置对象，el属性指定这个Vue实例管理的元素，元素里面的内容会被当做模板编译
+        data属性配置Vue实例用到的数据，可以在模板中进行使用
+
+        模板基本语法：在模板的标签内容中，使用双大括号可以插入js表达式，可以直接使用data里配置的属性
+      */
+
+      let vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'Hello World'
+        }
+      });
+    </script>
+
+  </body>
+
+</html>

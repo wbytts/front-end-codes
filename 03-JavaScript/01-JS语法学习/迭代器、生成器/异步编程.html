@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 异步编程，异步单线程
+
+        // 例：1s后输出111，接着2s后输出222，接着3s后输出333，接着4s后输出444，接着5s后输出555
+        /*
+        setTimeout(()=> {
+            console.log(111);
+            setTimeout(()=> {
+                console.log(222);
+                setTimeout(()=> {
+                    console.log(333);
+                    setTimeout(()=> {
+                        console.log(444);
+                        setTimeout(()=> {
+                            console.log(555);
+                        }, 5000);
+                    }, 4000);
+                }, 3000);
+            }, 2000);
+        }, 1000);
+        */
+
+        function one() {
+            setTimeout(() => {
+                console.log(111);
+                iter.next();
+            }, 1000);
+        }
+
+        function two() {
+            setTimeout(() => {
+                console.log(222);
+                iter.next();
+            }, 2000);
+        }
+
+        function three() {
+            setTimeout(() => {
+                console.log(333);
+                iter.next();
+            }, 3000);
+        }
+
+        function four() {
+            setTimeout(() => {
+                console.log(444);
+                iter.next();
+            }, 4000);
+        }
+
+        function five() {
+            setTimeout(() => {
+                console.log(555);
+                iter.next();
+            }, 5000);
+        }
+
+        function * gen() {
+            yield one();
+            yield two();
+            yield three();
+            yield four();
+            yield five();
+        }
+
+        let iter = gen();
+        iter.next();
+
+
+    </script>
+</body>
+
+</html>

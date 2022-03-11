@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<!--<svg xmlns="http://www.w3.org/2000/svg" version="1.1">-->
+<svg version="1.1"
+     baseProfile="full"
+     width="300" height="200"
+     xmlns="http://www.w3.org/2000/svg">
+  <!--绘制一个完全覆盖图像区域的矩形 <rect/>，把背景颜色设为红色-->
+  <rect width="100%" height="100%" fill="red" />
+  <!--一个半径80px的绿色圆圈<circle/>绘制在红色矩形的正中央 （向右偏移150px，向下偏移100px）-->
+  <circle cx="150" cy="100" r="80" fill="green" />
+  <!--
+    绘制文字“SVG”。文字被填充为白色， 通过设置居中的锚点把文字定位到期望的位置：在这种情况下，中心点应该对应于绿色圆圈的中点。
+    还可以精细调整字体大小和垂直位置，确保最后的样式是美观的。
+  -->
+  <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">ABC</text>
+</svg>
+
+</body>
+</html>

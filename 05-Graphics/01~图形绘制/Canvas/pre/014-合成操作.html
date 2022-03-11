@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <script src="by-utils.js"></script>
+  <style>
+    canvas {
+      border: 1px solid;
+    }
+
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="800" height="800">
+    您的浏览器不支持 Canvas
+  </canvas>
+  <script>
+    window.onload = function () {
+      var canvas = document.getElementById("myCanvas");
+      if (canvas && canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+        // globalAlpha
+        // globalCompositeOperation
+
+        /*
+        globalCompositeOperation的取值：
+            Copy：二者重叠，显示源图形而不显示目标图形
+            destination-atop：目标图形位于源图形上，二者重叠且都不透明的地方显示目标图形，源图形不透明而目标图形透明的地方显示源图形，其余显示透明
+            destination-in：目标图形在源图形内，二者都不透明的地方显示目标图形，其余显示透明
+            destination-out：目标图形在源图形外，目标图形不透明而源图形透明的地方显示目标图形，其余显示透明
+            destination-over：目标图形覆盖源图形，目标图形不透明的地方显示目标图形，其余显示源图形
+            lighter：源图形+目标图形，显示源图形和目标图形之和，色值趋近于1.0
+            source-atop：源图形在目标图形之上，重叠且不透明显示源，目不透源透显目，其余透
+            source-in：源图形在目标图形内，都不透显源，其余透
+            source-out：源图形在目标图形外，源不透目透显源，其余透
+            source-over：源图形覆盖目标图形，（默认），源图形覆盖目标图形，源图形不透明的地方显示源图形，其余显示目标图形
+            xor：异或源图形和目标图形
+         */
+      }
+    };
+  </script>
+</body>
+
+</html>

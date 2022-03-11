@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">按钮</button>
+  <div id="d"></div>
+  <script>
+    var btn = document.getElementById('btn');
+    var div = document.getElementById('d');
+
+    btn.onclick = function () {
+      div.style.width = '200px';
+      div.style.height = '200px';
+      // 原本的 a-b 要换成驼峰形式！
+      // 这里修改的内容，只会修改行内样式，不会影响 style 或者引入的 css 内容
+      div.style.backgroundColor = 'green';
+    };
+  </script>
+</body>
+
+</html>

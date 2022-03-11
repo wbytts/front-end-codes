@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>取值、赋值</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+</head>
+<body>
+<script>
+    // Day.js使用重载的getter和setter
+    // 也就是说，调用这些不带参数的方法作为getter，调用带参数的方法作为setter
+    dayjs().second(30).valueOf() // => new Date().setSeconds(30)
+    dayjs().second() // => new Date().getSeconds()
+
+    // 如果处于UTC模式的话，它们将映射到等效的UTC
+    dayjs.utc().seconds(30).valueOf() // => new Date().setUTCSeconds(30)
+    dayjs.utc().seconds() // => new Date().getUTCSeconds()
+
+    // 毫秒
+    // 接受0到999的数字。如果超过这个范围，将持续到秒
+    dayjs().millisecond()
+    dayjs().millisecond(1)
+
+    // 秒
+    // 接受0到59的数字。如果超过这个范围，将持续到分钟
+    dayjs().second()
+    dayjs().second(1)
+
+    // 分钟
+    // 接受0到59的数字。如果超过这个范围，将持续到小时
+    dayjs().minute()
+    dayjs().minute(59)
+
+    // 小时
+    // 接受0到59的数字。如果超过这个范围，将持续到日
+    dayjs().hour()
+    dayjs().hour(12)
+
+    // 日
+    // 接受从1到31的数字。如果超过这个范围，将持续到日
+    dayjs().date()
+    dayjs().date(1)
+
+    // 星期
+    // 接受0(星期日)到6(星期六)的数字。如果超过这个范围，将持续到几周
+    dayjs().day()
+    dayjs().day(0)
+
+    // ISO星期
+    // 获取或设置ISO day of the week，其中1为星期一，7为星期日
+    dayjs.extend(isoWeek) // 此功能依赖IsoWeek插件
+    dayjs().isoWeekday()
+    dayjs().isoWeekday(1); // Monday
+
+    // 年-日期
+    // 接受1到366的数字。如果超过了这个范围，将持续到数年
+    dayjs.extend(dayOfYear) // 此功能依赖DayOfYear插件
+    dayjs('2010-01-01').dayOfYear() // 1
+    dayjs('2010-01-01').dayOfYear(365) // 2010-12-31
+
+    // 年-星期
+    dayjs.extend(weekOfYear) // 此功能依赖WeekOfYear插件
+    dayjs('2018-06-27').week() // 26
+    dayjs('2018-06-27').week(5) // set week
+
+    // 年-星期(ISO)
+    dayjs.extend(isoWeek) // 此功能依赖IsoWeek插件
+    dayjs().isoWeek()
+    dayjs().isoWeek(2)
+
+    // 月
+    // 接受0到11的数字。如果超过这个范围，将一直持续到年底
+    // 月份的索引为0，因此January是第0个月
+    dayjs().month()
+    dayjs().month(0)
+
+    // 季度
+    dayjs.extend(quarterOfYear) // 此功能依赖QuarterOfYear插件
+    dayjs('2010-04-01').quarter() // 2
+    dayjs('2010-04-01').quarter(2)
+
+    // 年
+    dayjs().year()
+    dayjs().year(2000)
+
+    // 周年(ISO)
+    dayjs.extend(isoWeek) // 此功能依赖IsoWeek插件
+    dayjs().isoWeekYear()
+
+    // 年周数(ISO)
+    dayjs.extend(isoWeeksInYear) // 此功能依赖IsoWeeksInYear插件
+    dayjs.extend(isLeapYear)
+    dayjs('2004-01-01').isoWeeksInYear() // 53
+    dayjs('2005-01-01').isoWeeksInYear() // 52
+
+
+    // 获取 get
+    // 字符串getter，返回从Day.js对象中获取的相应信息
+    // dayjs().get(unit) === dayjs()[unit]()
+    // 单位不区分大小写，支持复数和缩写形式
+    /*
+        date	D	日期
+        day	    d	星期(星期日0，星期六6)
+        month	M	月份(0-11)
+        year	y	年
+        hour	h	小时
+        minute	m	分钟
+        second	s	秒
+        millisecond	ms	毫秒
+    */
+    dayjs().get('year')
+    dayjs().get('month') // start 0
+    dayjs().get('date')
+    dayjs().get('hour')
+    dayjs().get('minute');
+    dayjs().get('second');
+    dayjs().get('millisecond');
+
+    // 设置 set
+    // 泛型setter接受unit作为第一个参数，value作为第二个参数，返回一个带有更改的新实例
+    // dayjs().set(unit, value) === dayjs()[unit](value)
+    // 单位不区分大小写，支持复数和缩写形式
+    dayjs().set('date', 1)
+    dayjs().set('month', 3) // April
+    dayjs().set('second', 30)
+
+</script>
+</body>
+</html>

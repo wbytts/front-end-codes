@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/redux/5.0.0-alpha.0/redux.js"></script>
+</head>
+
+<body>
+<div>
+  <h3 id="text"></h3>
+  <button id="add">增加</button>
+  <button id="minus">减少</button>
+</div>
+
+<script>
+  Redux.当老板 = Redux.createStore
+
+  let 产品初始状态 = 0;
+
+  function 员工(之前的产品 = 产品初始状态, 要进行的工作) {
+    const {type: 工作类型, data: 工作内容} = 要进行的工作;
+    console.log(`来了新的工作:${工作类型}, 工作内容是:${工作内容}, 之前的产品:${之前的产品}`);
+    switch (工作类型) {
+      case '增加':
+        return 之前的产品 + 工作内容
+      case '减少':
+        return 之前的产品 - 工作内容
+      default:
+        return 之前的产品;
+    }
+  }
+
+
+  const 老板 = Redux.当老板(员工);
+  老板.要产品 = 老板.getState;
+  老板.安排工作 = 老板.dispatch;
+
+  // 定义工作内容
+  const 工作1 = {type: '增加', data: 5};
+  const 工作2 = {type: '减少', data: 5};
+
+  $(function () {
+    const 当前的产品 = 老板.要产品();
+    $('#text').text(当前的产品);
+
+    $('#add').click(function () {
+      老板.安排工作(工作1);
+      const 当前的产品 = 老板.要产品();
+      $('#text').text(当前的产品);
+    });
+
+    $('#minus').click(function () {
+      老板.安排工作(工作2);
+      const 当前的产品 = 老板.要产品();
+      $('#text').text(当前的产品);
+    });
+
+  });
+</script>
+</body>
+</html>

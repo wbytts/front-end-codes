@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <input type="file" accept=".xlsx" id="xlf">
+
+    <script>
+
+        var reader = new FileReader();
+        var fileExcel = {
+            "oldFile": "",
+        };
+        function addLis() { //监听输入框，引入文件
+            var xlf = document.getElementById('xlf');
+            if (xlf.addEventListener) xlf.addEventListener('change', handleFile, false);
+        }
+
+        addLis();
+
+        // 变量fileExcel赋值，获取文件
+        function handleFile(e) {
+            var files = e.target.files;
+            fileExcel.oldFile = files[0];
+            readFile(fileExcel.oldFile);
+        }
+
+        function readFile(file) {
+            var name = file.name;
+            reader.onload = function (e) {
+                fileExcel.oldFile = e.target.result;
+                var wb = XLSX.read(fileExcel.oldFile, { type: "binary" });
+                console.log(wb);
+                var wb_sheetname = wb.SheetNames[0];
+                console.log(wb.Sheets[wb_sheetname]);
+            };
+            reader.readAsBinaryString(file);
+        }
+    </script>
+</body>
+
+</html>

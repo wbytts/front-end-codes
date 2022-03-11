@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>伪类选择器</title>
+    <style>
+        /*
+            伪类：用来表示元素的一种特殊的状态
+            当我们需要为处在这些特殊状态的元素设置样式是，就可以使用伪类选择器
+            和超链接有关的伪类有：
+                正常的：E:link
+                访问过的：E:visited （只能定义字体颜色，由于涉及到用户隐私等问题）
+                鼠标经过：E:hover
+                正在点击：E:active
+                这四个伪类在编写CSS的时候要保证顺序： link   visited  hover   active   注：lv 包包 hao 好！（love hate 爱恨原则）
+            浏览器通过历史记录判断连接有没有被访问过
+
+            :hover 伪类也可以用在其他元素上，表示鼠标经过时的状态
+            :active 也可以，表示按下鼠标不放时的状态
+
+            其他伪类：
+                :focus  获取焦点的状态
+                ::selection 选中的部分
+                    这个伪类在火狐中要采用另一种方式 -moz-selection（只支持火狐）
+
+        */
+        #a1:link {
+
+        }
+        #a1:visited {
+            color: red;
+        }
+        #a1:hover {
+            color: yellow;
+        }
+        #a1:active {
+
+        }
+    </style>
+</head>
+<body>
+
+<a id="a1" href="http://www.baidu.com">访问过的</a>
+<a id="a2" href="http://www.123123.com">没访问过的</a>
+</body>
+</html>

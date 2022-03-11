@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+  <script src="https://unpkg.com/jqvm/dist/jqvm.min.js"></script>
+</head>
+
+<body>
+
+
+  <!--
+    JQvm把#app内部的HTML字符串当作模板，用它们来构建界面。
+    但是，如果你直接在HMTL中写标签，会被渲染到界面上，
+    所以，jQvm强制你用<template>来写模板，这样就不会在html文件加载好时渲染模板元素。
+   -->
+  <template id="app">
+    <div class="title">{{title}}</div>
+    <button jq-on="click:change">切换</button>
+    <div jq-if="show">啦啦啦</div>
+  </template>
+
+  <script>
+    /*
+      component(name:string, compile:function, affect:function): 注册全局组件
+      directive(name:string, compile:function, affect:function): 注册全局指令
+      filter(name:string, formatter:function): 注册全局过滤器
+      View: View构造器。基本上不会用到，只会用来作为一些判断依据。
+      useJQuery: 你可以使用另外一个版本的jQuery，一般只在模块系统中使用
+    */
+
+    // 初始状态
+    const initState = {
+      title: 'Hello',
+      show: false,
+    };
+
+    const view = $('#app').vm(initState);
+    // 定义函数（如果不传回调，则表示把这个函数从vm中取出来）
+    view.fn('change', state => state.show = !state.show);
+    // 挂载（mount也可以接受一个选择器参数，表示挂载到指定的节点）
+    view.mount();
+
+    /*
+      .vm方法返回一个view，这个view包含来如下方法：
+        on(event, selector?, action): 绑定事件，但是需要注意，action函数和jQuery的事件绑定函数稍有区别，下文会讲
+        once(event, selector?, action): 对应jQuery的one绑定
+        off(event, selector?, action?): 解除通过on绑定的事件回调
+        mount(el?): 将view挂载到某个节点上，当不传el的时候，挂载到<template>后面
+        unmount(): 将view从DOM中卸载, 但是需要注意，卸载后view并没有被销毁，你可以再次执行mount来挂载
+        destroy(): 销毁，卸载并且释放内存，之后不能再调用mount或其他方法进行操作
+        update(nextState?): 更新，你可以传入一个对象，这个对象将被合并到当前state上，作为下一次渲染的数据
+        find(selector): 和jQuery的find一样的效果，用于找到view渲染出来的DOM内部的节点，一般在回调函数action内使用
+        component(name, compile, affect): 注册组件到当前vm
+        directive(name, compile, affect): 注册指令到当前vm
+        filter(name, formatter): 注册过滤器到当前vm
+        fn(name, action?): 在当vm上定义一个名为name的函数，这个函数的形式和上面on的action一致。当你不传action时，表示把这个函数从vm中取出来。
+    */
+
+    /*
+    action的结构：
+      // state: 当前vm中对应的state
+      // ...args: 在模板中绑定的参数列表，下面会有例子
+      function action(state, ...args) {
+        const view = this // 你可以在这里执行类似`view.unmount()`这样的操作
+
+        state.some = 'next' // `some`必须在initState中定义好，否则不会有响应式更新界面效果
+        // 当然，jQvm提供了解决办法，你可以通过调用`state.$set('some', 'next')`来添加那些没有在initState中定义的属性
+        // 修改state触发更新支持异步，例如setTimeout(() => state.some = 'next', 1000)也是正常工作的
+        // 如果你自己写了一个类，并且把它的实例作为state上的属性，那么修改这个实例是没有办法触发更新的，你需要手动调用`view.update()`来触发更新，
+        // 例如`state.myIns.name = 'new name'; view.update()`
+
+        // 如果是用于事件绑定，action的返回值也必须是一个函数，这个函数将被作为事件的回调函数，你可以在它里面接收event对象作为参数
+        // 不过，handle函数是可选的，不返回任何内容也是可以的，只是这样你就无法拿到event对象。
+        return function handle(e) {
+          const el = e.target
+          const $el = $(this) // el === this
+        }
+      }
+    */
+
+  </script>
+</body>
+
+</html>

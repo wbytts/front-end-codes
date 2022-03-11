@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 待匹配的内容 -->
+    <textarea name="" id="text" cols="30" rows="10"></textarea>
+    <br />
+    请输入正则表达式：
+    <input id="regex_str" type="text" />
+    <button id="pipei">开始匹配</button>
+    <div>
+      <h3>匹配结果</h3>
+      <div id="result_div" style="width: 800px; border: 5px solid #ccc"></div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        var btn = document.getElementById("pipei");
+        var result_div = document.getElementById("result_div");
+
+        btn.onclick = function () {
+          var text = document.getElementById("text").value;
+          var regex_str = document.getElementById("regex_str").value;
+          console.log(text, regex_str);
+          var reg = new RegExp(regex_str, "g");
+          res_arr = text.match(reg);
+          result_div.innerHTML = "";
+          for (var index in res_arr) {
+            result_div.innerHTML += res_arr[index] + "<br />";
+          }
+        };
+      };
+    </script>
+  </body>
+</html>

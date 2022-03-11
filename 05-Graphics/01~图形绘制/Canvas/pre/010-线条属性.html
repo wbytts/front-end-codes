@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <script src="by-utils.js"></script>
+    <style>
+        canvas {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="800">
+    您的浏览器不支持 Canvas
+</canvas>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("myCanvas");
+        if(canvas && canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+            /*
+            lineCap：线的端点
+                butt：默认值，端点是垂直于线段边缘的平直边缘
+                round：以线宽为直径的半圆
+                square：以线宽为长，以一半线宽为宽的矩形
+
+            lineJoin：两条线相交产生的拐角
+                miter：默认值，在连接处边缘延长连接，miterLimit是脚长和线宽所允许的最大比例（默认10）
+                bevel：连接处是一个对角线斜角
+                round：连接处是一个圆
+
+            lineWidth：定义线的宽度
+
+            strokeStyle：定义线的形状边框的颜色和样式
+             */
+        }
+    };
+</script>
+</body>
+</html>

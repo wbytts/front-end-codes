@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>高度塌陷问题</title>
+    <style>
+        .fu {
+            background-color: red;
+            border: 3px solid green;
+            /*float: left;*/
+            /*display: inline-block;*/
+            overflow: hidden;
+        }
+        /*
+            在文档流中，父元素的默认高度是被子元素撑开的
+            但是当为子元素设置了浮动之后，子元素会完全脱离文档流
+            此时会导致子元素无法撑起父元素的高度，导致父元素高度塌陷
+        */
+        .zi {
+            width: 200px;
+            height: 200px;
+            float: left;
+            background-color: blue;
+        }
+        .foot {
+            height: 200px;
+            background-color: yellow;
+        }
+
+        /*
+            根据W3C标准，在页面中元素都有一个隐含的属性叫做 Block Formatting Context
+            简称BFC，该属性可以设置打开或关闭，默认是关闭的
+            当开启元素的BFC以后，元素将会有如下的特性：
+                1. 父元素的垂直外边距不会和子元素重叠
+                2. 开启BFC的元素不会被浮动元素所覆盖
+                3. 开启BFC的元素可以包含浮动的子元素
+
+            如何开启元素的BFC：
+                1. 设置元素浮动
+                    虽然可以撑开父元素，但是会导致父元素的宽度丢失
+                    而且这种方式也会导致下面的元素上移，不能解决问题
+                2. 设置元素绝对定位
+                3. 设置元素为inline-block
+                    可以解决问题，但是也会导致宽度丢失
+                4. 将元素的overflow设置为一个非visible的值
+                    overflow: auto;
+                    *overflow: hidden; 是一个副作用较小的开启BFC的方式
+
+            IE6以下的版本不支持BFC，但是具有另一个隐含的属性 hasLayout
+            该属性的作用和BFC类似，在IE6等浏览器中可以通过开启hasLayout来解决问题
+                最好好用的一种是设置 zoom: 1; 只支持IE
+                zoom: 1; 表示不放大，但是可以开启 hasLayout
+
+            zoom：缩放的意思，值是缩放的倍数
+            在IE6中，指定了宽度，也会开启 hasLayout
+        */
+    </style>
+</head>
+<body>
+    <div class="fu">
+        <div class="zi"></div>
+    </div>
+    <div class="foot"></div>
+</body>
+</html>

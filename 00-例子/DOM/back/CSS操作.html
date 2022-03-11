@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS操作</title>
+</head>
+<body>
+<script>
+  /*
+    操作 03-CSS 样式最简单的方法，就是使用网页元素节点的getAttribute()、setAttribute()和removeAttribute()，直接读写或删除网页元素的style属性。
+    style不仅可以使用字符串读写，它本身还是一个对象
+
+    CSSStyleDeclaration 接口：用来操作元素的样式。三个地方部署了这个接口
+        元素节点的style属性（Element.style）
+        CSSStyle实例的style属性
+        window.getComputedStyle()的返回值
+        CSSStyleDeclaration 接口可以直接读写 03-CSS 的样式属性，不过，连词号需要变成骆驼拼写法。
+        注意，该对象的属性值都是字符串，设置时必须包括单位，但是不含规则结尾的分号。
+        另外，Element.style返回的只是行内样式，并不是该元素的全部样式。通过样式表设置的样式，或者从父元素继承的样式，无法通过这个属性得到。
+        元素的全部样式要通过window.getComputedStyle()得到。
+
+    CSSStyleDeclaration 实例属性
+    CSSStyleDeclaration.cssText：用来读写当前规则的所有样式声明文本。
+        注意，cssText的属性值不用改写 03-CSS 属性名
+        删除一个元素的所有行内样式，最简便的方法就是设置cssText为空字符串。
+
+    CSSStyleDeclaration.length：返回一个整数值，表示当前规则包含多少条样式声明。
+
+    CSSStyleDeclaration.parentRule：返回当前规则所属的那个样式块（CSSRule 实例）。如果不存在所属的样式块，该属性返回null。
+        该属性只读，且只在使用 CSSRule 接口时有意义。
+
+    CSSStyleDeclaration.getPropertyPriority()：
+        接受 03-CSS 样式的属性名作为参数，返回一个字符串，表示有没有设置important优先级。
+        如果有就返回important，否则返回空字符串。
+
+    CSSStyleDeclaration.getPropertyValue()：
+        接受 03-CSS 样式属性名作为参数，返回一个字符串，表示该属性的属性值。
+
+    CSSStyleDeclaration.item()：接受一个整数值作为参数，返回该位置的 03-CSS 属性名。
+        如果没有提供参数，这个方法会报错。如果参数值超过实际的属性数目，这个方法返回一个空字符值。
+
+    CSSStyleDeclaration.removeProperty()：接受一个属性名作为参数，在 03-CSS 规则里面移除这个属性，返回这个属性原来的值。
+
+    CSSStyleDeclaration.setProperty()：用来设置新的 03-CSS 02-属性。该方法没有返回值。
+        该方法可以接受三个参数。
+          第一个参数：属性名，该参数是必需的。
+          第二个参数：属性值，该参数可选。如果省略，则参数值默认为空字符串。
+          第三个参数：优先级，该参数可选。如果设置，唯一的合法值是important，表示 03-CSS 规则里面的!important。
+
+    03-CSS 模块的侦测：
+    不同浏览器的不同版本，对 03-CSS 模块的支持情况都不一样。有时候，需要知道当前浏览器是否支持某个模块，这就叫做“CSS模块的侦测”。
+    一个比较普遍适用的方法是，判断元素的style对象的某个属性值是否为字符串。
+        如果该 03-CSS 属性确实存在，会返回一个字符串。即使该属性实际上并未设置，也会返回一个空字符串。如果该属性不存在，则会返回undefined。
+        注意，不管 03-CSS 属性名的写法带不带连词线，style属性上都能反映出该属性是否存在。
+        另外，使用的时候，需要把不同浏览器的 03-CSS 前缀也考虑进去。
+
+    03-CSS 对象：浏览器原生提供 03-CSS 对象，为 JavaScript 操作 03-CSS 提供一些工具方法。
+    03-CSS.escape()：用于转义 03-CSS 选择器里面的特殊字符。
+    03-CSS.supports()：返回一个布尔值，表示当前环境是否支持某一句 03-CSS 规则。
+        它的参数有两种写法，一种是第一个参数是属性名，第二个参数是属性值；另一种是整个参数就是一行完整的 03-CSS 语句。
+        注意，第二种写法的参数结尾不能带有分号，否则结果不准确。
+
+    window.getComputedStyle()：返回浏览器计算后得到的最终规则
+        它接受一个节点对象作为参数，返回一个 CSSStyleDeclaration 实例，包含了指定节点的最终样式信息。
+        所谓“最终样式信息”，指的是各种 03-CSS 规则叠加后的结果。
+        注意，这里CSSStyleDeclaration 实例是一个活的对象，任何对于样式的修改，会实时反映到这个实例上面。另外，这个实例是只读的。
+        有几点需要注意。
+          CSSStyleDeclaration 实例返回的 03-CSS 值都是绝对单位。比如，长度都是像素单位（返回值包括px后缀），颜色是rgb(#, #, #)或rgba(#, #, #, #)格式。
+          03-CSS 规则的简写形式无效。比如，想读取margin属性的值，不能直接读，只能读marginLeft、marginTop等属性；再比如，font属性也是不能直接读的，只能读font-size等单个属性。
+          如果读取 03-CSS 原始的属性名，要用方括号运算符，比如styleObj['z-index']；如果读取骆驼拼写法的 03-CSS 属性名，可以直接读取styleObj.zIndex。
+          该方法返回的 CSSStyleDeclaration 实例的cssText属性无效，返回undefined。
+
+    03-CSS 伪元素：
+        03-CSS 伪元素是通过 03-CSS 向 DOM 添加的元素，主要是通过:before和:after选择器生成，然后用content属性指定伪元素的内容。
+        节点元素的style对象无法读写伪元素的样式，这时就要用到window.getComputedStyle()
+        例如：
+          var result = window.getComputedStyle(test, ':before').content;
+          var color = window.getComputedStyle(test, ':before').color;
+        此外，也可以使用 CSSStyleDeclaration 实例的getPropertyValue方法，获取伪元素的属性。
+
+
+   */
+
+  // 检测浏览器是否支持某个对象
+  function isPropertySupported(property) {
+    if (property in document.body.style) return true;
+    var prefixes = ['Moz', 'Webkit', 'O', 'ms', 'Khtml'];
+    var prefProperty = property.charAt(0).toUpperCase() + property.substr(1);
+
+    for(var i = 0; i < prefixes.length; i++){
+      if((prefixes[i] + prefProperty) in document.body.style) return true;
+    }
+
+    return false;
+  }
+
+  isPropertySupported('background-clip')
+</script>
+</body>
+</html>

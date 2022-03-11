@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLHttpRequest</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<script>
+    var btn = document.getElementById('btn');
+    btn.onclick = function() {
+        // 创建 XMLHttpRequest 对象
+        var xhr = new XMLHttpRequest();
+        /*
+            xhr.onreadystatechange：请求状态改变事件，这个函数会被调用4次，readyState从0到4
+            xhr.readyState：表示当前请求的状态
+                0: 请求未初始化
+                1: 服务器连接已建立
+                2: 请求已接收
+                3: 请求处理中
+                4: 请求已完成，且响应已就绪
+            xhr.status：相应的状态
+                200：OK
+                404：未找到页面
+                ......
+        */
+        xhr.onreadystatechange = function(e) {
+            if (xhr.readyState === 0) {
+                console.log('onreadystatechange: xhr.readyState=0 --> 请求未初始化');
+            }
+            if (xhr.readyState === 1) {
+                console.log('onreadystatechange: xhr.readyState=1 --> 服务器连接已建立');
+            }
+            if (xhr.readyState === 2) {
+                console.log('onreadystatechange: xhr.readyState=2 --> 请求已接收');
+            }
+            if (xhr.readyState === 3) {
+                console.log('onreadystatechange: xhr.readyState=3 --> 请求处理中');
+            }
+            if (xhr.readyState === 4) {
+                console.log('onreadystatechange: xhr.readyState=4--> 请求已完成，且响应已就绪');
+                // 当 readyState 等于 4 且状态为 200 时，表示响应已就绪
+                if (xhr.status === 200) {
+                    // 拿到响应结果
+                    /*
+                        responseText：获得字符串形式的响应数据
+                        responseXML：获得XML形式的响应数据
+                     */
+                    console.log('onreadystatechange: xhr.readyState=4, xhr.status=200 --> 响应的内容:', xhr.responseText);
+                }
+            }
+        };
+        // 请求超时事件
+        xhr.ontimeout = function(e) {
+            console.log('ontimeout --> 请求超时了');
+        };
+        // 请求成功事件
+        xhr.onload = function(e) {
+            console.log('onload --> 请求成功了');
+        };
+        // 请求结束事件
+        xhr.onloadend = function(e) {
+            console.log('onloadend --> 请求结束了');
+        };
+        // 请求报错事件
+        xhr.onerror = function(e) {
+            console.log('onerror --> 请求报错了');
+        };
+        /*
+            open：规定请求的类型、URL 以及是否异步处理请求
+                method: 请求的类型（GET、POST、PUT、DELETE、HEAD ......）
+                url：请求的路径
+                async：是否异步 true(异步)、false(同步)
+            调用成功之后，readyState 变为 1
+         */
+        console.log('open之前, xhr.readyState=' + xhr.readyState + ', 请求未初始化');
+        xhr.open('GET', 'a.txt', true);
+
+        // 设置请求头
+        // xhr.setRequestHeader('', '');
+        // 设置超时时间，0为永不超时
+        xhr.timeout = 0;
+        // 设置期望的返回数据类型 'json' 'text' 'document' ...
+        xhr.responseType = 'text';
+        /*
+        将请求发送到服务器， 可以携带一个参数，仅用于 post 请求
+            send 调用之后
+            如果open时设置同步(false)，则send会阻塞，请求完成之后才会执行下面的语句
+            如果open时设置异步(true)，则send不会阻塞，可能会过一定时间才会接收到响应数据
+         */
+        xhr.send();
+        // xhr.abord(); // 关闭这个请求，将readyState重置为0
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>伪等高布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #warp {
+            float: left;
+            width: 700px;
+            border: 1px solid;
+            margin: 0 auto; /*定位元素和浮动元素，margin左右失效*/
+        }
+        #warp .left {
+            float: left;
+            width: 200px;
+            background-color: pink;
+            padding-bottom: 1000px; /*撑开*/
+            margin-bottom: -1000px; /*收回去*/
+            overflow: hidden;
+        }
+        #warp .right {
+            float: left;
+            width: 500px;
+            background-color: deeppink;
+            padding-bottom: 1000px;
+            margin-bottom: -1000px;
+        }
+        .clearfix {
+            *zoom: 1;
+        }
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div id="warp" class="clearfix">
+        <div class="left">
+            left<br>
+            left<br>
+            left<br>
+            left<br>
+            left<br>
+            left<br>
+            left<br>
+            left<br>
+            left<br>
+            left<br>
+        </div>
+        <div class="right">
+            right<br>
+            right<br>
+            right<br>
+            right<br>
+            right<br>
+            right<br>
+            right<br>
+            right<br>
+            right<br>
+            right<br>
+        </div>
+    </div>
+</body>
+</html>

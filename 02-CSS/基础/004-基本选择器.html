@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>基本选择器</title>
+    <style>
+        /*给页面中所有p元素设置字体为红色*/
+        /*
+            元素选择器：选择页面中所有指定元素
+                标签名 {}
+        */
+        p {
+            color: red;
+        }
+        h1 {
+            color: green;
+        }
+        /*
+            id选择器：通过id选择唯一元素
+                #id {}
+         */
+        #p3 {
+            font-size: 24px;
+        }
+        /*
+         *  通过class属性选中一组元素
+         *       .class名 {}
+         */
+        .foot {
+            font-weight: bolder;
+        }
+        /*
+            可以为一个元素设置多个class，多个class用空格隔开，样式按calss值先后生效
+        */
+
+        /*
+            选择器组-并集
+                多个选择器可以用逗号隔开
+        */
+        #p1, .foot, h1 {
+            background-color: yellow;
+        }
+
+        /*
+            通配选择器：选中页面中的所有元素
+                * {}
+        */
+        * {
+            border: 1px solid red;
+        }
+
+        /*
+            复合选择、交集选择：可以同时选择符合多个选择器的元素
+                选择器1选择器2选择器3...... {}
+                E.class：具有指定class的E元素
+                E#id ：一般id选择器不会使用，因为id是唯一的
+        */
+    </style>
+</head>
+<body>
+    <h1>悯农</h1>
+    <p>锄禾日当午</p>
+    <p>锄禾日当午</p>
+    <p id="p3">锄禾日当午</p>
+    <p>锄禾日当午</p>
+    <p>锄禾日当午</p>
+    <p class="foot">锄禾日当午</p>
+    <p class="foot">锄禾日当午</p>
+    <p class="foot">锄禾日当午</p>
+</body>
+</html>

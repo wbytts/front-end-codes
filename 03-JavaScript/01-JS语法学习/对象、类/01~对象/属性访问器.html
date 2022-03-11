@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>属性访问器</title>
+  </head>
+
+  <body>
+    <script>
+      /*
+      getter方法用于获得属性值，setter方法用于设置属性，这是JS提供的存取器特性即使用函数来管理属性。
+        用于避免错误的赋值
+        需要动态监测值的改变
+        属性只能在访问器和普通属性任选其一，不能共同存在
+     */
+
+      'use strict';
+      const user = {
+        data: {
+          name: 'wby',
+          age: null
+        },
+        set age(value) {
+          if (typeof value != 'number' || value > 100 || value < 10) {
+            throw new Error('年龄格式错误');
+          }
+          this.data.age = value;
+        },
+        get age() {
+          return `年龄是: ${this.data.age}`;
+        }
+      };
+
+      user.age = 99;
+      console.log(user.age)
+
+
+      const web = {
+        name: 'wby',
+        url: 'wby.com',
+        get site() {
+          return `${this.name
+            } ${this.url
+            }`;
+        },
+        set site(value) {
+          [this.name, this.url] = value.split(',');
+        }
+      };
+      web.site = 'wby,wby.com';
+      console.log(web.site);
+
+      // 使用 defineProperty 可以模拟定义私有属性，从而使用面向对象的抽象特性。
+
+      // 闭包访问器,结合闭包特性对属性进行访问控制
+      /*
+      下例中访问器定义在函数中，并接收参数v
+      在get() 中通过闭包返回 v
+      在set() 中修改了v，这会影响get()访问的闭包数据v
+     */
+      let data = {
+        name: 'houdunren.com'
+      };
+      for (const [key, value] of Object.entries(data)) {
+        observer(data, key, value);
+      }
+
+      function observer(data, key, v) {
+        Object.defineProperty(data, key, {
+          get() {
+            return v;
+          },
+          set(newValue) {
+            v = newValue;
+          }
+        });
+      }
+
+      data.name = 'wby';
+      console.dir(data.name); // wby
+
+      function A() {
+
+      }
+
+
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>模板字面量</title>
+</head>
+<body>
+<!--
+  使用 ` ...` 符号包裹的字符串中可以写入引入变量与表达式
+  支持换行操作不会产生错误
+-->
+<script>
+
+  let name = 'wby';
+  let age = 20;
+
+  s = `我叫${name}, 我${age}岁了`;
+  console.log(s);
+
+  let obj = {name: '张三'};
+</script>
+</body>
+</html>

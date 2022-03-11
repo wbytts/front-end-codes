@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+调用两个 random() 函数和一个 point() 函数来绘制一个不规则的锯齿线。 作者：Ira Greenberg
+*/
+let totalPts = 300;
+let steps = totalPts + 1;
+
+function setup() {
+  createCanvas(710, 400);
+  stroke(255);
+  frameRate(1);
+}
+
+function draw() {
+  background(0);
+  let rand = 0;
+  for (let i = 1; i < steps; i++) {
+    point((width / steps) * i, height / 2 + random(-rand, rand));
+    rand += random(-5, 5);
+  }
+}
+</script>
+</body>
+</html>

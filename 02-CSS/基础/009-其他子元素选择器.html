@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>其他子元素选择器</title>
+    <style>
+        /*
+            :first-child 第一个子元素
+            :last-child 最后一个子元素
+            :nth-child(n) 选择指定位置的子元素（n为even表示偶数，n为odd表示奇数，也可以用2n或者2n+1）
+
+            选择指定类型的子元素：
+            :first-of-type
+            :last-of-type
+            :nth-of-type
+        */
+        /*理解：父元素的第一个子元素，不是自己的子元素*/
+        body > p:first-child {
+            background-color: yellow;
+        }
+        p:last-child {
+            background-color: blue;
+        }
+        p:nth-child(2) {
+            font-size: 24px;
+        }
+        /*同一类元素的最后一个*/
+        body > p:last-of-type {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <p>一个p标签</p>
+    <p>一个p标签</p>
+    <p>一个p标签</p>
+    <p>一个p标签</p>
+    <p>一个p标签</p>
+    <div>
+        <p>div里的p</p>
+    </div>
+</body>
+</html>

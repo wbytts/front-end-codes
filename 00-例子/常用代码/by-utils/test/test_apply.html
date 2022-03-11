@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../bytools.js"></script>
+</head>
+
+<body>
+  <script>
+    // 声明一个函数
+    function add(a, b) {
+      console.log(this);
+      return a + b + this.c;
+    }
+    // 声明一个对象
+    let obj = {
+      c: 521
+    };
+    // 添加全局属性
+    window.c = 1314;
+    // 执行call 函数
+    let result = apply(add, obj, [10, 20]);
+    console.log(result);
+    console.log(obj);
+
+    result = apply(add, null, [30, 40]);
+    console.log(result);
+  </script>
+</body>
+
+</html>

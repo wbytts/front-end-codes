@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>basic-demo</title>
+    <script src="/node_modules/art-template/lib/template-web.js"></script>
+  </head>
+
+  <body>
+    <div id="content"></div>
+
+    <!-- 以下是模板 -->
+    <script id="test" type="text/html">
+      {{if isAdmin}}
+
+      <h1>{{title}}</h1>
+      <ul>
+          {{each list value i}}
+              <li>索引 {{i + 1}} ：{{value}}</li>
+          {{/each}}
+      </ul>
+
+      {{/if}}
+      {{$data}}
+    </script>
+
+    <!--
+      核心方法：
+        // 基于模板名渲染模板
+        template(filename, data);
+
+        // 将模板源代码编译成函数
+        template.compile(source, options);
+
+        // 将模板源代码编译成函数并立刻执行
+        template.render(source, data, options);
+    -->
+
+    <script>
+      // 定义模板所要用的数据
+      var data = {
+      	title: '基本例子',
+      	isAdmin: true,
+      	list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+      };
+      // 将数据渲染到模板中
+      var html = template('test', data);
+      // 将模板渲染后的结果插入到页面元素中
+      document.getElementById('content').innerHTML = html;
+    </script>
+  </body>
+</html>

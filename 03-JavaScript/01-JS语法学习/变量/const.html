@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>const</title>
+</head>
+<body>
+<!--
+const 的行为与 let 基本相同，唯一一个重要的区别是用它声明变量时必须同时初始化变量，且尝试修改 const 声明的变量会导致运行时错误。
+const 声明的限制只适用于它指向的变量的引用。
+换句话说，如果 const 变量引用的是一个对象，那么修改这个对象内部的属性并不违反 const 的限制。
+-->
+<script>
+// const a = 3;
+// a = 3;
+
+const arr = [1, 2, 3, 4, 5];
+arr[2] = 43;
+
+// arr = [3, 4, 5];
+
+</script>
+</body>
+</html>

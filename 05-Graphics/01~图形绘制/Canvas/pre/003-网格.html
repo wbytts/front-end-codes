@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <style>
+        canvas {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="600">
+    您的浏览器不支持 Canvas
+</canvas>
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById("myCanvas");
+        if (canvas && canvas.getContext) {
+            let ctx = canvas.getContext("2d");
+
+            let rectH = 10;
+            let rectW = 10;
+            for (let i = 0; i < canvas.height / rectH; i++) {
+                ctx.moveTo(0, i * rectH);
+                ctx.lineTo(canvas.width, i * rectH);
+            }
+            for (let i = 0; i < canvas.width / rectW; i++) {
+                ctx.moveTo(i * rectW, 0);
+                ctx.lineTo(i * rectW, canvas.height);
+            }
+            ctx.stroke();
+        }
+    };
+</script>
+</body>
+</html>

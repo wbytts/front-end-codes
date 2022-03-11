@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+  <script src="https://unpkg.com/jqvm/dist/jqvm.min.js"></script>
+</head>
+
+<body>
+
+  <template id="app">
+    <div class="title">{{title}}</div>
+    <button jq-on="click:change">切换</button>
+    <div jq-if="show">啦啦啦</div>
+  </template>
+
+  <script>
+    $('#app')
+      .vm({
+        title: 'Hello',
+        show: false,
+        books: ['Java编程思想', 'JavaScript高级程序设计', 'CSS世界']
+      })
+      // 使用内置的jq-on指令，再配合通过fn方法定义的一个内部函数，就可以完成对button的点击事件监听
+      .fn('change', state => {
+        state.show = !state.show
+      })
+      .mount()
+
+      /*
+        也可以使用jq的事件监听写法来（在回调函数中，直接修改state触发界面更新）：
+          .on('click', '选择器', state => {
+            state.title = 'New Title'
+          })
+      */
+  </script>
+</body>
+
+</html>

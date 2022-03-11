@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>函数参数是按值传递的</title>
+</head>
+
+<body>
+  <script>
+    function setName(obj) {
+      // 这里的修改会反映到外部？
+      // 对象虽然是按值传递到函数的参数里的，但是访问参数时仍然是通过引用访问
+      obj.name = "Nicholas";
+      // 这里将 obj 重新定义为了一个新的对象
+      // 如果js的函数是按引用传递的，外面的person会被替换成新对象，打印会是 Greg
+      obj = new Object();
+      obj.name = "Greg";
+    }
+    let person = new Object();
+    setName(person);
+    console.log(person.name);  // "Nicholas"
+  </script>
+</body>
+
+</html>

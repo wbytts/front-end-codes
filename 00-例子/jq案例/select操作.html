@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+
+
+    <select name="choice" id="demo-select" value="3">
+        <option value="1">选项一</option>
+        <option value="2">选项二</option>
+        <option value="3">选项三</option>
+        <option value="4">选项四</option>
+        <option value="5">选项五</option>
+    </select>
+
+    <button id="btn-change-selected-value">通过value选中</button>
+    <button id="btn-change-selected-text">通过内容选中</button>
+    <button id="btn-clear">清空</button>
+
+
+    <script>
+        $(function () {
+            var $select = $('#demo-select');
+
+            $select.change(function () {
+                console.log('选择框内容发生改表');
+                // 获得所选择的元素
+                var $selectOption = $(this).find("option:selected");
+                console.log('text=:', $selectOption.text());
+                console.log('value=', $select.val(), $selectOption.val());
+                console.log('索引值:', $selectOption.get(0).selectedIndex, $selectOption[0].selectedIndex);
+
+                // 删除选项
+                // $selectOption.remove();
+            });
+
+
+
+            // 增加一个 option 选项
+            $select.append("<option value='Value'>Text</option>");
+            // 在前面增加
+            $select.prepend("<option value='0'>请选择</option>");
+
+
+            // 清空select选项
+            $('#btn-clear').click(function () {
+                $select.empty();
+            });
+
+            // 通过value选中指定选项
+            $('#btn-change-selected-value').click(function () {
+                $select.val('3');
+            });
+
+            // 通过内容选中指定项
+            $('#btn-change-selected-text').click(function () {
+                $select.find("option[text='选项4']").attr("selected", true);
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

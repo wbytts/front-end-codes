@@ -1,0 +1,69 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: EayCome
+ * @Date: 2021-02-10 12:08:19
+ * @LastEditors: EayCome
+ * @LastEditTime: 2021-02-10 14:34:37
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深拷贝</title>
+    <script src="clone.js"></script>
+</head>
+
+<body>
+    <script>
+        // JSON实现深拷贝弊端总结:
+        // 1. JSON不能克隆方法
+        // 2. JSON不能处理循环应用关系
+        // 递归实现深拷贝的弊端总结:
+        // 1. 可以克隆方法
+        // 2. 不能处理循环应用关系
+        const obj = {
+            a: 1,
+            b: ['e', 'f', 'g'],
+            c: {
+                h: 28,
+            },
+            // JSON 不能克隆方法
+            d() {}
+        };
+
+        // 4. 循环效率问题优化
+        obj.b.push(obj.c);
+        obj.c.j = obj.b;
+        const result = deepClone4(obj);
+        console.log(obj);
+        console.log(result);
+
+        // 3.解决循环应用问题
+        // obj.b.push(obj.c);
+        // obj.c.j = obj.b
+        // console.log(obj)
+        // const result = deepClone3(obj);
+
+        // 2. 递归拷贝
+        // const result = deepClone2(obj);
+        // result.c.h = 200;
+        // console.log(obj);
+        // console.log(result);
+
+        // 1.JSON
+        // 循环引用
+        // obj.b.push(obj.c);
+        // obj.c.j = obj.b
+        //     // 深拷贝
+        // const result = deepClone1(obj);
+        // // 修改新数据的属性值   
+        // obj.c.h = 20000;
+        // console.log(obj);
+        // console.log(result);
+    </script>
+</body>
+
+</html>

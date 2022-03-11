@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+  在一个函数内部，我们可以使用 new.target 属性来检查它是否被使用 new 进行调用了。
+  对于常规调用，它为空，对于使用 new 的调用，则等于该函数
+-->
+
+<script>
+  function Person() {
+    console.log(new.target);
+  }
+
+  Person();
+  new Person();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+  let bg;
+  let y = 0;
+
+  function setup() {
+    // 背景图像的大小必须和 createCanvas() 函数中的参数一样。
+    // 该图像大小为 720x400 像素。
+    bg = loadImage('assets/moonwalk.jpg');
+    createCanvas(720, 400);
+  }
+
+  function draw() {
+    background(bg);
+
+    stroke(226, 204, 0);
+    line(0, y, width, y);
+
+    y++;
+    if (y > height) {
+      y = 0;
+    }
+  }
+
+</script>
+</body>
+</html>

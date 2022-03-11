@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="600" height="300"></canvas>
+
+<script type="module">
+  import {parametric} from "../../utils/Parametric.js";
+
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+
+
+  const helical = parametric(
+    (t, l) => l * t * Math.cos(t),
+    (t, l) => l * t * Math.sin(t),
+  );
+
+  helical(0, 50, 500, 5).draw(ctx, {strokeStyle: 'blue'});
+
+</script>
+
+
+</body>
+</html>

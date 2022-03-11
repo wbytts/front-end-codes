@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.0/dist/echarts.js"></script>
+</head>
+<body>
+
+<div id="main" style="width: 600px;height:400px;"></div>
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+    option = {
+        xAxis: { // x轴
+            // x轴的数据
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {},
+        series: [
+            { // 数据
+                type: 'bar',
+                data: [23, 24, 18, 25, 27, 28, 25]
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+</body>
+</html>

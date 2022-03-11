@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+    <style>
+      .d1 {
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+        /* 设置过渡，让形变看起来更明显 */
+        transition: all 2s;
+      }
+      .d1:hover {
+        /*
+          translate 平移
+            第一个参数：水平偏移
+            第二个参数：垂直偏移
+          这个移动，不脱离文档流
+
+          有两个子函数，可以单独设定水平和垂直的平移
+            translateX
+            translateY
+        */
+        transform: translate(100px, 200px);
+      }
+    </style>
+	</head>
+	<body>
+    <div class="d1"></div>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="fun">按钮</button>
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      methods: {
+        fun: () => {
+          // 写成箭头函数去调用，这里的 this 拿到的不是vue实例，而是 window对象
+          console.log(this);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

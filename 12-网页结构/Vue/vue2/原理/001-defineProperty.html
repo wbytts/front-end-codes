@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function defineReactive(data, key, val) {
+      let dep = [];
+      console.log(data, key, val);
+      Object.defineProperty(data, key, {
+        enumerable: true,
+        configurable: true,
+        get: function () {
+          // 读取属性，则增加一个依赖
+          console.log('读取属性，则增加一个依赖', this);
+          dep.push(window.target);
+          return val;
+        },
+        set: function (newVal) {
+          if (val === newVal) return;
+          for (let i = 0; i < dep.length; i++) {
+            // 当修改属性的时候，通知所有依赖进行相关的修改
+            console.log(`${this} 属性修改, 通知依赖${dep[i]}`);
+            // dep[i](newVal, val)
+          }
+          val = newVal;
+        }
+      });
+    }
+
+    let obj = {};
+    // 在obj上定义一个属性 name
+    let rObj = defineReactive(obj, 'name', '张三');
+    // 修改这个属性
+    // obj.name = '李四';
+
+    console.log(obj);
+    console.log(rObj);
+
+  </script>
+</body>
+
+</html>

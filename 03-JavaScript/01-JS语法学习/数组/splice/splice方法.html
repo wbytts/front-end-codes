@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      let arr = [1, 2, 3, 4];
+
+      arr.splice(0, 1, 'asd');
+      console.log(arr); // splice 会修改原数组
+
+      // splice 是一个对数组进行插入很删除的通用方法
+
+      arr = [1, 2, 3, 4];
+      // 完整参数用法
+      // arr.splice(起始位置, 删除的个数, 要插入的元素1, 要插入的元素2, 要插入的元素3, ......)
+      arr.splice(1, 2, 'asdasd', 'zxczxc', 'qweqwe');
+      console.log(arr);
+
+      arr = [1, 2, 3, 4];
+        // 如果第二个参数不写，表示删除到末尾
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #myCanvas {
+      border: 1px solid #000;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 注：canvas 如果用css设置大小的话，只是缩放操作 -->
+  <canvas id="myCanvas" width=800 height=600></canvas>
+  <script>
+    // 获取画布元素
+    var canvas = document.getElementById('myCanvas');
+    // 获取画布上下文
+    var ctx = canvas.getContext("2d");
+
+    ctx.fillStyle = "blue";
+
+    // 信号量
+    var left = 100;
+
+    // 动画过程
+    setInterval(function () {
+      ctx.clearRect(0, 0, 800, 600); // 清除画布
+      // 更新
+      left++;
+      // 渲染
+      ctx.fillRect(left, 0, 100, 100);
+    }, 10)
+
+  </script>
+</body>
+
+</html>

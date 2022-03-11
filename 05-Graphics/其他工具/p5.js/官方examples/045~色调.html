@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+色调是从物件反射或透过物件传播得到的颜色， 通常指颜色的名字（红色，蓝色，黄色等）。
+将光标在每个条形上垂直移动以更改其色调。
+*/
+const barWidth = 20;
+let lastBar = -1;
+
+function setup() {
+  createCanvas(720, 400);
+  colorMode(HSB, height, height, height);
+  noStroke();
+  background(0);
+}
+
+function draw() {
+  let whichBar = mouseX / barWidth;
+  if (whichBar !== lastBar) {
+    let barX = whichBar * barWidth;
+    fill(mouseY, height, height);
+    rect(barX, 0, barWidth, height);
+    lastBar = whichBar;
+  }
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!--
+移动点指定坐标：
+    M x y
+    m dx dy
+直线命令：
+    画线到指定坐标
+        L x y
+        l dx dy
+    绘制水平线
+        H X
+        h dx
+    绘制垂直线
+        V Y
+        v dy
+    到起点
+        Z
+        z
+曲线命令：
+    三次贝塞尔曲线：
+        C x1 y1, x2 y2, x y
+        c dx1 dy1, dx2 dy2, dx dy
+    三次延长
+        S x2 y2, x y
+        s dx2 dy2, dx dy
+    二次贝塞尔曲线
+        Q x1 y1, x y
+        q dx1 dy1, dx dy
+    二次延长
+        T x y
+        t dx dy
+弧形命令：
+    A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+    a rx ry x-axis-rotation large-arc-flag sweep-flag dx dy
+-->
+
+<svg width="200" height="250" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 10"/>
+  <circle cx="10" cy="10" r="2" fill="red"/>
+</svg>
+
+<svg width="190px" height="160px" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent"/>
+  <path d="M70 10 C 70 20, 120 20, 120 10" stroke="black" fill="transparent"/>
+  <path d="M130 10 C 120 20, 180 20, 170 10" stroke="black" fill="transparent"/>
+  <path d="M10 60 C 20 80, 40 80, 50 60" stroke="black" fill="transparent"/>
+  <path d="M70 60 C 70 80, 110 80, 110 60" stroke="black" fill="transparent"/>
+  <path d="M130 60 C 120 80, 180 80, 170 60" stroke="black" fill="transparent"/>
+  <path d="M10 110 C 20 140, 40 140, 50 110" stroke="black" fill="transparent"/>
+  <path d="M70 110 C 70 140, 110 140, 110 110" stroke="black" fill="transparent"/>
+  <path d="M130 110 C 120 140, 180 140, 170 110" stroke="black" fill="transparent"/>
+</svg>
+
+<svg width="190px" height="160px" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent" />
+</svg>
+
+<svg width="190px" height="160px" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 80 Q 95 10 180 80" stroke="black" fill="transparent" />
+</svg>
+
+<svg width="190px" height="160px" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 80 Q 52.5 10, 95 80 T 180 80" stroke="black" fill="transparent" />
+</svg>
+
+<svg width="320px" height="320px" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 315
+           L 110 215
+           A 30 50 0 0 1 162.55 162.45
+           L 172.55 152.45
+           A 30 50 -45 0 1 215.1 109.9
+           L 315 10" stroke="black" fill="green" stroke-width="2" fill-opacity="0.5" />
+</svg>
+
+<svg width="325px" height="325px" xmlns="http://www.w3.org/2000/svg">
+  <path d="M80 80
+           A 45 45, 0, 0, 0, 125 125
+           L 125 80 Z" fill="green" />
+  <path d="M230 80
+           A 45 45, 0, 1, 0, 275 125
+           L 275 80 Z" fill="red" />
+  <path d="M80 230
+           A 45 45, 0, 0, 1, 125 275
+           L 125 230 Z" fill="purple" />
+  <path d="M230 230
+           A 45 45, 0, 1, 1, 275 275
+           L 275 230 Z" fill="blue" />
+</svg>
+</body>
+</html>

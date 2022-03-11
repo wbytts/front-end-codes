@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>使用符号作为属性</title>
+</head>
+<body>
+<!--
+  凡是可以使用字符串或数值作为属性的地方，都可以使用符号
+  这就包括了对象字面量属性和 Object.defineProperty() / Object.defineProperties() 定义的属性
+  对象字面量只能在计算属性语法中使用符号作为属性
+
+  因为符号属性是对内存中符号的一个引用，所以直接创建并用作属性的符号不会丢失。
+  但是，如果没有显式地保存对这些属性的引用，那么必须遍历对象的所有符号属性才能找到相应的属性键
+-->
+<script>
+  let s1 = Symbol('foo');
+  let s2 = Symbol('bar');
+  let s3 = Symbol('baz');
+  let s4 = Symbol('qux');
+
+  let o = {
+    [s1]: 'foo val'
+  };
+  console.log(o);
+
+  Object.defineProperty(o, s2, {value: 'bar val'});
+  console.log(o);
+
+  Object.defineProperties(o, {
+    [s3]: {value: 'baz val'},
+    [s4]: {value: 'qux val'}
+  });
+  console.log(o);
+
+</script>
+</body>
+</html>

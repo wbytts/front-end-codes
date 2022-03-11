@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const bailRE = /[^\w.$]/;
+
+    function parsePath(path) {
+      if (bailRE.test(path)) {
+        return;
+      }
+      const segments = path.split('.');
+      return function (obj) {
+        for (let i = 0; i < segments.length; i++) {
+          if (!obj) return;
+          obj = obj[segments[i]]
+        }
+        return obj;
+      }
+    }
+
+    let obj = {
+      a: {
+        b: {
+          c: 3
+        }
+      }
+    }
+
+    console.log(parsePath('a.b.c')(obj));
+
+  </script>
+</body>
+
+</html>

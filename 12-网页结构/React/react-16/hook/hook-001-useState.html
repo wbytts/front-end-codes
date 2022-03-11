@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Title</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const App = props => {
+      // [状态, 改变状态的函数] = React.useState(初始状态);
+      const [count, setCount] = React.useState(0);
+      return (
+        <div>
+          <h3>{count}</h3>
+          <button onClick={() => setCount(count + 1)}>增加</button>
+          <button onClick={() => setCount(count - 1)}>减少</button>
+        </div>
+      )
+    }
+
+    const vDom = (
+      <div>
+        <App />
+      </div>
+    )
+
+    ReactDOM.render(vDom, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

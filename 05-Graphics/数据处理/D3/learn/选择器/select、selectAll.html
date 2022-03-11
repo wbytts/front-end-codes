@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<p>HELLO</p>
+
+<script>
+    window.onload = function() {
+        // select 选择匹配选择器的第一个元素
+        var body = d3.select("body").style("background-color", "black");
+        // selectAll 选择匹配选择器的所有元素
+        var p = d3.selectAll("p").style("color", "white");
+
+        // 查看选择集的状态
+        // empty 如果选择集为空，返回true，否则返回false
+        console.log(p.empty());
+        // node 返回第一个非空元素，如果选择集为空，则返回null
+        console.log(p.node());
+        // size 返回选择集中元素的个数
+        console.log(p.size());
+    }
+</script>
+</body>
+</html>

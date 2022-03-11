@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img id="img"/>
+
+<script>
+    window.onload = function() {
+        var imgObj = document.getElementById('img');
+        var count = 0;
+        var size = 0;
+        var flag = 10;
+        setInterval(function(){
+            imgObj.src = 'https://api.mz-moe.cn/img/img' + count + '.jpg';
+            imgObj.width = size;
+            imgObj.height = size;
+            if(size > 1000) {
+                flag = -10;
+            }
+            if (size < 0) {
+                flag = 10;
+            }
+            size += flag;
+            count++;
+        }, 500);
+    }
+</script>
+</body>
+</html>

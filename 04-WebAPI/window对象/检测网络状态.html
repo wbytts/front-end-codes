@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    window.navigator.onLine; // 在不同的浏览器中会有差异
+
+    // HTML5 提供的新事件
+    window.addEventListener('online', function() {
+        console.log('联网了');
+    });
+
+    window.addEventListener('offline', function() {
+        console.log('断网了');
+    });
+</script>
+</body>
+</html>

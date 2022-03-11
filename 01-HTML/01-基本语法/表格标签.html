@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>表格</title>
+</head>
+<!--
+    table 是表格
+    tr 行（只能直接包含td）
+    td 单元格（只能包含在tr内）
+
+    表格结构语义化：
+        caption：表格标题
+        thead：表头
+        th：类似td，但是有表头单元格的语义（也在tr中）
+        tbody：表主体
+        tfoot：表尾部
+
+    表格属性（不常用了，更多的是用css控制）
+        align：表格相对于周围元素的对齐方式（left、center、right）
+        border：1 或者 ""
+        cellpadding：单元格边与其内容之间的空白，单位像素，默认为1像素
+        cellspancing：单元格之间的空白，单位像素，默认为2像素
+        width：表格的宽度，单位像素或者百分比
+
+    合并单元格(也可以理解为将单元格拉伸变大)：
+        跨行合并(竖着的)：rowspan=合并单元格的个数
+        跨列合并(横着的)：colspan=合并单元格的个数
+        目标单元格(合并的属性写在谁身上?):
+            跨行：最上侧的单元格
+            跨列：最左侧的单元格
+-->
+<body>
+    <table>
+        <tr>
+            <th>aaaaa</th>
+            <th>bbbbb</th>
+        </tr>
+        <tr>
+            <td>11111</td>
+            <td>22222</td>
+        </tr> <!--table row-->
+        <tr>
+            <td>33333</td>
+            <td>44444</td>
+        </tr>
+    </table>
+</body>
+</html>

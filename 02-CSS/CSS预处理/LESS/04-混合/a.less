@@ -1,0 +1,17 @@
+﻿// 混合（Mixin）是一种将一组属性从一个规则集包含（或混入）到另一个规则集的方法
+
+.bordered {
+  border-top: dotted 1px black;
+  border-bottom: solid 2px black;
+}
+
+#menu a {
+  color: #111;
+  .bordered(); // 使用 .borderd 类定义的属性
+}
+
+.post a {
+  color: red;
+  .bordered();
+}
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+    <style>
+      .parent {
+        width: 200px;
+        border: 1px solid red;
+      }
+      .d1 {
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+        transition: all 2s;
+        /*
+          改变参考源点 (默认值为 center center)
+          水平 垂直
+          具体的某个位置，还可以设置长度，百分比等等
+        */
+        transform-origin: right bottom;
+      }
+      .d1:hover {
+        /* 45deg 顺时针旋转45度 */
+        transform: rotate(45deg);
+        /* 可以使用其他单位（如弧度），也可以使用负数 */
+      }
+    </style>
+	</head>
+	<body>
+    <div class="parent">
+      <div class="d1"></div>
+    </div>
+
+	</body>
+</html>

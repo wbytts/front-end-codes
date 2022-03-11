@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            display: flex;
+            width: 400px;
+            height: 400px;
+            border: 1px solid red;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: stretch;
+            align-content: space-between;
+        }
+
+        .item {
+            width: 40px;
+            height: 40px;
+            border: 1px solid green;
+            font-size: 24px;
+            /* flex-grow: 1; */
+        }
+
+        /*
+            flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+            如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。
+            如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。
+            负值对该属性无效。
+        */
+
+        #d4 {
+            flex-shrink: 2;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="item" id="d1">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item" id="d4">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">6</div>
+        <div class="item">6</div>
+        <div class="item">6</div>
+        <div class="item">6</div>
+        <div class="item">6</div>
+        <div class="item">6</div>
+        <div class="item">6</div>
+    </div>
+
+</body>
+
+</html>

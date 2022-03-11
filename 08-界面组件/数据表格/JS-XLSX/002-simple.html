@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <input type="file" accept=".xlsx" id="xlf">
+
+    <script>
+
+        window.onload = function () {
+            var xlf = document.getElementById('xlf');
+            xlf.onchange = function(e) {
+                var targetFile = e.target.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var wb = XLSX.read(targetFile, { type: "binary" });
+                    console.log(wb);
+                    var wb_sheetname = wb.SheetNames[0];
+                    console.log(wb.Sheets[wb_sheetname]);
+                }
+                reader.readAsBinaryString(targetFile);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

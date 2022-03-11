@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+
+    <button>开灯</button>
+    <button>关灯</button>
+
+    <script>
+        $(function() {
+            // 给按钮添加事件，设置 body 的背景色
+            var $btns = $("button");
+            var $body = $('body');
+
+            $($btns[0]).click(function() {
+                $body.css('background-color', '#FFF');
+            });
+            $($btns[1]).click(function() {
+                $body.css('background-color', '#000');
+            });
+        });
+    </script>
+
+</body>
+</html>

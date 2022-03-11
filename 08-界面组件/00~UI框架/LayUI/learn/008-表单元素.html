@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>表单-输入框</title>
+  <!-- LayUI的核心CSS文件-->
+  <link rel="stylesheet" href="../layui-v2.5.6/layui/css/layui.css">
+  <!-- LayUI的核心JS文件（模块化引入） -->
+  <script src="../layui-v2.5.6/layui/layui.js"></script>
+</head>
+<body>
+
+<!--
+  用 layui-form 标识  form元素
+  layui-form-item：表单项
+    layui-form-label：表单项标签
+    layui-input-block：原始表单元素内容区域
+      layui-input：输入框通用样式
+
+  行内表单：
+    layui-inline：定义外层行内
+    layui-input-inline：定义内层行内
+
+  输入框：layui-input
+    required：注册浏览器所规定的必填字段
+    lay-verify：注册form模块需要验证的类型
+    lay-verify="required" 也表示必填
+
+  下拉选择框：select - name > option - value
+    selected属性，标识选中项
+    disbale属性，加在select标签上表示禁用下拉框，加在选项上表示这个不能选
+    optgroup标签：包裹option标签，用来分组，optgroup的label属性表示分组标识
+    select标签上加上 lay-search 表示开启搜索功能（可以把第一个option改为请选择）
+
+  复选框：
+    属性title可自定义文本（温馨提示：如果只想显示复选框，可以不用设置title）
+    属性checked可设定默认选中
+    属性lay-skin可设置复选框的风格（primary 为原始风格，不设置设个属性就是默认风格）
+    设置value="1"可自定义值，否则选中时返回的就是默认的on
+
+  开关：
+    其实就是checkbox复选框的“变种”，通过设定 lay-skin="switch" 形成了开关风格
+    属性checked可设定默认开
+    属性disabled开启禁用
+    属性lay-text可自定义开关两种状态的文本，如：on|off
+    设置value="1"可自定义值，否则选中时返回的就是默认的on
+
+  单选框：
+    属性title可自定义文本
+    属性disabled开启禁用
+    设置value="xxx"可自定义值，否则选中时返回的就是默认的on
+
+  文本域：
+    layui-textarea
+
+  对表单元素增加属性 lay-ignore 设置后，将不会对该标签进行美化渲染，即保留系统风格
+  追加 layui-form-pane 的class，来设定表单的方框风格
+-->
+<form class="layui-form" action="" >
+  <div class="layui-form-item">
+    <label class="layui-form-label">输入框</label>
+    <div class="layui-input-block">
+      <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">密码框</label>
+    <div class="layui-input-inline">
+      <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">辅助文字</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">下拉选择框</label>
+    <div class="layui-inline">
+      <select name="city" lay-verify="">
+        <option value="">请选择一个城市</option>
+        <option value="010">北京</option>
+        <option value="021">上海</option>
+        <option value="0571">杭州</option>
+      </select>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+
+<script>
+  layui.use('form', function() {
+
+  });
+</script>
+</body>
+</html>

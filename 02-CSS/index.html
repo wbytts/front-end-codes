@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      /*通配选择器*/
+      * {
+        color: red;
+      }
+
+      /*ID选择器*/
+      #title {
+        border: 10px dashed orange;
+        border-radius: 20px;
+      }
+
+      /*元素选择器*/
+      div {
+        color: green;
+      }
+
+      /*类名选择器*/
+      .blue-border {
+        border: 1px solid blue;
+      }
+
+      /*交集选择器*/
+      div.blue-border {
+        border-radius: 10px;
+      }
+
+      /*并集选择器（群组选择器）*/
+      #title,
+      .blue-border {
+        background-color: pink;
+      }
+
+      /*伪类选择器（挺多的，遇到一个学一个吧—）*/
+      #title::selection {
+        background-color: #000;
+        color: green;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div>Hello World</div>
+    <div class="blue-border asdasd asdasd qweqwe zxczxc">Hello World</div>
+
+    <h1 id="title">你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊你号啊</h1>
+
+    <p class="blue-border">啦啦啦</p>
+
+
+    <form action="/user/login">
+      用户名：<input type="text"> <br>
+      密码：<input type="text"> <br>
+      <input type="submit">
+    </form>
+
+  </body>
+
+</html>

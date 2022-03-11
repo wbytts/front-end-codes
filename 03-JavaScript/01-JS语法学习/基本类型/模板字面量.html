@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>模板字面量</title>
+</head>
+<body>
+<script>
+
+  let name = 'wby';
+  let age = 25;
+
+  let s1 = `我是${name}, 我${age}岁了`;
+  console.log(s1);
+
+  let s2 = tag`我是${name}, 我${age}岁了`;
+
+  function tag(strings, name1, age1) {
+    console.log(strings);
+    console.log(name1);
+    console.log(age1);
+  }
+
+
+</script>
+</body>
+</html>

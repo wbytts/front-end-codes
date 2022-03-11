@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/plugin/isSameOrAfter.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/plugin/isSameOrBefore.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/plugin/isBetween.min.js"></script>
+</head>
+<body>
+<script>
+
+    // 之前
+    // 指示Day.js对象是否在另一个提供的date-time之前
+    dayjs().isBefore(dayjs('2011-01-01')) // default milliseconds
+    // 如果希望将粒度限制为单位而不是毫秒，则将其作为第二个参数传递
+    dayjs().isBefore('2011-01-01', 'year') // 单位不区分大小写，支持复数和缩写形式
+
+    // 相同
+    dayjs().isSame(dayjs('2011-01-01')) // default milliseconds
+    dayjs().isSame('2011-01-01', 'year') // 如果希望将粒度限制为单位而不是毫秒，则将其作为第二个参数传递
+
+    // 之后
+    // 指示Day.js对象是否在另一个提供的date-time之后
+    dayjs().isAfter(dayjs('2011-01-01')) // default milliseconds
+    dayjs().isAfter('2011-01-01', 'year') // 如果希望将粒度限制为单位而不是毫秒，则将其作为第二个参数传递
+
+    // 相同或之前
+    // 表明Day.js对象是相同的还是在另一个提供的date-time之前
+    dayjs.extend(window.dayjs_plugin_isSameOrBefore) // 此功能依赖IsSameOrBefore插件
+    dayjs().isSameOrBefore(dayjs('2011-01-01')) // default milliseconds
+    dayjs().isSameOrBefore('2011-01-01', 'year') // 如果希望将粒度限制为单位而不是毫秒，则将其作为第二个参数传递
+
+    // 相同或之后
+    // 指示Day.js对象是相同的还是在另一个提供的date-time之后
+    dayjs.extend(window.dayjs_plugin_isSameOrAfter) // 此功能依赖IsSameOrAfter插件
+    dayjs().isSameOrAfter(dayjs('2011-01-01')) // default milliseconds
+    dayjs().isSameOrAfter('2011-01-01', 'year') // 如果希望将粒度限制为单位而不是毫秒，则将其作为第二个参数传递
+
+    // 之间
+    // 指示Day.js对象是否位于另外两个提供的date-time之间
+    dayjs.extend(window.dayjs_plugin_isBetween) // 此功能依赖IsBetween插件
+    dayjs('2010-10-20').isBetween('2010-10-19', dayjs('2010-10-25')) // default milliseconds
+    dayjs().isBetween('2010-10-19', '2010-10-25', 'year') // 如果希望将粒度限制为单位而不是毫秒，则将其作为第二个参数传递
+    /*
+    可用单位列表：
+        date	D	天00:00
+        day	d	星期00:00
+        month	M	月第一天00:00
+        quarter	Q	季度第一个月第一天00:00，依赖QuarterOfYear插件
+        year	y	1月1日00点
+        week	w	周第一天00:00
+        isoWeek		周(ISO)
+        hour	h	00:00:00
+        minute	m	00:00
+        second	s	00
+        millisecond	ms	0
+    */
+    // 第四个参数与包容性有关。A[表示包含一个值。A(表示排除。 如果使用包容性参数，则必须通过这两个指标。
+    dayjs('2016-10-30').isBetween('2016-01-01', '2016-10-30', null, '[)')
+
+    // 表明Day.js对象的年份是否为闰年
+    dayjs.extend(isLeapYear) // 此功能依赖IsLeapYear插件
+    dayjs('2000-01-01').isLeapYear() // true
+
+    // 是否是 dayjs
+    dayjs.isDayjs(dayjs()) // true
+    dayjs.isDayjs(new Date()) // false
+    // 也可以使用instanceof操作符
+    dayjs() instanceof dayjs // true
+
+</script>
+</body>
+</html>

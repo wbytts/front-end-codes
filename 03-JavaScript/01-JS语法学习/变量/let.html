@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>let</title>
+</head>
+<body>
+<script>
+  // let x;
+  // 暂时性死区
+  // console.log(x);
+  // let x = 4;
+
+  // { // 代码块
+  //   // let 具有块作用域
+  //   // var 没有块作用域
+  //   var x = 4;
+  // }
+
+  // console.log(x);
+
+
+    // window.x = 4;
+    let x = 4;
+
+
+  // 块作用域是函数作用域的子集，因此适用于 var 的作用域限制同样也适用于 let
+
+  // let 也不允许同一个块作用域中出现冗余声明
+
+  // 对声明冗余报错不会因混用 let 和 var 而受影响。
+  // 这两个关键字声明的并不是不同类型的变量，它们只是指出变量在相关作用域如何存在
+
+  // 暂时性死区：
+  // let 与 var 的另一个重要的区别，就是 let 声明的变量不会在作用域中被提升
+  // 在解析代码时，JavaScript 引擎也会注意出现在块后面的 let 声明，只不过在此之前不能以任何方式来引用未声明的变量。
+  // 在 let 声明之前的执行瞬间被称为“暂时性死区”（temporal dead zone），在此阶段引用任何后面才声明的变量都会抛出 ReferenceError。
+
+  // 全局声明：
+  // 与 var 关键字不同，使用 let 在全局作用域中声明的变量不会成为 window 对象的属性
+  // 不过，let 声明仍然是在全局作用域中发生的，相应变量会在页面的生命周期内存续
+</script>
+</body>
+</html>

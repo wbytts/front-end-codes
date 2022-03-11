@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+一个如何使用 copy() 函数模拟为图像着色的范例。
+*/
+
+let draft, ready;
+function preload() {
+  ready = loadImage("assets/parrot-color.png");
+  draft = loadImage("assets/parrot-bw.png");
+}
+function setup() {
+  createCanvas(600, 400);
+  noCursor();
+  cursor("assets/brush.png", 20, -10);
+  image(ready, 0, 0);
+  image(draft, 0, 0);
+}
+function mouseDragged() {
+  copy(ready, mouseX, mouseY, 20, 20, mouseX, mouseY, 20, 20);
+}
+
+</script>
+</body>
+</html>

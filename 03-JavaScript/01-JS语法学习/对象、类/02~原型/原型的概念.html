@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>原型的概念</title>
+</head>
+<body>
+
+<img src="imgs/原型关系分析与方法继承示例.png" height="396" width="744"/>
+<img src="imgs/构造函数创建对象的原型体现.png" height="300" width="541"/>
+
+<script>
+  /*
+    每个对象都有一个原型prototype对象，通过函数创建的对象也将拥有这个原型对象。原型是一个指向对象的指针。
+      * 可以将原型理解为对象的父亲，对象从原型对象继承来属性
+      * 原型就是对象除了是某个对象的父母外没有什么特别之处
+      * 所有函数的原型默认是 Object的实例，所以可以使用toString/toValues/isPrototypeOf 等方法的原因
+      * 使用原型对象为多个对象共享属性或方法
+      * 如果对象本身不存在属性或方法将到原型上查找
+      * 使用原型可以解决，通过构建函数创建对象时复制多个函数造成的内存占用问题
+      * 原型包含 constructor 02-属性，指向构造函数
+      * 对象包含 __proto__ 指向他的原型对象
+
+    默认情况下创建的对象都有原型
+    我们也可以创建一个极简对象（纯数据字典对象）没有原型（原型为null)
+
+    函数拥有多个原型，prototype 用于实例对象使用，__proto__用于函数对象使用
+
+    构造函数拥有原型
+    创建对象时构造函数把原型赋予对象
+
+    构造函数
+        prototype   --> 原型对象
+        new         --> 实例对象
+    实例对象
+        __proto__   --> 原型对象
+    原型对象
+        constructor --> 构造函数
+
+    原型链：
+        通过引用类型的原型，继承另一个引用类型的属性与方法，这也是实现继承的步骤。
+
+    Object.setPrototypeOf 可设置对象的原型
+    Object.getPrototypeOf 用于获取一个对象的原型。
+    instanceof 检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上
+    isPrototypeOf检测一个对象是否是另一个对象的原型链中
+    使用in 检测原型链上是否存在属性，使用 hasOwnProperty 只检测当前对象
+    使用 for/in 遍历时同时会遍历原型上的属性
+    hasOwnProperty 方法判断对象是否存在属性，而不会查找原型。
+
+    借用原型：
+      使用 call 或 apply 可以借用其他原型方法完成功能。
+
+    this 不受原型继承影响，this 指向调用属性时使用的对象。
+
+
+    原型总结：
+      * 函数也是对象也有原型，函数有 prototype 属性指向他的原型
+      * 为构造函数设置的原型指，当使用构造函数创建对象时把这个原型赋予给这个对象
+      * 函数默认prototype 指包含一个属性 constructor 的对象，constructor 指向当前构造函数
+      * 原型中保存引用类型会造成对象共享属性，所以一般只会在原型中定义方法
+      * 为Object原型对象添加方法，将影响所有函数
+      * 了解了原型后可以为系统对象添加方法，比如为字符串添加了一截断函数
+      * 不能将系统对象的原型直接赋值
+      * 使用Object.create创建一个新对象时使用现有对象做为新对象的原型对象
+      * 使用Object.create 设置对象原型
+      * 在实例化对象上存在 __proto__ 记录了原型，所以可以通过对象访问到原型的属性或方法。
+          * __proto__ 不是对象属性，理解为prototype 的 getter/setter 实现，他是一个非标准定义
+          * __proto__ 内部使用getter/setter 控制值，所以只允许对象或null
+          * 建议使用 Object.setPrototypeOf 与Object.getProttoeypOf 替代 __proto__
+      * 可以使用 __proto__ 或 Object.setPrototypeOf 设置对象的原型，使用Object.getProttoeypOf 获取对象原型。
+      * 对象设置属性，只是修改对象属性并不会修改原型属性，使用hasOwnProperty 判断对象本身是否含有属性并不会检测原型。
+      * 使用 in 会检测原型与对象，而 hasOwnProperty 只检测对象，所以结合后可判断属性是否在原型中
+
+
+    建议：
+      通过前介绍我们知道可以使用多种方式设置原型，下面是按时间顺序的排列
+        prototype 构造函数的原型属性
+        Object.create 创建对象时指定原型
+        __proto__ 声明自定义的非标准属性设置原型，解决之前通过 Object.create 定义原型，而没提供获取方法
+        Object.setPrototypeOf 设置对象原型
+
+    一般情况来讲
+        使用 prototype 更改构造函数原型
+        使用 Object.setPrototypeOf 与 Object.getPrototypeOf 获取或设置原型
+
+   */
+</script>
+</body>
+</html>

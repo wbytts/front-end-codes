@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日期操作</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+</head>
+<body>
+<script>
+
+    // 加上
+    // 返回一个克隆的Day.js对象，并添加指定的时间
+    dayjs().add(7, 'day') // 单位不区分大小写，支持复数和缩写形式
+    /*
+    可用单位及其缩写：
+        week	w	周
+        day	    d	星期(星期日0，星期六6)
+        month	M	月份(0-11)
+        quarter	Q	依赖QuarterOfYear插件
+        year	y	年
+        hour	h	小时
+        minute	m	分钟
+        second	s	秒
+        millisecond	ms	毫秒
+    */
+
+    // 减去
+    dayjs().subtract(7, 'year')
+
+    // 开始时间
+    // 返回克隆的Day.js对象，并将其设置为一个时间单位的开始
+    dayjs().startOf('year')
+    /*
+        date	D	天00:00
+        day	d	星期00:00
+        month	M	月第一天00:00
+        quarter	Q	季度第一个月第一天00:00，依赖QuarterOfYear插件
+        year	y	1月1日00点
+        week	w	周第一天00:00
+        isoWeek		周(ISO)
+        hour	h	00:00:00
+        minute	m	00:00
+        second	s	00
+        millisecond	ms	0
+    */
+
+    // 结束时间
+    // 返回克隆的Day.js对象，并将其设置为一个时间单位的末尾
+    dayjs().endOf('month')
+
+</script>
+</body>
+</html>

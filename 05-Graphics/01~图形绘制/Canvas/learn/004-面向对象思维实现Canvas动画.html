@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #myCanvas {
+      border: 1px solid #000;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 注：canvas 如果用css设置大小的话，只是缩放操作 -->
+  <canvas id="myCanvas" width=800 height=600></canvas>
+  <script>
+    // 获取画布元素
+    var canvas = document.getElementById('myCanvas');
+    // 获取画布上下文
+    var ctx = canvas.getContext("2d");
+
+    // 因为Canvas不能得到已经绘制过的图形的状态和属性
+    // 所以为了维持对象的状态，可以使用js对象来维持canvas需要的属性和状态
+    function Rect(x, y, w, h, color) {
+      this.x = x;
+      this.y = y;
+      this.w = w;
+      this.h = h;
+      this.color = color;
+    }
+
+    // 更新的方法
+    Rect.prototype.update = function () {
+      this.x++;
+    }
+    // 渲染的方法
+    Rect.prototype.render = function () {
+      ctx.fillStyle = this.color;
+      ctx.fillRect(this.x, this.y, this.w, this.h);
+    }
+
+    var rect = new Rect(0, 0, 100, 100, 'green');
+    var rect2 = new Rect(0, 200, 100, 100, 'blue');
+
+    // 动画过程
+    setInterval(function () {
+      // 清屏
+      ctx.clearRect(0, 0, 800, 600);
+      // 更新
+      rect.update();
+      rect2.update();
+      // 渲染
+      rect.render();
+      rect2.render();
+    }, 10);
+
+  </script>
+</body>
+
+</html>

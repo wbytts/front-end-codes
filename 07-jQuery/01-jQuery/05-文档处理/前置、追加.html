@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<div id="app">#</div>
+
+<button onclick="append()">追加1</button>
+<button onclick="prepend()">前置1</button>
+<button onclick="appendTo()">将2追加到</button>
+<button onclick="prependTo()">将2前置到</button>
+
+<script>
+
+    function append() {
+      // 如果插入的是jquery对象，且是网页中存在的元素，则会造成一种移动现象
+        $('#app').append('1');
+    }
+
+    function prepend() {
+        $('#app').prepend('1');
+    }
+
+    function appendTo() {
+        // appendTo 需要用一个标签调用，单独的一个字符串不起作用的
+        $("<span>2</span>").appendTo("#app");
+    }
+
+    function prependTo() {
+        // prependTo 需要用一个标签调用，单独的一个字符串不起作用的
+        $("<span>2</span>").prependTo("#app");
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<script>
+    /*
+        filter(function(d, i) {  })
+     */
+
+var by = d3.select('body');
+var data = [1, 2, 3, 4, 5];
+by.selectAll('p').data(data).enter().append('h1')
+    .filter(d => d % 2 !== 0).text(d => d);
+</script>
+</body>
+</html>

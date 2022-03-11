@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>构造函数</title>
+  </head>
+
+  <body>
+    <script>
+      /*
+        var obj = new Object();
+        使用new的函数叫做构造函数，专门用来创建对象
+
+        和工厂函数相似构造函数也用于创建对象，它的上下文为新的对象实例。
+          构造函数名每个单词首字母大写即Pascal 命名规范
+          this指当前创建的对象
+          不需要返回this系统会自动完成
+          需要使用new关键词生成对象
+
+        如果构造函数返回对象，实例化后的对象将是此对象
+        在严格模式下方法中的this值为undefined，这是为了防止无意的修改window对象
+
+        JS中大部分数据类型都是通过构造函数创建的。
+        字面量创建的对象，内部也是调用了Object构造函数
+       */
+
+      var obj = new Object();
+      obj.name = 'xxx';
+      obj.age = 18;
+      // console.table(obj);
+
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+
+      Person.prototype.show = function () {
+        console.log(`我叫${this.name}, 我${this.age}岁了`);
+      }
+
+      var p1 = new Person('张三', 18);
+      var p2 = new Person('李四', 20);
+
+      console.log('p1', p1);
+      console.log('p2', p2);
+
+      p1.show();
+      p2.show();
+
+
+      // console.log('构造函数创建的对象', p);
+      // console.log('通过对象的 __proto__ 访问原型对象', p.__proto__);
+      // console.log('通过构造函数 prototype 访问原型对象', Person.prototype);
+      // console.log('比较：', p.__proto__ === Person.prototype);
+
+      // // 所有对象，都有原型；所有原型，都是对象
+      // // 例外：Object 的原型没有原型
+
+      // console.log('p的原型的原型', p.__proto__.__proto__);
+      // console.log('obj的原型', obj.__proto__);
+      // console.log('Object访问原型', Object.prototype);
+      // console.log('Person.prototype.__proto__', Person.prototype.__proto__);
+      // console.log('原型的原型的原型', p.__proto__.__proto__.__proto__);
+
+
+      let arr1 = [1, 2, 3, 4, 5];
+      let arr2 = [1, 2, 3, 4, 5];
+
+
+      let arr = new Array();
+
+      // 1 -> 2 -> 3 -> 4 -> 5
+
+      // 数组对象.print()
+      Array.prototype.print = function () {
+        let str = '';
+        for (let i = 0; i < this.length; i++) {
+          str += this[i];
+          if (i !== this.length - 1) {
+            str += ' -> ';
+          }
+        }
+        console.log(str);
+      }
+
+      arr1.print();
+      arr2.print();
+
+      let arr3 = [9, 8, 7, '张三', '李思'];
+      arr3.print();
+
+
+
+      let d = new Date();
+      console.log(d);
+      console.log('获取年', d.getFullYear());
+      console.log('获取月', d.getMonth() + 1);
+      console.log('获取日', d.getDate());
+      console.log('获取星期', d.getDay());
+      console.log('获取小时', d.getHours());
+      console.log('获取分钟', d.getMinutes());
+      console.log('获取秒', d.getSeconds());
+
+      // xxxx年xx月xx日 xx时xx分xx秒
+      // d.print()
+      Date.prototype.print = function () {
+        const year = this.getFullYear();
+        const month = this.getMonth() + 1;
+        const day = this.getDate();
+        const hour = this.getHours();
+        const minute = this.getMinutes();
+        const seconds = this.getSeconds();
+        console.log(`${year}年${month}月${day}日 ${hour}时${minute}分${seconds}秒`);
+      };
+
+      d.print();
+
+
+      let d1 = new Date('2022-01月05日 00:00:00');
+      d1.print();
+
+      console.log(NaN === null);
+      console.log(typeof NaN);
+      console.log(NaN === 0);
+      console.log(NaN === Infinity);
+
+      // NaN 非数字
+
+      console.log(NaN === NaN);
+      console.log(Infinity / Infinity);
+      console.log(Infinity + Infinity);
+      console.log(Infinity - Infinity);
+      console.log(Infinity * Infinity);
+      console.log(Infinity * 0);
+
+
+
+      // x
+      console.log(isNaN(NaN));
+      console.log(isNaN(3));
+      console.log(isNaN({}));
+
+
+      function 判断是否是NaN(x) {
+        return x !== x;
+      }
+
+      console.log(Infinity === Infinity);
+
+      console.log('-----------------------------');
+
+      let a1 = [5, 4, 3, 2, 1];
+
+      for (let x in a1) {
+        console.log(x);
+      }
+
+      console.log('-----------------------------');
+
+      for (let x of a1) {
+        console.log(x);
+      }
+
+      console.log('-----------------------------');
+
+      for (let x in p1) {
+        console.log(x);
+      }
+
+      console.log('-----------------------------');
+
+      // for(let i=0; i<10; i++) {
+      //   console.log('Hello World - ' + i);
+      // }
+
+
+      // for(let i=0; i<10; i++) {
+      //   console.log('你好 - ' + i);
+      // }
+
+      Number.prototype.times = function (fun) {
+        for (let i = 0; i < this; i++) {
+          fun(i);
+        }
+      }
+
+      let x = 10;
+      x.times(i => console.log('Hello World' + i));
+      x.times(i => console.log('你好' + i));
+
+      let y = new Number(10);
+
+      console.log('-----------------------------');
+
+      let s1 = Symbol('xyz');
+      let s2 = Symbol('xyz');
+
+      console.log(s1);
+      console.log(s2);
+      console.log(s1 === s2);
+
+      console.log('-----------------------------');
+
+
+      console.log(`x=${x}`);
+      console.log('x=${x}');
+
+      // styled.div`
+      //   div {
+      //     width: 100px;
+      //   }
+      // `;
+
+        
+
+
+    </script>
+  </body>
+
+</html>

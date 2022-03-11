@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  function Person1(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  Person1.prototype.show = function() {
+    console.log(`name=${this.name}, age=${this.age}`);
+  }
+
+  let p1 = new Person1('张三', 19);
+
+  // ES6  ~ ES2015
+  // ES7  ~ ES2016
+  // ES8  ~ ES2017
+  // ES9  ~ ES2018
+  // ES10 ~ ES2019
+  // ES11 ~ ES2020
+  // ES12 ~ ES2021
+  class Person2 {
+    static x = 3;
+    constructor(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    show() {
+      console.log(`name=${this.name}, age=${this.age}`);
+    }
+  }
+
+  let p2 = new Person2('李思', 20);
+
+  console.log(p1);
+  console.log(p2);
+
+</script>
+</body>
+</html>

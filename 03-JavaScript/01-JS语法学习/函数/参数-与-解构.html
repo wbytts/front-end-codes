@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>参数解构</title>
+</head>
+
+<body>
+    <script>
+        let dbConfig = {
+            host: '192.168.1.1',
+            username: 'root',
+            password: 'root',
+            port: 3306
+        };
+
+        function test1({ host = '127.0.0.1', username, password, port }) {
+            console.log(host);
+            console.log(username);
+            console.log(password);
+            console.log(port);
+        }
+
+        function test2({ host: 主机 = '127.0.0.1', username: 用户名, password: 密码, port: 端口}) {
+            console.log(主机);
+            console.log(用户名);
+            console.log(密码);
+            console.log(端口);
+        }
+
+
+        test1(dbConfig);
+        console.log('----------------');
+        test2(dbConfig);
+
+
+        function len([x1, x2], [y1, y2]) {
+            return Math.sqrt((y1 - x1) * (y1 - x1) + (y2 - x2) * (y2 - x2));
+        }
+
+        var p1 = [3, 4];
+        var p2 = [2, 7];
+        console.log(len(p1, p2));
+
+
+    </script>
+</body>
+
+</html>

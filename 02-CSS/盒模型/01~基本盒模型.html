@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #box {
+        width: 200px;
+        height: 200px;
+        border: 10px skyblue solid;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--
+      CSS basic box model CSS基础盒模型
+      内容区域 padding area：由内容边界限制，容纳着元素的内容（content-box）；通常有一个默认的背景颜色或图像（透明的）
+      内边距区域 padding-area：由内边距边界限制，扩展自内容区域（padding-box），负责延伸内容区域的背景，填充元素中内容与边框的间距
+      边框区域 border-area：由边框边界限制，扩展自内边距区域，是容纳边框的区域（border-box）
+      外边距区域 margin area 由外边距边界限制，用空白区域扩展边框区域，以分开相邻的元素 （margin-box）
+
+      注意，除可替换元素外，对于行内元素来说，尽管内容周围存在内边距与边框，
+      但其占用空间（每一行文字的高度）则由 line-height 属性决定，即使边框和内边距仍会显示在内容周围。
+   -->
+    <div id="box"></div>
+  </body>
+
+</html>

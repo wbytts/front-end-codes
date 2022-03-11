@@ -1,0 +1,41 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: EayCome
+ * @Date: 2021-02-10 11:39:20
+ * @LastEditors: EayCome
+ * @LastEditTime: 2021-02-10 11:51:33
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合并对象</title>
+    <script src="mergeObject.js"></script>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            a: [{
+                x: 2
+            }, {
+                y: 4
+            }],
+            b: 1,
+            c: 'bar'
+        };
+        const other = {
+            a: {
+                z: 3
+            },
+            b: [2, 3],
+            c: 'foo'
+        }
+        console.log(mergeObject(obj, other))
+    </script>
+</body>
+
+</html>

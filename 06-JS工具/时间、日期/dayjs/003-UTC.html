@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UTC</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+</head>
+<body>
+<script>
+    // 加载 UTC 插件
+    dayjs.extend(utc)
+
+    // 使用local方法处理
+    var a = dayjs.utc()
+    a.format() // 2019-03-06T00:00:00Z
+    a.local().format() //2019-03-06T08:00:00+08:00
+
+    // 使用utc方法处理
+    var a = dayjs()
+    a.format() //2019-03-06T08:00:00+08:00
+    a.utc().format() // 2019-03-06T00:00:00Z
+
+    // 以分钟计算UTC偏移量
+    // 通过提供分钟并返回一个新实例来设置UTC偏移量。
+    // 注意，一旦你设置了一个偏移量，它是固定的，不会自己改变(即没有DST规则)。
+    dayjs().utcOffset()
+
+    // 如果输入小于16而大于-16，它将把您的输入解释为小时
+    // these are equivalent
+    dayjs().utcOffset(8)  // set hours offset
+    dayjs().utcOffset(480)  // set minutes offset (8 * 60)
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>CSSRule 接口</title>
+</head>
+<body>
+<script>
+  /*
+    一条 03-CSS 规则包括两个部分：03-CSS 选择器和样式声明。
+    JavaScript 通过 CSSRule 接口操作 03-CSS 规则。一般通过 CSSRuleList 接口（StyleSheet.cssRules）获取 CSSRule 实例。
+
+    CSSRule.cssText：返回当前规则的文本
+        如果规则是加载（@import）其他样式表，cssText属性返回@import 'url'
+
+    CSSRule.parentStyleSheet：
+        返回当前规则所在的样式表对象（StyleSheet 实例）
+
+    CSSRule.parentRule：
+        返回包含当前规则的父规则，如果不存在父规则（即当前规则是顶层规则），则返回null。
+        父规则最常见的情况是，当前规则包含在@media规则代码块之中。
+
+    CSSRule.type：
+        CSSRule.type属性返回一个整数值，表示当前规则的类型。
+        最常见的类型有以下几种。
+          1：普通样式规则（CSSStyleRule 实例）
+          3：@import规则
+          4：@media规则（CSSMediaRule 实例）
+          5：@font-face规则
+
+
+   */
+</script>
+</body>
+</html>

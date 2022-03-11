@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <!-- 加载 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- 加载 JsRender -->
+    <script src="https://www.jsviews.com/download/jsrender.js"></script>
+</head>
+<body>
+<!-- 定义模板输出区域-->
+<div id="result"></div>
+
+<!-- 声明模板内容 -->
+<script id="myTmpl" type="text/x-jsrender">
+  {{:name}}
+</script>
+
+<script>
+    var data = {name: "Zhangsan"};
+    // 直接渲染
+    $('#result').html($("#myTmpl").render(data))
+</script>
+</body>
+</html>

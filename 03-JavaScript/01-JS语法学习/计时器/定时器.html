@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  /*
+    setTimeout()：用来指定某个函数或某段代码，在多少毫秒之后执行。它返回一个整数，表示定时器的编号，以后可以用来取消这个定时器。
+    setInterval()：用法与setTimeout完全一致，区别仅仅在于setInterval指定某个任务每隔一段时间就执行一次，也就是无限次的定时执行。
+    clearTimeout()，clearInterval()：
+        setTimeout和setInterval函数，都返回一个整数值，表示计数器编号。将该整数传入clearTimeout和clearInterval函数，就可以取消对应的定时器。
+
+
+    运行机制：
+      setTimeout和setInterval的运行机制，是将指定的代码移出本轮事件循环，等到下一轮事件循环，再检查是否到了指定时间。
+      如果到了，就执行对应的代码；如果不到，就继续等待。
+
+      这意味着，setTimeout和setInterval指定的回调函数，必须等到本轮事件循环的所有同步任务都执行完，才会开始执行。
+      由于前面的任务到底需要多少时间执行完，是不确定的，
+      所以没有办法保证，setTimeout和setInterval指定的任务，一定会按照预定时间执行。
+
+
+    setTimeout(f, 0)
+      必须要等到当前脚本的同步任务，全部处理完以后，才会执行setTimeout指定的回调函数f。也就是说，setTimeout(f, 0)会在下一轮事件循环一开始就执行。
+  */
+</script>
+</body>
+</html>

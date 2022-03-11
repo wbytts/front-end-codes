@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+饱和度是颜色的强度或者纯度，代表与色调成比例的灰色量。
+“饱和”的颜色是纯色；“不饱和”的颜色含有很大比例的灰色。
+将光标在每个条形上垂直移动以更改其饱和度。
+*/
+const barWidth = 20;
+let lastBar = -1;
+
+function setup() {
+  createCanvas(720, 400);
+  colorMode(HSB, width, height, 100);
+  noStroke();
+}
+
+function draw() {
+  let whichBar = mouseX / barWidth;
+  if (whichBar !== lastBar) {
+    let barX = whichBar * barWidth;
+    fill(barX, mouseY, 66);
+    rect(barX, 0, barWidth, height);
+    lastBar = whichBar;
+  }
+}
+
+</script>
+</body>
+</html>

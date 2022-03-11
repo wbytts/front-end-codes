@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <script src="by-utils.js"></script>
+    <style>
+        canvas {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="800">
+    您的浏览器不支持 Canvas
+</canvas>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("myCanvas");
+        if(canvas && canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+
+            ctx.fillStyle = "#ff0000";
+            ctx.fillRect(0, 0, 200, 200);
+
+            // 因为绘制矩形边框不会绘制一半的像素，所以灵活使用清除矩形区域的方法去掉多余的边框
+            ctx.strokeStyle = "#0000ff";
+            ctx.strokeRect(200, 200, 200, 200);
+            ctx.clearRect(200, 200, 200, 200);
+
+            ctx.strokeStyle = "#FF0000";
+            for(let i=0; i<canvas.width; i+=5) {
+                ctx.strokeRect(0, 0, i, i);
+            }
+        }
+    };
+</script>
+</body>
+</html>

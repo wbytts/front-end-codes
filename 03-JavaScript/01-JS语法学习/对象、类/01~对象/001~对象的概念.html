@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>对象</title>
+  </head>
+
+  <body>
+    <!--
+      对象：是一种复合的数据类型，在对象中可以保存多个不同类型的属性
+
+      Object 类型，对象类型
+
+      对象的分类：
+        1.内建对象：ES标准中定义的对象，任何的实现中都可以使用
+        2.宿主对象：js运行环境提供的对象
+        3.自定义对象：。。。
+
+      使用new创建一个对象：new Object()
+
+      new的作用：
+        1、创建一个空对象
+        2、继承构造函数的原型
+        3、this指向obj，并调用构造函数
+        4、返回对象
+    -->
+    <script>
+      var obj = new Object();
+      obj.name = 'wby';
+      obj.age = 24;
+
+      console.log(obj);
+
+    </script>
+  </body>
+
+</html>

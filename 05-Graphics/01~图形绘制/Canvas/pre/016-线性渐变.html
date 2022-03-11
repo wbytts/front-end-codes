@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <script src="by-utils.js"></script>
+    <style>
+        canvas {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="800">
+    您的浏览器不支持 Canvas
+</canvas>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("myCanvas");
+        if(canvas && canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+            var gr = ctx.createLinearGradient(0, 0, 400, 0); // 从 0,0 到 400,0 的渐变
+            gr.addColorStop(0, 'rgb(255, 0, 0)');
+            gr.addColorStop(.5, 'rgb(0, 255, 0)');
+            gr.addColorStop(1, 'rgb(255, 0, 0)');
+            ctx.fillStyle = gr;
+            ctx.fillRect(0, 0, 400, 400);
+        }
+    };
+</script>
+</body>
+</html>

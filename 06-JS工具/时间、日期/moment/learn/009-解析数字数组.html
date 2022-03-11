@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>moment</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <!--<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment-with-locales.js"></script>
+</head>
+<body>
+
+<script>
+/*
+moment(Number[]);
+可以使用数值的数组（映射传给 new Date() 的参数）来创建 moment。
+[year, month, day, hour, minute, second, millisecond]
+
+moment([2010, 1, 14, 15, 25, 50, 125]); // February 14th, 3:25:50.125 PM
+
+年份之后的任何值都是可选的，并且默认为可能的最小值。
+moment([2010]);        // January 1st
+moment([2010, 6]);     // July 1st
+moment([2010, 6, 10]); // July 10th
+
+使用数组的构造将会在当前时区中创建一个日期。 若要从 UTC 数组创建日期，则使用 moment.utc(Number[])。
+moment.utc([2010, 1, 14, 15, 25, 50, 125]);
+
+注意：因为这映射了原生的 Date 参数，所以月份，小时，分钟，秒钟、毫秒都是零索引的。 年份、月份的日期则是 1 索引的。
+这通常是混乱的原因，尤其是月份，因此请注意！
+如果数组代表的日期不存在，则 moment#isValid 将会返回 false。
+moment([2010, 12]).isValid();     // false（不是真实的月份）
+moment([2010, 10, 31]).isValid(); // false（不是真实的日期）
+moment([2010, 1, 29]).isValid();  // false（不是闰年）
+*/
+</script>
+</body>
+</html>

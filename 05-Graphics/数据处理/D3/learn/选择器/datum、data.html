@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<p>张三</p>
+<p>李四</p>
+<p>王五</p>
+
+<script>
+    // datum：选择集中的每个元素都绑定相同的数据
+    // 对于选择集中的每一个元素，都为齐增加一个 __data__ 属性
+    // 如果使用 undefined 或者 null 作为参数，则不会增加 __data__ 属性
+    // 如果不传参数，则返回选择集绑定的数据
+    // 在被绑定数据的选择集中添加元素，新元素会继承该数据
+
+    // data：选择集中的每个元素分别绑定数据数组中的每一项
+    // 当数组元素多余选择集中元素个数时，为多余数据预留元素位置
+    // 当数组元素少于选择集中的元素是，能获取多余元素的位置
+    // 默认情况下 data是按索引号顺序绑定的（也可以不按这个顺序进行，但需要提供第二个参数：键函数）
+    // 只有在选择集已经绑定有数据的情况下，使用键函数才有效果
+    /*
+        相等 update
+        数据多 enter
+        元素多 exit
+     */
+
+    var str = ['A', 'B', 'C'];
+    var body = d3.select('body');
+    var p = body.selectAll('p');
+    p.datum(str); // 提供数据
+    p.text(function(data, index) {
+        return index + ":" + data[index];
+    });
+
+    var persons1 = [
+        {id: 3, name: '张三'},
+        {id: 4, name: '李四'},
+        {id: 5, name: '王五'},
+    ];
+
+    var persons2 = [
+        {id: 4, name: '张三'},
+        {id: 3, name: '李四'},
+        {id: 5, name: '王五'},
+    ];
+
+    p.data(persons1).data(persons2, d => d.id).text((d, k) => `${d.id} : ${d.name}`);
+
+</script>
+</body>
+</html>

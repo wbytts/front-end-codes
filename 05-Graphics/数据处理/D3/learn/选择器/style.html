@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<p>HELLO</p>
+<p>HELLO</p>
+<p>HELLO</p>
+<p>HELLO</p>
+<p>HELLO</p>
+<p>HELLO</p>
+
+<script>
+    window.onload = function() {
+        // d3.selectAll("p").style("color", "white");
+
+        // 属性值除了是一个具体的值，还可以是一个函数
+
+        // 比如，设置一个随机的颜色
+        // d3.selectAll("p").style("color", function() {
+        //     return "hsl(" + Math.random() * 360 + ",100%,50%)";
+        // });
+
+        // 给奇偶段落设置不同的颜色
+        d3.selectAll("p").style("color", function(d, i) {
+            return i % 2 ? "red" : "blue";
+        });
+
+        // 通过数据控制字体大小
+        d3.selectAll("p")
+            .data([4, 8, 15, 16, 23, 42])
+            .style("font-size", function(d) { return d + "px"; });
+
+        // d3.select("body").style("background-color", "black");
+    }
+</script>
+</body>
+</html>

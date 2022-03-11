@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>对象的解构赋值</title>
+</head>
+
+<body>
+  <script>
+
+    //对象使用
+    let info = { name: 'wby', url: 'wby.com' };
+    let { name: n, url: u } = info
+    console.log(n); // wby
+
+    //如果属性名与变量相同可以省略属性定义
+    // 可以给没有的属性设定默认值
+    let { name, url, age = 1 } = { name: 'wby', url: 'wby.com' }
+    console.log(name, url, age); // wby
+
+    // 解构时重命名
+    // 也可以重命名的同时设置默认值
+    let { name: name1, url: url1, age: age1 = 3 } = { name: 'wby', url: 'wby.com' }
+    console.log(name1, url1, age1);
+
+  // 嵌套解构
+
+  // 对象解构传参
+
+
+  </script>
+</body>
+
+</html>

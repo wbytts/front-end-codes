@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  let count = 0; // 比较次数
+  let sumCount = 0; // 总比较次数
+  let num = 10000; // 算法运行次数
+
+  for(let i=0; i<num; i++) {
+    count = 0; // 比较次数归0
+    fun();
+    sumCount += count;
+  }
+
+  console.log(`总比较次数=${sumCount}, 平均比较次数=${sumCount / num}`);
+
+  function fun() {
+    // 生成一个随机数组
+    let arr = new Array(10).fill(0).map(x => parseInt(Math.random() * 19 + 1));
+    console.log(arr);
+    let max = arr[0];
+    let min = arr[0];
+    for(let i=1; i<arr.length; i++) {
+      count++;
+      if(max < arr[i]) {
+        max = arr[i];
+      } else { // 比 max 小，才有可能比 min 小
+        count++;
+        if(min > arr[i]) {
+          min = arr[i];
+        }
+      }
+    }
+    console.log(`最大值=${max}, 最小值=${min}, 比较次数=${count}`);
+    console.log("-".repeat(50));
+  }
+
+</script>
+</body>
+</html>

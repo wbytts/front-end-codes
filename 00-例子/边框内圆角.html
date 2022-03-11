@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .something-meaningful {
+      background: #655;
+      padding: .8em;
+    }
+    .something-meaningful > div {
+      background: tan;
+      border-radius: .8em;
+      padding: 1em;
+    }
+    .one {
+      width: 500px;
+      background: tan;
+      border-radius: .8em;
+      padding: 1em;
+      box-shadow: 0 0 0 .6em #655;
+      outline: .6em solid #655;
+    }
+  </style>
+</head>
+<body>
+
+<!--
+  有时我们需要一个容器， 只在内侧有圆角， 而边框或描边的四个角在外部仍然保持直角的形状
+  有没有办法可以只用一个元素达成同样的效果呢？
+-->
+
+<div class="something-meaningful"><div>
+  I have a nice subtle inner rounding,
+  don't I look pretty?
+</div></div>
+
+<br>
+<br>
+
+<!--
+  用一个元素实现：
+  描边并不会跟着元素的圆角走，但 box-shadow 却是会的（未来这个特性可能是会变的，描边会跟着圆角走）
+  因此， 如果我们把这两者叠加到一起， box-shadow 会刚好填补描边和容器圆角之间的空隙，这两者的组合达成了我们想要的效果。
+
+  我们为 box-shadow 属性指定的扩张值并不一定等于描边的宽度， 我们只需要指定一个足够填补“空隙”的扩张值就可以了。
+  事实上， 指定一个等于描边宽度的扩张值在某些浏览器中可能会得到渲染异常， 因此我推荐一个稍小些的值。
+  这又引出了另一个问题： 到底多大的投影扩张值可以填补这些空隙呢？
+    可以利用勾股定理
+    为了让这个效果得以达成， 扩张半径需要比描边的宽度值小， 但它同时又要比 (根号2减一)r 大（这里的 r 表示 border-radius)
+-->
+<div class="one">
+  I have a nice subtle inner rounding,
+  don't I look pretty?
+</div>
+</body>
+</html>

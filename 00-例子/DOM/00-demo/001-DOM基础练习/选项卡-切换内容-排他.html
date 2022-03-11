@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #content {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+    }
+
+    span {
+      border: 1px solid red;
+    }
+
+    .active {
+      background-color: yellow;
+    }
+
+  </style>
+</head>
+
+<body>
+  <span class='active'>选项卡1</span>
+  <span>选项卡2</span>
+  <span>选项卡3</span>
+  <span>选项卡4</span>
+  <span>选项卡5</span>
+  <div id="content">选项卡1</div>
+  <script>
+    window.onload = function () {
+      var tabs = document.getElementsByTagName('span');
+      var content = document.getElementById('content');
+
+      for (var i = 0; i < tabs.length; i++) {
+        (function (i) {
+          tabs[i].onclick = function () {
+            for (var j = 0; j < tabs.length; j++) {
+              tabs[j].className = '';
+            }
+            this.className = 'active';
+            content.innerHTML = this.innerHTML;
+            console.log(tabs[i].innerHTML);
+
+          }
+        })(i);
+      }
+    }
+  </script>
+</body>
+
+</html>

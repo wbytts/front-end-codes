@@ -1,0 +1,68 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: EayCome
+ * @Date: 2021-02-10 16:33:11
+ * @LastEditors: EayCome
+ * @LastEditTime: 2021-02-10 17:08:49
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #outter {
+            width: 200px;
+            height: 200px;
+            background-color: #456;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        #inner {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            border-radius: 50%;
+            left: 50%;
+            right: 50%;
+            transform: translate(-50%, 50%);
+            background-color: #789;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outter">
+        <div id="inner">
+
+        </div>
+    </div>
+    <script>
+        // 获取元素 
+        let outter = document.querySelector('#outter');
+        let inner = document.querySelector('#inner');
+
+        outter.addEventListener('click', function() {
+            console.log('捕获 outter')
+        }, true)
+        inner.addEventListener('click', function() {
+            console.log('捕获 inner')
+        }, true)
+
+        outter.addEventListener('click', function() {
+            console.log('冒泡 outter')
+        })
+        inner.addEventListener('click', function() {
+            console.log('冒泡 inner')
+        })
+    </script>
+</body>
+
+</html>

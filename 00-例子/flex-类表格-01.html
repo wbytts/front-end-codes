@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .flex-table {
+      display: flex;
+      flex-direction: row;
+      width: 600px;
+      height: 100px;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .ft-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex-grow: 1;
+      height: 100px;
+      width: 20px;
+      text-align: center;
+      border: 1px solid #ccc;
+      margin-right: -1px;
+    }
+    .ft-column:nth-child(2n-1) {
+      background-color: #E7E7E7;
+    }
+    .ft-column div {
+      box-sizing: border-box;
+      flex-grow: 1;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: -1px;
+      line-height: calc(100px / 3);
+    }
+  </style>
+</head>
+<body>
+
+<div class="flex-table">
+  <div class="ft-column">1</div>
+  <div class="ft-column">2</div>
+  <div class="ft-column">
+    <div>111</div>
+    <div>222</div>
+    <div>333</div>
+  </div>
+  <div class="ft-column">
+    <div>111</div>
+    <div>222</div>
+    <div>333</div>
+  </div>
+  <div class="ft-column">
+    <div>111</div>
+    <div>222</div>
+    <div>333</div>
+  </div>
+  <div class="ft-column">
+    <div>111</div>
+    <div>222</div>
+    <div>333</div>
+  </div>
+</div>
+
+</body>
+</html>

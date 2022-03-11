@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #editor-container {
+            height: 375px;
+            border: 1px solid red;
+        }
+
+    </style>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/quill/2.0.0-dev.4/quill.core.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/quill/2.0.0-dev.4/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/quill/2.0.0-dev.4/quill.bubble.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/quill/2.0.0-dev.4/quill.js"></script>
+</head>
+<body>
+<div id="editor-container"></div>
+
+<script>
+    var quill = new Quill('#editor-container', {
+        theme: 'bubble'
+    });
+</script>
+</body>
+</html>

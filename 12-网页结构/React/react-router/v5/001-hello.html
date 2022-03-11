@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-router-dom/5.3.0/react-router-dom.js"></script>
+  </head>
+
+  <body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const vdom = <div></div>;
+
+      // v5文档：https://react-router.docschina.org/web/guides/philosophy
+
+      /*
+      ReactRouterDOM: （如果是项目里用，就是 import {xxx} from 'react-router-dom'）OK
+        BrowserRouter: ƒ BrowserRouter()
+        HashRouter: ƒ HashRouter()
+        Link: {$$typeof: Symbol(react.forward_ref), displayName: 'Link', propTypes: {…}, render: ƒ}
+        MemoryRouter: ƒ MemoryRouter()
+        NavLink: {$$typeof: Symbol(react.forward_ref), displayName: 'NavLink', propTypes: {…}, render: ƒ}
+        Prompt: ƒ Prompt(_ref)
+        Redirect: ƒ Redirect(_ref)
+        Route: ƒ Route()
+        Router: ƒ Router(props)
+        StaticRouter: ƒ StaticRouter()
+        Switch: ƒ Switch()
+        generatePath: ƒ generatePath(path, params)
+        matchPath: ƒ matchPath(pathname, options)
+        useHistory: ƒ useHistory()
+        useLocation: ƒ useLocation()
+        useParams: ƒ useParams()
+        useRouteMatch: ƒ useRouteMatch(path)
+        withRouter: ƒ withRouter(Component)
+      */
+      const { HashRouter, Route, Link } = ReactRouterDOM;
+
+      const toPage1 = () => {
+        window.location = 'http://127.0.0.1:8888/%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84/React/react-router/001-hello.html#/page1'
+      }
+
+      const BasicExample = () => (
+        // HashRouter
+        /*
+          对包裹在内部的Link的做出管理
+          当切换路由的时候，同步到浏览器的URL上
+          Router一般有两种：
+              HashRouter：一般是通过，正常URL + '#' + 路由内容，然后监听URL的变化实现组件切换
+              BrowserRouter：通过H5的history API 实现（具体之后再讲）
+        */
+        <HashRouter>
+          <div>
+            <ul>
+              {/*
+              Link 组件
+                可以理解为用来切换路由和Route组件的一个组件
+                类似于HTML中的 a标签，但是点击Link的时候并不会刷新页面，而只是切换当前的路由
+                Link根据to属性的值切换路由的值
+                <Link to="/page1">页面1</Link>
+            */}
+              <li><Link to="/">首页</Link></li>
+              <li><button onClick={toPage1}>页面1</button></li>
+              <li>
+                <Link to="/page2">页面2</Link>
+              </li>
+            </ul>
+
+            <hr />
+
+            {/*
+            渲染的时候，如果路由和Route的path匹配，则显示这个Route的component所引用的组件
+            如果一个都匹配不到，那就都不显示
+            基本流程：
+              渲染页面 -> / -> path="/"，显示 Home 组件
+              如果点击了页面1的Link -> 路由变为 /page1 -> path="/page1" -> 显示 Page1组件
+
+              http://127.0.0.1:8888/%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84/React/react-router/001-hello.html#/page1
+              如果用的是 HashRouter，则井号前面的和路由都没关系，主要看 #/page1
+              /page1 和下面哪个Route的path对上了，就显示哪个Route的component，很简单
+          */}
+            <Route exact path="/" component={Home} />
+            <Route path="/page1" component={Page1} />
+            <Route path="/page2" component={Page2} />
+            <Route path="/page3" component={() => <h1>lalala</h1>} />
+          </div>
+        </HashRouter>
+      );
+
+
+      // 定义几个要显示的简单组件
+
+      // 接着研究路由到的组件
+      const Home = (props) => {
+        // props 是React组件接收的属性
+        // 如果是通过路由切换而来的组件，组件的props上会多几个属性
+        // 打印看看
+        /*
+          可以发现，被路由切换的组件身上多了这几个属性
+            history: 下面的属性多是方法，用来切换路由什么的
+              action:
+              block:
+              createHref:
+              go: 类似于浏览器地址栏前面回到指定历史的菜单按钮           【掌握】
+              goBack: 类似于浏览器地址栏前面的后退按钮，相当于 go(-1)    【掌握】
+              goForward: 类似于浏览器地址栏前面的前进按钮，相当于 go(1)   【掌握】
+              length: 当前浏览器历史堆栈的大小
+              listen:
+              location:
+              push: 往历史堆栈里压入一个路由                  【掌握】
+              replace: 替换当前的路由（而不是压入，length不变） 【掌握】
+            location: 和浏览器地址栏有关系的一些属性
+              hash:
+              pathname:
+              search:
+              state:ian
+            match: 和路由匹配有关系的一些属性
+              isExact:
+              params: 路由参数
+              path:
+              url:
+            staticContext：
+        */
+        console.log(props);
+
+        // 举例
+        return (
+          <div>
+            <h2>首页内容</h2>
+            <button onClick={() => props.history.goForward()}>前进</button>
+            <button onClick={() => props.history.goBack()}>后退</button>
+          </div>
+        )
+      };
+
+      const Page1 = () => (
+        <div>
+          <h2>第一个页面</h2>
+        </div>
+      );
+
+      const Page2 = ({ match }) => (
+        <div>
+          <h2>第二个页面</h2>
+        </div>
+      );
+
+
+      ReactDOM.render(<BasicExample />, document.getElementById('root'));
+    </script>
+
+
+  </body>
+
+</html>

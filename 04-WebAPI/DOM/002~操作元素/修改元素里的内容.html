@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">插入一个输入框（代码）</button>
+  <button id="insert_input">插入一个输入框</button>
+  <h1>TIME</h1>
+  <script>
+    var btn = document.getElementById('btn');
+    var h1 = document.getElementsByTagName('h1')[0];
+
+    /*
+      改变元素的内容：
+          element.innerHTML：将字符串当做HTML插入
+          element.innerText：单纯的插入文本（不解析标签，去除空格和换行）
+              innerText是一个非标准，能不用最好还是不用吧
+          这两个属性都是可读写的，除了可以赋值，也可以获取值
+    */
+
+    btn.onclick = function () {
+      h1.innerText = '<input />'
+    };
+
+    document.getElementById('insert_input').onclick = function () {
+      h1.innerHTML = '<input />'
+    };
+
+  </script>
+</body>
+
+</html>

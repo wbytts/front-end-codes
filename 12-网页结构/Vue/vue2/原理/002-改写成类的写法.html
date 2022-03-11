@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Dep {
+      constructor() {
+        this.subs = [];
+      }
+      addSub(sub) {
+        this.subs.push(sub);
+      }
+      removeSub(sub) {
+        remove(this.subs, sub);
+      }
+      depend() {
+        if (window.target) {
+          this.addSub(window.target);
+        }
+      }
+      notify() {
+        const subs = this.subs.slice();
+        for (let i = 0; i < subs.length; i++) {
+          subs[i].update();
+        }
+      }
+    }
+
+    function remove(attr, item) {
+      if (attr.length) {
+        const index = arr.indexOf(item);
+        if (index > -1) {
+          return arr.splice(index, 1);
+        }
+      }
+    }
+
+    function defineReactive(data, key, val) {
+      let dep = new Deo();
+      console.log(data, key, val);
+      Object.defineProperty(data, key, {
+        enumerable: true,
+        configurable: true,
+        get: function () {
+          dep.depend();
+          return val;
+        },
+        set: function (newVal) {
+          if (val === newVal) return;
+          val = newVal;
+          dep.notify();
+        }
+      });
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>块作用域</title>
+</head>
+<body>
+
+
+<!--
+  函数中声明的变量，只能在函数及其子函数中使用
+  使用 var 声明的变量存在于最近的函数或全局作用域中，没有块级作用域的机制。使用let有块作用域时则不会
+  var 全局声明的变量也存在于 window对象中
+
+  与 var 声明的区别是 let/const 拥有块作用域
+  let存在块作用域特性，变量只在块域中有效
+  块内部是可以访问到上层作用域的变量
+  每一层都是独立作用域，里层作用域可以声明外层作用域同名变量，但不会改变外层变量
+-->
+<script>
+
+    var i = 99;
+
+    for(var i=0; i<5; i++) {
+      console.log(i);
+    }
+
+    console.log('i=', i);
+
+</script>
+
+</body>
+</html>

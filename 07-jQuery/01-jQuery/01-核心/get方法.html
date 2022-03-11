@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+
+  <div>北</div>
+  <div>京</div>
+  <div>欢</div>
+  <div>迎</div>
+  <div>你</div>
+
+  <script>
+    // 取得第 index 个位置上的元素
+    // 注：返回的是一个 DOM 对象，而不是 jQuery对象！
+    var e = $('div').get(3);
+    console.log(e);
+    $(e).css('color','red');
+  </script>
+</body>
+
+</html>

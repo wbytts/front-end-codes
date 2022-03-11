@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>each</title>
+  <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+
+  <script>
+    $(function () {
+      /*
+        $e.each(function(索引, DOM元素){})
+      */
+      $('div').each(function (index, element) {
+        // 此处 this 指代的是 DOM 对象而非 jQuery 对象
+        console.log(index, element);
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+const fs = require('fs');
+
+// 异步读取文件，需要指定回调函数，处理读取的结果
+fs.readFile('D:\\temp\\test.txt', function (err, data) {
+    // 直接读取，得到文件的内存数据
+    console.log(data);
+    // 可以进行字符串解码，得到字符串内容
+    console.log(data.toString('utf8'))
+})
+
+// 也可以在读取的时候就指定编码
+fs.readFile('D:\\temp\\test.txt', 'utf8', (err, data) => {
+    console.log(data);
+})
+
+
+// 指定更多选项
+fs.readFile(
+    'D:\\temp\\test.txt',
+    { flag: 'r', encoding: 'utf8' },
+    (err, data) => {
+        console.log(data);
+    })
+
+

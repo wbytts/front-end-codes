@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>apply方法</title>
+    <script src="./call.js"></script>
+    <script src="./bind.js"></script>
+</head>
+
+<body>
+    <script>
+        // 声明一个函数
+        function add(a, b) {
+            // console.log(this);
+            console.log(arguments)
+            return a + b + this.c
+        }
+        // 声明一个对象
+        let obj = {
+            c: 521
+        };
+        // 添加全局属性
+        window.c = 1314
+
+        // 执行 bind 函数
+        let fn = bind(add, obj, 10, 20)
+        console.log(fn());
+
+        let fn2 = bind(add, obj);
+        console.log(fn2(10, 20))
+
+        let fn3 = add.bind(obj, 10, 20);
+        console.log(fn3(30, 40))
+
+        let fn4 = bind(add, obj, 10, 20);
+        console.log(fn4(30, 40))
+    </script>
+</body>
+
+</html>

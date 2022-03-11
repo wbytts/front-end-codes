@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>apply & call</title>
+</head>
+<body>
+<script>
+  /*
+    call 与 apply 用于显式地设置函数的上下文，两个方法作用一样都是将对象绑定到this，只是在传递参数上有所不同。
+      * apply 用数组传参
+      * call 需要分别传参
+      * 与 bind 不同 call/apply 会立即执行函数
+
+    - Spread 语法 `...` 允许将 **可迭代对象** `args` 作为列表传递给 `call`。
+    - `apply` 只接受 **类数组** `args`。
+
+    ！对于即可迭代又是类数组的对象，例如一个真正的数组，我们使用 call 或 apply 均可，
+        但是 apply 可能会更快，因为大多数 JavaScript 引擎在内部对其进行了优化。
+
+   */
+</script>
+</body>
+</html>

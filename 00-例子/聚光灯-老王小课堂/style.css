@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 布局方式改为列 */
+  flex-direction: column;
+}
+
+.logo {
+  /* logo向上便宜100像素 */
+  margin-top: -100px;
+  /* 增加一个渐显动画 */
+  /* 动画名称 show_logo */
+  /* 持续时间2秒 */
+  /* 动画线性结束放慢 */
+  /* 延迟时间0秒 */
+  /* 动画循环执行一次 */
+  /* 结束停止在最终帧 */
+  animation: show_logo 2s ease-out 0s 1 forwards;
+}
+
+/* 定义动画，从开始到结束，透明度从 0 到 1 */
+@keyframes show_logo {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+h1 {
+  font-size: 100px;
+  color: #544E58;
+  /* 默认透明度为0，不显示 */
+  opacity: 0;
+  /* 增加动画，显示名字 */
+  /* 动画名称：show_name */
+  /* 持续时间：2秒 */
+  /* 线性开始，结束放慢 */
+  /* 延迟0.5秒开始 */
+  /* 执行一次 */
+  /* 结束时停在最后一帧 */
+  animation: show_name 2s ease-in-out 0.5s 1 forwards;
+}
+
+/* 创建动画透明度从开始0到结束1 */
+@keyframes show_name {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+h1:before {
+  position: absolute;
+  /* Unicode编码，去掉 \ 后面的 u */
+  content: '\8001\738B\5C0F\8BFE\5802';
+  color: transparent;
+  /* 04-颜色、背景、渐变，按自己喜好来 */
+  background-image: linear-gradient(to right,
+  #bed742, #f8aba6, #ed1941, #7fb80e,
+  #f26522, #ffc20e, #7c8577, #009ad6,
+  #65c294, #f47920, #f15b6c, #2e3a1f);
+  /* 这个谷歌浏览器不起作用 */
+  background-clip: text;
+  /* 谷歌浏览器适配 */
+  -webkit-background-clip: text;
+
+  /* 制作一个斜矩形遮罩 */
+  /* 使用polygon方法 */
+  /* 矩形需要定义四个角的坐标，顺时针方向定义*/
+  /* 左上、右上、左下、右下 */
+  /* 位置以百分比作为单位 */
+  /* 因为要做动画，所以先将遮罩层溢移除当前可视区域 */
+  clip-path: polygon(-20% 0%, 0% 0%, -10% 100%, -30% 100%);
+
+  /* 增加动画 */
+  /* 动画名称light */
+  /* 持续时间2s */
+  /* 延迟0秒执行 */
+  /* 直接方式循环 */
+  /* 延迟2秒执行显示 */
+  animation: light 2s ease-in-out 2s infinite;
+}
+
+/* 初始与结束保持一致 */
+/* 中间为最右侧 */
+@keyframes light {
+  0% {
+    clip-path: polygon(-20% 0%, 0% 0%, -10% 100%, -30% 100%);
+  }
+  50% {
+    clip-path: polygon(100% 0%, 120% 0%, 110% 100%, 90% 100%);
+  }
+  100% {
+    clip-path: polygon(-20% 0%, 0% 0%, -10% 100%, -30% 100%);
+  }
+}

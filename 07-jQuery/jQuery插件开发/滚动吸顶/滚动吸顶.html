@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+  <style>
+    .xxx {
+      display: inline-block;
+      position: relative;
+      background: red;
+      width: 100px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div>
+    <div class="box">
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div class="xxx">啦啦啦啦</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>111111111111111111</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+      <div>22222222222222222</div>
+    </div>
+  </div>
+
+  <script>
+    (function ($) {
+      $.fn.stickyTop = function () {
+        var target = this[0];
+        var prePosition = $(target).position();
+        $(document).scroll(function (event) {
+          var scrollHeight = $(document).scrollTop();
+          var rect = target.getBoundingClientRect();
+          if (scrollHeight <= prePosition.top) {
+            $(target).css('position', 'relative');
+            $(target).css('top', 'inhreit');
+            $(target).offset(prePosition);
+            return;
+          }
+          if (rect.top < 0) {
+            $(target).css('position', 'fixed');
+            $(target).css('top', '10px');
+          }
+          console.log('滚动了', scrollHeight,  prePosition, rect);
+        });
+        return this;
+      }
+    })(jQuery);
+
+    $(function () {
+      $('.xxx').stickyTop();
+    });
+
+  </script>
+</body>
+
+</html>

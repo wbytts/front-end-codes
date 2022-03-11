@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/react-router-dom/5.3.0/react-router-dom.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { HashRouter, Route, Link, Redirect, withRouter, Switch } = ReactRouterDOM;
+    // Each logical "route" has two components, one for
+    // the sidebar and one for the main area. We want to
+    // render both of them in different places when the
+    // path matches the current URL.
+    const routes = [
+      {
+        path: "/",
+        exact: true,
+        sidebar: () => <div>home!</div>,
+        main: () => <h2>Home</h2>
+      },
+      {
+        path: "/bubblegum",
+        sidebar: () => <div>bubblegum!</div>,
+        main: () => <h2>Bubblegum</h2>
+      },
+      {
+        path: "/shoelaces",
+        sidebar: () => <div>shoelaces!</div>,
+        main: () => <h2>Shoelaces</h2>
+      }
+    ];
+
+    const SidebarExample = () => (
+      <HashRouter>
+        <div style={{ display: "flex" }}>
+          <div
+            style={{
+              padding: "10px",
+              width: "40%",
+              background: "#f0f0f0"
+            }}
+          >
+            <ul style={{ listStyleType: "none", padding: 0 }}>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/bubblegum">Bubblegum</Link>
+              </li>
+              <li>
+                <Link to="/shoelaces">Shoelaces</Link>
+              </li>
+            </ul>
+
+            {routes.map((route, index) => (
+              // You can render a <Route> in as many places
+              // as you want in your app. It will render along
+              // with any other <Route>s that also match the URL.
+              // So, a sidebar or breadcrumbs or anything else
+              // that requires you to render multiple things
+              // in multiple places at the same URL is nothing
+              // more than multiple <Route>s.
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                component={route.sidebar}
+              />
+            ))}
+          </div>
+
+          <div style={{ flex: 1, padding: "10px" }}>
+            {routes.map((route, index) => (
+              // Render more <Route>s with the same paths as
+              // above, but different components this time.
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                component={route.main}
+              />
+            ))}
+          </div>
+        </div>
+      </HashRouter>
+    );
+    ReactDOM.render(<SidebarExample />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

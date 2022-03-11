@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: "PingFang SC";
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            background-color: #2f3542;
+        }
+
+        .button-wrapper {
+            position: relative;
+            width: 240px;
+            height: 60px;
+            text-align: center;
+        }
+
+        .rectangle {
+            stroke-width: 8px;
+            stroke: #ff3648;
+            fill: transparent;
+            stroke-dasharray: 100 500;
+            stroke-dashoffset: -374;
+        }
+        .btn {
+            color: white;
+            font-size: 18px;
+            letter-spacing: 6px;
+            position: relative;
+            top: -48px;
+        }
+        @keyframes extend {
+            to {
+                stroke-dasharray: 600;
+                stroke-dashoffset: 0;
+                stroke-width: 2;
+            }
+        }
+        .button-wrapper:hover .rectangle {
+            animation: 0.5s extend linear forwards;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="button-wrapper">
+        <svg width="240" height="60">
+            <rect class="rectangle" width="240" height="60" />
+        </svg>
+        <div class="btn">按钮</div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <style>
+    canvas {
+      border: 1px solid;
+    }
+
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="800" height="600">
+    您的浏览器不支持 Canvas
+  </canvas>
+  <script>
+    window.onload = function () {
+      var canvas = document.getElementById("myCanvas");
+      if (canvas && canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+        var img = new Image();
+        img.onload = function () {
+          img.width = 200;
+          console.log(img);
+          // 保持宽高比
+          ctx.drawImage(img, 20, 20, 200, 200 * img.naturalHeight / img.naturalWidth);
+          ctx.strokeStyle = "#FF0000";
+          ctx.strokeRect(20, 20, 200, 200 * img.naturalHeight / img.naturalWidth);
+        };
+        img.src = "img/wangyanran.jpg";
+      }
+    };
+  </script>
+</body>
+
+</html>

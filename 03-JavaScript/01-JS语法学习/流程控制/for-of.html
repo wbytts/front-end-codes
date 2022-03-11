@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!--
+      for of
+        用来遍历 Arrays（数组常用方法）, Strings（字符串）, Maps（映射）, Sets（集合）等可迭代的数据结构 的 元素。
+        与 for/in 不同的是 for/of 每次循环取其中的值而不是索引。
+    -->
+    <script>
+      const objs = [
+        { name: 'a1', age: 18 },
+        { name: 'a2', age: 19 },
+        { name: 'a3', age: 20 }
+      ];
+
+      for(const obj of objs) {
+        console.log(obj);
+      }
+    </script>
+  </body>
+</html>

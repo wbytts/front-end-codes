@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="common/react.js"></script>
+<script src="common/react-dom.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/babel-core/5.8.38/browser.js"></script>
+
+<script type='text/babel'>
+
+    let arr = [
+        <h1 key='1'>Hello AAAAA !</h1>,
+        <h1 key='2'>Hello BBBBB !</h1>,
+        <h1 key='3'>Hello CCCCC !</h1>
+    ]
+
+    ReactDOM.render(
+        <div>
+            {arr}
+        </div>,
+        document.querySelector('#root')
+    );
+</script>
+</body>
+</html>

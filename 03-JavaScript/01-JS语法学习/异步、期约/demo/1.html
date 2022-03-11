@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      let p1 = new Promise((resolve, reject) => {
+        resolve('成功'); // 执行了 resolve，Promise状态会变成 fulfilled
+        reject('失败'); // Promise只以第一次变化为准，且只会变化一次
+      });
+      console.log('p1', p1);
+
+      let p2 = new Promise((resolve, reject) => {
+        reject('失败'); // 执行了reject，Promise状态会变成 rejected
+        resolve('成功');
+      });
+      console.log('p2', p2);
+
+      let p3 = new Promise((resolve, reject) => {
+        throw ('报错'); // 遇到了throw，相当于执行了reject
+      });
+      console.log('p3', p3);
+
+
+    </script>
+  </body>
+
+</html>

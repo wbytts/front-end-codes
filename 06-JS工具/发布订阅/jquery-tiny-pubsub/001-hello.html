@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery-tiny-pubsub/0.7.0/ba-tiny-pubsub.js"></script>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery-tiny-pubsub/0.7.0/ba-tiny-pubsub.min.js"></script> -->
+</head>
+
+<body>
+
+  <button id="btn">发布</button>
+
+  <script>
+    // $.subscribe、$.unsubscribe、$.publish
+
+    // $.subscribe(名称, 回调(jq事件参数, 信息1, 信息2, ......))
+    // $.subscribe(名称)
+    // $.publish(名称, [信息1, 信息2, 信息3, ......])
+
+    $.subscribe('asd', (e, data, data2, data3) => {
+      console.log('~', data, data2, data3);
+    });
+
+    $('#btn').click(() => $.publish('asd', ['你好啊', 'HelloWorld', '啦啦啦']));
+
+  </script>
+</body>
+
+</html>

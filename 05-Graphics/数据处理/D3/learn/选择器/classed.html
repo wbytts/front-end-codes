@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+<button id="btn">添加box类</button>
+<div id="box"></div>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script>
+
+    /*
+        classed('xxx') 返回一个布尔值，表示类是否开启
+        classed('xxx', flag) 设置类的开启状态
+        classed({ // 传递一个对象，键是类名，值是开启状态
+            c1: flag1,
+            c2: flag2,
+            ......
+        })
+     */
+    var btn = document.querySelector('#btn');
+    btn.onclick = function() {
+        console.log('执行')
+        d3.select('#box').classed('box', true)
+    }
+
+</script>
+</body>
+</html>

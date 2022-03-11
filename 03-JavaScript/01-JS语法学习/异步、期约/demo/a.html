@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #box {
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="box"></div>
+
+    <script>
+      let d = document.getElementById('box');
+
+      // d.style.backgroundColor = 'green';
+
+      function changeBg() {
+        d.style.backgroundColor = 'green';
+      }
+      let p = new Promise((resolve, reject) => {
+        setTimeout(function () {
+          d.style.backgroundColor = 'green';
+          resolve();
+        }, 3000);
+      });
+
+      p.then(
+        () => console.log('Hello World'),
+        () => console.log('hello 个屁')
+      );
+
+    </script>
+  </body>
+
+</html>

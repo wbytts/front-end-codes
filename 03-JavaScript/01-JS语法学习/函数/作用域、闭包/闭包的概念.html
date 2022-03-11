@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>闭包的概念</title>
+</head>
+
+<body>
+    <script>
+        /*
+          闭包指子函数可以访问外部作用域变量的函数特性，即使在子函数作用域外也可以访问。如果没有闭包那么在处理事件绑定，异步请求时都会变得困难。
+            JS中的所有函数都是闭包
+            闭包一般在子函数本身作用域以外执行，即延伸作用域
+         */
+
+        function addPrivateProperty(obj, name, predicate) {
+            let value; // 属性值
+            obj[`get_${name}`] = function () { return value; };
+            obj[`set_${name}`] = function (v) {
+                if (predicate && !predicate(v)) {
+                    throw new TypeError(`set${name}: invalid value ${v}`);
+                } else {
+                    value = v;
+                }
+            }
+        }
+
+        let o = {};
+        addPrivateProperty(o, 'name'); // 给对象o添加私有属性
+
+        o.set_name('张三');
+        console.log(o.get_name());
+
+
+    </script>
+</body>
+
+</html>

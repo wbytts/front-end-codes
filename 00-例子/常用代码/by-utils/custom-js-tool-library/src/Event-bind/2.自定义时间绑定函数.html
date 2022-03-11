@@ -1,0 +1,37 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: EayCome
+ * @Date: 2021-02-10 17:11:53
+ * @LastEditors: EayCome
+ * @LastEditTime: 2021-02-10 17:23:24
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件绑定</title>
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <ul id="items">
+        <li>0001</li>
+        <li>0002</li>
+        <li>0003</li>
+        <li>0004</li>
+        <li>0005</li>
+    </ul>
+    <script>
+        // 调用函数绑定事件
+        addEventListener('#items', 'click', function(e) {
+            // 输入标签文本内容
+            console.log(this.innerHTML);
+        }, 'li');
+    </script>
+</body>
+
+</html>

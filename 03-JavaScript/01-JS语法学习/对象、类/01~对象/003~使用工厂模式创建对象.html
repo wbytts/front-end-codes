@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>工厂函数</title>
+</head>
+
+<body>
+  <script>
+    /*
+    在函数中返回对象的函数可以称为工厂函数，工厂函数有以下优点
+      减少重复创建相同类型对象的代码
+      修改工厂函数的方法影响所有同类对象
+   */
+
+    function createPerson(name, age) {
+      var obj = new Object(); // 此处可以直接写 {}
+      obj.name = name;
+      obj.age = age;
+      return obj;
+    }
+
+    // 注意，这里没有 new
+    var p1 = createPerson('张三', 18)
+    console.log(p1)
+
+    /*
+      与构造函数的区别：
+        1. 不需要使用 new
+        2. 类型是函数内部决定的，而不是基于函数本身
+     */
+
+  </script>
+</body>
+
+</html>

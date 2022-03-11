@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>对象转换</title>
+</head>
+<body>
+<script>
+  /*
+    对象直接参与计算时，系统会根据计算的场景在 string/number/default 间转换。
+      如果声明需要字符串类型，调用顺序为 toString > valueOf
+      如果场景需要数值类型，调用顺序为 valueOf > toString
+      声明不确定时使用 default ，大部分对象的 default 会当数值使用
+
+    内部自定义Symbol.toPrimitive方法用来处理所有的转换场景
+    可以自定义valueOf 与 toString 方法用来转换，转换并不限制返回类型。
+   */
+  let hd = {
+    num: 1,
+    [Symbol.toPrimitive]: function() {
+      return this.num;
+    }
+  };
+  console.log(hd + 3); //4
+</script>
+</body>
+</html>

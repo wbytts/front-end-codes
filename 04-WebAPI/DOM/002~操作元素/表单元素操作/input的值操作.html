@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>获取input内的值</button>
+  <button>将Hello填入input</button>
+  <br>
+  <input id="shuru" type="text">
+  <script>
+    var btns = document.getElementsByTagName('button')
+    var input = document.getElementById('shuru')
+
+    btns[0].onclick = function () {
+      console.log(input.value)
+    };
+    btns[1].onclick = function () {
+      input.value = 'Hello'
+    };
+  </script>
+</body>
+
+</html>

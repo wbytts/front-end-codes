@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板标签语法</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://www.jsviews.com/download/jsrender.js"></script>
+</head>
+<body>
+
+<!--如果觉得script里标签不高亮的话，可以把type改成 text/html，不影响-->
+<script type="text/html" id="mytpl">
+    {{!-- 这是注释 --}}
+    {{* 代码}}
+    {{: 路径或表达式}}
+    {{> 路径或表达式（这种会进行HTML编码）}}
+
+    {{include ...}}...{{/include}}
+    {{include .../}}
+
+    {{for}}...{{/for}}
+    {{for.../}}
+
+    {{props}}...{{/props}}
+    {{props .../}}
+
+    {{if}}...{{/if}}
+    {{if .../}}
+
+    {{myCustomTag}}...{{/myCustomTag}}
+    {{myCustomTag .../}}
+
+    引用其他模板：{{sometag ... tmpl=.../}}   如：{{include tmpl='myInnerTemplate' /}}
+
+    else的使用：
+    {{if firstExpression}}
+    render this if the firstExpression is true
+    {{else secondExpression}}
+    else render this if the secondExpression is true
+    {{else}}
+    else render this
+    {{/if}}
+    ================
+    {{for members}}
+    Member Name: {{:name}}
+    {{else}}
+    There are currently no members...
+    {{/for}}
+    ================
+    {{tabs caption="First Tab"}}
+    first tab content
+    {{else caption="Second Tab"}}
+    second tab content
+    {{/tabs}}
+</script>
+
+<script>
+    // jsrender 默认使用 双大括号作为模板标签
+    // 可以通过 $.views.settings.delimiters("<%", "%>") 更改模板标签
+    $.views.settings.delimiters("{{", "}}");
+
+</script>
+</body>
+</html>

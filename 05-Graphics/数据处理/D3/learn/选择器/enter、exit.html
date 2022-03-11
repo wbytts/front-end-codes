@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<p>张三</p>
+<p>李四</p>
+
+<script>
+    // enter、exit
+    // 为传入的数据创建新节点，删除不再需要的传出节点
+    // 当数据绑定到选择集之后，数据数组的每个元素与相应节点配对
+    // 如果节点数少于数据的长度，则可以通过enter选择，enter返回额外的那部分选择集
+    // 如果节点数多余数据的长度，则可以通过exit选择，exit返回多余的那部分选择集
+
+    /*
+        一个常用的处理模板：
+            1. 绑定数据后，分别返回 update、enter、exit部分
+            2. 处理 update 部分，一般是修改
+            3. 处理 enter 部分，一般是填充
+            4. 处理 exit 部分，一般是删除
+     */
+
+    var bbb = d3.select('body');
+    var p = bbb.selectAll('p');
+
+    var data = [1, 2, 3, 4, 5, 6];
+    var update = p.data(data).text(d => d);
+
+    // 原本的标签不存在变化，不齐的标签会进行补全
+    p.data(data).enter().append('p').text(d => d);
+
+    p.data([8]).exit().style('color', 'red');
+
+</script>
+
+</body>
+</html>

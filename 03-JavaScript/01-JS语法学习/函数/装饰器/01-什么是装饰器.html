@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  /*
+    装饰器，本质是一个函数
+   */
+
+    function zsq (target, name, descriptor) {
+      newTget = function() {
+        console.log('-' * 50);
+        let result = target.value();
+        console.log('-' * 50);
+        return result;
+      }
+      target = newTarget;
+    }
+
+    @zsq
+    function fun() {
+      console.log('hello world');
+    }
+
+    fun();
+
+</script>
+</body>
+</html>

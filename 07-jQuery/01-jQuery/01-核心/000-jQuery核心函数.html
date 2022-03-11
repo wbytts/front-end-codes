@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+
+    <script>
+        // jQuery 函数，别名 $
+        console.log(jQuery);
+        console.log($);
+
+        // jquery 文件里是一个自执行函数
+        // 引入了 jquery 这个文件，会执行这个文件中的代码
+        // 在这个文件中，jquery 给 window 添加了 jQuery 属性和 $ 属性
+
+        // $ 和 jQuery 是等价的，他们都是一个函数
+
+        // 给这个函数传递不同的参数，会有不同的作用
+        // 1. 如果传递的是一个函数，则这个函数会被当做 jQuery 的入口函数
+        // 2. 如果传递的是一个合法的选择器字符串，则会找到dom元素，并创建jQuery对象
+        // 3. 如果传递的是html字符串，则会创建一个标签(jQuery对象)
+        // 4. 如果传递的是一个dom对象，则会把dom对象转换为jQuery对象
+
+
+        // 使用 jQuery 和 new jQuery 是一样的东西？
+        // 看一下源码结构
+        (function(window, undefined){
+            var jQuery = function(selector, context) {
+                return new jQuery.fn.init(selector, context);
+            };
+            jQuery.fn = jQuery.prototype = {
+                init: function(selector, context) {
+
+                }
+            }
+            jQuery.fn.init.prototype = jQuery.fn;
+        })(window);
+
+
+
+    </script>
+</body>
+
+</html>

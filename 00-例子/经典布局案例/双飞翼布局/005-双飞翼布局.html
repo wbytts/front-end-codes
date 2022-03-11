@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>双飞翼布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /*三列伪等高布局*/
+        #content .middle,#content .left,#content .right {
+            float: left;
+            height: 50px;
+            padding-bottom: 10000px;
+            margin-bottom: -10000px;
+        }
+        /*头部脚部*/
+        #header, #footer {
+            border: 1px solid;
+            background-color: gray;
+            text-align: center;
+        }
+        body {
+            min-width: 600px;
+        }
+        /*双飞翼布局*/
+        #content {
+            overflow: hidden;
+        }
+        #content .middle {
+            width: 100%;
+            background-color: deeppink;
+        }
+        #content .middle .m_inner {
+            padding: 0 200px;
+        }
+        #content .left, #content .right {
+            width: 200px;
+            background-color: pink;
+        }
+        #content .left {
+            margin-left: -100%;
+        }
+        #content .right {
+            margin-left: -200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">header</div>
+    <div id="content">
+        <div class="middle">
+            <div class="m_inner">middle</div>
+        </div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <div id="footer">footer</div>
+</body>
+</html>

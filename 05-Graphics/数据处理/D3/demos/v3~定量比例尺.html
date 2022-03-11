@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+<script>
+    // 定量比例尺适合转换连续的定义值
+    var linear = d3.scale.linear()
+        .domain([0, 500]) // 定义域
+        .range([1, 100]) // 值域
+
+    console.log(50, linear(50));
+    console.log(250, linear(250));
+    console.log(450, linear(450));
+</script>
+</body>
+</html>

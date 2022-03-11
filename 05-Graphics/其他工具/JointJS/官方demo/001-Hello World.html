@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.css" />
+</head>
+<body>
+<!-- content -->
+<div id="myholder"></div>
+
+<!-- dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.js"></script>
+
+<!-- code -->
+<script type="text/javascript">
+
+  // 创建图
+  var graph = new joint.dia.Graph;
+
+  // 创建画布
+  var paper = new joint.dia.Paper({
+    el: document.getElementById('myholder'), // 设置画布挂载的元素
+    model: graph, // 画布上的图模型
+    width: 1000, // 画布的宽
+    height: 800, // 画布的高
+    gridSize: 1, // 元素与之对齐的网格的大小。影响元素移动的粒度
+    background: {
+      color: 'rgba(0, 255, 0, 0.3)' // 设置背景颜色
+    }
+  });
+
+  /*
+    element的方法说明：
+        element.position()：设置元素的起始位置(左上角)  注：相对于纸张的坐标系(考虑纸张的缩放和其他变换)
+        element.resize()：设置元素的尺寸
+        element.clone()：复制一个现有元素，包括它的位置、维度、属性
+        element.translate()：沿着两个坐标轴移动元素指定的距离，也有缩放和旋转元素的方法
+        element.addTo()：将元素添加到图形中以便能够呈现
+        element.attr()：通过编程方式将SVG属性直接分配给形状标记的SVGElements。(CSS样式仍然可以在这里定义的样式之上使用，它们将优先于这些属性。)
+ */
+
+  // 创建一个矩形
+  var rect = new joint.shapes.standard.Rectangle();
+  rect.position(100, 30); // 设置矩形位置
+  rect.resize(100, 40); // 重设矩形大小
+  rect.attr({ // 设置矩形的相关属性
+    body: {
+      fill: 'blue'
+    },
+    label: {
+      text: 'Hello',
+      fill: 'white'
+    }
+  });
+  // 把矩形添加到图上
+  rect.addTo(graph);
+
+  // 复制第一个矩形
+  var rect2 = rect.clone();
+  rect2.translate(300, 0);
+  rect2.attr('label/text', 'World!');
+  // 将rect2也添加到图上
+  rect2.addTo(graph);
+
+  // 创建一个 link
+  var link = new joint.shapes.standard.Link();
+  /*
+    设置链接的源/目标。要将链接连接到元素，请将元素传递给函数(就像我们在示例中所做的那样)。
+    要将链接固定在纸张上的一个固定点上，传递g.p arpoint(或一个具有x和y属性的对象)。
+   */
+  // 设置起点和终点
+  link.source(rect);
+  link.target(rect2);
+  // 将 link 也添加到图上
+  link.addTo(graph);
+
+  /*
+    link的其他方法
+        link.clone 克隆一个链接对象
+        link.vertices 设置链接的顶点数组
+        link.router  设置链路的路由器
+        link.connector  设置链接的连接器
+        link.attr 设置链接的属性
+        link.labels 设置链接的标签
+        link.appendLabel 添加链接的标签
+
+     link的属性：
+        sourceMarker、targetMarker：用于设置箭头的样子
+   */
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+/*
+转义（Escaping）允许你使用任意字符串作为属性或变量值。
+任何 ~"anything" 或 ~'anything' 形式的内容都将按原样输出，除非 interpolation。
+*/
+@media (min-width: 768px) {
+  .element {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 768px) {
+  .element {
+    font-size: 1.2rem;
+  }
+}

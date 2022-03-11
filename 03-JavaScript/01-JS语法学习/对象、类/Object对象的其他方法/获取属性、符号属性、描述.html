@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  let o = Object();
+
+  o.name = 'wby';
+  let sym = Symbol('test_sym');
+  o[sym] = 123;
+
+  // Object.getOwnPropertynames(o) 返回对象实例的常规属性数组
+  console.log(Object.getOwnPropertyNames(o));
+
+  // Object.getOwnPropertySymbols(o)
+  console.log(Object.getOwnPropertySymbols(o));
+
+  // 返回同时包含常规和符号属性描述符的对象
+  console.log(Object.getOwnPropertyDescriptor(o));
+  console.log(Object.getOwnPropertyDescriptors(o));
+
+  // Reflect.ownKeys() 返回两种类型的键
+  console.log(Reflect.ownKeys(o));
+
+  // obj.hasOwnProperty(pname) 检查一个对象是否有某个属性，属性名要是字符串
+  console.log(o.hasOwnProperty("name"));
+
+</script>
+</body>
+</html>

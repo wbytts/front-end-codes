@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+  function setup() {
+    createCanvas(400, 400);
+    strokeWeight(3);
+    //center squares to match circles
+    rectMode(CENTER);
+
+    //draw rects to mark far sides
+    noStroke();
+    fill("beige");
+    rect(5, height / 2, 10, height);
+    rect(width - 5, height / 2, 10, height);
+    fill("orange");
+    stroke("brown");
+
+  }
+
+  function draw() {
+    point(mouseX, mouseY);
+
+    //if (test) {doThis; }
+    //test: mouseX on far left of canvas
+    //doThis: draw a circle at mouseY
+    if (mouseX < 10) {
+      circle(width / 2, mouseY, 20);
+    }
+
+    //test: mouseX on far right of canvas
+    //doThis: draw a square at mouseY
+    if (mouseX > width - 10) {
+      square(width / 2, mouseY, 20);
+    }
+
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/brython/3.9.3/brython.js"></script>
+    <style>
+      *{
+          font-family: sans-serif;
+          font-weight: normal;
+          font-size: 1.1em;
+      }
+      td{
+          background-color: #ccc;
+          padding: 10px 30px 10px 30px;
+          border-radius: 0.2em;
+          text-align: center;
+          cursor: default;
+      }
+      #result{
+          border-color: #000;
+          border-width: 1px;
+          border-style: solid;
+          padding: 10px 30px 10px 30px;
+          text-align: right;
+      }
+      </style>
+  </head>
+
+  <body onload="brython()">
+    <script type="text/python" src="./main.py"></script>
+  </body>
+
+</html>

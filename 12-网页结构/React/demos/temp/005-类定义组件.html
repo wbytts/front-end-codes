@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+
+    <script type="text/babel">
+
+      class Demo extends React.Component {
+        constructor(props) { // 构造器接收 props
+          super(props);
+          this.state = {
+            money: 0 // 初始化钱的状态为0
+          }
+          // 因为React中事件函数并不是组件实例对象调用的，所以this不是指向组件实例
+          // 可以将函数绑定到this，从而使调用时函数中的this为组件实例对象
+          this.handleClick = this.handleClick.bind(this);
+        }
+        handleClick() {
+          this.setState({ money: this.state.money + 1 })
+        }
+        render() {
+          return (
+            <div>
+              <span>name: {this.props.name}</span>
+              <br />
+              <span>age: {this.props.age}</span>
+              <br />
+              <span>money: {this.state.money}</span>
+              <br />
+              <button onClick={this.handleClick}>+1</button>
+            </div>
+          )
+        }
+      }
+
+
+      let vDom = (
+        <div>
+          <Demo name="张三" age={18}></Demo>
+        </div>
+      );
+
+      ReactDOM.render(vDom, document.getElementById('root'));
+    </script>
+
+  </body>
+
+</html>

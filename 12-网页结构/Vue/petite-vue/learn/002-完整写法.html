@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div v-scope="{ count: 0}">
+        <button @click="count--">-</button>
+        <span>{{ count }}</span>
+        <button @click="count++">+</button>
+    </div>
+
+    <!-- 常规引入 -->
+    <script src="https://unpkg.com/petite-vue"></script>
+    <script>
+        PetiteVue.createApp().mount() // 页面中只有一个v-scope的时候，mount可以不指定挂载元素
+    </script>
+</body>
+</html>

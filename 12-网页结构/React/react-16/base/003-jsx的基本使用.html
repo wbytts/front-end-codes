@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const msg = 'I Like You';
+    const myId = 'wby';
+
+    /*注意{}外面不要在加入单引号，会被当做字符串*/
+    const vDom2 = <h1 id={myId}>{msg}</h1>;
+    // 渲染虚拟DOM
+    ReactDOM.render(vDom2, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

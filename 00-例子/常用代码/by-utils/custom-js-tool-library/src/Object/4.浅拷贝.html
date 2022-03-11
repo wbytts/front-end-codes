@@ -1,0 +1,37 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: EayCome
+ * @Date: 2021-02-10 11:55:47
+ * @LastEditors: EayCome
+ * @LastEditTime: 2021-02-10 12:07:17
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浅拷贝测试</title>
+    <script src="clone.js"></script>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            x: 'abc',
+            y: {
+                m: 1
+            }
+        };
+
+        // const obj = [1, 2, 3, 4]
+        const result = clone2(obj);
+        console.log(obj)
+        console.log(result)
+        console.log(obj === result)
+    </script>
+</body>
+
+</html>

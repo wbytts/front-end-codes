@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绘制路径</title>
+  <style>
+    #myCanvas {
+      border: 1px solid #000;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 注：canvas 如果用css设置大小的话，只是缩放操作 -->
+  <canvas id="myCanvas" width=800 height=600></canvas>
+  <script>
+    // 获取画布元素
+    var canvas = document.getElementById('myCanvas');
+    // 获取画布上下文
+    var ctx = canvas.getContext("2d");
+
+    // 路径都是闭合的，使用路径进行绘制时，需要特定的步骤
+    /*
+      1. 设置路径的起点
+      2. 设置路径
+      3. 封闭路径
+      4. 填充或绘制已经封闭的路径的形状
+    */
+
+    // 创建一个路径
+    ctx.beginPath(); // 开始创建路径
+    // 移动绘制点，找到一个起点
+    ctx.moveTo(100, 100);
+    // 描述行进路径
+    ctx.lineTo(200, 200);
+    ctx.lineTo(400, 180);
+    ctx.lineTo(380, 50);
+    ctx.closePath(); // 封闭路径
+    // 绘制路径（绘制路径时如果不关闭，则会自动封闭，只针对 fill）
+    ctx.strokeStyle = 'red';
+    ctx.stroke();
+
+  </script>
+</body>
+
+</html>

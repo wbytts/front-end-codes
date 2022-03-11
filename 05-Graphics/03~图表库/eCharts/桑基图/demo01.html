@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.0/dist/echarts.js"></script>
+  <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<div id="main"></div>
+
+<script>
+  // import * as echarts from 'echarts';
+
+  var ROOT_PATH =
+    'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
+
+  var chartDom = document.getElementById('main');
+  chartDom.style.width = '100vw';
+  chartDom.style.height = '100vh';
+
+  var myChart = echarts.init(chartDom);
+  var option;
+
+  myChart.showLoading();
+  $.get(ROOT_PATH + '/data/asset/data/energy.json', function (data) {
+    myChart.hideLoading();
+    myChart.setOption(
+      (option = {
+        title: {
+          text: 'Sankey Diagram'
+        },
+        tooltip: {
+          trigger: 'item',
+          triggerOn: 'mousemove'
+        },
+        series: [
+          {
+            type: 'sankey',
+            data: data.nodes,
+            links: data.links,
+            emphasis: {
+              focus: 'adjacency'
+            },
+            lineStyle: {
+              color: 'gradient',
+              curveness: 0.5
+            }
+          }
+        ]
+      })
+    );
+  });
+
+  option && myChart.setOption(option);
+</script>
+</body>
+</html>

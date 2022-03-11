@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>超链接</title>
+</head>
+<body>
+<!--
+    使用超链接可以让我们从一个地方跳转到另一个页面
+    使用 a 标签来创建一个超链接
+    02-属性：
+        href：指向链接跳转的目标地址，可以写一个相对路径也可以写一个完整的地址
+        target：指定打开链接的位置
+            _blank    ：新标签打开
+            _parent   ：
+            _self     ：当前页面打开（默认值）
+            _top      ：
+            framename ：在指定的内联框架内打开
+-->
+    <a target="_blank" href="http://www.baidu.com" >
+        <img src="https://api.mz-moe.cn/img/img1.jpg" alt="">
+    </a>
+
+<!--
+    也可以跳转到已经打开的其他窗口
+    如：
+        window.open('......', 'asd');
+
+        <a href="xxx" target="asd">...</a>
+-->
+
+<!--
+    锚点定位：
+        a标签可以在同一个页面中进行定位，href是本页面的元素标识
+-->
+
+<!--
+    发送邮件：href中标注：
+        mailto:邮箱地址
+
+    拨打电话：
+        tel:电话号码
+-->
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>变为可用</button>
+  <button>变为不可用</button>
+  <br>
+  <input id="input" type="text">
+  <script>
+    var btns = document.getElementsByTagName('button')
+    var input = document.getElementById('input')
+
+    // 注：disabled 是不可用的意思，所以这里设置为false才是可用
+
+    btns[0].onclick = function () {
+      input.disabled = false;
+    };
+    btns[1].onclick = function () {
+      input.disabled = true;
+    };
+  </script>
+</body>
+
+</html>

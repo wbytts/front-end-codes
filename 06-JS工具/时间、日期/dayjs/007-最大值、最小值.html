@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>最大值、最小值</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+</head>
+<body>
+<script>
+
+    // 此功能依赖MinMax插件
+    dayjs.extend(minMax)
+
+    // 返回给定Day.js实例的最大值
+    dayjs.max(dayjs(), dayjs('2018-01-01'), dayjs('2019-01-01'))
+
+    // 返回给定Day.js实例的最小值
+    dayjs.min([dayjs(), dayjs('2018-01-01'), dayjs('2019-01-01')])
+</script>
+</body>
+</html>

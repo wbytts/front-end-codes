@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <body>
+
+    <div id="app">
+      <div>{{msg}}</div>
+      <input type="text" v-model="msg">
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        // 因为setup在创建组件之前被调用，所以setup执行时，组件实例并没有被创建
+        // 因此setup内部，拿不到this
+        setup(props, context) {
+          // context 是上下文对象，包含了一些常用的属性
+          // context.attrs
+          // context.slots
+          // context.emit
+          // context.parent
+          // context.root
+          // context.refs
+          console.dir(context);
+          console.log(context.attrs);
+          console.log(context.slots);
+          console.log(context.emit);
+
+          // 这几个好像，访问不到了？
+          // console.log(context.parent);
+          // console.log(context.root);
+          // console.log(context.refs);
+
+          let msg = 'hello';
+          return { msg };
+        }
+      });
+      app.mount('#app');
+
+
+    </script>
+  </body>
+
+</html>

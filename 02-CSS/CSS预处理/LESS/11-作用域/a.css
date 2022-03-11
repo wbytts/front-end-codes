@@ -1,0 +1,14 @@
+/*
+Less 中的作用域与 CSS 中的作用域非常类似。
+首先在本地查找变量和混合（mixins），如果找不到，则从“父”级作用域继承。
+*/
+#page #header {
+  color: white;
+}
+/*
+与 CSS 自定义属性一样，混合（mixin）和变量的定义不必在引用之前事先定义。
+因此，下面的 Less 代码示例和上面的代码示例是相同的：
+*/
+#page #header {
+  color: white;
+}

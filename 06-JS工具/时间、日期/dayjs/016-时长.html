@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时长</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/plugin/duration.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/plugin/relativeTime.min.js"></script>
+</head>
+<body>
+<script>
+    /*
+        duration对象，持续时间
+        其中Day.js对象定义为时间上的单点，而持续时间定义为时间长度
+        持续时间没有定义开始和结束日期，他们是contextless。
+        Duration在概念上更类似于“2小时”，而不是“今天下午2点到4点之间”，因此，它们并不是依赖于上下文的单元之间转换的好解决方案
+        例如，一年可以定义为366天、365天、365.25天、12个月或52周
+        如果没有上下文，试图将年转换为日是没有意义的
+        使用dayjs#diff来计算两个日期时间之间的天数或年要比使用持续时间好得多
+     */
+    dayjs.extend(window.dayjs_plugin_duration)
+    dayjs.duration({ months: 12 })
+
+    // 创建持续时间，以毫秒为单位
+    dayjs.duration(100); // 100 milliseconds
+    dayjs.duration(2, 'days'); // 如果您希望使用非毫秒的度量单位创建持续时间，也可以传递该度量单位
+    /*
+        days	        d
+        weeks	        w
+        months	        M
+        years	        y
+        hours	        h
+        minutes	        m
+        seconds	        s
+        milliseconds	ms
+    */
+    // 可以传递多个不同的度量单位
+    dayjs.duration({
+        seconds: 2,
+        minutes: 2,
+        hours: 2,
+        days: 2,
+        weeks: 2,
+        months: 2,
+        years: 2
+    });
+
+    // 支持解析ISO 8601的持续时间
+    dayjs.duration('P1Y2M3DT4H5M6S');
+    dayjs.duration('P1M');
+
+    // 克隆
+    // 创建持续时间的克隆。持久性是不可变的，就像Day.js对象对象一样
+    // 不过，这仍然可以让您在某个时间点获得快照
+    dayjs.duration().clone();
+
+    // 人性化
+    // 有时候，您想要dayjs#from优点，但您不想创建两个Day.js对象，您只想显示一个时间长度
+    dayjs.extend(window.dayjs_plugin_relativeTime)
+    dayjs.duration(1, "minutes").humanize(); // a minute
+    dayjs.duration(2, "minutes").humanize(); // 2 minutes
+    dayjs.duration(24, "hours").humanize();  // a day
+    // 默认情况下，返回的字符串是无后缀的。如果您想要一个后缀，请输入true，如下所示
+    dayjs.duration(1, "minutes").humanize(true); // in a minute
+    // 对于之前的后缀，传入一个负数
+    dayjs.duration(-1, "minutes").humanize(true); // a minute ago
+
+    // 毫秒
+    // 要获得持续时间中的毫秒数，可以使用dayjs.duration().milliseconds()
+    // 它将返回一个介于0和999之间的数字
+    dayjs.duration(500).milliseconds(); // 500
+    dayjs.duration(1500).milliseconds(); // 500
+    dayjs.duration(15000).milliseconds(); // 0
+    // 如果需要以毫秒为单位的持续时间长度，可以使用dayjs.duration().asmilliseconds()
+    dayjs.duration(500).asMilliseconds(); // 500
+    dayjs.duration(1500).asMilliseconds(); // 1500
+    dayjs.duration(15000).asMilliseconds(); // 15000
+
+    // 秒
+    // 要获得持续时间中的秒数，可以使用dayjs.duration().seconds()
+    // 它将返回一个介于0和59之间的数字
+    dayjs.duration(500).seconds(); // 0
+    dayjs.duration(1500).seconds(); // 1
+    dayjs.duration(15000).seconds(); // 15
+    // 如果希望以秒为单位计算持续时间的长度，可以使用dayjs.duration().asseconds()
+    dayjs.duration(500).asSeconds(); // 0.5
+    dayjs.duration(1500).asSeconds(); // 1.5
+    dayjs.duration(15000).asSeconds(); // 15
+
+    // 分钟
+    // 与其他持续时间的getter一样，dayjs.duration().minutes()获取分钟(0 - 59)。
+    // dayjs.duration().asMinutes()获取持续时间的长度(以分钟为单位)。
+    dayjs.duration().minutes();
+    dayjs.duration().asMinutes();
+
+    // 小时
+    // 与用于持续时间的其他getter方法一样，dayjs.duration().hours()获取小时(0 - 23)。
+    // dayjs.duration().asHours()获取持续时间的长度(以小时为单位)。
+    dayjs.duration().hours();
+    dayjs.duration().asHours();
+
+    // 日
+    // 与其他用于持续时间的getter一样，dayjs.duration().days()获取天数(0 - 30)。
+    // dayjs.duration().asDays()获取持续时间的长度(以天为单位)。
+    dayjs.duration().days();
+    dayjs.duration().asDays();
+
+    // 周
+    // 与用于持续时间的其他getter一样，dayjs.duration().weeks()获取周(0 - 4)。
+    // dayjs.duration().asWeeks()获取持续时间的长度(以周为单位)。
+    // 注意，与持续时间的其他getter不同，周被计算为天数的子集，而不是从天数计算中删除。
+    // 注:以周为单位的期限定义为7天。
+    dayjs.duration().weeks();
+    dayjs.duration().asWeeks();
+
+    // 月
+    // 与用于获取持续时间的其他getter方法一样，dayjs.duration().months()获取月份(0 - 11)。
+    // dayjs.duration().asMonths()获取持续时间的长度，以月为单位。
+    dayjs.duration().months();
+    dayjs.duration().asMonths();
+
+    // 年
+    // 与其他用于持续时间的getter方法一样，dayjs.duration().years()获取年份。
+    // dayjs.duration().asYears()获取持续时间的长度(以年为单位)。
+    dayjs.duration().years();
+    dayjs.duration().asYears();
+
+    // 添加时间
+    // 返回已克隆的持续时间对象，并添加指定的时间
+    var a = dayjs.duration(1, 'd');
+    var b = dayjs.duration(2, 'd');
+    a.add(b).days(); // 3
+    a.add({ days: 2 } ).days();
+    a.add(2, 'days');
+
+    // 减去时间
+    // 返回已克隆的持续时间对象，并减去指定的时间量
+    var a = dayjs.duration(3, 'd');
+    var b = dayjs.duration(2, 'd');
+    a.subtract(b).days(); // 1
+    a.subtract({ days: 2 } ).days();
+    a.subtract(2, 'days');
+
+    // 差异处理
+    // 还可以使用持续时间和dayjs#diff来获取两个日期时间之间的持续时间。
+    // 为此，只需将dayjs#diff方法传递到dayjs#duration中，如下所示
+    var x = dayjs()
+    var y = dayjs()
+    var duration = dayjs.duration(x.diff(y))
+    // returns duration object with the duration between x and y
+
+    // 单位转换
+    // 作为Duration#asX的替代品，您可以使用Duration#as('x')
+    var duration = dayjs.duration()
+    duration.as('hours');
+    duration.as('minutes');
+    duration.as('seconds');
+    duration.as('milliseconds');
+
+    // 获取单位时间
+    // 作为Duration#x() getter的替代方法，可以使用Duration#get('x')
+    var duration = dayjs.duration
+    duration.get('hours');
+    duration.get('minutes');
+    duration.get('seconds');
+    duration.get('milliseconds');
+
+    // 序列化JSON
+    // 当将一个duration对象序列化为JSON时，它将表示为一个ISO8601字符串
+    JSON.stringify({
+        postDuration : dayjs.duration(5, 'm')
+    }); // '{"postDuration":"PT5M"}'
+
+    // 是否是 Duration
+    // 要检查一个变量是否是Day.js持续时间对象，可以使用dayjs.isDuration()
+    dayjs.isDuration() // false
+    dayjs.isDuration(new Date()) // false
+    dayjs.isDuration(dayjs()) // false
+    dayjs.isDuration(dayjs.duration()) // true
+    dayjs.isDuration(dayjs.duration(2, 'minutes')) // true
+
+    // ISO 8601标准
+    // 按照ISO 8601标准指定的字符串返回持续时间
+    dayjs.duration(1, 'd').toISOString() // "P1D"
+    /*
+        P	P代表周期。放置在持续时间表示的开始处。
+        Y	年
+        M	月
+        D	日
+        T	在时间分量之前的指示符。
+        H	时
+        M	分
+        S	秒
+    */
+
+    // 本地化
+    // 可以使用locale获取或设置持续时间的locale。语言环境将影响持续时间的字符串方法，如humanize()。
+    // 有关国际化的更多信息，请参阅i18n部分。
+    // require('dayjs/locale/es') // 此功能依赖RelativeTime插件
+    /*
+    dayjs.duration(1, "minutes").locale("en").humanize(); // a minute
+    dayjs.duration(1, "minutes").locale("es").humanize(); // un minuto
+    */
+</script>
+</body>
+</html>

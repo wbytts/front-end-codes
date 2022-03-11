@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>for in & for of</title>
+  </head>
+  <body>
+    <!--
+  for in
+    用于遍历对象的所有*02-属性*，for/in主要用于遍历对象，不建议用来遍历数组。
+    对于数组来说，应该是遍历下标
+
+        for (key in object) {
+          // 对此对象属性中的每个键执行的代码
+        }
+    -->
+
+    <script>
+      let arr = ['a', 'b', 'c', 'd', 'e'];
+
+      for (let i in arr) {
+        console.log(arr[i]);
+      }
+    </script>
+  </body>
+</html>

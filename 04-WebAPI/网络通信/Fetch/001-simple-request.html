@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      // 测试一个简单的请求
+      fetch('http://localhost:3000/users')
+        .then(response => response.json())
+        .then(data => console.log(data));
+    </script>
+  </body>
+</html>

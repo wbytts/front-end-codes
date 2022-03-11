@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>系统对话框</title>
+</head>
+<body>
+
+<button id="btn1">alert弹出警告框</button>
+<button id="btn2">confirm弹出确认信息</button>
+<button id="btn3">prompt输入框</button>
+
+<script>
+window.onload = function() {
+  let btn1 = document.getElementById('btn1');
+  let btn2 = document.getElementById('btn2');
+  let btn3 = document.getElementById('btn3');
+
+  btn1.onclick = function() {
+    alert("提示信息");
+  };
+
+  btn2.onclick = function() {
+    let res = confirm("是否确认？");
+    // 点击确定返回 true
+    // 点击取消返回 false
+    console.log(res);
+  };
+
+  btn3.onclick = function() {
+    let res = prompt("请输入");
+    // 输入数据点击确定，返回输入的数据
+    // 点击取消，返回 null
+    console.log(res);
+  }
+}
+</script>
+</body>
+</html>

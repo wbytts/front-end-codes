@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>简单表格</title>
+  <!-- LayUI的核心CSS文件-->
+  <link rel="stylesheet" href="../layui-v2.5.6/layui/css/layui.css">
+  <!-- LayUI的核心JS文件（模块化引入） -->
+  <script src="../layui-v2.5.6/layui/layui.js"></script>
+</head>
+<body>
+
+<!--
+  table标签添加 layui-table
+  lay-even	用于开启 隔行 背景，可与其它属性一起使用
+  lay-skin="属性值"	line （行边框风格）、row （列边框风格）、nob （无边框风格），	若使用默认风格不设置该属性即可
+  lay-size="属性值"	sm （小尺寸）、lg （大尺寸），	若使用默认尺寸不设置该属性即可
+-->
+<table class="layui-table" lay-even lay-skin="row" lay-size="lg">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+  <tr>
+    <th>昵称</th>
+    <th>加入时间</th>
+    <th>签名</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>贤心</td>
+    <td>2016-11-29</td>
+    <td>人生就像是一场修行</td>
+  </tr>
+  <tr>
+    <td>许闲心</td>
+    <td>2016-11-28</td>
+    <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+  </tr>
+  </tbody>
+</table>
+
+
+</body>
+</html>

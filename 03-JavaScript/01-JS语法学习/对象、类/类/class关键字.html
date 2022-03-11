@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <!--
+  为了和其他语言继承形态一致，JS提供了class 关键词用于模拟传统的class ，但底层实现机制依然是原型继承。
+
+  class 只是语法糖为了让类的声明与继承更加简洁清晰。
+-->
+    <script>
+        // 类声明，创建一个类
+        class User {
+        }
+
+        let Article = class {
+        };
+
+        // 创建一个类的对象 new 类名()
+        console.log(new Article());
+        console.log(new User());
+
+        // 类方法之间不需要加逗号
+        class User1 {
+            show() { }
+            get() {
+                console.log("get method");
+            }
+        }
+        const hd = new User1();
+        hd.get();
+    </script>
+</body>
+
+</html>

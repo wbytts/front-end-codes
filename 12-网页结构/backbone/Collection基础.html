@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/underscore.js/1.13.1/underscore.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/backbone.js/1.4.0/backbone.js"></script>
+</head>
+
+<body>
+
+  <script>
+    var Note = Backbone.Model.extend({
+      defaults: {
+        title: '',
+        content: ''
+      }
+    });
+
+
+    var NoteBook = Backbone.Collection.extend({});
+
+    var book = new NoteBook();
+
+    var note1 = new Note({
+      title: '第一篇笔记',
+      content: '11111111111111'
+    });
+
+    var note2 = new Note({
+      title: '第二篇笔记',
+      content: '22222222222222'
+    });
+
+    book.add(note1);
+    book.add(note2);
+
+    book.fetch({
+      url: 'http://127.0.0.1:8888/test/get_notes',
+      success: function (collection, response) {
+        console.log(collection.toJSON(), response);
+      }
+    })
+
+  </script>
+</body>
+
+</html>

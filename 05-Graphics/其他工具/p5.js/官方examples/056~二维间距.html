@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+在图片上移动鼠标来遮盖并显示矩阵。
+测量鼠标到每个正方形的距离，并按比例设置大小。
+*/
+let max_distance;
+
+function setup() {
+  createCanvas(710, 400);
+  noStroke();
+  max_distance = dist(0, 0, width, height);
+}
+
+function draw() {
+  background(0);
+
+  for (let i = 0; i <= width; i += 20) {
+    for (let j = 0; j <= height; j += 20) {
+      let size = dist(mouseX, mouseY, i, j);
+      size = (size / max_distance) * 66;
+      ellipse(i, j, size, size);
+    }
+  }
+}
+
+</script>
+</body>
+</html>

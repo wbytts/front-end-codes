@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <style>
+        canvas {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="600">
+    您的浏览器不支持 Canvas
+</canvas>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("myCanvas");
+        if(canvas && canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+
+            ctx.moveTo(0,0);
+            ctx.lineTo(200, 200);
+            ctx.stroke(); // stroke不会自动闭合路径
+        }
+    };
+</script>
+</body>
+</html>

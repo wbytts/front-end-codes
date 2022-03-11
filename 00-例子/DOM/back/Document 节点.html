@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+    document节点对象代表整个文档，每张网页都有自己的document对象。window.document属性就指向这个对象。只要浏览器开始载入 HTML 文档，该对象就存在了，可以直接使用。
+
+    document对象有不同的办法可以获取。
+
+    正常的网页，直接使用document或window.document。
+    iframe框架里面的网页，使用iframe节点的contentDocument属性。
+    Ajax 操作返回的文档，使用XMLHttpRequest对象的responseXML属性。
+    内部节点的ownerDocument属性。
+    document对象继承了EventTarget接口和Node接口，并且混入（mixin）了ParentNode接口。
+    这意味着，这些接口的方法都可以在document对象上调用。除此之外，document对象还有很多自己的属性和方法。
+
+    document.defaultView：返回document对象所属的window对象。如果当前文档不属于window对象，该属性返回null。
+
+    document.doctype：
+        对于 HTML 文档来说，document对象一般有两个子节点。
+        第一个子节点是document.doctype，指向<DOCTYPE>节点，即文档类型（Document Type Declaration，简写DTD）节点。
+        HTML 的文档类型节点，一般写成<!DOCTYPE html>。如果网页没有声明 DTD，该属性返回null。
+        document.firstChild通常就返回这个节点。
+
+    document.documentElement：返回当前文档的根元素节点（root）。
+        它通常是document节点的第二个子节点，紧跟在document.doctype节点后面。HTML网页的该属性，一般是<html>节点。
+
+    document.body，document.head：
+        document.body属性指向<body>节点，document.head属性指向<head>节点。
+        这两个属性是可写的，如果改写它们的值，相当于移除所有子节点。
+
+    document.scrollingElement：
+        返回文档的滚动元素。也就是说，当文档整体滚动时，到底是哪个元素在滚动。
+        标准模式下，这个属性返回的文档的根元素document.documentElement（即<html>）。
+        兼容（quirk）模式下，返回的是<body>元素，如果该元素不存在，返回null。
+
+    document.activeElement：返回获得当前焦点（focus）的 DOM 元素。
+        通常，这个属性返回的是<input>、<textarea>、<select>等表单元素，如果当前没有焦点元素，返回<body>元素或null。
+
+    document.fullscreenElement：返回当前以全屏状态展示的 DOM 元素。如果不是全屏状态，该属性返回null。
+
+    节点集合属性：
+    document.links：返回当前文档所有设定了href属性的<a>及<area>节点
+    document.forms：返回所有<form>表单节点
+    document.images：返回页面所有<img>图片节点
+    document.embeds，document.plugins：document.embeds属性和document.plugins属性，都返回所有<embed>节点
+    document.scripts：返回所有<script>节点
+    document.styleSheets：返回文档内嵌或引入的样式表集合
+    除了document.styleSheets，以上的集合属性返回的都是HTMLCollection实例
+
+    文档静态信息属性：
+    document.documentURI，document.URL
+    document.domain
+    document.location
+    document.lastModified
+    document.title
+    document.characterSet
+    document.referrer
+    document.dir
+    document.compatMode
+
+    文档状态属性：
+    document.hidden
+    document.visibilityState
+    document.readyState
+    document.cookie
+    document.designMode
+    document.currentScript
+    document.implementation
+
+    方法：
+    document.open()，document.close()
+    document.write()，document.writeln()
+    document.querySelector()，document.querySelectorAll()
+    document.getElementsByTagName()
+    document.getElementsByClassName()
+    document.getElementsByName()
+    document.getElementById()
+    document.elementFromPoint()，document.elementsFromPoint()
+    document.createElement()
+    document.createTextNode()
+    document.createAttribute()
+    document.createComment()
+    document.createDocumentFragment()
+    document.createEvent()
+    document.addEventListener()，document.removeEventListener()，document.dispatchEvent()
+    document.hasFocus()
+    document.adoptNode()，document.importNode()
+    document.createNodeIterator()
+    document.createTreeWalker()
+    document.execCommand()，document.queryCommandSupported()，document.queryCommandEnabled()
+    document.getSelection()
+  */
+    </script>
+  </body>
+</html>

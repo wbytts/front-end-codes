@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+  在图像上加载一个遮罩来改变图像中不同位置的透明度。
+  通过拍p5.Image 中的mask() 函数来混合两张图像（图像和遮罩）。
+ */
+let img;
+let imgMask;
+
+function preload() {
+  // 加载图像及图像遮罩
+  img = loadImage('assets/moonwalk.jpg');
+  imgMask = loadImage('assets/mask.png');
+}
+
+function setup() {
+  createCanvas(720, 400);
+  // mask() 函数将图像遮罩覆盖在图像上
+  img.mask(imgMask);
+  imageMode(CENTER);
+}
+
+function draw() {
+  background(0, 102, 153);
+  image(img, width / 2, height / 2);
+  image(img, mouseX, mouseY);
+}
+
+</script>
+</body>
+</html>

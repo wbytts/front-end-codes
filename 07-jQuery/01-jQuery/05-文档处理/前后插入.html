@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+
+<div id="app">#</div>
+<br>
+<button onclick="after()">后面插入</button>
+<button onclick="before()">前面插入</button>
+<button onclick="insertAfter()">插入到后面</button>
+<button onclick="insertBefore()">插入到前面</button>
+
+<script>
+
+    function after() {
+        $('#app').after("1");
+    }
+
+    function before() {
+        $('#app').before("1");
+    }
+
+    function insertAfter() {
+        $("<span>2</span>").insertAfter("#app");
+    }
+
+    function insertBefore() {
+        $("<span>2</span>").insertBefore("#app");
+    }
+
+</script>

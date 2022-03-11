@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>var</title>
+</head>
+<body>
+<!--
+  var 操作符用于定义变量
+  var 是一个关键字
+-->
+<script>
+  // var 变量名;
+  var a; // 可以用它保存任何类型的值
+
+  // var 变量名1, 变量名2, ...
+  var b, c, d;
+
+  // 定义变量时进行初始化
+  var e = 3;
+
+  // var 定义的变量，有效范围是函数作用域
+  // 如果在全局使用 var 定义变量，会变成 windows 的属性（在浏览器环境下）
+  // 重复使用 var 定义变量不会报错，而是后面的覆盖前面的
+
+  function fun() {
+    var num1 = 3; // 局部变量
+
+    // 严格模式下报错：ReferenceError
+    num2 = 3; // 全局变量（只要调用一次函数，全局就会有这个变量）
+  }
+
+  // var 的声明提升（变量会自动提升到函数作用域顶部）
+  console.log(M); // undefined
+  var M = 5;
+  /*
+    相当于：
+      var M;
+      console.log(M); // undefined
+      M = 5;
+   */
+
+
+</script>
+</body>
+</html>

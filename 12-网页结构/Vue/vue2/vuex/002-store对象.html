@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <!-- <script src="https://unpkg.com/vuex"></script> -->
+
+  <!--
+    注意：Vuex从4版本开始，需要Vue3的支持
+   -->
+  <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vuex/3.6.2/vuex.js" type="application/javascript"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <div>{{$store.state.count}} --- x: {{$store.state.x}}</div>
+    <button @click="add">ADD</button>
+    <button @click="addState">添加，直接操作state</button>
+    <button @click="addByReplaceState">store.replaceState()</button>
+  </div>
+
+  <script>
+    /*
+      store对象可以理解为是一个仓库
+      store.state 就是它存放的东西，即状态
+      store.mutation 可以理解为仓库的工作，搬货，卸货等等，即对状态的操作（一般用于，同步，可以很快完成的工作）
+      store.commit(mutation名, 负载) 触发mutation，即向仓库发布一个任务
+
+      注：不要直接操作state
+      核心：单向数据流，可以让数据可追踪
+    */
+    const store = new Vuex.Store({
+      state: {
+        count: 0,
+        x: 999
+      },
+      mutations: {
+        increment(state) {
+          state.count++
+        }
+      }
+    });
+
+    let vm = new Vue({
+      el: '#app',
+      store,
+      methods: {
+        add() {
+          store.commit('increment')
+        },
+        addState() {
+          // 现在好像会报错了
+          // Error: [vuex] use store.replaceState() to explicit replace store state.
+          store.state++;
+        },
+        addByReplaceState() {
+          // 替换整个state（注意：和React中的setState不同，不是更新操作，是整个替换）
+          store.replaceState({ count: store.state.count + 1 })
+        }
+      }
+    });
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myCanvas {
+            border: 1px solid #000;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- 注：canvas 如果用css设置大小的话，只是缩放操作 -->
+<canvas id="myCanvas" width="800" height="600"></canvas>
+<script>
+    function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
+        theta = typeof (theta) != 'undefined' ? theta : 30;
+        headlen = typeof (theta) != 'undefined' ? headlen : 10;
+        width = typeof (width) != 'undefined' ? width : 1;
+        color = typeof (color) != 'color' ? color : '#000';
+        // 计算各角度和对应的P2,P3坐标
+        var angle = Math.atan2(fromY - toY, fromX - toX) * 180 / Math.PI,
+            angle1 = (angle + theta) * Math.PI / 180,
+            angle2 = (angle - theta) * Math.PI / 180,
+            topX = headlen * Math.cos(angle1),
+            topY = headlen * Math.sin(angle1),
+            botX = headlen * Math.cos(angle2),
+            botY = headlen * Math.sin(angle2);
+        ctx.save();
+        ctx.beginPath();
+        var arrowX = fromX - topX;
+        var arrowY = fromY - topY;
+        ctx.moveTo(arrowX, arrowY);
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        arrowX = toX + topX;
+        arrowY = toY + topY;
+        ctx.moveTo(arrowX, arrowY);
+        ctx.lineTo(toX, toY);
+        arrowX = toX + botX;
+        arrowY = toY + botY;
+        ctx.lineTo(arrowX, arrowY);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width;
+        ctx.stroke();
+        ctx.restore();
+    }
+
+
+    // 获取画布元素
+    var canvas = document.getElementById('myCanvas');
+    // 获取画布上下文
+    var ctx = canvas.getContext('2d');
+    var VL = 1000;
+
+    function Ball(x, y, r) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.color = getRandomColor();
+        do { // 防止产生不动的小球
+            this.dx = (parseInt(Math.random() * VL) - VL / 2) * 1.0 / (VL / 5);
+            this.dy = (parseInt(Math.random() * VL) - VL / 2) * 1.0 / (VL / 5);
+        } while (this.dx == 0 && this.dy == 0);
+        balls.push(this);
+    }
+
+    // 获取随机颜色
+    function getRandomColor() {
+        var allc = '0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f';
+        var allc_arr = allc.split(',');
+        var c = '#';
+        for (var i = 0; i < 6; i++) {
+            var random = parseInt(Math.random() * allc_arr.length);
+            c += allc_arr[random];
+        }
+        return c;
+    }
+
+    Ball.prototype.render = function() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        // 绘制小球方向
+        drawArrow(
+            ctx, // 绘制上下文
+            this.x, this.y, // 箭头起点
+            this.x + this.dx * 20, this.y + this.dy * 20, // 箭头终点
+            30,  // 箭头角度
+            10, // 箭头投影长度
+            2, // 箭头粗细
+            '#f66', // 箭头颜色
+        );
+    };
+
+    // 小球状态更新
+    Ball.prototype.update = function() {
+        this.x += this.dx;
+        this.y += this.dy;
+        // 碰到边界会反弹
+        if (this.x <= this.r || this.x >= 800 - this.r) {
+            this.dx = -this.dx;
+        }
+        if (this.y <= this.r || this.y >= 600 - this.r) {
+            this.dy = -this.dy;
+        }
+        // 检测小球之间的碰撞，暂略
+        this.r -= 0.05; // 小球变小
+        // 当小球半径小于等于0的时候，移除这个小球
+        if (this.r <= 0) {
+            this.remove();
+            // 更新失败，返回false，这个小球不进行渲染
+            return false;
+        }
+        // 更新成功，可以渲染这个小球
+        return true;
+    };
+
+    // 小球移除方法
+    Ball.prototype.remove = function() {
+        for (var i = 0; i < balls.length; i++) {
+            if (balls[i] == this) {
+                balls.splice(i, 1);
+            }
+        }
+    };
+
+    // 维护一个数组，保存小球们
+    var balls = [];
+    // 设置鼠标监听，鼠标移动的过程中创建小球
+    canvas.addEventListener('mousemove', function(event) {
+        if (event.offsetX - 20 <= 0 || event.offsetX + 20 >= 800 || event.offsetY - 20 <= 0 || event.offsetY + 20 >= 600) {
+            // 防止产生在边界抽搐的那种小球
+            return;
+        } else {
+            var ball = new Ball(event.offsetX, event.offsetY, 20);
+        }
+    });
+
+
+    setInterval(function() {
+        new Ball(400, 300, 20);
+    }, 1);
+
+    // 用定时器进行动态渲染和更新
+    setInterval(function() {
+        ctx.clearRect(0, 0, 800, 600);
+        for (var i = 0; i < balls.length; i++) {
+            if (balls[i].update()) {
+                balls[i].render();
+            }
+        }
+    }, 10);
+
+</script>
+</body>
+
+</html>

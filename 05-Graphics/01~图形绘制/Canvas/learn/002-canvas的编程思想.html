@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #myCanvas {
+      border: 1px solid #000;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 注：canvas 如果用css设置大小的话，只是缩放操作 -->
+  <canvas id="myCanvas" width=800 height=600></canvas>
+  <script>
+    // 获取画布元素
+    var canvas = document.getElementById('myCanvas');
+    // 获取画布上下文
+    var ctx = canvas.getContext("2d");
+
+    /*
+      Canvas 的像素化，绘制完成的东西，canvas就像素化了它们，不能再次从画布上去得到它们
+      即：画过的东西不能撤回、修改，但是可以覆盖
+      这就是 Canvas 比较轻量的原因
+
+      动画的原理：画图 -> 清屏 -> 画图 -> 清屏 -> 画图 ........
+      动画即：连续变化的静态画面
+      每一次绘制的静态画面叫做 一帧
+      时间的间隔，表示的就是帧的间隔
+    */
+
+    ctx.fillRect(0, 0, 100, 100);
+  </script>
+</body>
+
+</html>

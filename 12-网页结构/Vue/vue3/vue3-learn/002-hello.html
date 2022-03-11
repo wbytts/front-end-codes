@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <body>
+
+    <div id="app">
+      <div>{{msg}}</div>
+
+      <div>
+        <ul>
+          <li v-for="book in books" key="book.id">{{book.name}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+
+      /*
+        每个 Vue 应用都是通过用 createApp 函数创建一个新的应用实例开始的
+          const app = Vue.createApp({
+            ... 选项
+          })
+
+        该应用实例是用来在应用中注册“全局”组件的。
+            const app = Vue.createApp({})
+            app.component('SearchInput', SearchInputComponent)
+            app.directive('focus', FocusDirective)
+            app.use(LocalePlugin)
+
+        应用实例暴露的大多数方法都会返回该同一实例，允许链式
+            Vue.createApp({})
+              .component('SearchInput', SearchInputComponent)
+              .directive('focus', FocusDirective)
+              .use(LocalePlugin)
+
+        递给 createApp 的选项用于配置根组件。当我们挂载应用时，该组件被用作渲染的起点。
+        一个应用需要被挂载到一个 DOM 元素中。
+        与大多数应用方法不同的是，mount 不返回应用本身。相反，它返回的是根组件实例。
+      */
+
+      const app = Vue.createApp({
+        data() {
+          // data 函数return的数据会被挂载到createApp创建的对象上
+          return {
+            msg: 'Hello World',
+            books: [
+              {id: 1, name: 'Java编程思想'},
+              {id: 2, name: 'CSS世界'},
+              {id: 3, name: 'JavaScript高级语言程序设计'},
+              {id: 4, name: '西游记'},
+              {id: 5, name: '红楼梦'},
+            ]
+          }
+        }
+      });
+
+      // 将Vue对象挂载到实际的DOM节点上
+      // 现在数据和 DOM 已经被建立了关联
+      app.mount('#app');
+    </script>
+  </body>
+
+</html>

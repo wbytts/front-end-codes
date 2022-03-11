@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date对象</title>
+</head>
+<body>
+<script>
+    var d = new Date(); // 得到当前时间
+    var d2 = new Date(123123); // 如果传入一个数字，会解释为自 1970年至今的毫秒数
+    console.dir(d);
+    // 当前月的哪一天
+    console.log('getDate', d.getDate());
+    // 周几，周日为0，其他周几就是几
+    console.log('getDay', d.getDay());
+    // 当前年份，四位数字
+    console.log('getFullYear', d.getFullYear());
+    // 当前的小时
+    console.log('getHours', d.getHours());
+    // 当前的分钟
+    console.log('getMinutes', d.getMinutes());
+    // 当前秒
+    console.log('getSeconds', d.getSeconds());
+    // 当前的毫秒
+    console.log('getMilliseconds', d.getMilliseconds());
+    // 当前的时间戳
+    console.log('getTime', d.getTime());
+    // 当前的月份，0为1月，11为12月，都少1
+    console.log('getMonth', d.getMonth());
+    console.log('getTimezoneOffset', d.getTimezoneOffset());
+
+    // UTC 对应时间
+    console.log('getUTCDate', d.getUTCDate());
+    console.log('getUTCDay', d.getUTCDay());
+    console.log('getUTCFullYear', d.getUTCFullYear());
+    console.log('getUTCHours', d.getUTCHours());
+    console.log('getUTCMilliseconds', d.getUTCMilliseconds());
+    console.log('getUTCMinutes', d.getUTCMinutes());
+    console.log('getUTCMonth', d.getUTCMonth());
+    console.log('getUTCSeconds', d.getUTCSeconds());
+
+    // 获取时间字符串
+    console.log('toDateString', d.toDateString());
+    console.log('toGMTString', d.toGMTString());
+    console.log('toISOString', d.toISOString());
+    console.log('toLocaleDateString', d.toLocaleDateString());
+    console.log('toLocaleString', d.toLocaleString());
+    console.log('toLocaleTimeString', d.toLocaleTimeString());
+    console.log('toTimeString', d.toTimeString());
+    console.log('toUTCString', d.toUTCString());
+
+    // 获取时间的JSON格式
+    console.log('toJSON', d.toJSON());
+    console.log('toString', d.toString());
+    console.log('valueOf', d.valueOf());
+
+    // 设置时间
+</script>
+</body>
+</html>

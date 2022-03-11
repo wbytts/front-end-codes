@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闪动效果</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="common/react.js"></script>
+<script src="common/react-dom.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/babel-core/5.8.38/browser.js"></script>
+
+<script type='text/babel'>
+    var App = React.createClass({
+        getInitialState: function () {
+            return {opacity: 1.0}
+        },
+        componentDidMount: function () {
+            setInterval(function () {
+                var opacity = this.state.opacity;
+                opacity -= .05;
+                if(opacity < 0.1) {
+                    opacity = 1.0;
+                }
+                this.setState({opacity: opacity});
+            }.bind(this), 50);
+        },
+        render: function () {
+            return (
+                <div style={{opacity: this.state.opacity}}>
+                    <h1>Hello {this.props.username}</h1>
+                </div>
+            )
+        }
+    });
+
+    ReactDOM.render(
+        <App username='wangby'/>,
+        document.querySelector('#root')
+    )
+</script>
+</body>
+</html>

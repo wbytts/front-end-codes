@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Dep {
+      constructor() {
+        this.subs = [];
+      }
+      addSub(sub) {
+        this.subs.push(sub);
+      }
+      removeSub(sub) {
+        remove(this.subs, sub);
+      }
+      depend() {
+        if (window.target) {
+          this.addSub(window.target);
+        }
+      }
+      notify() {
+        const subs = this.subs.slice();
+        for (let i = 0; i < subs.length; i++) {
+          subs[i].update();
+        }
+      }
+    }
+
+    function remove(attr, item) {
+      if (attr.length) {
+        const index = arr.indexOf(item);
+        if (index > -1) {
+          return arr.splice(index, 1);
+        }
+      }
+    }
+
+    function defineReactive(data, key, val) {
+      let dep = new Deo();
+      console.log(data, key, val);
+      Object.defineProperty(data, key, {
+        enumerable: true,
+        configurable: true,
+        get: function () {
+          dep.depend();
+          return val;
+        },
+        set: function (newVal) {
+          if (val === newVal) return;
+          val = newVal;
+          dep.notify();
+        }
+      });
+    }
+
+    class Watcher {
+      constructor(vm, expOrFn, cb) {
+        this.vm = vm;
+        // 执行 this.getter() 就可以读取到内容
+        this.cb = cb;
+        this.value = this.get();
+      }
+      get() {
+        window.target = this;
+        let value = this.getter.call(this.vm, this.vm);
+        window.target = undefined;
+        return value;
+      }
+      update() {
+        const oldValue = this.value;
+        this.value = this.get();
+        this.cb.call(this.vm, this.value, oldValue);
+      }
+    }
+
+  </script>
+</body>
+
+</html>

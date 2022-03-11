@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    可选链 ?. 是一种访问嵌套对象属性的安全的方式。即使中间的属性不存在，也不会出现错误。
+
+-->
+
+<script>
+  let obj = {name: '张三'};
+
+
+  console.log(obj?.child?.age);
+
+</script>
+</body>
+</html>

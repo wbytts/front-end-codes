@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>DocumentFragment 节点</title>
+</head>
+<body>
+<script>
+  /*
+    DocumentFragment节点代表一个文档的片段，本身就是一个完整的 DOM 树形结构。
+    它没有父节点，parentNode返回null，但是可以插入任意数量的子节点。
+    它不属于当前文档，操作DocumentFragment节点，要比直接操作 DOM 树快得多。
+
+    它一般用于构建一个 DOM 结构，然后插入当前文档。
+    document.createDocumentFragment方法，以及浏览器原生的DocumentFragment构造函数，可以创建一个空的DocumentFragment节点。
+    然后再使用其他 DOM 方法，向其添加子节点。
+
+    注意，DocumentFragment节点本身不能被插入当前文档。
+    当它作为appendChild()、insertBefore()、replaceChild()等方法的参数时，是它的所有子节点插入当前文档，而不是它自身。
+    一旦DocumentFragment节点被添加进当前文档，它自身就变成了空节点（textContent属性为空字符串），可以被再次使用。
+    如果想要保存DocumentFragment节点的内容，可以使用cloneNode方法。
+
+    DocumentFragment节点对象没有自己的属性和方法，全部继承自Node节点和ParentNode接口。也就是说，DocumentFragment节点比Node节点多出以下四个属性。
+      children：返回一个动态的HTMLCollection集合对象，包括当前DocumentFragment对象的所有子元素节点。
+      firstElementChild：返回当前DocumentFragment对象的第一个子元素节点，如果没有则返回null。
+      lastElementChild：返回当前DocumentFragment对象的最后一个子元素节点，如果没有则返回null。
+      childElementCount：返回当前DocumentFragment对象的所有子元素数量。
+   */
+</script>
+</body>
+</html>

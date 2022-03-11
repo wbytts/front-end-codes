@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+    <!--
+      v-xxx 开头的是vue特有的指令
+      在解析模板的时候，vue会对指令标注的元素进行特定的处理
+    -->
+
+    <!-- 将内容渲染为纯文本，类似于 innerText -->
+    <!-- 双大括号，也会将数据渲染为纯文本，不会解析HTML -->
+    <div v-text="msg"></div>
+
+    <!-- 将内容渲染为HTML -->
+    <div v-html="msg"></div>
+
+    <!-- v-once只渲染一次，后续更新不会进行重新渲染 -->
+    <div v-once v-html="msg"></div>
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '<h1>Hello World</h1>',
+      }
+    });
+  </script>
+</body>
+
+</html>

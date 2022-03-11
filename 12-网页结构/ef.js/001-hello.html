@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://unpkg.com/ef.js@latest"></script>
+</head>
+
+<body>
+  <script>
+    const { create, t } = ef;
+
+    const tpl = `
+            >h6
+              .Hello World! 123
+            `;
+
+    const HelloWorld = create(tpl);
+
+    const HelloEf = t`
+            >h6
+              .Hello ef.js!
+            `;
+
+    (new HelloWorld()).$mount({
+      target: document.body
+    });
+
+    (new HelloEf()).$mount({
+      target: document.body
+    });
+  </script>
+</body>
+
+</html>

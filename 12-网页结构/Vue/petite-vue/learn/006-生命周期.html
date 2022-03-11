@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 可以监听每个元素的生命周期事件 -->
+
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/petite-vue?module';
+    createApp({
+      onMounted1(el) {
+        console.log(el)
+      },
+      onMounted2(el) {
+        console.log(el)
+      }
+    }).mount('#app'); // 具体指定挂载元素，这时可以省略 v-scope
+  </script>
+
+  <div id="app">
+    <!--
+      0.4.0以上的版本需要 vue: 前缀
+      @vue:mounted
+      @vue:unmounted
+    -->
+    <span @vue:mounted="onMounted1($el)">1</span>
+    <span @vue:mounted="onMounted2($el)">2</span>
+  </div>
+
+</body>
+
+</html>

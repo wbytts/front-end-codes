@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-router-dom/5.3.0/react-router-dom.js"></script>
+  </head>
+
+  <body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { HashRouter, Route, Link } = ReactRouterDOM;
+
+      const BasicExample = () => {
+        // 需要进行路由切换的内容，要包裹在 Router中
+        // HashRouter 使用类似.../#/xxx 的形式表示当前的路由， 而BrowserRouter使用 HTML5 提供的 history API (pushState, replaceState 和 popstate 事件) 来保持 UI 和 URL 的同步。
+        /*
+          basename：
+            所有位置的基准 URL。basename 的正确格式是前面有一个前导斜杠，但不能有尾部斜杠。
+          getUserConfirmation：
+            用于确认导航的函数，默认使用 window.confirm。
+          hashType：
+            window.location.hash 使用的 hash 类型，有如下几种
+              slash - 后面跟一个斜杠，例如 #/ 和 #/sunshine/lollipops
+              noslash - 后面没有斜杠，例如 # 和 #sunshine/lollipops
+              hashbang - Google 风格的 ajax crawlable，例如 #!/ 和 #!/sunshine/lollipops
+          children：要呈现的单个子元素（或组件）
+        */
+
+
+        /*
+          /topics/rendering
+          这个路由有两层，但是下面的Route只有：/、/about、/topics
+          没有一个可以和 /topics/rendering 对上的
+          React的做法是，先对第一个，也就是 /topics，剩下的 /rendering部分，等到了组件内部继续找（多级路由的形成）
+        */
+        let menus = [
+          { key: '/', title: 'Home' },
+          { key: '/about', title: 'About' },
+          { key: '/topics', title: 'Topics' },
+        ];
+
+        const renderMenuItem = ({ key, title }) => {
+          return <li key={key}>
+            <Link to={key}>{title}</Link>
+          </li>
+        }
+
+        return <HashRouter>
+          <div>
+            <ul>
+              {menus.map(item => renderMenuItem(item))}
+            </ul>
+
+            <hr />
+
+            {/*当前的路由匹配到了path，Route就会显示*/}
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/topics" component={Topics} />
+          </div>
+        </HashRouter>
+      };
+
+      const Home = () => (
+        <div>
+          <h2>Home</h2>
+        </div>
+      );
+
+      const About = () => (
+        <div>
+          <h2>About</h2>
+        </div>
+      );
+
+      // 被路由切换的组件，其props上会带有一些属性
+      const Topics = () => (
+        <div>
+          <h2>Topics</h2>
+          <ul>
+            <li><Link to="/topics/1">主题1</Link></li>
+            <li><Link to="/topics/2">主题2</Link></li>
+            <li><Link to="/topics/3">主题3</Link></li>
+          </ul>
+
+          {/*
+          /topics/:topicId
+          这种冒号的写法，叫做路由参数，不必和topicId对的上，只要那个位置有一个单词即可
+          单词的值会传给topicId，作为路由组件 match属性的params属性传过去
+
+          /topics/辣辣辣 -> /topics/:topicId ==> topicId = 辣辣辣
+          目标组件的props.match.params.topicId = 辣辣辣
+        */}
+          <Route path="/topics/:topicId" component={Topic} />
+          <Route exact path="/topics" render={() => <h3>请选择一个主题</h3>} />
+        </div>
+      );
+
+      const Topic = (props) => (
+        <div>
+          <h3>你选择的是：{props.match.params.topicId}</h3>
+        </div>
+      );
+
+      ReactDOM.render(<BasicExample />, document.getElementById('root'));
+    </script>
+
+
+  </body>
+
+</html>

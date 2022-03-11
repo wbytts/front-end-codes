@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>按钮</title>
+  <!-- LayUI的核心CSS文件-->
+  <link rel="stylesheet" href="../layui-v2.5.6/layui/css/layui.css">
+  <!-- LayUI的核心JS文件（模块化引入） -->
+  <script src="../layui-v2.5.6/layui/layui.js"></script>
+</head>
+<body>
+<!--
+  按钮：layui-btn 建立一个基础按钮
+  通过追加，layui-btn-{type} 来确定按钮具体风格
+-->
+
+<!--基础按钮-->
+<button type="button" class="layui-btn">一个标准的按钮</button>
+<a href="http://www.baidu.com" class="layui-btn">一个可以跳转的按钮</a>
+<!-- 不一定要是button，各种元素加了 layui-btn 都会变成按钮 -->
+<div class="layui-btn">一个按钮</div>
+
+<hr>
+<!--
+  按钮的主题:
+    原始	class="layui-btn layui-btn-primary"
+    默认	class="layui-btn"
+    百搭	class="layui-btn layui-btn-normal"
+    暖色	class="layui-btn layui-btn-warm"
+    警告	class="layui-btn layui-btn-danger"
+    禁用	class="layui-btn layui-btn-disabled"
+-->
+<div class="layui-btn layui-btn-primary">原始</div>
+<div class="layui-btn">默认</div>
+<div class="layui-btn layui-btn-normal">百搭</div>
+<div class="layui-btn layui-btn-warm">暖色</div>
+<div class="layui-btn layui-btn-danger">警告</div>
+<div class="layui-btn layui-btn-disabled">禁用</div>
+
+
+<hr>
+<!--
+  按钮的尺寸：
+    大型	class="layui-btn layui-btn-lg"
+    默认	class="layui-btn"
+    小型	class="layui-btn layui-btn-sm"
+    迷你	class="layui-btn layui-btn-xs"
+-->
+<div class="layui-btn layui-btn-lg">大型</div>
+<div class="layui-btn">默认</div>
+<div class="layui-btn layui-btn-sm">小型</div>
+<div class="layui-btn layui-btn-xs">迷你</div>
+
+<hr>
+<!--流体按钮：layui-btn-fluid-->
+<button type="button" class="layui-btn layui-btn-fluid">流体按钮（最大化适应）</button>
+
+<hr>
+<!--圆角按钮：layui-btn-radius-->
+<button type="button" class="layui-btn layui-btn-radius">圆角按钮</button>
+
+<hr>
+<!--带图标的按钮-->
+<button type="button" class="layui-btn">
+  <i class="layui-icon">&#xe608;</i> 添加
+</button>
+<button type="button" class="layui-btn layui-btn-sm layui-btn-primary">
+  <i class="layui-icon">&#x1002;</i>
+</button>
+
+
+<hr>
+<!--
+按钮组：
+  将按钮放入一个class="layui-btn-group"元素中，即可形成按钮组，按钮本身仍然可以随意搭配
+-->
+<div class="layui-btn-group">
+  <button type="button" class="layui-btn">增加</button>
+  <button type="button" class="layui-btn">编辑</button>
+  <button type="button" class="layui-btn">删除</button>
+</div>
+
+<div class="layui-btn-group">
+  <button type="button" class="layui-btn layui-btn-sm">
+    <i class="layui-icon">&#xe654;</i>
+  </button>
+  <button type="button" class="layui-btn layui-btn-sm">
+    <i class="layui-icon">&#xe642;</i>
+  </button>
+  <button type="button" class="layui-btn layui-btn-sm">
+    <i class="layui-icon">&#xe640;</i>
+  </button>
+  <button type="button" class="layui-btn layui-btn-sm">
+    <i class="layui-icon">&#xe602;</i>
+  </button>
+</div>
+
+<div class="layui-btn-group">
+  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+    <i class="layui-icon">&#xe654;</i>
+  </button>
+  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+    <i class="layui-icon">&#xe642;</i>
+  </button>
+  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+    <i class="layui-icon">&#xe640;</i>
+  </button>
+</div>
+
+<hr>
+<!--
+  按钮容器:
+    尽管按钮在同节点并排时会自动拉开间距，但在按钮太多的情况，效果并不是很美好。因为你需要用到按钮容器
+-->
+<div class="layui-btn-container">
+  <button type="button" class="layui-btn">按钮一</button>
+  <button type="button" class="layui-btn">按钮二</button>
+  <button type="button" class="layui-btn">按钮三</button>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // 输出 function
+      console.log(typeof(() => {}))
+
+      // 输出 object
+      console.log(typeof['前端有的玩', '公众号'])
+
+      // 输出 object
+      console.log(typeof null)
+
+      // 输出 undefined
+      console.log(typeof undefined)
+
+      // 输出 function
+      console.log(typeof Function.prototype)
+
+      // 输出 false
+      console.log('子君' instanceof String)
+
+      // 输出 true
+      console.log(new Date()instanceof Date)
+
+      /*
+        需要注意的是，对于 typeof, 可以正确判断除了null之外的所有基本类型，
+        而对于引用类型，除了函数外其他都会被判断为object。
+        对于instanceof,无法判断基本类型，但可以正确判断引用类型
+      */
+    </script>
+  </body>
+
+</html>

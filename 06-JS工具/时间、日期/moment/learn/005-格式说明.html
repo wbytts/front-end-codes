@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>moment</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <!--<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment-with-locales.js"></script>
+</head>
+<body>
+
+<script>
+  /*
+    YYYY      4或2位数字的年份
+    YY        2位数字的年份
+    Y         带有任意数字和符号的年份
+    Q         年份的季度。将月份设置为季度的第一个月
+    M、MM     月份数字
+    MMM MMMM  语言环境中的月份名称，由 moment.locale() 设置
+    D DD      月的某天
+    Do        月的某天，带序数
+    DDD DDDD  年的某天
+    X         Unix 时间戳
+    x         Unix 毫秒时间戳
+    从版本 2.10.5 开始，YYYY 支持 2 位数字的年份，且会将其转换为接近 2000 的年份（与 YY 相同）。
+    Y 新增于 2.11.1 中。 它将会匹配任何数字，有符号或无符号。 对于非 4 位数字或公元前的年份很有用。
+    它可以用于任何年份。
+
+
+    gggg      语言环境的 4 位数字的周年
+    gg        语言环境的 2 位数字的周年
+    w ww      语言环境的年的第几周
+    e         语言环境的星期几
+    ddd dddd  语言环境的星期几的名称，由 moment.locale() 设置
+    GGGG      ISO 的 4 位数字的周年
+    GG        ISO 的 2 位数字的周年
+    W WW      ISO 的年的第几周
+    E         ISO 的星期几
+
+    使用 LT LTS L LL LLL LLLL 也可以使用语言环境感知的日期和时间格式。
+    它们新增于 2.2.1 版本，其中 LTS 新增于 2.8.4。
+    L         日期（以本地格式）
+    LL        月份名称、月份日期、年份
+    LLL       月份名称、月份日期、年份、时间
+    LLLL      星期几、月份名称、月份日期、年份、时间
+    LT        时间（不含秒钟）
+    LTS       时间（含秒钟）
+
+    H HH      小时（24 小时制）
+    h hh      小时（使用 a A 的 12 小时制）
+    k kk      小时（从 1 到 24 的 24 小时制）
+    a A       上午或下午（单一字符 a p 也被视为有效）
+    m mm      分钟
+    s ss      秒钟
+    S SS SSS  带分数的秒钟
+    Z ZZ      从 UTC 偏移为 +-HH:mm、+-HHmm 或 Z
+    从 2.10.5 版本开始：长度为 4 到 9 位的带分数的秒钟令牌可以解析任意数量的数字，但只会考虑前 3 个数（毫秒）。
+    如果需要打印带有多位分数且想要消耗输入的时间，则使用它。
+    注意，仅在严格模式中解析时，提供的 S 字符的数量才有意义。
+    在标准模式中，S、SS、SSS、SSSS 均等效，并解释为几分之一秒。
+    例如，.12 始终为 120 毫秒，传入 SS 不会导致其被解释为 12 毫秒。
+    Z ZZ 新增于 1.2.0 版本。
+    S SS SSS 新增于 1.6.0 版本。
+    X 新增于 2.0.0 版本。
+    k kk 新增于 2.18.0 版本。
+
+    2.11.0开始，支持解析 hmm Hmm hmmss Hmmss
+
+    除非指定时区偏移量，否则解析字符串将会在当前时区中创建日期。
+
+    特殊格式：
+      moment.ISO_8601
+      moment.HTML5_FMT.DATETIME_LOCAL             YYYY-MM-DDTHH:mm            <input type="datetime-local" />
+      moment.HTML5_FMT.DATETIME_LOCAL_SECONDS     YYYY-MM-DDTHH:mm:ss         <input type="datetime-local" step="1" />
+      moment.HTML5_FMT.DATETIME_LOCAL_MS          YYYY-MM-DDTHH:mm:ss.SSS     <input type="datetime-local" step="0.001" />
+      moment.HTML5_FMT.DATE                       YYYY-MM-DD                  <input type="date" />
+      moment.HTML5_FMT.TIME                       HH:mm                       <input type="time" />
+      moment.HTML5_FMT.TIME_SECONDS               HH:mm:ss                    <input type="time" step="1" />
+      moment.HTML5_FMT.TIME_MS                    HH:mm:ss.SSS                <input type="time" step="0.001" />
+      moment.HTML5_FMT.WEEK                       YYYY-[W]WW                  <input type="week" />
+      moment.HTML5_FMT.MONTH                      YYYY-MM                     <input type="month" />
+
+  */
+</script>
+</body>
+</html>

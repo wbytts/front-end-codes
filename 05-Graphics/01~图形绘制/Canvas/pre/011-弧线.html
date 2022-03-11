@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <script src="by-utils.js"></script>
+  <style>
+    canvas {
+      border: 1px solid;
+    }
+
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="800" height="800">
+    您的浏览器不支持 Canvas
+  </canvas>
+  <script>
+    window.onload = function () {
+      var canvas = document.getElementById("myCanvas");
+      if (canvas && canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+        // arc(x, y, r, startAngle, endAngle, anticlockwise) anticlockwise：定义弧线的方向（是否顺时针）
+        // arcTo(x1, y1, x2, y2, radius)：指定起点终点和角度
+      }
+    };
+  </script>
+</body>
+
+</html>

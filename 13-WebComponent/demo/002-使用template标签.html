@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>使用template标签</title>
+</head>
+
+<body>
+
+  <user-card></user-card>
+
+  <!--
+  使用 JavaScript 写DOM 结构很麻烦
+  Web Components API 提供了<template>标签，可以在它里面使用 HTML 定义 DOM
+  -->
+  <template id="userCardTemplate">
+    <img src="https://semantic-ui.com/images/avatar2/large/kristy.png" class="image" width="100">
+    <div class="container">
+      <p class="name">User Name</p>
+      <p class="email">yourmail@some-email.com</p>
+      <button class="button">Follow</button>
+    </div>
+  </template>
+
+  <script>
+    class UserCard extends HTMLElement {
+      constructor() {
+        super();
+        var templateElem = document.getElementById('userCardTemplate');
+        var content = templateElem.content.cloneNode(true);
+        this.appendChild(content);
+      }
+    }
+    window.customElements.define('user-card', UserCard);
+  </script>
+</body>
+
+</html>

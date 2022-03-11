@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/redux/5.0.0-alpha.0/redux.js"></script>
+</head>
+
+<body>
+  <div>
+    <h3 id="text"></h3>
+    <input type="text" id="step">
+    <button id="add">增加</button>
+    <button id="minus">减少</button>
+  </div>
+
+  <script>
+
+    // 定义Redux reducer
+    function myReducer(preState = 0, action) {
+      switch (action.type) {
+        case 'increment':
+          return preState + action.data
+        case 'decrement':
+          return preState - action.data
+        default:
+          return preState;
+      }
+    };
+
+    // 创建 store，可以理解为存储所有状态的仓库
+    const store = Redux.createStore(myReducer);
+
+    // 设置监听store中state的改变的函数，并返回一个取消监听的方法
+    const cancelSubscribe = store.subscribe(() => {
+      $('#text').text(store.getState());
+    });
+
+    // action创建函数
+    const createAddAction = data => ({ type: 'increment', data });
+    const createMinusAction = data => ({ type: 'decrement', data });
+
+    // 页面逻辑
+    $(function () {
+      $('#add').click(() => store.dispatch(createAddAction(+$('#step').val())));
+      $('#minus').click(() => store.dispatch(createMinusAction(+$('#step').val())));
+    });
+
+  </script>
+</body>
+
+</html>

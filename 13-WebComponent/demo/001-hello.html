@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+
+  <!--
+    这种自定义的 HTML 标签，称为自定义元素（custom element）。
+    根据规范，自定义元素的名称必须包含连词线，用与区别原生的 HTML 元素
+      即，不能是单个单词，且必须包含短横线
+    所以，<user-card>不能写成<usercard>。
+  -->
+  <user-card></user-card>
+
+  <script>
+    // UserCard就是自定义元素的类。
+    // 注意，这个类的父类是HTMLElement，因此继承了 HTML 元素的特性。
+    class UserCard extends HTMLElement {
+      constructor() {
+        super();
+        var image = document.createElement('img');
+        image.src = 'https://semantic-ui.com/images/avatar2/large/kristy.png';
+        image.classList.add('image');
+        image.width = "100";
+
+        var container = document.createElement('div');
+        container.classList.add('container');
+
+        var name = document.createElement('p');
+        name.classList.add('name');
+        name.innerText = 'User Name';
+
+        var email = document.createElement('p');
+        email.classList.add('email');
+        email.innerText = 'yourmail@some-email.com';
+
+        var button = document.createElement('button');
+        button.classList.add('button');
+        button.innerText = 'Follow';
+
+        container.append(name, email, button);
+
+        // this表示自定义元素实例
+        this.append(image, container);
+      }
+    }
+
+    // 使用浏览器原生的customElements.define()方法，告诉浏览器<user-card>元素与这个类关联
+    window.customElements.define('user-card', UserCard);
+
+    /*
+      也以使用CustomElementRegistry.define方法来自定义元素，该方法接受三个参数
+        1. 表示所创建的元素名称的符合DOMString 标准的字符串。注意，custom element 的名称不能是单个单词，且其中必须要有短横线。
+        2. 用于定义元素行为的 类
+        3. 一个包含 extends属性的配置对象，是可选参数。它指定了所创建的元素继承自哪个内置元素，可以继承任何内置元素。
+    */
+  </script>
+</body>
+
+</html>

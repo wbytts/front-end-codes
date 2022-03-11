@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+堆是一种非线性结构，可以把堆看作一个数组，也可以被看作一个完全二叉树，通俗来讲堆其实就是利用完全二叉树的结构来维护的一维数组
+按照堆的特点可以把堆分为大顶堆和小顶堆
+大顶堆：每个结点的值都大于或等于其左右孩子结点的值
+小顶堆：每个结点的值都小于或等于其左右孩子结点的值
+
+大顶堆：arr[i] >= arr[2i+1] && arr[i] >= arr[2i+2]
+小顶堆：arr[i] <= arr[2i+1] && arr[i] <= arr[2i+2]
+-->
+<script>
+  let arr = new Array(10).fill(0).map(x => parseInt(Math.random() * 19 + 1));
+
+  let maxHeap = [...arr];
+  let minHeap = [...arr];
+  buildMaxHeap(maxHeap);
+  buildMinHeap(minHeap);
+  console.log(arr);
+  console.log(maxHeap);
+  console.log(minHeap);
+
+  function buildMaxHeap(heap) {
+    let len = heap.length;
+    let temp;
+    for (let i = len / 2 - 1; i >= 0; i--) {
+      if ((2 * i + 1) < len && heap[i] < heap[2 * i + 1])    /* 根节点小于左子树 */
+      {
+        temp = heap[i];
+        heap[i] = heap[2 * i + 1];
+        heap[2 * i + 1] = temp;
+        /* 检查交换后的左子树是否满足大顶堆性质 如果不满足 则重新调整子树结构 */
+        if ((2 * (2 * i + 1) + 1 < len && heap[2 * i + 1] < heap[2 * (2 * i + 1) + 1]) || (2 * (2 * i + 1) + 2 < len && heap[2 * i + 1] < heap[2 * (2 * i + 1) + 2])) {
+          buildMaxHeap(heap);
+        }
+        continue;
+      }
+      if ((2 * i + 2) < len && heap[i] < heap[2 * i + 2])    /* 根节点小于右子树 */
+      {
+        temp = heap[i];
+        heap[i] = heap[2 * i + 2];
+        heap[2 * i + 2] = temp;
+        /* 检查交换后的右子树是否满足大顶堆性质 如果不满足 则重新调整子树结构 */
+        if ((2 * (2 * i + 2) + 1 < len && heap[2 * i + 2] < heap[2 * (2 * i + 2) + 1]) || (2 * (2 * i + 2) + 2 < len && heap[2 * i + 2] < heap[2 * (2 * i + 2) + 2])) {
+          buildMaxHeap(heap);
+        }
+      }
+    }
+  }
+
+  function buildMinHeap(heap) {
+    let len = heap.length;
+    let temp;
+    for (let i = len / 2 - 1; i >= 0; i--) {
+      if ((2 * i + 1) < len && heap[i] > heap[2 * i + 1])    /* 根节点小于左子树 */
+      {
+        temp = heap[i];
+        heap[i] = heap[2 * i + 1];
+        heap[2 * i + 1] = temp;
+        /* 检查交换后的左子树是否满足小顶堆性质 如果不满足 则重新调整子树结构 */
+        if ((2 * (2 * i + 1) + 1 < len && heap[2 * i + 1] > heap[2 * (2 * i + 1) + 1]) || (2 * (2 * i + 1) + 2 < len && heap[2 * i + 1] > heap[2 * (2 * i + 1) + 2])) {
+          buildMinHeap(heap);
+        }
+      }
+      if ((2 * i + 2) < len && heap[i] > heap[2 * i + 2])    /* 根节点小于右子树 */
+      {
+        temp = heap[i];
+        heap[i] = heap[2 * i + 2];
+        heap[2 * i + 2] = temp;
+        /* 检查交换后的右子树是否满足小顶堆性质 如果不满足 则重新调整子树结构 */
+        if ((2 * (2 * i + 2) + 1 < len && heap[2 * i + 2] > heap[2 * (2 * i + 2) + 1]) || (2 * (2 * i + 2) + 2 < len && heap[2 * i + 2] > heap[2 * (2 * i + 2) + 2])) {
+          buildMinHeap(heap);
+        }
+      }
+    }
+  }
+
+</script>
+</body>
+</html>

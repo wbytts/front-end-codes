@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="jquery-1.11.3.min.js"></script>
+  <script src="ckeditor/ckeditor.js"></script>
+  <style>
+    #content span {
+      line-height: 1.5em;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- 编辑器插件 -->
+  <textarea cols="10" id="editor"></textarea>
+  <h3>效果区</h3>
+  <div id="content" style="border: 1px solid #CCC; width: 15.92cm; padding: 2.54cm 2.18cm 2.54cm 3.18cm; margin: 0 auto;">
+
+  </div>
+
+
+  <script>
+    window.onload = function () {
+      var editor = CKEDITOR.replace('editor', {
+        // width: '1200px',
+        height: '400px'
+      });
+      editor.on('change', function () {
+        $('#content').html(editor.getData());
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="600" height="300"></canvas>
+
+<script type="module">
+  import {parametric} from "../../utils/Parametric.js";
+
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+
+  // 抛物线参数方程
+  const para = parametric(
+    t => 25 * t,
+    t => 25 * t ** 2,
+  );
+
+  // 绘制抛物线
+  para(-5.5, 5.5).draw(ctx);
+
+</script>
+
+
+</body>
+</html>

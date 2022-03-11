@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>对象基本操作</title>
+</head>
+<body>
+<!--
+    创建对象：
+        var obj = new Object();
+-->
+
+<script>
+
+  var obj = new Object();
+  console.log(obj);
+  console.log(typeof obj);
+
+  // 对象的属性只能是 字符串 和 Symbol 类型（如果给了类型，会进行转换）
+  // 向对象中添加或修改属性： 对象&原型&继承.属性名 = 属性值
+  obj.name = 'www';
+  obj.age = 24;
+  console.log(obj);
+
+  // 属性的读取：对象&原型&继承.属性名
+  // 或者使用 [] 语法，[]中写键值
+  // 说明：使用.操作属性更简洁，[]主要用于通过变量定义属性的场景
+  //        如果属性名不是合法变量名就必须使用扩号的形式了
+  console.log(obj.name);
+
+  // 对象和方法的属性可以动态的添加或删除。
+  // 删除属性 delete
+  delete obj.age;
+  console.log(obj);
+
+  // 检测属性
+  // hasOwnProperty检测对象自身是否包含指定的属性，不检测原型链上继承的属性。
+  // 使用 in 可以在原型对象上检测
+
+  // 计算属性
+  // 对象属性可以通过表达式计算定义，这在动态设置属性或执行属性方法时很好用。
+</script>
+</body>
+</html>

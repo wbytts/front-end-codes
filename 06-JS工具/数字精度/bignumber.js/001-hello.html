@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/bignumber.js/9.0.2/bignumber.js"></script>
+</head>
+
+<body>
+
+  <script>
+    let a = 1.11;
+    let b = 2;
+    console.log(a + b);
+
+    // 引入 bignumber.js
+    let bigA = new BigNumber(a);
+    let bigB = new BigNumber(b);
+    let result = bigA.plus(bigB);
+    console.log(result.valueOf());
+
+  </script>
+</body>
+
+</html>

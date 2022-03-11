@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="../lib/bootstrap-3.3.7/css/bootstrap.min.css" >
+  <style>
+    @-moz-document url-prefix() {
+      fieldset { display: table-cell; }
+    }
+  </style>
+</head>
+<body>
+
+<!--
+  table 基础表格
+  table-bordered 有边框表格（要和table一起用）
+  table-striped 条纹
+  table-hover 鼠标滑过的效果
+  table-condensed：紧缩表格，可以让表格更加紧凑，单元格中的内补（padding）均会减半
+
+  状态类（既可以用在tr上，也可以用在td上）
+    .active
+    .success
+    .info
+    .warning
+    .danger
+
+  响应式表格：
+    将任何 .table 元素包裹在 .table-responsive 元素内，即可创建响应式表格，其会在小屏幕设备上（小于768px）水平滚动。
+    当屏幕大于 768px 宽度时，水平滚动条消失。
+    Firefox 浏览器对 fieldset 元素设置了一些影响 width 属性的样式，导致响应式表格出现问题。
+    可以使用下面提供的针对 Firefox 的 hack 代码解决，但是以下代码并未集成在 Bootstrap 中：
+      @-moz-document url-prefix() {
+        fieldset { display: table-cell; }
+      }
+-->
+<div class="table-responsive">
+  <table class="table table-bordered table-striped table-hover table-condensed">
+    <tr class="active">
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr class="success">
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr class="info">
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr class="warning">
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr class="danger">
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td class="active">1</td>
+      <td class="success">2</td>
+      <td class="info">3</td>
+      <td class="warning">4</td>
+      <td class="danger">5</td>
+    </tr>
+  </table>
+</div>
+
+
+<script src="../lib/jquery-1.10.2.js"></script>
+<script src="../lib/bootstrap-3.3.7/js/bootstrap.min.js" ></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿#header {
+  color: black;
+  .navigation {
+    font-size: 12px;
+  }
+  .logo {
+    width: 300px;
+  }
+}
+
+
+.clearfix {
+  display: block;
+  zoom: 1;
+
+  // & 表示当前选择器的父级
+  &:after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+
+// @ 规则（例如 @media 或 @supports）可以与选择器以相同的方式进行嵌套。
+// @ 规则会被放在前面，同一规则集中的其它元素的相对顺序保持不变。这叫做冒泡（bubbling）。
+.component {
+  width: 300px;
+  @media (min-width: 768px) {
+    width: 600px;
+    @media  (min-resolution: 192dpi) {
+      background-image: url(/img/retina2x.png);
+    }
+  }
+  @media (min-width: 1280px) {
+    width: 800px;
+  }
+}
+
+
+

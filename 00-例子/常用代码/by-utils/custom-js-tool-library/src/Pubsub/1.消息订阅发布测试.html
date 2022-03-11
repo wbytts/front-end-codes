@@ -1,0 +1,51 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: EayCome
+ * @Date: 2021-02-10 17:43:02
+ * @LastEditors: EayCome
+ * @LastEditTime: 2021-02-10 18:25:54
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <script>
+        // 订阅一个频道
+        let pid = PubSub.subscribe('pay', (data) => {
+            console.log('商家接到了订单,准备开始制作', data)
+        })
+        let pid2 = PubSub.subscribe('pay', (data) => {
+            console.log('骑手接到了订单,准备开始去取餐', data)
+        });
+        PubSub.subscribe('cancel', (data) => {
+                console.log('商家接到取消订单的请求')
+            })
+            // 发布消息
+        PubSub.publish('pay', {
+            title: '汉堡',
+            price: 20000,
+            pos: '一年一班'
+        });
+
+        // 取消订阅
+        // PubSub.unsubscribe('pay');
+        PubSub.unsubscribe(pid2);
+        console.log(PubSub);
+
+        // PubSub.publish('pay', {
+        //     title: '汉堡',
+        //     price: 20000,
+        //     pos: '一年一班'
+        // });
+    </script>
+</body>
+
+</html>

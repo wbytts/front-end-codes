@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment-with-locales.js"></script>
+</head>
+<body>
+<script>
+    // Moment.js 会为 Date 对象创建封装器，而不是修改本地的 Date.prototype
+    // 若要获取此封装器对象，则只需使用一种受支持的输入类型调用 moment() 即可
+
+    // Moment 原型通过 moment.fn 公开。 如果要添加自己的函数，则可以在其中放置它们
+    // 为了便于参考，Moment.prototype 上的任何方法都将会在文档中称为 moment＃method
+    // 因此 Moment.prototype.format == moment.fn.format == moment＃format
+
+    /*
+      moment(...) 是本地模式。不明确的输入（无偏移量）会被假定为本地时间。明确的输入（带偏移量）会被调整为本地时间。
+      moment.utc(...) 是 utc 模式。不明确的输入会被假定为 UTC。明确的输入会被调整为 UTC。
+      moment.parseZone() 会保持输入的区域被传入。如果输入不明确，则与本地模式相同。
+      moment.tz(...) 使用 moment-timezone 插件可以以特定的时区来解析输入。
+      ! 记住，时区和时区偏移是两件事。 -08:00 的偏移量不一定意味着你处于美国太平洋时区。
+    */
+
+    moment();
+    moment(undefined);  // 视作 moment()；js中，函数未传参时默认为 undefined
+    // 从 2.14.0 开始，下面的也受支持。
+    // 从 2.14.0 版本开始，moment([]) 和 moment({}) 也返回当前时间
+    // 在 2.14.0 之前，它们默认为今天开始，但这是随意的，因此已更改
+    moment([]);
+    moment({});
+
+    // 要获取当前的日期和时间，只需调用不带参数的 moment() 即可
+    // 这基本上与调用 moment(new Date()) 相同
+    var now = moment();
+    console.log(now);
+
+    var date = new Date();
+    // 这会克隆Date对象，Date的后序更改不会影响Moment，反之亦然
+    moment(date);
+    // 如果给moment传入一个Moment对象，也会克隆这个对象
+    // 也可以调用 clone 方法克隆对象
+
+    let x = undefined;
+    console.log(moment(x).isSame(moment(), 'second'));
+
+
+</script>
+</body>
+</html>

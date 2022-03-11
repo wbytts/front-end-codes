@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/underscore.js/1.13.1/underscore.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/backbone.js/1.4.0/backbone.js"></script>
+</head>
+
+<body>
+
+
+  <script>
+    // 创建一个简单的对象
+    Man = Backbone.Model.extend({
+      // 初始化方法，使用这个类创建对象的时候会执行
+      initialize: function () {
+        console.log('Hey, you create me!');
+        // 监听对象属性的变化（创建对象时的属性创建不会触发这个事件）
+        this.bind("change:name", function () {
+          var name = this.get("name");
+          console.log("你改变了name属性为：" + name);
+        });
+      },
+      // 对象的默认属性
+      defaults: {
+        name: '1'
+      },
+      // 属性验证规则
+      validate: function (attributes) {
+        console.log('属性验证: ', attributes);
+      },
+      // 声明方法
+      hello: function () {
+        console.log('hello');
+      }
+    });
+
+    // var man = new Man;
+    // 对象创建的时候可以传递属性
+    var man = new Man({
+      name: '张三',
+      age: 18,
+      sex: '男'
+    });
+
+    // 在Model中声明的方法可以直接调用
+    man.hello();
+
+        // 自己去控制台打印下 Man 和 man，看看结构
+
+        // man.toJSON() 将对象转换为JSON格式的数据，包含其属性
+        // man.get(属性名) 获取属性的值
+        // man.set(属性名, 属性值)  设置属性的值
+        // man.set({....})  一次设置多个属性的值
+
+  </script>
+
+
+</body>
+
+</html>

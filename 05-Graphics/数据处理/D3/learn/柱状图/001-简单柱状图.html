@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<script>
+    // 柱状图的数据
+    var dataset = [50, 43, 120, 87, 99, 167, 142];
+    var width = 400; // SVG绘制区域的宽度
+    var height = 400; // SVG绘制区域的高度
+
+    // 创建绘图使用的SVG区域
+    var svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
+
+    // 定义上下左右的边距
+    var padding = {top: 20, right: 20, bottom: 20, left: 20};
+    // 矩形所占的宽度（包括空白），单位为像素
+    var rectStep = 35;
+    // 矩形所占的宽度（不包括空白），单位为像素
+    var rectWidth = 30;
+
+    // 绘制矩形
+    var rect = svg.selectAll('rect').data(dataset).enter().append('rect') // 生成矩形
+        .attr('fill', 'steelblue') // 填充矩形颜色
+        .attr('x', (d, i) => padding.left + i * rectStep) // 设置矩形x轴位置
+        .attr('y', d => height - padding.bottom - d) // 设置矩形y轴位置
+        .attr('width', rectWidth) // 设置矩形宽度
+        .attr('height', d => d) // 设置矩形高度
+
+    // 绘制文字
+    var text = svg.selectAll('text').data(dataset).enter().append('text')
+        .attr('fill', 'white') // 填充矩形颜色
+        .attr('font-size', '14px')
+        .attr('text-anchor', 'middle')
+        .attr('x', (d, i) => padding.left + i * rectStep)
+        .attr('y', d => height - padding.bottom - d)
+        .attr('dx', rectWidth / 2)
+        .attr('dy', '1em')
+        .text(d => d)
+
+
+
+</script>
+</body>
+</html>

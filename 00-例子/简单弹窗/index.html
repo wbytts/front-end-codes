@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="btn_show">显示弹窗</button>
+
+    <div class="dialog">
+        <div class="login-form">
+            <div class="form-item">
+                <span>用户名</span>
+                <input type="text">
+            </div>
+            <div class="form-item">
+                <span>密码</span>
+                <input type="password">
+            </div>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn_yes">确定</button>
+            <button class="btn btn_close">关闭</button>
+        </div>
+    </div>
+    <!-- <div class="dialog-mask"></div> -->
+
+    <script>
+        window.onload = function() {
+            var btn = document.querySelector('#btn_show');
+            var dialog = document.querySelector('.dialog');
+            var dialogCloseBtn = document.querySelector('.btn_close');
+            var dialogYesBtn = document.querySelector('.btn_yes');
+
+            btn.onclick = function() {
+                dialog.style.display = "block";
+            }
+
+            dialogCloseBtn.onclick = function() {
+                console.log("弹窗取消事件");
+                dialog.style.display = "none";
+            }
+
+            dialogYesBtn.onclick = function() {
+                console.log("弹窗确定事件");
+                dialog.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

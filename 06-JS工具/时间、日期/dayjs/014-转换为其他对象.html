@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>转换为其他对象</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/plugin/toArray.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/plugin/toObject.min.js"></script>
+</head>
+<body>
+<script>
+
+    // 转 Date
+    // 要获得从Day.js对象解析的本地日期对象的副本，请使用dayjs#toDate
+    dayjs('2019-01-25').toDate()
+
+    // 转 数组
+    dayjs.extend(window.dayjs_plugin_toArray)
+    d = dayjs('2019-01-25').toArray() // [ 2019, 0, 25, 0, 0, 0, 0 ]
+    console.log(d)
+
+    // 转 JSON
+    dayjs('2019-01-25').toJSON() // '2019-01-25T02:00:00.000Z'
+
+    // 转 ISO 8601字符串
+    dayjs('2019-01-25').toISOString() // '2019-01-25T02:00:00.000Z'
+
+
+    // 转 对象
+    dayjs.extend(window.dayjs_plugin_toObject)
+    d = dayjs('2019-01-25').toObject()
+    console.log(d)
+    /* { years: 2019,
+         months: 0,
+         date: 25,
+         hours: 0,
+         minutes: 0,
+         seconds: 0,
+         milliseconds: 0 } */
+
+    // 转 字符串
+    dayjs('2019-01-25').toString() // 'Fri, 25 Jan 2019 02:00:00 GMT'
+</script>
+</body>
+</html>

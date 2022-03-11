@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #myCanvas {
+      border: 1px solid #000;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 注：canvas 如果用css设置大小的话，只是缩放操作 -->
+  <canvas id="myCanvas" width=800 height=600></canvas>
+  <br>
+  <button id="btn0">擦除画布</button>
+  <button id="btn1">画一个矩形</button>
+  <button id="btn2">画一个带边框的矩形</button>
+  <script>
+    // 获取画布元素
+    var canvas = document.getElementById('myCanvas');
+    // 获取画布上下文
+    var ctx = canvas.getContext("2d");
+
+    // 擦除画布
+    var btn0 = document.getElementById("btn0");
+    btn0.onclick = function () {
+      // 清除指定矩形区域，让清除部分完全透明
+      ctx.clearRect(0, 0, 800, 600);
+    };
+
+    var btn1 = document.getElementById("btn1");
+    btn1.onclick = function () {
+      // 绘制一个填充矩形
+      ctx.fillStyle = 'green'; // 设置绘制颜色
+      // 绘制一个矩形 ctx.fillRect(x, y, w, h)
+      ctx.fillRect(100, 100, 100, 100);
+    };
+
+    // 如何绘制矩形边框
+    var btn2 = document.getElementById("btn2");
+    btn2.onclick = function () {
+      ctx.fillStyle = 'blue';
+      ctx.strokeStyle = 'red';
+      // 绘制一个矩形边框
+      ctx.strokeRect(300, 100, 100, 100);
+    };
+
+  </script>
+</body>
+
+</html>

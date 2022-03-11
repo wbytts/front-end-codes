@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>代理拦截</title>
+</head>
+<body>
+<script>
+  /*
+    代理（拦截器）是对象的访问控制，setter/getter 是对单个对象属性的控制，而代理是对整个对象的控制。
+      读写属性时代码更简洁
+      对象的多个属性控制统一交给代理完成
+      严格模式下 set 必须返回布尔值
+   */
+  "use strict";
+  const by = { name: "wby" };
+  const proxy = new Proxy(by, {
+    get(obj, property) {
+      return obj[property];
+    },
+    set(obj, property, value) {
+      obj[property] = value;
+      return true;
+    }
+  });
+  proxy.age = 10;
+  console.log(by);
+
+  // 代理函数
+  /*
+    如果代理以函数方式执行时，会执行代理中定义 apply 方法。
+      参数说明：函数，上下文对象，参数
+   */
+
+
+
+
+</script>
+</body>
+</html>

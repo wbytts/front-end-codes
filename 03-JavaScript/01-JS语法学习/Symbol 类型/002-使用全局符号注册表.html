@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+  如果运行时的不同部分需要共享和重用符号实例，则可以用一个字符串作为键，在全局符号注册表中创建并重用符号
+  Symbol.for() 对每个字符串键都执行幂等操作
+      第一次使用某个字符串调用时，会检查全局注册表，如果不存在对应的符号，则会生成一个新符号添加到注册表中
+      后续使用仍然会检查注册表，发现存在于该字符串对应的符号，则会返回该符号的实例
+
+  全局注册表中的符号必须采用字符串键，因此Symbol.for()的任何参数值都会被转换成字符串
+  注册表中的键同时也会被用作符号描述
+
+  Symbol.keyFor(): 接收符号，查询全局注册表，返回符号对应的字符串键，如果查询的不是全局符号，则会返回 undefined
+-->
+<script>
+  let fooGlobalSymbol = Symbol.for("foo");
+  console.log(typeof fooGlobalSymbol);
+
+  let sym1 = Symbol();
+
+  console.log(Symbol.keyFor(fooGlobalSymbol));
+  console.log(Symbol.keyFor(sym1));
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo</title>
+</head>
+<body>
+<%# 放脚本，用于流程控制，无输出 %>
+<% for( let index = 0; index < arr.length; index++ ) { -%>
+  <h1><%=arr[index] %></h1>
+<% } -%>
+<%# 输出数据 %>
+<%=msg-%>
+<%# 注释 %>
+<%%
+<%# 删除前面的空格符 %>
+<%_123%>
+<%# 输出非转义的数据到模板 %>
+<%- '<h1>123</h1>' %>
+
+</body>
+</html>

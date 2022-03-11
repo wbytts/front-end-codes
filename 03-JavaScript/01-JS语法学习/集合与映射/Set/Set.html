@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Set</title>
+</head>
+<body>
+<script>
+  // Set 用于存储任何类型的唯一值，无论是基本类型还是对象引用。
+  /*
+      只能保存值没有键名
+      严格类型检测如字符串数字不等于数值型数字
+      值是唯一的
+      遍历顺序是添加的顺序，方便保存回调函数
+   */
+
+  // 对象可以属性最终都会转为字符串
+  // 使用对象做为键名时，会将对象转为字符串后使用
+  // 使用数组做初始数据
+  // Set 中是严格类型约束的，下面的数值1与字符串1属于两个不同的值
+  // 使用 add 添加元素，不允许重复添加
+
+  // set.size 获取元素数量
+  // set.has(x) 检测元素是否存在
+  // set.delete(x) 删除元素
+  // set.clear() 删除所有元素
+
+  // 可以使用点语法 或 Array.form 静态方法将Set类型转为数组，这样就可以使用数组处理函数了
+
+  // 字符串去重
+  console.log([...new Set("aaabbbcccddd")].join(""));
+
+  // 使用 keys()/values()/entries() 都可以返回迭代对象，因为set类型只有值所以 keys与values 方法结果一致。
+  // 可以使用 forEach 遍历Set数据，默认使用 values 方法创建迭代器。
+  // 为了保持和遍历数组参数统一，函数中的value与key是一样的。
+  // 也可以使用 for-of 遍历Set数据，默认使用 values 方法创建迭代器
+
+
+
+</script>
+</body>
+</html>

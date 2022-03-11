@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+
+ */
+// 声明变量 'img', 'smallPoint', 'largePoing'
+let img;
+let smallPoint, largePoint;
+
+function preload() {
+  // 加载图像
+  img = loadImage('assets/moonwalk.jpg');
+}
+
+function setup() {
+  createCanvas(720, 400);
+  // 设置最小点宽度为 4，最大点宽度为 40
+  smallPoint = 4;
+  largePoint = 40;
+  imageMode(CENTER);
+  noStroke();
+  // 设置背景颜色为白色
+  background(255);
+  img.loadPixels();
+}
+
+function draw() {
+  // map() 函数根据鼠标水平位置，
+  // 将其在 [0, 画布宽度] 的数值对应到 [最小点宽度, 最大点宽度] ([4,40]) 之中，
+  // 对应的数值即为点的大小
+  let pointillize = map(mouseX, 0, width, smallPoint, largePoint);
+  // 随机生成坐标 (x, y)
+  let x = floor(random(img.width));
+  let y = floor(random(img.height));
+  // 得到图像中坐标 (x, y) 的颜色
+  let pix = img.get(x, y);
+  // fill(灰度值，透明度值)
+  fill(pix, 128);
+  ellipse(x, y, pointillize, pointillize);
+}
+
+</script>
+</body>
+</html>

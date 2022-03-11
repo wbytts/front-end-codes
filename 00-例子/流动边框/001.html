@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background: #b4affd;
+      overflow: hidden;
+    }
+
+    .box > span {
+      position: absolute;
+    }
+
+    .box > span:nth-child(4n+1) { /*上*/
+      left: 0;
+      top: 0;
+      height: 0px;
+      width: 400px;
+      border-top: 5px dashed black;
+      animation: toRight 8s linear infinite;
+      transform: translateX(-200px);
+      animation-direction: alternate;
+    }
+
+    @keyframes toRight {
+      to {
+        transform: translateX(0px);
+      }
+    }
+
+    .box > span:nth-child(4n+2) { /*右*/
+      right: 0;
+      top: 0;
+      height: 400px;
+      width: 0px;
+      border-right: 5px dashed black;
+      animation: toBottom 8s linear infinite;
+      transform: translateY(-200px);
+      animation-direction: alternate;
+    }
+
+    @keyframes toBottom {
+      to {
+        transform: translateY(0px);
+      }
+    }
+
+    .box > span:nth-child(4n+3) { /*下*/
+      left: 0;
+      bottom: 0;
+      height: 0px;
+      width: 400px;
+      border-bottom: 5px dashed black;
+      animation: toLeft 8s linear infinite;
+      transform: translateX(0px);
+      animation-direction: alternate;
+    }
+
+    @keyframes toLeft {
+      to {
+        transform: translateX(-200px);
+      }
+    }
+
+    .box > span:nth-child(4n) { /*左*/
+      left: 0;
+      top: 0;
+      height: 400px;
+      width: 0px;
+      border-left: 5px dashed black;
+      animation: toTop 8s linear infinite;
+      transform: translateY(0px);
+      animation-direction: alternate;
+    }
+
+    @keyframes toTop {
+      to {
+        transform: translateY(-200px);
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+</body>
+</html>

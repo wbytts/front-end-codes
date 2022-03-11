@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+随机数创建了此图像的基础。 每次加载程序将产生不同的结果。
+*/
+function setup() {
+  createCanvas(710, 400);
+  background(0);
+  strokeWeight(20);
+  frameRate(2);
+}
+
+function draw() {
+  for (let i = 0; i < width; i++) {
+    // 随机在 0-255 之间取数
+    let r = random(255);
+    stroke(r);
+    line(i, 0, i, height);
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>导航</title>
+  <!-- LayUI的核心CSS文件-->
+  <link rel="stylesheet" href="../layui-v2.5.6/layui/css/layui.css">
+  <!-- LayUI的核心JS文件（模块化引入） -->
+  <script src="../layui-v2.5.6/layui/layui.js"></script>
+</head>
+<body>
+
+<!--
+  水平导航：
+    layui-nav 表示这是一个水平导航，加在 ul 上
+    layui-nav-item 表示是导航里的一个项目
+        注：导航里的文字要用a标签包起来，才能正确显示样式
+    导航子导航：在导航的文字a标签后面加一个 dl-dd定义列表，dl上标注 layui-nav-child
+-->
+<ul class="layui-nav">
+  <li class="layui-nav-item"><a href="">最新活动</a></li>
+  <li class="layui-nav-item"><a href="">产品</a></li>
+  <li class="layui-nav-item layui-this"><a href="">大数据</a></li>
+  <li class="layui-nav-item">
+    <a href="">解决方案</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">移动模块</a></dd>
+      <dd><a href="">后台模块</a></dd>
+      <dd><a href="">电商平台</a></dd>
+    </dl>
+  </li>
+</ul>
+
+<hr>
+<!--
+  垂直导航：layui-nav layui-nav-tree
+-->
+<ul class="layui-nav layui-nav-tree">
+  <li class="layui-nav-item"><a href="">最新活动</a></li>
+  <li class="layui-nav-item"><a href="">产品</a></li>
+  <li class="layui-nav-item layui-this"><a href="">大数据</a></li>
+  <li class="layui-nav-item">
+    <a href="">解决方案</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">移动模块</a></dd>
+      <dd><a href="">后台模块</a></dd>
+      <dd><a href="">电商平台</a></dd>
+    </dl>
+  </li>
+</ul>
+
+<!--
+  侧边导航：layui-nav layui-nav-tree layui-nav-side
+-->
+<!--<ul class="layui-nav layui-nav-tree layui-nav-side">-->
+<!--  <li class="layui-nav-item"><a href="">最新活动</a></li>-->
+<!--  <li class="layui-nav-item"><a href="">产品</a></li>-->
+<!--  <li class="layui-nav-item layui-this"><a href="">大数据</a></li>-->
+<!--  <li class="layui-nav-item">-->
+<!--    <a href="">解决方案</a>-->
+<!--    <dl class="layui-nav-child">-->
+<!--      <dd><a href="">移动模块</a></dd>-->
+<!--      <dd><a href="">后台模块</a></dd>-->
+<!--      <dd><a href="">电商平台</a></dd>-->
+<!--    </dl>-->
+<!--  </li>-->
+<!--</ul>-->
+
+
+<!--
+  导航的主题颜色：
+    水平导航支持的其它背景主题有：layui-bg-cyan（藏青）、layui-bg-molv（墨绿）、layui-bg-blue（艳蓝）
+    垂直导航支持的其它背景主题有：layui-bg-cyan（藏青）
+    其实还有很多哈
+-->
+
+<hr>
+<!--
+  图片和徽章等
+-->
+<ul class="layui-nav">
+  <li class="layui-nav-item">
+    <a href="">控制台<span class="layui-badge">9</span></a>
+  </li>
+  <li class="layui-nav-item">
+    <a href="">个人中心<span class="layui-badge-dot"></span></a>
+  </li>
+  <li class="layui-nav-item">
+    <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+    <dl class="layui-nav-child">
+      <dd><a href="javascript:;">修改信息</a></dd>
+      <dd><a href="javascript:;">安全管理</a></dd>
+      <dd><a href="javascript:;">退了</a></dd>
+    </dl>
+  </li>
+</ul>
+
+
+<hr>
+<!--
+  面包屑：layui-breadcrumb
+  可以通过设置属性 lay-separator="-" 来自定义分隔符
+-->
+<span class="layui-breadcrumb" lay-separator=">">
+  <a href="">首页</a>
+  <a href="">国际新闻</a>
+  <a href="">亚太地区</a>
+  <a><cite>正文</cite></a>
+</span>
+<hr>
+<!--也可以使用竖线分隔符，看起来像小导航-->
+<span class="layui-breadcrumb" lay-separator="|">
+  <a href="">娱乐</a>
+  <a href="">八卦</a>
+  <a href="">体育</a>
+  <a href="">搞笑</a>
+  <a href="">视频</a>
+  <a href="">游戏</a>
+  <a href="">综艺</a>
+</span>
+
+<script>
+  // 导航，依赖element模块
+  // 一个模块传一个字符串，多个的话可以穿一个数组
+  layui.use('element', function() {
+    var element = layui.element;
+  });
+</script>
+</body>
+</html>

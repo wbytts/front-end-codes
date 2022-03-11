@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    #canvas {
+      border: 1px solid #CCC;
+      position: absolute;
+      left: 10%;
+      top: 5%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="canvas"></canvas>
+
+  <script src="..\utils\canvas-util.js"></script>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    let { W, H } = CanvasUtil.setCanvasSize(canvas, 800, 600);
+    let centerCircleRadius = 120;
+    let mouse = CanvasUtil.getOffset(canvas);
+
+
+    drawSystem();
+    drawCircle();
+
+    canvas.onmousemove = function () {
+      ctx.clearRect(0, 0, W, H);
+      drawSystem();
+      drawCircle();
+      drawPointLine();
+    }
+
+    function drawPointLine() {
+      let dx = mouse.x - W/2;
+      let dy = mouse.y - H/2;
+      let rad = Math.atan2(dy, dx);
+      let angle = CanvasUtil.toAngle(rad);
+      ctx.save();
+      ctx.beginPath();
+      ctx.strokeStyle = 'green';
+      ctx.moveTo(mouse.x, mouse.y);
+      ctx.lineTo(W / 2, H / 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.strokeStyle = 'blue';
+      ctx.moveTo(mouse.x, mouse.y);
+      ctx.lineTo(mouse.x, H/2);
+      ctx.moveTo(mouse.x, mouse.y);
+      ctx.lineTo(W/2, mouse.y);
+      ctx.stroke();
+      ctx.restore();
+      ctx.fillText(angle + '度', mouse.x, mouse.y);
+    }
+
+    function drawCircle() {
+      ctx.save();
+      ctx.beginPath();
+      ctx.strokeStyle = 'red';
+      ctx.arc(W / 2, H / 2, centerCircleRadius, 0, 2 * Math.PI)
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawSystem() {
+      ctx.save();
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(0, H / 2);
+      ctx.lineTo(W, H / 2);
+      ctx.moveTo(W / 2, 0);
+      ctx.lineTo(W / 2, H);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+  </script>
+</body>
+
+</html>

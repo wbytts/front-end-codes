@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML闭合标签匹配</title>
+</head>
+<body>
+<script>
+  var s = `
+    <div>
+      <span>Hello</span>
+      <button>World</button>
+    </div>
+      `
+
+  var re = RegExp("<[a-z]+>", "g")
+  var result = s.matchAll(re)
+  console.log(result)
+  for( let i of result) {
+    console.log(i[0])
+  }
+
+</script>
+</body>
+</html>

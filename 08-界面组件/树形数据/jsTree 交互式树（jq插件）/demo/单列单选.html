@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../jstree/dist/themes/default/style.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jstree/3.3.11/jstree.min.js"></script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div id="jstree"></div>
+
+  <script>
+    $(function () {
+      $('#jstree').jstree({
+        'core': {
+          'data': [
+            { "id": "qc1", "parent": "#", "text": "问题分类1" },
+            { "id": "qc2", "parent": "#", "text": "问题分类2" },
+            { "id": "qc3", "parent": "#", "text": "问题分类3" },
+            { "id": "qc4", "parent": "#", "text": "问题分类4" },
+            { "id": "qc5", "parent": "#", "text": "问题分类5" },
+            { "id": "qc6", "parent": "#", "text": "问题分类6" },
+            { "id": "qc7", "parent": "#", "text": "问题分类7" },
+            { "id": "qc8", "parent": "#", "text": "问题分类8" },
+            { "id": "qc9", "parent": "#", "text": "问题分类9" },
+          ]
+        },
+        "types": {
+          "default": {
+            "icon": "x"
+          },
+        },
+        "checkbox": {
+          "tie_selection": false
+        },
+        "plugins": ["checkbox", "types", "search"]
+      })
+        .on('check_node.jstree', function (event, obj) { // 选中复选框时调用
+          // 第一个参数 event 是事件参数
+          // 第二个参数 obj 是发生事件的节点
+          console.log("选中了:", obj.node.text);
+          var ref = $('#jstree').jstree(true);
+          var nodes = ref.get_checked();// 找到所有选中的节点
+          $.each(nodes, function (i, node) {
+            if (node != obj.node.id) // 如果不是当前选中的节点，则将其不选中
+              ref.uncheck_node(node);
+          });
+        });
+    });
+  </script>
+
+</body>
+
+</html>

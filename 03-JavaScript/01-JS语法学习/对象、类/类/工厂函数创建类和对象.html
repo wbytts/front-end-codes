@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个工厂函数返回一个新范围对象
+        function range(from, to) {
+            // 使用 Object.create 创建一个对象，继承之后定义的原型对象（此处借用了函数属性）
+            // 这个原型对象保存为这个函数的一个属性，为所有范围对象定义共享方法（行为）
+            let r = Object.create(range.methods);
+
+            // 保存新范围对象的起点和终点（状态）
+            // 这些属性不是继承的，是当前对象独有的
+            r.from = from;
+            r.to = to;
+
+            // 返回新对象
+            return r;
+        }
+
+        // 定义一个对象作为范围对象的原型对象，定义所有范围对象继承的方法
+        // 并为了引用方便挂到了range的函数属性中
+        range.methods = {
+            includes(x) { return this.from <= x && x <= this.to; },
+            *[Symbol.iterator]() {
+                for (let x = Math.ceil(this.from); x <= this.to; x++) yield x;
+            },
+            toString() { return "(" + this.from + "..." + this.to + ")"; }
+        }
+    </script>
+</body>
+
+</html>

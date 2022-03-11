@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>扩展运算符</title>
+</head>
+<body>
+<script>
+  // ... 可以将数组转换为逗号分隔的参数序列
+  const arr = [1, 2, 3];
+  console.log(arr);
+  console.log(...arr);
+
+  // 应用
+  // 数组的合并
+  const arr1 = [1, 2, 3];
+  const arr2 = [4, 5, 6];
+  const arr3 = [...arr1, ...arr2];
+  console.log(arr3);
+
+  /// 数组的克隆
+  const arr4 = [...arr3];
+
+  // 伪数组 => 数组
+  /// 数组 = [...伪数组]
+</script>
+</body>
+</html>

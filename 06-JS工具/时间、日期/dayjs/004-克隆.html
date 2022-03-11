@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>clone</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+</head>
+<body>
+<script>
+    // 所有Day.js对象是不可变的
+    // 如果需要的话，dayjs#clone仍然可以创建当前对象的一个克隆
+    var a = dayjs();
+    var b = a.clone();
+
+    // 在Day.js对象上调用dayjs()也会克隆它
+    var a = dayjs();
+    var b = dayjs(a);
+</script>
+</body>
+</html>

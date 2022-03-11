@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>元素关系选择器</title>
+    <style>
+        /*
+            元素之间的关系：
+                父元素：直接包含子元素的元素
+                子元素：直接被父元素包含的元素
+                祖先元素：直接或间接包含后代的元素
+                后代元素：直接或间接被祖先元素包含的元素
+                兄弟元素：拥有相同父元素的元素叫做兄弟元素
+        */
+        * {
+            padding: 5px;
+            border: 1px solid red;
+        }
+        /*
+            后代元素选择器：选中指定元素的后代元素
+                E F
+        */
+        /*选中div的后代span元素*/
+        div span {
+            color: greenyellow;
+        }
+
+        /*
+            子元素选择：选择指定元素的直接子元素
+            （IE6及以下版本不支持）
+                E > F
+        */
+        div > span {
+            background-color: red;
+        }
+
+        /*
+            E+F 选中E后面紧挨着的一个F
+            E~F 选中E后面所有F
+         */
+    </style>
+</head>
+<body>
+    <div>
+        <span>我是div中的span</span>
+        <p>
+            <span>我是p中的span</span>
+        </p>
+    </div>
+    <span>
+        我是body中的span
+    </span>
+</body>
+</html>

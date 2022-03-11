@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+  function setup() {
+    createCanvas(800, 600);
+
+  }
+
+  function draw() {
+    background(0); // 如果三个参数都一样，可以直接写 background(50)
+    // fill 设置填充颜色（需要在绘制之前设置）
+    fill(0, 100, 255);
+    ellipse(mouseX, mouseY, 200, 75);
+
+  }
+</script>
+</body>
+</html>

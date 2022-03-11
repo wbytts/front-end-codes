@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+            }
+            speak() {
+                console.log(`我叫 ${this.name}, 我 ${this.age} 岁了`)
+            }
+        }
+
+        // 创建一个 Student，继承 Person
+        class Student extends Person {
+            // 如果子类不写构造器，则默认把父类的构造器拿过来用了
+            constructor(name, age, grade) {
+                super(name, age) // 如果子类中定义了自己的构造器，则super是必须写的
+                this.grade = grade
+            }
+        }
+
+        const s = new Student('zhangsan', 18)
+    </script>
+</body>
+</html>

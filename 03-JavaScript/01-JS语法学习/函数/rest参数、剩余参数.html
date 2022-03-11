@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>rest参数</title>
+</head>
+<body>
+<script>
+  // ES6 引入 rest 参数，用于获取函数的实参，用来代替 arguments
+  function date() {
+    // arguments 是一个伪数组
+    console.log(arguments);
+  }
+  date('aaa', 'bbb', 'ccc');
+
+  // rest 参数
+  function date2(...args) {
+    console.log(args);
+  }
+  date2('aaa', 'bbb', 'ccc');
+
+  // 如果除 rest 参数还有其他参数，则rest参数需要放在最后
+  function test(a, b, ...args) {
+
+  }
+</script>
+</body>
+</html>

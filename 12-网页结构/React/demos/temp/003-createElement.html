@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.js"></script>
+    </head>
+
+    <body>
+
+        <div id="root"></div>
+
+
+        <script type="text/babel">
+            // 获取真实DOM，作为虚拟DOM渲染的容器
+            let root = document.getElementById('root');
+            // 创建虚拟DOM
+            // let app = <div>hello</div>;
+            // 不使用JSX创建虚拟DOM的写法
+            let app = React.createElement('div', { id: 'title' }, 'hello2');
+            // 将虚拟DOM渲染到真实DOM上
+            ReactDOM.render(app, root);
+
+        </script>
+
+    </body>
+
+</html>
+
+
+
+
+
+

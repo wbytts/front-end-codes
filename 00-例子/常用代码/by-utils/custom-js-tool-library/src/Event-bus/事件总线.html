@@ -1,0 +1,42 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: EayCome
+ * @Date: 2021-02-10 17:27:46
+ * @LastEditors: EayCome
+ * @LastEditTime: 2021-02-10 17:41:46
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件总线测试</title>
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <script>
+        // eventBus
+        eventBus.on('login', data => {
+            console.log(data + '用户已登录')
+        })
+        eventBus.on('login', data => {
+            console.log(data + '登录数据已经写入')
+        });
+        eventBus.on('loout', data => {
+            console.log(data + '退出登录')
+        });
+        // 触发事件
+        // setTimeout(() => {
+        //     eventBus.emit('login', '张三');
+        // }, 1000);
+
+        // 解绑事件
+        eventBus.off();
+        console.log(eventBus)
+    </script>
+</body>
+
+</html>

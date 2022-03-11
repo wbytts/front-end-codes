@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+<style type="text/css">
+#mycanvas {
+	border:1pt solid red;
+	border-radius:10px;
+    margin-bottom: 10px;
+	box-shadow: 10px 10px 5px 0px #888888;
+}
+input, select{
+	background: yellow;
+    color:black ;
+    border:none;
+    padding: 6px 15px;
+    font-size: 16px;     
+    cursor: pointer;     
+	border-radius:15px;
+	transition-duration:0.2s;
+}
+input:hover,
+select:hover{
+    border:1px solid red;
+	box-shadow: 0 0px 16px 5px rgba(0, 0, 0, 0.3);
+}
+</style>
+<body>
+<canvas id="mycanvas" width="1000" height="500"></canvas><br>
+<input type="color" id="colorselector" onChange="colorchanged()"/>
+<input type="button" id="backout" value="撤销" onClick="popout()"/>
+<input type="button" id="eraser" value="橡皮" onClick="eraser()"/>
+<input type="button" id="drawRect" value="矩形" onClick="drawRect()"/>
+<select id="selectType" onChange="getSelectType()">
+	<option value ="0">请选择</option>
+	<option value ="1">矩形</option>
+	<option value ="2">圆形</option>
+</select>
+<input type="button" id="drawline" value="画线" onClick="resetdrawline()"/>
+<input type="range"  value="线条粗细" id="lineRuler" min="1" max="20" onChange="rulerChanged()">
+<input type="button" id="saveimage" value="保存图像" onClick="saveImage()"/>
+<input type="button" id="downimage" value="下载图像" onClick="downImage()"/>
+<script type="text/javascript">
+var can=document.getElementById("mycanvas");   // canvas元素
+var cxt=can.getContext("2d");     // 获取绘图工具
+var colorselector=document.getElementById("colorselector");
+var lineRuler=document.getElementById("lineRuler");
+var color="#000000";
+var ruler=1;       //画笔粗细
+var imageDatas=new Array();
+
+function getSelectType() {
+	var value=document.getElementById("selectType").value;
+	if (value == 1) {
+		drawRect()
+	} else if (value == 2) {
+		drawArc()
+	} else {
+		console.log(999999)
+		// drawline()
+	}
+	console.log(value)
+}
+
+// 画线 ok
+var drawline = function(e){
+	var imagedata=cxt.getImageData(0,0,1000,500);      //		取出画板的图像数据
+	imageDatas.push(imagedata);    //放到栈里面		
+	var wid = e.offsetX;
+	var hei = e.offsetY;
+	cxt.beginPath();
+	cxt.strokeStyle=color;     	//设置画笔颜色
+	cxt.lineWidth=ruler;       	//设置画笔的粗细
+	cxt.lineCap= 'butt';
+	cxt.moveTo(e.pageX,e.pageY);
+	document.onmousemove=function(e){
+		cxt.lineTo(e.pageX,e.pageY);
+		cxt.stroke();		
+	}
+    document.onmouseup=function(e){
+		document.onmousemove=null;
+		cxt.closePath();		
+		//popout();
+	}
+}
+can.onmousedown=drawline;
+function colorchanged(){
+	color=colorselector.value;
+}
+function popout(){
+	cxt.putImageData(imageDatas.pop(),0,0);//把照片取出一张放到画板上
+	console.log(imageDatas);
+	}
+function rulerChanged(){
+	ruler=lineRuler.value;
+	}
+
+// 橡皮擦功能 ok
+function eraser(){
+	can.onmousedown = function(e) {
+		document.onmousemove = function(e) {
+			var wid = e.offsetX;
+			var hei = e.offsetY;
+			cxt.beginPath();
+			cxt.arc(wid, hei, 10, 0, 2 * Math.PI);
+			cxt.closePath();
+			cxt.fillStyle = 'white';
+			cxt.fill();
+		}
+	}
+}
+
+function saveImage(){   //保存图像
+	var img=can.toDataURL("image/png");
+	var w=window.open('about:blank','image from canvas');
+	w.document.write("<img src='"+img+"'/>");
+	}
+function downImage(){    //下载图像
+	var img=can.toDataURL("image/png").replace("image/png","image/octet-stream");
+	window.location.href=img;
+	}
+
+function resetdrawline(){
+	colorchanged();  // 先调用画笔颜色变化
+	can.onmousedown=drawline;
+
+}
+
+// 矩形 OK
+function drawRect(){
+	colorchanged(); 	// 先调用画笔颜色变化
+	can.onmousedown=function(e){
+		var imagedata=cxt.getImageData(0,0,1000,500);      //		取出画板的图像数据
+		console.log(imageDatas)
+
+		imageDatas.push(imagedata);    //放到栈里面		
+		cxt.beginPath();
+		cxt.strokeStyle=color;     //设置画笔颜色
+		cxt.lineWidth=ruler;       //设置画笔的粗细
+		var x=e.pageX;
+		var y=e.pageY;
+		cxt.moveTo(e.pageX,e.pageY);
+		document.onmousemove=function(e){
+			cxt.putImageData(imageDatas[imageDatas.length-1],0,0);
+			cxt.strokeRect(x,y,e.pageX-x,e.pageY-y);	
+			}
+    	document.onmouseup=function(e){
+			document.onmousemove=null;
+			cxt.closePath();	
+			}
+		}
+	}
+// 圆形	
+function drawArc(){
+	colorchanged(); 	// 先调用画笔颜色变化
+	can.onmousedown=function(e){
+		var imagedata=cxt.getImageData(0,0,1000,500);      //		取出画板的图像数据
+		imageDatas.push(imagedata);    //放到栈里面		
+		cxt.beginPath();
+		cxt.strokeStyle=color;     //设置画笔颜色
+		cxt.fillStyle=color;
+		cxt.lineWidth=ruler;       //设置画笔的粗细
+		var x=e.pageX;
+		var y=e.pageY;
+		// cxt.moveTo(e.pageX,e.pageY);
+		document.onmousemove=function(e){
+			cxt.putImageData(imageDatas[imageDatas.length-1],0,0);
+			console.log(imageDatas, imageDatas.length)
+			_x = (e.pageX - x)/2
+			_y = (e.pageY - y)/2
+			x1 = x + _x
+			y1 = y + _y
+			r = Math.sqrt(_x*_x + _y*_y)
+			cxt.arc(x1, y1, r, 0, 2 * Math.PI);
+			cxt.fill();
+		}
+    	document.onmouseup=function(e){
+			document.onmousemove=null;
+			cxt.closePath();	
+		}
+	}
+}
+
+function getAxis() {
+	var arrowSize = 10;
+    var space = 20;
+	var CanvasWidth = cxt.canvas.width;
+	var CanvasHeight = cxt.canvas.height;
+	var x0 = space;
+    var y0 = CanvasHeight - space;
+	var x1 = space;
+    var y1 = space;
+	var x2 = Math.floor(x1 - arrowSize/2);
+	var y2 = Math.floor(y1 + arrowSize);
+	var x3 = Math.floor(x1 + arrowSize/2);
+	var y3 = Math.floor(y1 + arrowSize);
+	cxt.beginPath();
+	cxt.moveTo(x0,y0);
+	cxt.lineTo(x1,y1); 
+	cxt.lineTo(x2,y2);
+	cxt.lineTo(x3,y3);
+	cxt.lineTo(x1,y1);
+	cxt.fill();
+	cxt.stroke();
+	var x4 = CanvasWidth - space;
+	var y4 = CanvasHeight - space;
+	var x5 = Math.floor(x4 - arrowSize);
+	var y5 = Math.floor(y4 - arrowSize/2);
+	var x6 = Math.floor(x4 - arrowSize);
+	var y6 = Math.floor(y4 + arrowSize/2);
+	cxt.beginPath();
+	cxt.moveTo(x0,y0); 
+	cxt.lineTo(x4,y4); 
+	cxt.lineTo(x5,y5); 
+	cxt.lineTo(x6,y6); 
+	cxt.lineTo(x4,y4);
+	cxt.fill();
+	cxt.stroke();
+
+}
+window.onload = getAxis()
+</script>
+
+</body>
+</html>

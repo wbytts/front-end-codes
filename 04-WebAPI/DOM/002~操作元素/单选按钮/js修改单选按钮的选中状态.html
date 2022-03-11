@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>js修改单选按钮的选中状态</title>
+</head>
+<body>
+
+<input type="radio" name="r" value="1" checked="checked">
+<input type="radio" name="r" value="2">
+
+<br>
+<button id="btn">修改按钮选中状态</button>
+
+<script>
+  window.onload = function() {
+    var btn = document.getElementById("btn");
+    btn.onclick = function() {
+      console.log("修改");
+      var radios = document.getElementsByName("r");
+      //radios[0].checked = false; // 没反应
+      radios[1].checked = true;
+      /*
+          如果将一个状态是 false 的设置为 true，则同name的为true的会自动变为false
+          若是把状态是 true 的设置为 false，则radio不会有动作（因为不知道谁应该是true）【有的浏览器会取消所有radio的选中状态】
+      */
+    };
+  };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>声明风格</title>
+</head>
+
+<body>
+    <!--
+      1. 不用var
+      2. const优先，let次之
+    -->
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+
+    <script>
+        window.onload = function () {
+            var lis = document.getElementsByTagName('li');
+
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].onclick = function () {
+                    console.log(i);
+                }
+                // (function (i) {
+                //     lis[i].onclick = function () {
+                //         console.log(i);
+                //     }
+                // })(i);
+            }
+        }
+    </script>
+</body>
+
+</html>

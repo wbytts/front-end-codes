@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <link href="https://cdn.bootcdn.net/ajax/libs/jstree/3.3.11/themes/default/style.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="./jstree/dist/themes/default/style.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jstree/3.3.11/jstree.min.js"></script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <!-- 3 设置容器元素 -->
+  <div id="jstree">
+    <!-- 在本例中，树是从内联HTML填充的 -->
+    <ul>
+      <li>根节点 1
+        <ul>
+          <li id="child_node_1">子节点1</li>
+          <li>子节点2</li>
+        </ul>
+      </li>
+      <li>根节点 2</li>
+    </ul>
+  </div>
+  <button>演示按钮</button>
+
+  <script>
+    $(function () {
+      // 6 当DOM准备好时创建一个实例
+      $('#jstree').jstree({
+        "plugins": ["checkbox"]
+      });
+      // 7 绑定到树上触发的事件
+      $('#jstree').on("changed.jstree", function (e, data) {
+        console.log(data.selected);
+      });
+      // 8 与树交互-任何一种方式都可以
+      $('button').on('click', function () {
+        $('#jstree').jstree(true).select_node('child_node_1');
+        $('#jstree').jstree('select_node', 'child_node_1');
+        $.jstree.reference('#jstree').select_node('child_node_1');
+      });
+    });
+  </script>
+
+</body>
+
+</html>

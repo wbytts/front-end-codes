@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    /*
+        全局符号保存在 全局符号注册表 中
+        调用 Symbol.for(键) 时，会去全局符号注册表中查找这个键
+            如果找不到，则创建一个符号实例，并通过这个键记录在全局符号注册表中
+            如果找到键，则返回全局符号注册表中这个键对应的符号实例
+     */
+
+    const gs1 = Symbol.for('gs1')
+    const gs2 = Symbol.for('gs2')
+    const gs3 = Symbol.for('gs1')
+
+    console.log(gs1 === gs2)  // false
+    console.log(gs1 === gs3)  // true
+
+</script>
+</body>
+</html>

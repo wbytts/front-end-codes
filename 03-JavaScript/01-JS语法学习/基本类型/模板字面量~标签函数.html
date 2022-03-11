@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+  通过标签函数（tag function）可以自定义模板字面量的插值行为
+  标签函数会接收备插值记号分隔后的模板和对每个表达式求值的结果
+-->
+<script>
+
+    // 因为表达式参数的数量是可变的，所以通常应该使用剩余操作符将他们收集到一个数组中
+    /**
+     * 标签函数
+     * @param strings 模板内容
+     * @param expressions 表达式参数组成的数组
+     */
+    function tag(strings, ...expressions) {
+        console.log(strings);
+        // 获取原始内容，也可以通过 String.raw来获取
+        console.log(strings.raw)
+        console.log(expressions);
+    }
+
+    let a = 3;
+    let b = 4;
+
+    console.log(`\u00A9`)
+    // 默认有一个 String.raw 标签函数，可以获取原始的模板字面量内容
+    console.log(String.raw`\u00A9`)
+
+    let s1 = `${a} + ${b} = ${a + b}`;
+    let s2 = tag`${a} + ${b} = ${a + b}`;
+
+
+</script>
+</body>
+</html>

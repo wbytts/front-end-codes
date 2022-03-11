@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Map概述</title>
+</head>
+<body>
+<script>
+  /*
+    Map是一组键值对的结构，用于解决以往不能用对象做为键的问题
+      具有极快的查找速度
+      函数、对象、基本类型都可以作为键或值
+
+    可以接受一个数组作为参数，该数组的成员是一个表示键值对的数组。
+   */
+  let m = new Map([
+    ['name', 'wby'],
+    ['age', '24']
+  ]);
+
+  // 使用set 方法添加元素，支持链式操作
+  let map = new Map();
+  let obj = {
+    name: "wby"
+  };
+  map.set(obj, "wby.com").set("name", "wby");
+
+  // 对于键是对象的Map， 键保存的是内存地址，值相同但内存地址不同的视为两个键。
+  // map.size 获取数量
+  // map.has 元素存在检测
+  // map.get 读取元素
+  // map.delete 删除元素
+  // map.clear 清除元素
+
+  // keys()/values()/entries()
+</script>
+</body>
+</html>

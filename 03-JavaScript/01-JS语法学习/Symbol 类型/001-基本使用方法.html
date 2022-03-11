@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+  Symbol 符号，符号是一个原始类型，typeof 对符号返回 "symbol"
+  调用 Symbol() 时，可以传入一个字符串表示对符号的描述，但这个字符串和符号定义或标识符完全无关
+  符号没有字面量语法，
+  只要创建Symbol并将其作为新对象的属性，就可以保证其不会覆盖已有的对象属性，无论是符号属性还是字符串属性
+
+  Symbol 不能和 new 关键字一起作为构造函数使用！（避免创建符号包装对象）
+-->
+<script>
+  let sym = Symbol();
+  console.log(sym);
+  console.log(typeof sym);
+
+  // 调用 Symbol() 时，可以传入一个字符串表示对符号的描述，但这个字符串和符号定义或标识符完全无关
+  let fooSymbol = Symbol("foo");
+  let fooSymbol2 = Symbol("foo");
+  console.log(fooSymbol == fooSymbol2);
+
+  // 借助 Object 创建符号包装对象
+  let mySymbol = Symbol();
+  let myWrappedSymbol = Object(mySymbol);
+  console.log(typeof myWrappedSymbol); // "object"
+
+</script>
+</body>
+</html>

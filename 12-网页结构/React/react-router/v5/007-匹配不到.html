@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/react-router-dom/5.3.0/react-router-dom.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { HashRouter, Route, Link, Redirect, withRouter, Switch } = ReactRouterDOM;
+    const NoMatchExample = () => (
+      <HashRouter>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/old-match">Old Match, to be redirected</Link>
+            </li>
+            <li>
+              <Link to="/will-match">Will Match</Link>
+            </li>
+            <li>
+              <Link to="/will-not-match">Will Not Match</Link>
+            </li>
+            <li>
+              <Link to="/also/will/not/match">Also Will Not Match</Link>
+            </li>
+          </ul>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Redirect from="/old-match" to="/will-match" />
+            <Route path="/will-match" component={WillMatch} />
+            {/*上面匹配不到的，会被这个匹配，相当于switch里的default */}
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+      </HashRouter>
+    );
+
+    const Home = () => (
+      <p>
+        A <code>&lt;Switch></code> renders the first child <code>&lt;Route></code>{" "}
+        that matches. A <code>&lt;Route></code> with no <code>path</code> always
+        matches.
+      </p>
+    );
+
+    const WillMatch = () => <h3>Matched!</h3>;
+
+    const NoMatch = ({ location }) => (
+      <div>
+        <h3>
+          No match for <code>{location.pathname}</code>
+        </h3>
+      </div>
+    );
+    ReactDOM.render(<NoMatchExample />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

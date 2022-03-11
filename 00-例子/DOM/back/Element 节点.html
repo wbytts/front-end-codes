@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+/*
+  Element节点对象对应网页的 HTML 元素。每一个 HTML 元素，在 DOM 树上都会转化成一个Element节点对象（以下简称元素节点）。
+  元素节点的nodeType属性都是1。
+
+  Element对象继承了Node接口，因此Node的属性和方法在Element对象都存在。
+  此外，不同的 HTML 元素对应的元素节点是不一样的，浏览器使用不同的构造函数，生成不同的元素节点，
+  比如<a>元素的构造函数是HTMLAnchorElement()，<button>是HTMLButtonElement()。
+  因此，元素节点不是一种对象，而是许多种对象，这些对象除了继承Element对象的属性和方法，还有各自独有的属性和方法。
+
+  Element.id：返回指定元素的id属性，该属性可读写。
+
+  Element.tagName：返回指定元素的大写标签名，与nodeName属性的值相等。
+
+  Element.dir：用于读写当前元素的文字方向，可能是从左到右（"ltr"），也可能是从右到左（"rtl"）。
+
+  Element.accessKey：用于读写分配给当前元素的快捷键。
+
+  Element.draggable：返回一个布尔值，表示当前元素是否可拖动。该属性可读
+
+  Element.lang：返回当前元素的语言设置。该属性可读写。
+
+  Element.tabIndex：返回一个整数，表示当前元素在 Tab 键遍历时的顺序。该属性可读写。
+      tabIndex属性值如果是负值（通常是-1），则 Tab 键不会遍历到该元素。如果是正整数，则按照顺序，从小到大遍历。
+      如果两个元素的tabIndex属性的正整数值相同，则按照出现的顺序遍历。
+      遍历完所有tabIndex为正整数的元素以后，再遍历所有tabIndex等于0、或者属性值是非法值、或者没有tabIndex属性的元素，顺序为它们在网页中出现的顺序。
+
+  Element.title：用来读写当前元素的 HTML 属性title。该属性通常用来指定，鼠标悬浮时弹出的文字提示框。
+
+  元素状态相关：
+  Element.hidden：返回一个布尔值，表示当前元素的hidden属性，用来控制当前元素是否可见。该属性可读写。
+      注意，该属性与 03-CSS 设置是互相独立的。03-CSS 对这个元素可见性的设置，Element.hidden并不能反映出来。
+      也就是说，这个属性并不能用来判断当前元素的实际可见性。
+      03-CSS 的设置高于Element.hidden。
+      如果 03-CSS 指定了该元素不可见（display: none）或可见（display: hidden），那么Element.hidden并不能改变该元素实际的可见性。
+      换言之，这个属性只在 03-CSS 没有明确设定当前元素的可见性时才有效。
+
+  Element.contentEditable，Element.isContentEditable：
+      设置contentEditable属性，使得元素的内容可以编辑
+      Element.isContentEditable属性返回一个布尔值，同样表示是否设置了contenteditable属性。该属性只读。
+
+  Element.attributes：返回一个类似数组的对象，成员是当前元素节点的所有属性节点
+
+  Element.className，Element.classList：
+      className属性用来读写当前元素节点的class属性。它的值是一个字符串，每个class之间用空格分割。
+      classList属性返回一个类似数组的对象，当前元素节点的每个class就是这个对象的一个成员。
+      classList对象有下列方法。
+          add()：增加一个 class。
+          remove()：移除一个 class。
+          contains()：检查当前元素是否包含某个 class。
+          toggle()：将某个 class 移入或移出当前元素。
+          item()：返回指定索引位置的 class。
+          toString()：将 class 的列表转为字符串。
+
+  Element.dataset：网页元素可以自定义data-02-属性，用来添加数据
+      Element.dataset属性返回一个对象，可以从这个对象读写data-02-属性。
+      HTML 代码中，data-属性的属性名，只能包含英文字母、数字、连词线（-）、点（.）、冒号（:）和下划线（_）。
+      它们转成 JavaScript 对应的dataset属性名，规则如下。
+      开头的data-会省略。
+      如果连词线后面跟了一个英文字母，那么连词线会取消，该字母变成大写。
+      其他字符不变。
+      因此，data-abc-def对应dataset.abcDef，data-abc-1对应dataset["abc-1"]。
+      除了使用dataset读写data-02-属性，也可以使用Element.getAttribute()和Element.setAttribute()，通过完整的属性名读写这些属性。
+
+  Element.innerHTML：返回一个字符串，等同于该元素包含的所有 HTML 代码。
+      该属性可读写，常用来设置某个节点的内容。它能改写所有元素节点的内容，包括<HTML>和<body>元素。
+      如果将innerHTML属性设为空，等于删除所有它包含的所有节点。
+      注意，如果文本之中含有<script>标签，虽然可以生成script节点，但是插入的代码不会执行。
+
+  Element.outerHTML：返回一个字符串，表示当前元素节点的所有 HTML 代码，包括该元素本身和所有子元素。
+      outerHTML属性是可读写的，对它进行赋值，等于替换掉当前元素。
+      注意，如果一个节点没有父节点，设置outerHTML属性会报错。
+
+  Element.clientHeight，Element.clientWidth：
+      Element.clientHeight属性返回一个整数值，表示元素节点的 03-CSS 高度（单位像素），只对块级元素生效，对于行内元素返回0。
+      如果块级元素没有设置 03-CSS 高度，则返回实际高度。
+      除了元素本身的高度，它还包括padding部分，但是不包括border、margin。
+      如果有水平滚动条，还要减去水平滚动条的高度。注意，这个值始终是整数，如果是小数会被四舍五入。
+      Element.clientWidth属性返回元素节点的 03-CSS 宽度，同样只对块级元素有效，也是只包括元素本身的宽度和padding，
+      如果有垂直滚动条，还要减去垂直滚动条的宽度。
+      document.documentElement的clientHeight属性，返回当前视口的高度（即浏览器窗口的高度），
+      等同于window.innerHeight属性减去水平滚动条的高度（如果有的话）。document.body的高度则是网页的实际高度。
+      一般来说，document.body.clientHeight大于document.documentElement.clientHeight。
+
+   Element.clientLeft，Element.clientTop：
+      Element.clientLeft属性等于元素节点左边框（left border）的宽度（单位像素），不包括左侧的padding和margin。
+      如果没有设置左边框，或者是行内元素（display: inline），该属性返回0。该属性总是返回整数值，如果是小数，会四舍五入。
+      Element.clientTop属性等于网页元素顶部边框的宽度（单位像素），其他特点都与clientLeft相同。
+
+   Element.scrollHeight，Element.scrollWidth：
+      Element.scrollHeight属性返回一个整数值（小数会四舍五入），表示当前元素的总高度（单位像素），包括溢出容器、当前不可见的部分。
+      它包括padding，但是不包括border、margin以及水平滚动条的高度（如果有水平滚动条的话），还包括伪元素（::before或::after）的高度。
+      Element.scrollWidth属性表示当前元素的总宽度（单位像素），其他地方都与scrollHeight属性类似。这两个属性只读。
+      整张网页的总高度可以从document.documentElement或document.body上读取。
+      注意，如果元素节点的内容出现溢出，即使溢出的内容是隐藏的，scrollHeight属性仍然返回元素的总高度。
+
+   Element.scrollLeft，Element.scrollTop：
+      Element.scrollLeft属性表示当前元素的水平滚动条向右侧滚动的像素数量，Element.scrollTop属性表示当前元素的垂直滚动条向下滚动的像素数量。
+      对于那些没有滚动条的网页元素，这两个属性总是等于0。
+      如果要查看整张网页的水平的和垂直的滚动距离，要从document.documentElement元素上读取。
+      这两个属性都可读写，设置该属性的值，会导致浏览器将当前元素自动滚动到相应的位置。
+
+  Element.offsetParent：返回最靠近当前元素的、并且 03-CSS 的position属性不等于static的上层元素。
+      该属性主要用于确定子元素位置偏移的计算基准，Element.offsetTop和Element.offsetLeft就是offsetParent元素计算的。
+      如果该元素是不可见的（display属性为none），或者位置是固定的（position属性为fixed），则offsetParent属性返回null。
+      如果某个元素的所有上层节点的position属性都是static，则Element.offsetParent属性指向<body>元素。
+
+  Element.offsetHeight，Element.offsetWidth：
+      Element.offsetHeight属性返回一个整数，表示元素的 03-CSS 垂直高度（单位像素），
+      包括元素本身的高度、padding 和 border，以及水平滚动条的高度（如果存在滚动条）。
+      Element.offsetWidth属性表示元素的 03-CSS 水平宽度（单位像素），其他都与Element.offsetHeight一致。
+      这两个属性都是只读属性，只比Element.clientHeight和Element.clientWidth多了边框的高度或宽度。
+      如果元素的 03-CSS 设为不可见（比如display: none;），则返回0。
+
+  Element.offsetLeft，Element.offsetTop：
+      Element.offsetLeft返回当前元素左上角相对于Element.offsetParent节点的水平位移，
+      Element.offsetTop返回垂直位移，单位为像素。通常，这两个值是指相对于父节点的位移。
+
+  Element.style：每个元素节点都有style用来读写该元素的行内样式信息
+
+  Element.children，Element.childElementCount：
+      返回一个类似数组的对象（HTMLCollection实例），包括当前元素节点的所有子元素。
+      如果当前元素没有子元素，则返回的对象包含零个成员。
+      这个属性与Node.childNodes属性的区别是，它只包括元素类型的子节点，不包括其他类型的子节点。
+      Element.childElementCount属性返回当前元素节点包含的子元素节点的个数，与Element.children.length的值相同。
+
+  Element.firstElementChild，Element.lastElementChild：
+      Element.firstElementChild属性返回当前元素的第一个元素子节点，
+      Element.lastElementChild返回最后一个元素子节点。
+      如果没有元素子节点，这两个属性返回null
+
+  Element.nextElementSibling，Element.previousElementSibling：
+      Element.nextElementSibling属性返回当前元素节点的后一个同级元素节点，如果没有则返回null。
+      Element.previousElementSibling属性返回当前元素节点的前一个同级元素节点，如果没有则返回null。
+
+  实例方法：
+  元素节点提供六个方法，用来操作属性。
+      getAttribute()：读取某个属性的值
+      getAttributeNames()：返回当前元素的所有属性名
+      setAttribute()：写入属性值
+      hasAttribute()：某个属性是否存在
+      hasAttributes()：当前元素是否有属性
+      removeAttribute()：删除属性
+
+  Element.querySelector()：接受 03-CSS 选择器作为参数，返回父元素的第一个匹配的子元素。如果没有找到匹配的子元素，就返回null。
+      Element.querySelector方法可以接受任何复杂的 03-CSS 02-选择器。
+      注意，这个方法无法选中伪元素。
+      需要注意的是，浏览器执行querySelector方法时，是先在全局范围内搜索给定的 03-CSS 02-选择器，然后过滤出哪些属于当前元素的子元素。
+      因此，会有一些违反直觉的结果，下面是一段 HTML 代码。
+
+  Element.querySelectorAll()：
+      接受 03-CSS 选择器作为参数，返回一个NodeList实例，包含所有匹配的子元素。
+      该方法的执行机制与querySelector方法相同，也是先在全局范围内查找，再过滤出当前元素的子元素。因此，选择器实际上针对整个文档的。
+      它也可以接受多个 03-CSS 02-选择器，它们之间使用逗号分隔。如果选择器里面有伪元素的选择器，则总是返回一个空的NodeList实例。
+
+  Element.getElementsByClassName()：
+      Element.getElementsByClassName方法返回一个HTMLCollection实例，成员是当前元素节点的所有具有指定 class 的子元素节点。
+      该方法与document.getElementsByClassName方法的用法类似，只是搜索范围不是整个文档，而是当前元素节点。
+      由于HTMLCollection实例是一个活的集合，document对象的任何变化会立刻反应到实例，下面的代码不会生效。
+
+  Element.getElementsByTagName()：
+      Element.getElementsByTagName()方法返回一个HTMLCollection实例，成员是当前节点的所有匹配指定标签名的子元素节点。
+      该方法与document.getElementsByClassName()方法的用法类似，只是搜索范围不是整个文档，而是当前元素节点。
+      注意，该方法的参数是大小写不敏感的，因为 HTML 标签名也是大小写不敏感。
+
+  Element.closest()：
+      接受一个 03-CSS 选择器作为参数，返回匹配该选择器的、最接近当前节点的一个祖先节点（包括当前节点本身）。
+      如果没有任何节点匹配 03-CSS 02-选择器，则返回null。
+
+  Element.matches()：返回一个布尔值，表示当前元素是否匹配给定的 03-CSS 02-选择器。
+
+  事件相关：
+      Element.addEventListener()：添加事件的回调函数
+      Element.removeEventListener()：移除事件监听函数
+      Element.dispatchEvent()：触发事件
+
+  Element.scrollIntoView()：滚动当前元素，进入浏览器的可见区域，类似于设置window.location.hash的效果。
+      该方法可以接受一个布尔值作为参数。如果为true，表示元素的顶部与当前区域的可见部分的顶部对齐（前提是当前区域可滚动）；
+      如果为false，表示元素的底部与当前区域的可见部分的尾部对齐（前提是当前区域可滚动）。如果没有提供该参数，默认为true。
+
+  Element.getBoundingClientRect()：
+      返回一个对象，提供当前元素节点的大小、位置等信息，基本上就是 03-CSS 盒状模型的所有信息。
+      getBoundingClientRect方法返回的rect对象，具有以下属性（全部为只读）。
+          x：元素左上角相对于视口的横坐标
+          y：元素左上角相对于视口的纵坐标
+          height：元素高度
+          width：元素宽度
+          left：元素左上角相对于视口的横坐标，与x属性相等
+          right：元素右边界相对于视口的横坐标（等于x + width）
+          top：元素顶部相对于视口的纵坐标，与y属性相等
+          bottom：元素底部相对于视口的纵坐标（等于y + height）
+      由于元素相对于视口（viewport）的位置，会随着页面滚动变化，因此表示位置的四个属性值，都不是固定不变的。
+      如果想得到绝对位置，可以将left属性加上window.scrollX，top属性加上window.scrollY。
+      注意，getBoundingClientRect方法的所有属性，都把边框（border属性）算作元素的一部分。
+      也就是说，都是从边框外缘的各个点来计算。因此，width和height包括了元素本身 + padding + border。
+      另外，上面的这些属性，都是继承自原型的属性，Object.keys会返回一个空数组，这一点也需要注意。
+
+  Element.getClientRects()：
+      返回一个类似数组的对象，里面是当前元素在页面上形成的所有矩形（所以方法名中的Rect用的是复数）。
+      每个矩形都有bottom、height、left、right、top和width六个属性，表示它们相对于视口的四个坐标，以及本身的高度和宽度。
+      对于盒状元素（比如<div>和<p>），该方法返回的对象中只有该元素一个成员。对于行内元素（比如<span>、<a>、<em>），该方法返回的对象有多少个成员，取决于该元素在页面上占据多少行。
+      这是它和Element.getBoundingClientRect()方法的主要区别，后者对于行内元素总是返回一个矩形。
+      这个方法主要用于判断行内元素是否换行，以及行内元素的每一行的位置偏移。
+      注意，如果行内元素包括换行符，那么该方法会把换行符考虑在内。
+
+  Element.insertAdjacentElement()：
+      在相对于当前元素的指定位置，插入一个新的节点。该方法返回被插入的节点，如果插入失败，返回null。
+      方法一共可以接受两个参数，第一个参数是一个字符串，表示插入的位置，第二个参数是将要插入的节点。第一个参数只可以取如下的值。
+        beforebegin：当前元素之前
+        afterbegin：当前元素内部的第一个子节点前面
+        beforeend：当前元素内部的最后一个子节点后面
+        afterend：当前元素之后
+      注意，beforebegin和afterend这两个值，只在当前节点有父节点时才会生效。如果当前节点是由脚本创建的，没有父节点，那么插入会失败。
+      如果插入的节点是一个文档里现有的节点，它会从原有位置删除，放置到新的位置。
+
+  Element.insertAdjacentHTML()，Element.insertAdjacentText()：
+      用于将一个 HTML 字符串，解析生成 DOM 结构，插入相对于当前节点的指定位置。
+      该方法接受两个参数，第一个是一个表示指定位置的字符串，第二个是待解析的 HTML 字符串。第一个参数只能设置下面四个值之一。
+        beforebegin：当前元素之前
+        afterbegin：当前元素内部的第一个子节点前面
+        beforeend：当前元素内部的最后一个子节点后面
+        afterend：当前元素之后
+      该方法只是在现有的 DOM 结构里面插入节点，这使得它的执行速度比innerHTML方法快得多。
+      注意，该方法不会转义 HTML 字符串，这导致它不能用来插入用户输入的内容，否则会有安全风险。
+      Element.insertAdjacentText方法在相对于当前节点的指定位置，插入一个文本节点，用法与Element.insertAdjacentHTML方法完全一致。
+
+  Element.remove()：继承自 ChildNode 接口，用于将当前元素节点从它的父节点移除。
+  Element.focus()：用于将当前页面的焦点，转移到指定元素上
+      该方法可以接受一个对象作为参数。参数对象的preventScroll属性是一个布尔值，指定是否将当前元素停留在原始位置，而不是滚动到可见区域。
+  Element.blur()：用于将焦点从当前元素移除
+  Element.click()：用于在当前元素上模拟一次鼠标点击，相当于触发了click事件。
+
+
+  属性的操作：
+      属性本身是一个对象（Attr对象），但是实际上，这个对象极少使用。一般都是通过元素节点对象（HTMlElement对象）来操作属性。
+
+  元素对象有一个attributes属性，返回一个类似数组的动态对象，成员是该元素标签的所有属性节点对象，属性的实时变化都会反映在这个节点对象上。
+  其他类型的节点对象，虽然也有attributes属性，但返回的都是null，因此可以把这个属性视为元素对象独有的。
+
+  单个属性可以通过序号引用，也可以通过属性名引用。
+      document.body.attributes[0]
+      document.body.attributes.bgcolor
+      document.body.attributes['ONLOAD']
+      注意，上面代码的三种方法，返回的都是属性节点对象，而不是属性值
+  属性节点对象有name和value属性，对应该属性的属性名和属性值，等同于nodeName属性和nodeValue属性。
+
+  HTML 元素的标准属性（即在标准中定义的属性），会自动成为元素节点对象的属性。这些属性都是可写的。
+  注意，这种用法虽然可以读写属性，但是无法删除属性，delete运算符在这里不会生效。
+
+  HTML 元素的属性名是大小写不敏感的，但是 JavaScript 对象的属性名是大小写敏感的。
+  转换规则是，转为 JavaScript 属性名时，一律采用小写。
+  如果属性名包括多个单词，则采用骆驼拼写法，即从第二个单词开始，每个单词的首字母采用大写，比如onClick。
+  有些 HTML 属性名是 JavaScript 的保留字，转为 JavaScript 属性时，必须改名。主要是以下两个。
+      for属性改为htmlFor
+      class属性改为className
+  另外，HTML 属性值一般都是字符串，但是 JavaScript 属性会自动转换类型。
+  比如，将字符串true转为布尔值，将onClick的值转为一个函数，将style属性的值转为一个CSSStyleDeclaration对象。
+  因此，可以对这些属性赋予各种类型的值。
+
+  操作属性的方法：
+      getAttribute()：返回当前元素节点的指定属性。如果指定属性不存在，则返回null。
+      getAttributeNames()：返回一个数组，成员是当前元素的所有属性的名字。如果当前元素没有任何属性，则返回一个空数组。
+          使用Element.attributes属性，也可以拿到同样的结果，唯一的区别是它返回的是类似数组的对象。
+      setAttribute()：用于为当前元素节点新增属性。如果同名属性已存在，则相当于编辑已存在的属性。该方法没有返回值。
+      hasAttribute()：返回一个布尔值，表示当前元素节点是否包含指定属性。
+      hasAttributes()：返回一个布尔值，表示当前元素是否有属性，如果没有任何属性，就返回false，否则返回true。
+      removeAttribute()：移除指定属性。该方法没有返回值。
+
+    dataset 02-属性:
+        使用标准提供的data-*02-属性。
+        然后，使用元素节点对象的dataset属性，它指向一个对象，可以用来操作 HTML 元素标签的data-*02-属性。
+        通过dataset.xxx 读写 data-xxx 02-属性。
+        删除一个data-*02-属性，可以直接使用delete命令。
+        除了dataset属性，也可以用getAttribute('data-foo')、removeAttribute('data-foo')、setAttribute('data-foo')、hasAttribute('data-foo')等方法操作data-*02-属性。
+
+*/
+</script>
+</body>
+</html>

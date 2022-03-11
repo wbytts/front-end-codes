@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>栅格系统</title>
+  <!-- LayUI的核心CSS文件-->
+  <link rel="stylesheet" href="../layui-v2.5.6/layui/css/layui.css">
+  <!-- LayUI的核心JS文件（模块化引入） -->
+  <script src="../layui-v2.5.6/layui/layui.js"></script>
+</head>
+<body>
+
+<!--
+  将容器进行了 12 等分，预设了 4*12 种CSS排列类，分别适用于：移动设备、平板、桌面、大尺寸，四种屏幕
+  layui-row 定义行
+  layui-col-flag* 来定义一组列，*可选1-12，
+    flag 可以是：xs(超小屏幕)、sm(小屏幕)、md(中等屏幕)、lg(大型屏幕)
+  如果一行的总和大于12，则会另起一行
+  响应式规则：栅格会自动根据屏幕的分辨率选择对应的显示效果（xs\sm\md\lg）
+
+  列边距：layui-col-space*   *代表的是px值，支持1-30之间的所有双数间隔，或者 1,5,15,20，25,30等单数间隔
+  列偏移：例如 layui-col-md-offset*   将列向右移动指定列数，*代表偏移的列数，一般也是1-12之间
+
+  列里面还可以嵌套行，可以无限嵌套，无限套娃（解决12列太少的问题）
+-->
+
+<h3>栅格系统</h3>
+<!-- 布局容器 -->
+<div class="layui-container">
+  <!-- 定义行 -->
+  <div class="layui-row">
+    <!-- 定义列 -->
+    <div class="layui-col-md5" style="background-color:pink;">5/12</div>
+    <div class="layui-col-md7" style="background-color:navajowhite;">7/12</div>
+  </div>
+  <div class="layui-row">
+    <div class="layui-col-md7" style="background-color:pink;">7/12</div>
+    <div class="layui-col-md5" style="background-color:navajowhite;">5/12</div>
+  </div>
+  <div class="layui-row">
+    <div class="layui-col-md4" style="background-color:red;">4/12</div>
+    <div class="layui-col-md4" style="background-color:orange;">4/12</div>
+    <div class="layui-col-md4" style="background-color:yellow;">4/12</div>
+    <!-- 超了的会自动换行 -->
+    <div class="layui-col-md4" style="background-color:green;">4/12</div>
+  </div>
+</div>
+
+<hr>
+<h3>响应式规则</h3>
+<div class="layui-container">
+  <div class="layui-row">
+
+  </div>
+</div>
+
+<hr>
+<h3>列边距</h3>
+<div class="layui-container">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md4">
+      <div style="background-color:cyan;">4</div>
+    </div>
+    <div class="layui-col-md4">
+      <div style="background-color:blue;">4</div>
+    </div>
+    <div class="layui-col-md4">
+      <div style="background-color:purple;">4</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<h3>列偏移</h3>
+<div class="layui-container">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md3">
+      <div style="background-color:cyan;">4</div>
+    </div>
+    <div class="layui-col-md3 layui-col-md-offset2">
+      <div style="background-color:blue;">4</div>
+    </div>
+    <div class="layui-col-md3">
+      <div style="background-color:purple;">4</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<h3>列嵌套</h3>
+<div class="layui-container">
+  <div class="layui-row">
+    <div class="layui-col-md6" style="background-color:purple;">
+      <div class="layui-row">
+        <div class="layui-col-md6" style="background-color:green;">6</div>
+        <div class="layui-col-md6" style="background-color:yellow;">6</div>
+      </div>
+    </div>
+    <div class="layui-col-md6" style="background-color:pink;">6</div>
+  </div>
+</div>
+
+</body>
+</html>

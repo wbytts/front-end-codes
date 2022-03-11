@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>标题</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+    }
+
+    #bs {
+      width: 200px;
+      height: 200px;
+      background: yellowgreen;
+      /*
+          用投影来生成的好处：
+              支持逗号分隔的语法，可以创建任意数量的投影
+      */
+      box-shadow: 0 0 0 10px #655,
+        0 0 0 15px deeppink,
+        0 2px 5px 15px rgba(0, 0, 0, .6);
+
+      /*
+          注意：
+          box-shadow是层层叠加的，第一层投影位于最顶层，以此类推
+          投影的行为和边框不完全一致，因为它不会影响布局，而且也不会受box-sizing属性影响（可以通过内边距或外边距（取决于投影是内嵌还是外扩）来额外模拟出边框所需要占据的空间）
+          上述方法创建的边框并不会响应鼠标点击事件（可以给box-shadow加上inset关键字，使投影绘制在元素内圈，此时需要增加额外的内边距来腾出足够的空隙）
+      */
+    }
+
+
+    /*
+        在某些情况下，可能只需要两层边框，可以先设置一层常规边框，再使用outline（描边）
+        这种方法是样式灵活
+
+        outline-offset 属性来控制它跟元素边缘之间的间距， 这个属性甚至可以接受负值。
+        对一层dashed（虚线）描边使用负的outline-offset之后，可以得到简单的缝合效果
+
+        通过outline属性实现的“边框”不会贴合元素的圆角（这一属性在未来可能会发生变化）
+    */
+    #outline {
+      background: yellowgreen;
+      border: 10px solid #655;
+      outline: 5px solid deeppink;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="bs"></div>
+
+  <br><br><br>
+
+  <div id="outline"></div>
+</body>
+
+</html>

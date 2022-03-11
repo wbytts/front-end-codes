@@ -1,0 +1,86 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: EayCome
+ * @Date: 2021-02-09 00:15:36
+ * @LastEditors: EayCome
+ * @LastEditTime: 2021-02-09 18:26:01
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组API测试</title>
+</head>
+
+<body>
+    <script src="declares.js"></script>
+    <script>
+        // 声明一个数组
+        const arr = [1, 2, 3, 4, 5, 1024];
+
+        // map方法
+        // const result = map(arr, (item, index) => {
+        //     return item * 10;
+        // })
+        // console.log(result);
+
+
+        // reduce方法
+        // let result = arr.reduce((res, value) => {
+        //     return res + value;
+        // }, 0)
+        // console.log(result);
+
+        // let result = reduce(arr, function(res, value) {
+        //     return res + value;
+        // }, 0);
+        // console.log(result)
+
+        // filter
+        // const result = arr.filter(item => item % 2 === 1);
+        // const result = filter(arr, item => item % 2 === 0)
+        // console.log(result);
+
+        // find
+        // const result = arr.find(item => {
+        //     return item > 1000;
+        // });
+        // const result = find(arr, (item, i) => item > 1000);
+        // console.log(result)
+
+        // findIndex
+        // const result = arr.findIndex(item => {
+        //     return item > 1000;
+        // });
+        // const result = findIndex(arr, (item, i) => item > 2);
+        // console.log(result)
+
+        // every
+        // const result = arr.every(item => {
+        //     return item > 1
+        // })
+        // console.log(result)
+
+        // some
+        // const result = arr.some(item => {
+        //     return item > 1
+        // })
+        // console.log(result)
+
+
+        // const result = every(arr, (item, i) => {
+        // return item > 1;
+        // })
+
+
+        const result = some(arr, (item, i) => {
+            return item > 1;
+        })
+        console.log(result)
+    </script>
+</body>
+
+</html>

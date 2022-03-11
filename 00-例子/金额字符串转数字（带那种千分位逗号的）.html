@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <script>
+      function moneyStrToNumber(str) {
+          return parseFloat(str.replaceAll(',', ''));
+      }
+
+      var str = '1,000.23';
+      console.log(moneyStrToNumber(str))
+    </script>
+  </body>
+</html>

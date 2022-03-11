@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/petite-vue?module';
+
+    createApp({}).mount()
+  </script>
+
+  <!--
+    内置的指令有：
+        v-model
+        v-if / v-else / v-else-if
+        v-for
+        v-show
+        v-html
+        v-text
+        v-pre
+        v-once
+        v-cloak
+        v-effect：执行反应式内联语句
+
+    注意：这里的 v-for 不需要 key，而且不支持深度解构
+  -->
+
+  <div v-scope>
+    <span>{{ store.count }}</span>
+  </div>
+
+  <div v-scope>
+    <input v-auto-focus />
+  </div>
+
+</body>
+
+</html>

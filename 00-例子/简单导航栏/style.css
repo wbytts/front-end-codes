@@ -1,0 +1,23 @@
+.nav {
+
+}
+
+.nav a {
+  /* 05-盒子模型 */
+  display: inline-block;
+  /* 内容宽高 */
+  width: 80px;
+  height: 40px;
+  /* 边框 */
+  border: 1px solid red;
+  border-radius: 4px;
+  /* 边距 */
+  margin-left: 0;
+  margin-right: 0;
+  /* 文字样式 */
+  color: green;
+  /* 文本样式 */
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+}

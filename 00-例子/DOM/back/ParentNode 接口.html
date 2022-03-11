@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  /*
+    如果当前节点是父节点，就会混入了（mixin）ParentNode接口。
+    由于只有元素节点（element）、文档节点（document）和文档片段节点（documentFragment）拥有子节点，因此只有这三类节点会拥有ParentNode接口。
+
+    ParentNode.children：返回一个HTMLCollection实例，成员是当前节点的所有元素子节点。该属性只读。
+        children属性只包括元素子节点，不包括其他类型的子节点（比如文本子节点）。如果没有元素类型的子节点，返回值HTMLCollection实例的length属性为0。
+        另外，HTMLCollection是动态集合，会实时反映 DOM 的任何变化。
+    ParentNode.firstElementChild：返回当前节点的第一个元素子节点。如果没有任何元素子节点，则返回null。
+    ParentNode.lastElementChild：返回当前节点的最后一个元素子节点，如果不存在任何元素子节点，则返回null。
+    ParentNode.childElementCount：返回一个整数，表示当前节点的所有元素子节点的数目。如果不包含任何元素子节点，则返回0
+    ParentNode.append()，ParentNode.prepend()：
+        append方法为当前节点追加一个或多个子节点，位置是最后一个元素子节点的后面。该方法不仅可以添加元素子节点，还可以添加文本子节点。
+        注意，该方法没有返回值。
+        prepend方法为当前节点追加一个或多个子节点，位置是第一个元素子节点的前面。它的用法与append方法完全一致，也是没有返回值。
+  */
+</script>
+</body>
+</html>

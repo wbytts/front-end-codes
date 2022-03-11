@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>浮动</title>
+    <style>
+      /*块元素在文档流中默认垂直排列*/
+      /*如果想写出两列？*/
+      /*使之脱离文档流，不受文档流约束！*/
+      /*
+            float：使元素浮动，脱离文档流
+                none：默认值，元素在文档流中
+                left：元素脱离文档流，向页面左侧浮动
+                right：元素脱离文档流，向页面右侧浮动
+
+            ！元素设置了浮动之后，会脱离文档流，不再占据之前的位置了
+            ！元素浮动之后，会尽量往 左上（left） 或者 右上（right） 01-浮动，直到遇到父元素边框（浮不出父元素）
+            ！如果浮动元素上面是一个不浮动的块元素，则浮动元素不会浮动上去
+            ！如果一行内无法容纳所有的浮动元素，会自动换行
+            ！浮动的元素不会超过它上边的兄弟元素
+            ！浮动的元素不会盖住文字，文字会自动环绕在浮动元素的周围
+            ！在文档流中，宽默认占满父元素，当脱离文档流之后，高度和宽度都被内容撑开
+            ！内联元素脱离文档流之后，也可以设置宽高，变成块元素
+            ！浮动只会提升半个层级（不超过定位提升的1级）一个元素分两层，上面是盒模型相关，下面是文字相关
+        */
+      .box1 {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        float: left;
+      }
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: green;
+        float: left;
+      }
+      .box3 {
+        width: 200px;
+        height: 200px;
+        background-color: blue;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+  </body>
+</html>

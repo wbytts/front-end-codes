@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>对象字面量</title>
+</head>
+<body>
+<!--
+    对象字面量：创建对象的一种简便的方式
+    var obj = {};
+
+    var obj = {name: value, name2: value2, ...};
+
+
+    属性值如果使用变量指定，当属性名和变量名相同的时候，可以简写为一个
+    let name = '张三';
+    let age = 18;
+    let obj = {name, age};
+
+    属性可以是函数
+    属性方法可以简写，省略键值，直接以函数名作为属性名
+     let obj = {
+        name,
+        get() {
+          return this.name;
+        }
+      };
+
+    最后一个属性里的逗号：
+        叫做尾随（trailing）或悬挂（hanging）逗号。这样便于我们添加、删除和移动属性，因为所有的行都是相似的
+-->
+<script>
+  var obj = {
+    name: 'wby',
+    age: 18
+  }
+
+  console.log(obj);
+</script>
+</body>
+</html>

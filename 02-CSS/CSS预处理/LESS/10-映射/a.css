@@ -1,0 +1,7 @@
+/*
+从 Less 3.5 版本开始，你还可以将混合（mixins）和规则集（rulesets）作为一组值的映射（map）使用。
+*/
+.button {
+  color: blue;
+  border: 1px solid green;
+}

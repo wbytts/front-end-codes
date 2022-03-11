@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Text节点</title>
+</head>
+<body>
+<script>
+  /*
+    文本节点（Text）代表元素节点（Element）和属性节点（Attribute）的文本内容。
+    如果一个节点只包含一段文本，那么它就有一个文本子节点，代表该节点的文本内容。
+    通常我们使用父节点的firstChild、nextSibling等属性获取文本节点，或者使用Document节点的createTextNode方法创造一个文本节点。
+
+    浏览器原生提供一个Text构造函数。它返回一个文本节点实例。它的参数就是该文本节点的文本内容。
+    注意，由于空格也是一个字符，所以哪怕只有一个空格，也会形成文本节点。比如，<p> </p>包含一个空格，它的子节点就是一个文本节点。
+    文本节点除了继承Node接口，还继承了CharacterData接口。
+
+    data：等同于nodeValue属性，用来设置或读取文本节点的内容。
+    wholeText：将当前文本节点与毗邻的文本节点，作为一个整体返回。
+        大多数情况下，wholeText属性的返回值，与data属性和textContent属性相同。但是，某些特殊情况会有差异。
+    length：返回当前文本节点的文本长度。
+    nextElementSibling：返回紧跟在当前文本节点后面的那个同级元素节点。如果取不到元素节点，则返回null。
+    previousElementSibling：返回当前文本节点前面最近的同级元素节点。如果取不到元素节点，则返回null：。
+
+    appendData()：在Text节点尾部追加字符串。
+    deleteData()：删除Text节点内部的子字符串，第一个参数为子字符串开始位置，第二个参数为子字符串长度。
+    insertData()：在Text节点插入字符串，第一个参数为插入位置，第二个参数为插入的子字符串。
+    replaceData()：用于替换文本，第一个参数为替换开始位置，第二个参数为需要被替换掉的长度，第三个参数为新加入的字符串。
+    subStringData()：用于获取子字符串，第一个参数为子字符串在Text节点中的开始位置，第二个参数为子字符串长度。
+
+    remove()：用于移除当前Text节点。
+    splitText()：
+        将Text节点一分为二，变成两个毗邻的Text节点。它的参数就是分割位置（从零开始），分割到该位置的字符前结束。
+        如果分割位置不存在，将报错。
+        分割后，该方法返回分割位置后方的字符串，而原Text节点变成只包含分割位置前方的字符串。
+        父元素节点的normalize方法可以将毗邻的两个Text节点合并。
+        文本节点的splitText方法将一个Text节点分割成两个，父元素的normalize方法可以实现逆操作，将它们合并。
+
+   */
+</script>
+</body>
+</html>

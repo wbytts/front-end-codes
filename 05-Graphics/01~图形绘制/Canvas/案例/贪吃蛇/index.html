@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Nokia 1100:snake..Member berries</title>
+</head>
+
+<body>
+<div class="keypress hide">
+  <div class="up" onclick="emit(38)">&#8593;</div>
+  <div class="right" onclick="emit(39)">&#8594;</div>
+  <div class="left" onclick="emit(37)">&#8592;</div>
+  <div class="down" onclick="emit(40)">&#8595;</div>
+</div>
+<div class="banner" id="selector">
+  <div>
+    Time :<span id="time">0</span>
+  </div>
+  <div>LousyGames ©</div>
+  <div>
+    Score :<span id="score">0</span>
+  </div>
+  <div class="touch off" onclick="touch(this)">touch</div>
+</div>
+<canvas id="main"></canvas>
+<script src="./main.js"></script>
+</body>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: #000
+  }
+
+  .banner {
+    text-align: center;
+    color: #fff;
+    background: #3f51b5;
+    line-height: 29px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    font-family: monospace;
+    height: 30px;
+    opacity: .4;
+    display: flex;
+    transition: .5s
+  }
+
+  .banner:hover {
+    opacity: 1
+  }
+
+  div#selector>div {
+    flex-basis: 30%
+  }
+
+  @keyframes diss {
+    from {
+      opacity: 1
+    }
+
+    to {
+      opacity: 0
+    }
+  }
+
+  .keypress>div {
+    border: dashed 3px #fff;
+    height: 48%;
+    width: 48%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    font-size: -webkit-xxx-large;
+    font-weight: 900;
+    color: #fff;
+    transition: .5s;
+    opacity: .1;
+    border-radius: 7px
+  }
+
+  .keypress {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    opacity: 1;
+    user-select: none
+  }
+
+  .keypress>div:hover {
+    opacity: 1
+  }
+
+  .touch {
+    background: #8bc34a
+  }
+
+  .off {
+    background: #f44336
+  }
+
+  .hide {
+    opacity: 0
+  }
+</style>
+</html>

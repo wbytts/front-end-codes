@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+    <style>
+      /*
+        3D的位移或者旋转，都有一个透视点的概念（即从什么方向看过来）
+      */
+       .parent {
+         width: 600px;
+         height: 400px;
+         margin: 0 auto;
+         background-color: #efefef;
+         /* 透视距离 */
+         perspective: 1000px;
+         /* 透视源点 */
+         perspective-origin: center;
+       }
+       .child {
+         width: 200px;
+         height: 200px;
+         margin: 0 auto;
+         background-color: yellowgreen;
+         transition: all 2s;
+       }
+       .child:hover {
+         transform: translate3d(100px, 200px, 300px);
+       }
+    </style>
+	</head>
+	<body>
+    <div class="parent">
+    	<div class="child"></div>
+    </div>
+	</body>
+</html>

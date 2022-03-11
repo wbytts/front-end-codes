@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>给对象添加方法</title>
+</head>
+<body>
+<script>
+  let xxx = {}; // 一个对象，不知道具体内部结构
+
+  // 要添加 a 和 b 方法
+
+  let methods = {
+    a: Symbol(),
+    b: Symbol()
+  };
+
+  xxx[methods.a] = function(){};
+  xxx[methods.b] = function(){};
+
+</script>
+</body>
+</html>

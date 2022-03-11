@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>垂直外边距合并的问题</title>
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/reset.css">
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+        }
+        #d1 {
+            background-color: red;
+            margin-bottom: 10px;
+        }
+        #d2 {
+            background-color: green;
+            margin-top: 20px;
+        }
+        /*
+            垂直方向上，相邻兄弟元素之间会发生外边距合并
+            兄弟元素之间的外边距，会取两个元素外边距的最大值
+            垂直的外边距，相当于距离边框的距离
+        */
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div id="d2"></div>
+</body>
+</html>

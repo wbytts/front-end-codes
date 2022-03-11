@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+            }
+            // 类的方法（实际上放到了类的原型对象上，供实例使用）
+            speak() {
+                // 类中定义的方法，默认开启了局部的严格模式
+                console.log(`我叫 ${this.name}, 我 ${this.age} 岁了`)
+            }
+        }
+
+        const p = new Person('Tom', 18)
+        p.speak()
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let worker = {
+      someMethod() {
+        return 1;
+      },
+
+      slow(x) {
+        alert("Called with " + x);
+        return x * this.someMethod(); // (*)
+      }
+    };
+
+    function cachingDecorator(func) {
+      let cache = new Map();
+      return function (x) {
+        if (cache.has(x)) {
+          return cache.get(x);
+        }
+        let result = func.call(this, x); // 现在 "this" 被正确地传递了
+        cache.set(x, result);
+        return result;
+      };
+    }
+
+    worker.slow = cachingDecorator(worker.slow); // 现在对其进行缓存
+
+    alert(worker.slow(2)); // 工作正常
+    alert(worker.slow(2)); // 工作正常，没有调用原始函数（使用的缓存）
+
+
+    /*
+      为了让大家理解地更清晰一些，让我们更深入地看看 this 是如何被传递的：
+        1. 在经过装饰之后，worker.slow 现在是包装器 function (x) { ... }。
+        2. 因此，当 worker.slow(2) 执行时，包装器将 2 作为参数，并且 this=worker（它是点符号 . 之前的对象）。
+        3. 在包装器内部，假设结果尚未缓存，func.call(this, x) 将当前的 this（=worker）和当前的参数（=2）传递给原始方法。
+    */
+  </script>
+</body>
+
+</html>

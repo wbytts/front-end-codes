@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #myCanvas {
+      border: 1px solid #000;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 注：canvas 如果用css设置大小的话，只是缩放操作 -->
+  <canvas id="myCanvas" width=800 height=600></canvas>
+  <script>
+    // 获取画布元素
+    var canvas = document.getElementById('myCanvas');
+    // 获取画布上下文
+    var ctx = canvas.getContext("2d");
+    // 所有的图像都是通过ctx属性或者是方法进行设置的，和canvas标签接下来就没什么关系了
+    console.log(ctx);
+    // 示例：绘制一个矩形
+    ctx.fillStyle = 'green'; // 设置绘制颜色
+    ctx.fillRect(10, 10, 120, 20);  // 绘制一个矩形 fillRect(x, y, w, h)
+
+    /*
+      总结：
+        canvas 在页面上划出一块区域，然后我们可以在这块区域内画画。
+    */
+
+  </script>
+</body>
+
+</html>

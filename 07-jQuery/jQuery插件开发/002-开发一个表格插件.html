@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+
+    <div></div>
+
+    <script>
+        (function ($) {
+            $.fn.simpleTable = function (columns, values) {
+                var list = [];
+                list.push("<table>");
+                // 生成表头
+                list.push("<thead><tr>");
+                for (var i = 0; i < columns.length; i++) {
+                    list.push("<th>");
+                    list.push(columns[i]);
+                    list.push("</th>");
+                }
+                list.push("</tr></thead>");
+                list.push("<tbody>");
+                for(var i=0; i < values.length; i++) {
+                    list.push("<tr>");
+                    for(var key in values[i]) {
+                        list.push("<td>");
+                        list.push(values[i][key]);
+                        list.push("</td>");
+                    }
+                    list.push("</tr>");
+                }
+                list.push("</tbody>");
+                list.push("</table>");
+                this.html(list.join(""));
+                return this;
+            }
+        })(jQuery);
+
+        $(function() {
+            $("div").simpleTable(["序号", "姓名", "年龄"], [
+                {id: 1, name: "张三", age: 18},
+                {id: 2, name: "李四", age: 19},
+                {id: 3, name: "王五", age: 20},
+            ]);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="600" height="300"></canvas>
+
+<script type="module">
+  import {parametric} from "../../utils/Parametric.js";
+
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  ctx.translate(canvas.width / 2, canvas.height / 2);
+  // 抛物线参数方程
+  const para = r => parametric(
+    t => r * Math.cos(t),
+    t => r * Math.sin(t),
+  );
+
+  // 绘制抛物线
+
+  for(let i=1; i<100; i+=7) {
+    para(i)(-5.5, 5.5).draw(ctx);
+  }
+
+</script>
+
+
+</body>
+</html>

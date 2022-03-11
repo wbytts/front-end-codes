@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>清浮动-高度塌陷</title>
+    <style>
+        .fu {
+            background-color: red;
+            border: 3px solid green;
+        }
+
+        .zi {
+            width: 200px;
+            height: 200px;
+            float: left;
+            background-color: blue;
+        }
+
+        .foot {
+            height: 200px;
+            background-color: yellow;
+        }
+
+        /*
+            可以直接在高度塌陷的父元素的最后，添加一个k空白的div
+            由于这个div没有浮动，所以它可以撑开父元素
+            使用这种方式虽然可以解决问题，但是会在页面中添加多余的结构
+        */
+        /*.clear {*/
+        /*    clear: both;*/
+        /*}*/
+        /*
+            可以通过after伪类向页面中添加一个元素，原理和直接添加一个空白的div一样
+            而且不会影响页面结构
+        */
+        /* .fu:after {
+            content: "";
+            display: block;
+            clear: both;
+        } */
+
+        .clear::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+      .clearfix {
+        clear: both;
+      }
+    </style>
+</head>
+
+<body>
+    <div class="fu clear">
+        <div class="zi"></div>
+        <!-- <div class="clear"></div>-->
+    </div>
+    <div class="foot"></div>
+</body>
+
+</html>

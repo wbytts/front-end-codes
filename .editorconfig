@@ -1,0 +1,62 @@
+# EditorConfig helps developers define and maintain consistent
+# EditorConfig帮助开发人员定义和维护一致性
+# coding styles between different editors and IDEs
+# 不同编辑器和ide之间的编码样式
+# 打开需要格式化的文件并手动格式化代码
+# 官方网站：editorconfig.org
+
+
+# 是否为editorconfig顶级配置文件
+root = true  # true 停止向上寻找配置文件
+# root = false
+
+
+[*]
+# 缩进样式=空格
+indent_style = space
+# 缩进大小（默认4）
+indent_size = 2
+# tab键大小
+tab_width = 2
+# 换行符类型 = lf
+end_of_line = lf
+# 字符集默认utf-8
+charset = utf-8
+# 删除行尾的空格
+trim_trailing_whitespace = true
+# 最后插入一行
+insert_final_newline = true
+# 每一行的最大长度，超过会换行
+max_line_length = 400
+
+### 以上是默认配置 ###
+#######################################################
+
+[*.html]
+indent_size = 2
+tab_width = 2
+
+[*.xml]
+indent_size = 2
+tab_width = 2
+
+[*.css]
+indent_size = 4
+tab_width = 4
+
+[*.js]
+indent_size = 2
+tab_width = 2
+
+[package.json]
+indent_size = 4
+tab_width = 4
+
+[*.py]
+indent_size = 4
+tab_width = 4
+
+
+[*.java]
+indent_size = 4
+tab_width = 4

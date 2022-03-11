@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+      background-color: blue;
+    }
+
+  </style>
+</head>
+
+<body>
+  <button>添加class</button>
+  <div>一个DIV</div>
+  <script>
+    var btn = document.getElementsByTagName('button')[0];
+    var div = document.getElementsByTagName('div')[0];
+    btn.onclick = function () {
+      // 因为 class 是个关键字，所以这里用 className 操作 class
+      // 会更改原本的类名，即覆盖操作
+      div.className = 'box';
+    }
+  </script>
+</body>
+
+</html>

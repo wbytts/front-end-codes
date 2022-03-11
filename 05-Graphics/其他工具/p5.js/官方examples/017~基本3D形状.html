@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+  将数学上的 3D 形体放置在合成空间中。
+  box() 和 sphere() 函数至少使用一个参数来指定它们的大小。
+  这些形状的位置是由 translate() 函数来定义的。
+ */
+function setup() {
+  createCanvas(710, 400, WEBGL);
+}
+
+function draw() {
+  background(100);
+
+  noStroke();
+  fill(50);
+  push();
+  translate(-275, 175);
+  rotateY(1.25);
+  rotateX(-0.9);
+  box(100);
+  pop();
+
+  noFill();
+  stroke(255);
+  push();
+  translate(500, height * 0.35, -200);
+  sphere(300);
+  pop();
+}
+
+</script>
+</body>
+</html>

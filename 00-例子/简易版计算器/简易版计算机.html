@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标题</title>
+</head>
+
+<body>
+    <input type="text" id="num1">
+    <select id="ysf">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="text" id="num2">
+    <input type="button" value="计算" id="btn">
+    <p id="res"></p>
+    <script>
+        document.getElementById('btn').onclick = function () {
+            var num1 = document.getElementById('num1').value;
+            var num2 = document.getElementById('num2').value;
+            var ysf = document.getElementById('ysf').value;
+
+            num1 = parseFloat(num1);
+            num2 = parseFloat(num2);
+
+            var flag = true;
+
+            if (num1 == '') {
+                res += '第一个运算数为空#';
+                flag = false;
+            }
+
+            if (num2 == '') {
+                res += '第二个运算数为空';
+                flag = false;
+            }
+
+            res = null;
+            if (flag) {
+                switch (ysf) {
+                    case '+':
+                        res = num1 + num2;
+                        break;
+                    case '-':
+                        res = num1 - num2;
+                        break;
+                    case '*':
+                        res = num1 * num2;
+                        break;
+                    case '/':
+                        if (num2 == 0) {
+                            res = '除数不能为0';
+                        } else {
+                            res = num1 / num2;
+                        }
+                        break;
+                }
+            }
+
+            document.getElementById('res').innerHTML = res;
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    canvas {
+      display: block;
+    }
+  </style>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<main></main>
+
+<!--
+createCanvas(window.innerWidth, window.innerHeight);
+-->
+<script>
+/*
+  用 “for” 结构迭代来构造重复的形式。
+ */
+let y;
+let num = 14;
+
+function setup() {
+  createCanvas(720, 360);
+  background(102);
+  noStroke();
+
+  // 画白条
+  fill(255);
+  y = 60;
+  for (let i = 0; i < num / 3; i++) {
+    rect(50, y, 475, 10);
+    y += 20;
+  }
+
+  // 灰条
+  fill(51);
+  y = 40;
+  for (let i = 0; i < num; i++) {
+    rect(405, y, 30, 10);
+    y += 20;
+  }
+  y = 50;
+  for (let i = 0; i < num; i++) {
+    rect(425, y, 30, 10);
+    y += 20;
+  }
+
+  // 细线
+  y = 45;
+  fill(0);
+  for (let i = 0; i < num - 1; i++) {
+    rect(120, y, 40, 1);
+    y += 20;
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+#header {
+  color: black;
+}
+#header .navigation {
+  font-size: 12px;
+}
+#header .logo {
+  width: 300px;
+}
+.clearfix {
+  display: block;
+  zoom: 1;
+}
+.clearfix:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.component {
+  width: 300px;
+}
+@media (min-width: 768px) {
+  .component {
+    width: 600px;
+  }
+}
+@media (min-width: 768px) and (min-resolution: 192dpi) {
+  .component {
+    background-image: url(/img/retina2x.png);
+  }
+}
+@media (min-width: 1280px) {
+  .component {
+    width: 800px;
+  }
+}

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/redux/5.0.0-alpha.0/redux.js"></script>
+  </head>
+
+  <body>
+
+
+    <script>
+      /*
+      Redux
+        applyMiddleware
+        bindActionCreators
+        combineReducers
+        compose
+        createStore
+    */
+
+      function xxxReducer(旧的state = 初始state, action) {
+        // 从action中取出type和data
+        const {
+          type,
+          data
+        } = action;
+        // 根据不同的type，返回不同的新的state（会对应到store中）
+        // 不一定要用switch
+        switch (type) {
+          case 'increment':
+            return 旧的state + data
+          case 'decrement':
+            return 旧的state - data
+          default:
+            return 旧的state;
+        }
+      };
+
+      const store = Redux.createStore(xxxReducer);
+
+    </script>
+  </body>
+
+</html>

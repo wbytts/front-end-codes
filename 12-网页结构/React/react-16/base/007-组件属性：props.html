@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function Person(props) {
+      return (
+        <div>
+          <span>{props.name}</span>
+          <span>{props.sex || '男'}</span>
+          <span>{props.age || 18}</span>
+        </div>
+      );
+    }
+
+    // 指定属性默认值方式2
+    // Person.defaultProps = {
+    //   sex: '男',
+    //   age: 18
+    // };
+
+    // 对props中的属性值进行类型限制和必要性限制
+    // 指定属性值的类型和必要性
+    // PropTypes.类型[.isRequired]
+    Person.propTypes = {
+      name: PropTypes.string.isRequired, // 名称是个字符串，一定要传
+      age: PropTypes.number, // 年龄是个数字，可以不传
+    };
+
+    class Person2 extends React.Component {
+      constructor(props) {
+        super(props)
+      }
+      render() {
+        return (
+          <div>
+            <span>{this.prop.name}</span>
+            <span>{this.prop.sex}</span>
+            <span>{this.prop.age}</span>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <div>
+        <Person name="wby" sex="男" age="24" />
+        <Person name="cfd" sex="女" age="24" />
+        <Person name="xxx" />
+        <Person2 name="cfd" sex="女" age="24" />
+      </div>
+      , document.getElementById('root'));
+
+  </script>
+</body>
+
+</html>

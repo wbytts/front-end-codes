@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>state</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="common/react.js"></script>
+<script src="common/react-dom.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/babel-core/5.8.38/browser.js"></script>
+
+<script type='text/babel'>
+    var TextBoxComponent = React.createClass({
+        getInitialState: function () {
+            return {enable: false};
+        },
+        handleClick: function (event) {
+            this.setState({enable: !this.state.enable})
+        },
+        render: function () {
+            return (
+                <div>
+                    <input type="text" disabled={this.state.enable}/>
+                    <button onClick={this.handleClick}>改变TextBox的状态</button>
+                </div>
+            )
+        }
+    });
+
+    ReactDOM.render(
+        <TextBoxComponent />,
+        document.querySelector('#root')
+    )
+</script>
+</body>
+</html>

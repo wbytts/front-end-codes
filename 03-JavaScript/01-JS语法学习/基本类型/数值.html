@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Number</title>
+</head>
+<body>
+<!--
+    JavaScript 内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。
+    JavaScript 语言的底层根本没有整数，所有数字都是小数（64位浮点数）
+    某些运算只有整数才能完成，此时 JavaScript 会自动把64位浮点数，转成32位整数
+
+    JavaScript 内部实际上存在2个0：一个是+0，一个是-0，区别就是64位浮点数表示法的符号位不同。它们是等价的。
+
+    NaN：非数字
+    NaN是 JavaScript 的特殊值，表示“非数字”（Not a Number），主要出现在将字符串解析成数字出错的场合。
+    NaN不等于任何值，包括它本身。
+    数组的indexOf方法内部使用的是严格相等运算符，所以该方法对NaN不成立。
+    NaN在布尔运算时被当作false。
+    NaN与任何数（包括它自己）的运算，得到的都是NaN。
+    typeof NaN 会返回一个Number类型
+
+    Infinity表示“无穷”，用来表示两种场景。一种是一个正的数值太大，或一个负的数值太小，无法表示；另一种是非0数值除以0，得到Infinity。
+    Infinity有正负之分，Infinity表示正的无穷，-Infinity表示负的无穷。
+    由于数值正向溢出（overflow）、负向溢出（underflow）和被0除，JavaScript 都不报错，所以单纯的数学运算几乎没有可能抛出错误。
+    Infinity大于一切数值（除了NaN），-Infinity小于一切数值（除了NaN）。
+    Infinity与NaN比较，总是返回false。
+-->
+</body>
+</html>

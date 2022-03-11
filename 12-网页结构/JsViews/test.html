@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- To run the current sample code in your own environment, copy this to an html page. -->
+
+<html>
+
+<head>
+  <script src="lib/jquery-1.11.3.min.js"></script>
+  <script src="lib/jsrender.min.js"></script>
+</head>
+
+<body>
+  <table>
+    <tbody id="peopleList"></tbody>
+  </table>
+
+  <script id="personTmpl" type="text/x-jsrender">
+    <ul>
+      {{props person}}
+        <li>{{:key}}: {{:prop}}</li>
+      {{/props}}
+    </ul>
+  </script>
+
+
+  <script>
+    var data = {
+      person: {
+        first: 'Jim',
+        last: 'Varsov',
+      },
+    };
+    var html = $('#personTmpl').render(data);
+    console.log(html);
+    $('#peopleList').html(html);
+  </script>
+</body>
+
+</html>

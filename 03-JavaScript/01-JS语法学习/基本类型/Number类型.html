@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Number类型</title>
+</head>
+
+<body>
+  <!--
+  Number类型使用 IEEE 754 格式表示整数和浮点数
+  字面量有：十进制、八进制（0开头）、十六进制（0x开头）、科学计数法
+
+  由于 JavaScript 保存数值的方式，实际中可能存在正零（+0）和负零（0）。正零和负零在所有情况下都被认为是等同的
+  定义浮点数时，数值中必须包含小数点，而且小数点后面必须至少有一个数字
+  因为浮点数存储使用的内存空间是整数的两倍，所以ECMAScript总是设法把值转换为整数，在小数点后面没有数字的情况下，数值就会变成整数
+  浮点值的有效可达17位小数，但是不如整数精确（舍入误差）
+-->
+  <script>
+    console.log("最小值:" + Number.MIN_VALUE);
+    console.log("最大值:" + Number.MAX_VALUE);
+    console.log("最小整数:" + Number.MIN_SAFE_INTEGER);
+    console.log("最大整数:" + Number.MAX_SAFE_INTEGER);
+
+    // 无限大 Infinity
+    console.log(1 / 0);
+    // isFinite(x) 检测一个值是否是有限大。  true：有限大，false：无限大
+    console.log(isFinite(1 / 0));
+    // 0 +0 -0 等相除，返回的是 NaN
+    console.log(0 / 0);
+
+    console.log("------------------------------");
+    console.log(Infinity + 1);
+    console.log(Infinity * Infinity);
+
+    // NaN 非数字
+    console.log(NaN);
+    console.log(NaN === NaN); // false
+    console.log(NaN * 2);
+
+    let x = Infinity - Infinity;
+
+
+    console.log(x !== x);
+
+    console.log(window.isNaN(x));
+
+    console.log('数字的最大值:', Number.MAX_VALUE);
+    console.log('数字的最小值:', Number.MIN_VALUE);
+    console.log('整数的最大值:', Number.MAX_SAFE_INTEGER);
+    console.log('整数的最小值:', Number.MIN_SAFE_INTEGER);
+
+    // 浮点数的相加是不准的
+    console.log(0.1 + 0.2);
+  </script>
+</body>
+
+</html>

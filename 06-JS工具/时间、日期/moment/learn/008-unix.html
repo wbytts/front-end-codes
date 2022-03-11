@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>moment</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <!--<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment-with-locales.js"></script>
+</head>
+<body>
+
+<script>
+/*
+moment.unix(Number)
+
+若要从 Unix 时间戳（自 Unix 纪元以来的秒数）创建 moment，则使用 moment.unix(Number)
+var day = moment.unix(1318781876);
+
+这实现为 moment(timestamp * 1000)，因此在输入时间戳中包含了部分秒数。
+var day = moment.unix(1318781876.721);
+
+注意：尽管 Unix 时间戳是基于 UTC 的，但是此函数在本地模式中创建了 moment 对象。
+如果需要 UTC，则可以随后调用 .utc()
+var day = moment.unix(1318781876).utc();
+*/
+</script>
+</body>
+</html>

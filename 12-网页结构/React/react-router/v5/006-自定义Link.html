@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/react-router-dom/5.3.0/react-router-dom.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { HashRouter, Route, Link, Redirect, withRouter } = ReactRouterDOM;
+
+    const CustomLinkExample = () => (
+      <HashRouter>
+        <div>
+          <OldSchoolMenuLink activeOnlyWhenExact={true} to="/" label="Home" />
+          <OldSchoolMenuLink to="/about" label="About" />
+          <hr />
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+        </div>
+      </HashRouter>
+    );
+
+    const OldSchoolMenuLink = ({ label, to, activeOnlyWhenExact }) => (
+      <Route
+        path={to}
+        exact={activeOnlyWhenExact}
+        children={({ match }) => (
+          <div className={match ? "active" : ""}>
+            {match ? "> " : ""}
+            <Link to={to}>{label}</Link>
+          </div>
+        )}
+      />
+    );
+
+    const Home = () => (
+      <div>
+        <h2>Home</h2>
+      </div>
+    );
+
+    const About = () => (
+      <div>
+        <h2>About</h2>
+      </div>
+    );
+    ReactDOM.render(<CustomLinkExample />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

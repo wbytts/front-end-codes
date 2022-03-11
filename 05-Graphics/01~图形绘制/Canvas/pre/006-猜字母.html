@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <script src="by-utils.js"></script>
+  <style>
+    canvas {
+      border: 1px solid;
+    }
+
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="800" height="600">
+    您的浏览器不支持 Canvas
+  </canvas>
+  <script>
+    window.onload = function () {
+      var canvas = document.getElementById("myCanvas");
+      if (canvas && canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+        var guesses = 0;
+        var message = "Guess The Letter From a to z";
+        var letters = ["a", "b", "c", "d", "e", "f", "g",
+          "h", "i", "j", "k", "l", "m", "n",
+          "o", "p", "q", "r", "s", "t",
+          "u", "v", "w", "x", "y", "z"];
+        var today = new Date();
+        var letterToGuess = "";
+        var higherOrLower = "";
+        var lettersGuessed;
+        var gameOver = false;
+
+        var letterIndex = Math.floor(Math.random() * letters.length);
+        letterToGuess = letters[letterIndex];
+        lettersGuessed = [];
+        guesses = 0;
+        gameOver = false;
+        window.onclick = function () {
+          console.log(canvas.toDataURL());
+          by.canvasToImage(canvas);
+        };
+        window.onkeydown = function (e) {
+          if (!gameOver) {
+            console.log(e.keyCode);
+            var letterPressed = String.fromCharCode(e.keyCode);
+            letterPressed = letterPressed.toLowerCase();
+            guesses++;
+            lettersGuessed.push(letterPressed);
+            if (letterPressed == letterToGuess) {
+              gameOver = true;
+            } else {
+              letterIndex = letters.indexOf(letterToGuess);
+              var guessIndex = letters.indexOf(letterPressed);
+              if (guessIndex < 0) {
+                higherOrLower = "This is not a letter";
+              } else if (guessIndex > letterIndex) {
+                higherOrLower = "Lower";
+              } else {
+                higherOrLower = "Higher";
+              }
+            }
+            ctx.fillStyle = "#ffffaa";
+            ctx.fillRect(0, 0, 500, 300);
+            ctx.strokeStyle = "#000000";
+            ctx.strokeRect(5, 5, 490, 290);
+            ctx.textBaseline = "top";
+            ctx.fillStyle = "#000000";
+            ctx.font = "10px Sans-Serif";
+            ctx.fillText(message, 125, 30);
+            ctx.fillStyle = "#109910";
+            ctx.font = "16px Sans-Serif";
+            ctx.fillText("Guesses: " + guesses, 215, 50);
+            ctx.fillStyle = "#000000";
+            ctx.font = "16px Sans-Serif";
+            ctx.fillText("Higher or Lower: " + higherOrLower, 150, 125);
+            ctx.fillStyle = "#FF0000";
+            ctx.font = "16px Sans-Serif";
+            ctx.fillText("Letter Guessed: " + lettersGuessed.toString(), 10, 260);
+            if (gameOver) {
+              ctx.fillStyle = "#FF0000";
+              ctx.font = "40px Sans-Serif";
+              ctx.fillText("You Got It", 150, 180);
+            }
+          }
+        };
+
+
+      }
+    };
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/react-router-dom/5.3.0/react-router-dom.js"></script>
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { HashRouter, Route, Link } = ReactRouterDOM;
+
+    const ParamsExample = () => (
+      <HashRouter>
+        <div>
+          <h2>Accounts</h2>
+          <ul>
+            <li>
+              <Link to="/netflix">Netflix</Link>
+            </li>
+            <li>
+              <Link to="/zillow-group">Zillow Group</Link>
+            </li>
+            <li>
+              <Link to="/yahoo">Yahoo</Link>
+            </li>
+            <li>
+              <Link to="/modus-create">Modus Create</Link>
+            </li>
+          </ul>
+
+          <Route path="/:id" component={Child} />
+          <Route path="/order/:direction(asc|desc)" component={ComponentWithRegex} />
+        </div>
+      </HashRouter>
+    );
+
+    const Child = ({ match }) => (
+      <div>
+        <h3>ID: {match.params.id}</h3>
+      </div>
+    );
+
+    const ComponentWithRegex = ({ match }) => (
+      <div>
+        <h3>Only asc/desc are allowed: {match.params.direction}</h3>
+      </div>
+    );
+
+    ReactDOM.render(<ParamsExample />, document.getElementById('root'));
+  </script>
+
+
+</body>
+
+</html>

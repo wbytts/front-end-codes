@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+    const INFO = {
+      A: 1,
+      B: 2
+    };
+
+    Object.freeze(INFO);
+
+    // 此处修改不生效
+    // 严格模式下报错
+    INFO.A = 222;
+
+    console.log(INFO);
+</script>
+</body>
+</html>

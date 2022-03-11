@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <script src="by-utils.js"></script>
+    <style>
+        canvas {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="800">
+    您的浏览器不支持 Canvas
+</canvas>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("myCanvas");
+        if(canvas && canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+
+            // 只有应用 setTransform 后才对形状起作用
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.rotate(by.degToRad(-45));
+
+            ctx.strokeRect(0, 0, 200, 200);
+
+            // rotate(rad) 旋转
+            // translate(x, y) 平移
+            // scale(xs, ys) 缩放
+
+        }
+    };
+</script>
+</body>
+</html>

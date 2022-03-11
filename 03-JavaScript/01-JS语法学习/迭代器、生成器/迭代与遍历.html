@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // const banji = {
+    //   name: '三年级四班',
+    //   stus: ['张三', '李四', '王五', '赵六', '田七'],
+    //   [Symbol.iterator]() {
+    //     let index = 0;
+    //     let _this = this;
+    //     return {
+    //       next: function () {
+    //         if (index < _this.stus.length) {
+    //           return { value: _this.stus[index++], done: false };
+    //         } else {
+    //           return { value: undefined, done: true };
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+
+    let arr = ['张三', '李四', '王五', '赵六', '田七'];
+
+    // 遍历
+    for(let p of arr) {
+      console.log(p);
+    }
+
+
+
+  </script>
+</body>
+
+</html>

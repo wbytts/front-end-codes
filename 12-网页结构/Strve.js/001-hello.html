@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strve.js</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    import { Strve, render, updateView } from 'https://cdn.jsdelivr.net/npm/strvejs/dist/strve.esm.min.js';
+
+    const state = {
+      arr: ['1', '2'],
+    };
+
+    function App() {
+      return render`
+            <div class='inner'>
+              <button id='btn2' οnclick=${usePush}>push</button>
+              <ul>
+                ${state.arr.map((todo) => render`<li key=${todo}>${todo}</li>`)}
+              </ul>
+            </div>
+          `;
+    }
+
+    function usePush() {
+      console.log('push 3');
+      updateView(() => {
+        console.log('push 3');
+        state.arr.push('3');
+      });
+    }
+
+    Strve('#app', {
+      data: { state },
+      template: App
+    });
+  </script>
+</body>
+
+</html>

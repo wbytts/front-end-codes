@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>moment</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <!--<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>-->
+  <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment-with-locales.js"></script>
+</head>
+
+<body>
+
+  <script>
+    /*
+    Moment.js 使用重载的 getter 和 setter 方法。 此模式类似与其在 jQuery 中的使用。
+    不带参数调用这些方法会作为 getter，而带参数调用则会作为 setter。
+    这些会映射到原生 Date 对象上的相应函数。
+    moment().seconds(30).valueOf() === new Date().setSeconds(30);
+    moment().seconds()   === new Date().getSeconds();
+
+    如果处于 UTC 模式中，则它们将会映射到 UTC 的等效项。
+    moment.utc().seconds(30).valueOf() === new Date().setUTCSeconds(30);
+    moment.utc().seconds()   === new Date().getUTCSeconds();
+
+    为了方便起见，从 2.0.0 版本开始，单数和复数的方法名称都会存在。
+    注意：当作为 setter 使用时，所有这些方法在都会改变原始的 moment。
+    注意：
+        从 2.19.0 开始，将 NaN 传给任何 setter 都是没有操作的。
+        在 2.19.0 之前，它以错误的方式使 moment 无效。
+
+    以下有些加s或者不加s皆可（但是后缀s的有些已弃用，不建议再使用了）：
+    millisecond：获取或设置毫秒。接受 0 到 999 之间的数字。 如果超出范围，则它将会冒泡到秒钟。
+    second：获取或设置秒钟。接受 0 到 59 之间的数字。 如果超出范围，则它将会冒泡到分钟。
+    minute：获取或设置分钟。接受 0 到 59 之间的数字。 如果超出范围，则它将会冒泡到小时。
+    hour：获取或设置小时。接受 0 到 23 之间的数字。 如果超出范围，则它将会冒泡到日期。
+    date：获取或设置月份的日期。接受 1 到 31 之间的数字。 如果超出范围，则它将会冒泡达到月份。【dates于2.16.0已废弃】
+    day：获取或设置星期几。此方法可用于设置星期几，其中星期日为 0、星期六为 6。
+          如果给定的值是 0 到 6，则结果的日期将会在当前（星期日至星期六）的星期。
+          如果超出范围，则它将会冒泡到其他星期。
+          从 2.1.0 版开始，还支持星期名称。 这是在 moment 当前的语言环境中解析的。如：Sunday
+    weekday：根据语言环境获取或设置星期几。
+          如果语言环境将星期一指定为一周的第一天，则 moment().weekday(0) 将会是星期一。
+          如果星期日是一周的第一天，则 moment().weekday(0) 将会是星期日。
+          与 moment#day 一样，如果超出范围，则它将会冒泡到其他星期。
+    isoWeekday：获取或设置 ISO 星期几，其中 1 是星期一、7 是星期日。
+          与 moment#day 一样，如果超出范围，则它将会冒泡到其他星期。
+          还支持星期名称。 这是在 moment 当前的语言环境中解析的。
+    dayOfYear：获取或设置年份的日期。接受 1 到 366 之间的数字。 如果超出范围，则它将会冒泡到年份。
+    week：获取或设置年份的星期。
+          由于不同的语言环境对年份中的星期的编号的定义不同，因此 Moment.js 添加了 moment#week 以获取/设置年份的本地化星期。
+          年份的星期取决于哪一天是星期的第一天（星期日、星期一等），以及哪一周是年份的第一周。
+          moment#week 的输出将会取决于 moment 的语言环境。当设置年份的星期时，将会保留星期几。
+    isoWeek：获取或设置年份的 ISO 星期。当设置年份的星期时，将会保留星期几。
+    month：获取或设置月份。接受 0 到 11 之间的数字。 如果超出范围，则它将会冒泡到年份。
+          注意：月份是零索引的，因此一月是月份 0。
+          从 2.1.0 版本开始，还支持月份名称。 这是在 moment 的当前语言环境中解析的。
+          在 2.1.0 版本之前，如果 moment 更改了月份，且新的月份没有足够的天数来保留该月份的当前日期，则它将会溢出到下个月份。
+          从 2.1.0 版本开始，已将其更改为限制在目标月份的月末。
+          2.16.0 废弃使用 moment().months()。 改用 moment().month()。
+    quarter：获取季度（1 到 4）。设置季度（1 到 4）。
+    year：获取或设置年份。接受 -270,000 至 270,000 之间的数字。
+          2.6.0 废弃使用 moment().years()。 改用 moment().year()。
+    weekYear：根据语言环境获取或设置周年。因为第一周的第一天并不总是在一年的第一天，所以有时周年与月年会有所不同。
+    isoWeekYear：获取或设置 ISO 周年。
+    weeksInYear：根据语言环境获取当前 moment 年份的周数。
+    isoWeeksInYear：根据 ISO 星期获取当前 moment 年份的周数。
+
+    get：
+        moment().get('year');
+        moment().get('month');  // 0 至 11
+        moment().get('date');
+        moment().get('hour');
+        moment().get('minute');
+        moment().get('second');
+        moment().get('millisecond');
+        字符串 getter。 一般来说：moment().get(unit) === moment()[unit]()
+        单位不区分大小写，且支持复数形式和缩写形式：year (years, y)、month (months, M)、date (dates, D)、hour (hours, h)、minute (minutes, m)、second (seconds, s)、millisecond (milliseconds, ms)。
+
+    set：
+        moment().set(String, Int);
+        moment().set(Object(String, Int));
+        通用 setter，接受单位作为第一个参数、值作为第二个：
+        moment().set('year', 2013);
+        moment().set('month', 3);  // 四月
+        moment().set('date', 1);
+        moment().set('hour', 13);
+        moment().set('minute', 20);
+        moment().set('second', 30);
+        moment().set('millisecond', 123);
+        moment().set({'year': 2013, 'month': 3});
+        单位不区分大小写，且支持复数形式和缩写形式： year (years, y)、month (months, M)、date (dates, D)、hour (hours, h)、minute (minutes, m)、second (seconds, s)、millisecond (milliseconds, ms)。
+        对象解析新增于 2.9.0。
+
+    max：返回给定的 moment 实例的最大值（最远的未来）。
+        moment.max(Moment[,Moment...]);
+        moment.max(Moment[]);
+        不带参数的函数会返回带有当前时间的 moment 实例。
+        从 2.10.5 版本开始，如果其中一个参数是无效的 moment ，则结果为无效的 moment。
+
+    min：返回给定的 moment 实例的最小值（最远的过去）。
+        moment.min(Moment[,Moment...]);
+        moment.min(Moment[]);
+        不带参数的函数会返回带有当前时间的 moment 实例。
+        从 2.10.5 版本开始，如果其中一个参数是无效的 moment ，则结果为无效的 moment。
+
+    关于date：
+        注意：Moment#date 是月份的日期，而 Moment#day 是星期几。
+        注意：如果链接多个操作以构造一个日期，则应从年份、月份、日期等依次开始。 否则，可能会得到意外的结果，例如，当 day=31 并且当前月份只有 30 天时（同样适用于原生 JavaScript Date 的操作），返回的日期将会为当前月份的 30 号（有关详情，参阅月份）。
+        错误：moment().date(day).month(month).year(year)
+        正确：moment().year(year).month(month).date(day)
+    */
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+﻿{
+  // 指定被编译的文件列表
+  // "files": [],
+  // 指定包含的
+  "include": [
+    "ts-codes/src",
+  ],
+  /*
+     指定不包含的
+     默认值为：
+        node_modules
+        bower_components
+        jspm_packages
+  */
+  // "exclude": ["node_modules"],
+  // 编译选项
+  "compilerOptions": {
+    // 指定编译输出的目录
+    "outDir": "ts-codes/dist",
+    // 将代码合并为一个文件
+    // "outFile": "",
+    "removeComments": true, // 是否移除注释
+    /*
+      指定被编译为的js的版本
+      默认情况下会被转换成ES3的JS
+      常见的可选值：ES3、ES5、ES6、ES2015、ES2016、ES2017、ES2018、ES2019、ES2020、...、ESNext
+      ESNext 表示ES的最新版本
+    */
+    "target": "ES5",
+    /*
+      模块化方案：
+    */
+    "module": "ES2015",
+    /*
+      指定要使用的库：
+    */
+    "lib": ["DOM"],
+    // 是否对js文件进行编译，默认为false
+    "allowJs": false,
+    // 是否检查js代码的语法，默认为false
+    "checkJs": false,
+    // 不生成编译后的文件，默认为false
+    "noEmit": false,
+    // 当有错误的时候，不生成编译后的文件，默认为false
+    "noEmitOnError": false,
+    // 相当于所有严格检查的总开关
+    "strict": true,
+    // 一直是严格模式
+    "alwaysStrict": true,
+    //
+    "moduleResolution": "node",
+    // 不允许隐式的any
+    "noImplicitAny": true,
+    // 不允许隐式的this（即不明确类型的this）
+    "noImplicitThis": true,
+    // 严格地检查空值
+    // "strictNullChecks": false
+  }
+}

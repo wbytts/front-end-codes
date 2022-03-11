@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<button onclick="sort()">排序</button>
+
+<script>
+    var data = [1, 3, 5, 7, 9, 2, 4, 6, 8];
+
+    var h1s = d3.selectAll('h1').data(data).enter().append('h1').text(d => d);
+
+    // 排序，默认为 d3.ascending，是一个递增函数
+    /*
+        比较函数返回值与顺序的规则：
+            1. a - b > 0  a在前面
+            2. a - b < 0  b在前面
+            3. a - b = 0  不变
+
+        可以直接使用d3提供的函数：
+            递增函数：d3.ascending(a, b)
+            递减函数：d3.descending(a, b)
+     */
+    function sort() {
+        h1s.sort((a, b) => a - b)
+    }
+
+</script>
+</body>
+</html>

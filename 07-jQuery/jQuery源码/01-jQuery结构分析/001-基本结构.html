@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    /*
+        在使用 jQuery 时
+            var q1 = new $('xxx');
+            var q2 = $('xxx');
+        这两种写法是一样的，当你不 new 的时候，会默默地给你 new 一个
+        最后，两者都能访问jq原型链上的所有方法
+     */
+    (function(window, undefined) {
+        var jQuery = function(selector, context) {
+            return new jQuery.fn.init(selector, context);
+        };
+        jQuery.fn = jQuery.prototype = {
+            init: function(selector, context) {
+
+            },
+        };
+        jQuery.fn.init.prototype = jQuery.fn;
+    })(window);
+
+</script>
+</body>
+</html>

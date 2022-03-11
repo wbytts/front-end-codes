@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+/*
+    正常情况下，先指定回调，再改变状态；但是反之也可以
+
+    如何先改变状态再指定回调：
+        1. 在执行器中直接调用 resolve / reject
+        2. 延迟更长时间才调用 then   （比如 有异步任务时）
+
+    什么时候才能得到数据：
+        1. 如果先指定的回调，那么当状态发生改变的时候，回调函数就会调用，得到数据
+        2. 如果先改变的状态，那当指定回调时，回调函数就会调用，得到数据
+ */
+</script>
+</body>
+</html>

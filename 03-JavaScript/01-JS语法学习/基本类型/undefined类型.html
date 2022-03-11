@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>undefined类型</title>
+</head>
+<body>
+<!--
+Undefined类型只有一个值， undefined
+当使用var或者let声明了变量但是没有初始化时，就相当于给变量赋予了 undefined
+对未声明的变量调用它时，返回的结果还是"undefined"
+undefined是一个假值
+
+即使未初始化的变量会被自动赋予 undefined 值，但我们仍然建议在声明变量的同时进行初始化。
+这样，当 typeof 返回"undefined"时，你就会知道那是因为给定的变量尚未声明，而不是声明了但未初始化。
+
+一般来说，永远不用显式地给某个变量设置 undefined 值。
+字面值 undefined主要用于比较，而且在 ECMA-262 第 3 版之前是不存在的。
+增加这个特殊值的目的就是为了正式明确空对象指针（null）和未初始化变量的区别。
+-->
+<script>
+  var a;
+  console.log(a);
+  console.log(a == undefined);
+</script>
+</body>
+</html>

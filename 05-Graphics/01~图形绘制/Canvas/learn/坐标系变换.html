@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #myCanvas {
+      border: 1px solid #000;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 注：canvas 如果用css设置大小的话，只是缩放操作 -->
+  <canvas id="myCanvas" width=800 height=600></canvas>
+  <script src="../canvas-utils.js"></script>
+  <script>
+    // 获取画布元素
+    var canvas = document.getElementById('myCanvas');
+    // 获取画布上下文
+    var ctx = canvas.getContext("2d");
+
+    drawZuoBiao(ctx, 'red');
+
+    ctx.strokeRect(0, 0, 100, 100);
+
+    function drawZuoBiao(ctx, color) {
+      CanvasUtils.drawArrow(ctx, canvas.width / 2, 0, canvas.width / 2, canvas.height);
+      CanvasUtils.drawArrow(ctx, 0, canvas.height / 2, canvas.width, canvas.height / 2);
+      var zbx = canvas.width / 2;
+      var zby = canvas.height / 2;
+      ctx.translate(zbx, zby);
+    }
+
+    // 画线
+    // ctx 绘图上下文
+    // x1, y1  起点 x2, y2 终点
+    // color 线条颜色
+    function drawLine(ctx, x1, y1, x2, y2, color) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1;
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+  </script>
+</body>
+
+</html>

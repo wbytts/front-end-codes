@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<canvas id="canvas" width="2000" height="2000"></canvas>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/d3/7.0.0/d3.min.js"></script>
+<script type="module">
+
+  import {treemap} from "https://cdn.skypack.dev/d3-hierarchy@3";
+
+  const tree = treemap();
+  const dataSource = 'https://s5.ssl.qhres2.com/static/b0695e2dd30daa64.json';
+
+  const canvas = document.querySelector('canvas');
+  const context = canvas.getContext('2d');
+
+  (async function () {
+    /*
+      这份 JSON 数据中只有“城市 > 省份 > 中国”这样的层级数据，我们要将它与绘图指令建立联系。
+      建立联系指的是，我们要把数据的层级、位置和要绘制的圆的半径、位置一一对应起来。
+     */
+    const data = await (await fetch(dataSource)).json();
+    const regions = d3.hierarchy(data).sum(d => 1).sort((a, b) => b.value - a.value);
+    const pack = d3.pack().size([1600, 1600]).padding(3);
+    const root = pack(regions);
+    const TAU = 2 * Math.PI;
+
+    function draw(ctx, node, {fillStyle = 'rgba(0, 0, 0, 0.2)', textColor = 'white'} = {}) {
+      const children = node.children;
+      const {x, y, r} = node;
+      ctx.fillStyle = fillStyle;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, TAU);
+      ctx.fill();
+      if (children) {
+        for (let i = 0; i < children.length; i++) {
+          draw(ctx, children[i]);
+        }
+      } else {
+        const name = node.data.name;
+        ctx.fillStyle = textColor;
+        ctx.font = '1.5rem Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(name, x, y);
+      }
+    }
+
+    draw(context, root);
+
+  }());
+</script>
+</body>
+</html>

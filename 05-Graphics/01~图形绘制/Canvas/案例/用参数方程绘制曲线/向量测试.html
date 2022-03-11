@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="800" height="600"></canvas>
+
+<script type="module">
+  import {parametric} from "../../utils/Parametric.js";
+  import {Vector2D} from "../../utils/vector2d.js";
+
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+
+  var v1 = new Vector2D(20, 20);
+  var v2 = new Vector2D(300, 400);
+
+  ctx.beginPath();
+  ctx.moveTo(v1.x, v1.y);
+  ctx.lineTo(v2.x, v2.y);
+  ctx.stroke();
+
+
+  v2.rotate(Math.PI / 8);
+
+  ctx.beginPath();
+  ctx.moveTo(v1.x, v1.y);
+  ctx.lineTo(v2.x, v2.y);
+  ctx.stroke();
+
+
+
+</script>
+
+
+</body>
+</html>

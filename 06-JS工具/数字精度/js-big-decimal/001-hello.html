@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/js-big-decimal@1.3.1/dist/web/js-big-decimal.min.js"></script>
+</head>
+
+<body>
+
+  <script>
+    var n1 = new bigDecimal(12.6789);
+    var n2 = new bigDecimal("12345.6789");
+    var n3 = new bigDecimal('12.456e3'); // 12456
+
+    console.log(n1);
+    console.log(n2);
+    console.log(n3);
+
+    /*
+      对象的属性：
+        value: "12.6789"
+      原型上的方法：
+        add: ƒ (n)
+        ceil: ƒ ()
+        compareTo: ƒ (e)
+        divide: ƒ (n,t)
+        floor: ƒ ()
+        getPrettyValue: ƒ (n,t)
+        getValue: ƒ ()
+        modulus: ƒ (n)
+        multiply: ƒ (n)
+        negate: ƒ ()
+        round: ƒ (n,t)
+        subtract: ƒ (n)
+    */
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>引入方式</title>
+    <style>
+        /*在style标签中可以书写CSS代码*/
+        #in {
+            /* CSS的注释 */
+            width: 100px;
+            height: 100px;
+            border: 3px dashed blue;
+        }
+    </style>
+    <!--
+        通过文件加载，可以利用浏览器缓存，加快网页的访问速度
+    -->
+    <link rel="stylesheet" href="../css/001-style.css">
+</head>
+<body>
+    <!--行内样式(style属性)-->
+    <div style="width:200px;height:200px;border:1px solid red;">inner</div>
+    <div id="in">in</div>
+    <div id="out">out</div>
+</body>
+</html>

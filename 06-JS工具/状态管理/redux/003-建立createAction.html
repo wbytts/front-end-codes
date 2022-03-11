@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/redux/5.0.0-alpha.0/redux.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <h3 id="text"></h3>
+      <input type="text" id="step">
+      <button id="add">增加</button>
+      <button id="minus">减少</button>
+    </div>
+
+    <script>
+
+      // 定义reducer方法，用来根据不同的action生成新的状态
+      function myReducer(preState = 0, action) {
+        // 从action中取出type和data
+        const {
+          type,
+          data
+        } = action;
+        // 根据不同的type，返回不同的新的state（会对应到store中）
+        // 不一定要用switch
+        switch (type) {
+          case 'increment':
+            return preState + data
+          case 'decrement':
+            return preState - data
+          default:
+            return preState;
+        }
+      };
+
+      // 创建 store，可以理解为存储所有状态的仓库
+      const store = Redux.createStore(myReducer);
+
+      // 有时候action的data并不是固定的，全写出来又太多了
+      // 可以使用工厂模式生成action
+      function createAddAction(data) {
+        return {type: 'increment', data}
+      }
+      function createMinusAction(data) {
+        return {type: 'decrement', data}
+      }
+
+      // 根据当前store里存储的状态，更新页面显示
+      function updateText() {
+        const nowState = store.getState();
+        $('#text').text(nowState);
+      }
+
+      $(function() {
+        // 页面加载完成，先更新一次页面，显示初始状态
+        updateText();
+
+        $('#add').click(function() {
+          const step = +$('#step').val();
+          const action = createAddAction(step);
+          store.dispatch(action);
+          updateText();
+        });
+
+        $('#minus').click(function() {
+          const step = +$('#step').val();
+          const action = createMinusAction(step);
+          store.dispatch(action);
+          updateText();
+        });
+      });
+
+    </script>
+  </body>
+</html>

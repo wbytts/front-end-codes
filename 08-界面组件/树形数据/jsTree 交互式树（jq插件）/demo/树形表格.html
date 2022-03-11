@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../jstree/dist/themes/default/style.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jstree/3.3.11/jstree.min.js"></script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div id="jstree"></div>
+
+  <script>
+    $(function () {
+      $('#jstree').jstree({
+        'core': {
+          'data': [
+            { "id": "qc1", "parent": "#", "text": "问题分类1" },
+            { "id": "qc2", "parent": "#", "text": "问题分类2" },
+            { "id": "qc3", "parent": "qc2", "text": "问题分类3" },
+            { "id": "qc4", "parent": "#", "text": "问题分类4" },
+            { "id": "qc5", "parent": "#", "text": "问题分类5" },
+            { "id": "qc6", "parent": "#", "text": "问题分类6" },
+            { "id": "qc7", "parent": "#", "text": "问题分类7" },
+            { "id": "qc8", "parent": "#", "text": "问题分类8" },
+            { "id": "qc9", "parent": "#", "text": "问题分类9" },
+          ]
+        },
+        "plugins": []
+      });
+    });
+  </script>
+
+</body>
+
+</html>

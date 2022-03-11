@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-router-dom/5.3.0/react-router-dom.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { HashRouter, Route, Link } = ReactRouterDOM;
+
+      const Home = (props) => {
+        console.log(props);
+        return (
+          <div>
+            <h2>首页内容</h2>
+            <button onClick={() => props.history.goForward()}>前进</button>
+            <button onClick={() => props.history.goBack()}>后退</button>
+          </div>
+        )
+      };
+
+      const Page1 = () => (
+        <div>
+          <h2>第一个页面</h2>
+        </div>
+      );
+
+      const Page2 = ({ match }) => (
+        <div>
+          <h2>第二个页面</h2>
+        </div>
+      );
+
+      // 就照着Route的属性抄就行了
+      const routes = [
+        { path: '/', component: Home, exact: true },
+        { path: '/page1', component: Page1 },
+        { path: '/page2', component: Page2 },
+        { path: '/page3', component: () => <h1>lalala</h1> },
+      ];
+
+      const BasicExample = () => {
+        console.log(routes);
+        return <HashRouter>
+          <div>
+            <ul>
+              <li><Link to="/">首页</Link></li>
+              <li><Link to="/page1">页面1</Link></li>
+              <li><Link to="/page2">页面2</Link></li>
+            </ul>
+
+            <hr />
+            {/*
+              有个问题：如果要显示的组件很多，那岂不是每个都要写一个Route标签
+              假设有 page1 ~ page100
+              我们可以把Route的规则写在一个对象中，然后循环生成Route
+            */}
+            {routes.map((route, index) => <Route key={index} {...route} />)}
+          </div>
+        </HashRouter>
+      };
+
+      ReactDOM.render(<BasicExample />, document.getElementById('root'));
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+
+    <select id="s1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+    <select id="s2">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+    <select id="s3" style="display: none;">
+        <option value="asd">asd</option>
+        <option value="qwe">qwe</option>
+        <option value="zxc">zxc</option>
+    </select>
+
+    <script>
+        $(function(){
+            $('#s1').change(function() {
+                if($(this).val() == '2') {
+                    $('#s2').hide();
+                    $('#s3').show();
+                } else {
+                    $('#s2').show();
+                    $('#s3').hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

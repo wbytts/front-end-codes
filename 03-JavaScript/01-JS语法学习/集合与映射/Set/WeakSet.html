@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>WeakSet</title>
+</head>
+<body>
+<script>
+  /*
+    WeakSet结构同样不会存储重复的值，它的成员必须只能是对象类型的值。
+      * 垃圾回收不考虑WeakSet，即被WeakSet引用时引用计数器不加一，所以对象不被引用时不管WeakSet是否在使用都将删除
+      * 因为WeakSet 是弱引用，由于其他地方操作成员可能会不存在，所以不可以进行forEach( )遍历等操作
+      * 也是因为弱引用，WeakSet 结构没有keys( )，values( )，entries( )等方法和size属性
+      * 因为是弱引用所以当外部引用删除时，希望自动删除数据时使用 WeakMap
+
+    WeaSet保存的对象不会增加引用计数器，如果一个对象不被引用了会自动删除。
+   */
+</script>
+</body>
+</html>

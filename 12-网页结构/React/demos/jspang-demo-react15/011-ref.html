@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ref</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="common/react.js"></script>
+<script src="common/react-dom.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/babel-core/5.8.38/browser.js"></script>
+<script type='text/babel'>
+    var App = React.createClass({
+        handleClick: function(event) {
+            //this.refs.xxx.innerHTML = 'Hello World'
+            ReactDOM.findDOMNode(this.refs.xxx).innerHTML = 'ASDFG';
+        },
+        render: function() {
+            return (
+                <div>
+                    <button onClick={this.handleClick}>一个按钮</button>
+                    <h1>AAAAA</h1>
+                    <h1>BBBBB</h1>
+                    <h1>CCCCC</h1>
+                    <h1 ref="xxx">DDDDD</h1>
+                    <h1>EEEEE</h1>
+                </div>
+            )
+        }
+    });
+
+    ReactDOM.render(
+        <App />,
+        document.querySelector('#root')
+    )
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+.dialog {
+  width: 300px;
+  height: 300px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 10;
+}
+
+.dialog-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(200, 200, 200, 0.6);
+  z-index: 5;
+}
+
+.dialog .login-form {
+  width: 100%;
+  margin: 80px 20px;
+}
+
+.dialog .login-form .form-item {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.dialog .login-form .form-item span {
+  display: inline-block;
+  width: 20%
+}
+
+.dialog .login-form .form-item input {
+  display: inline-block;
+  width: 50%
+}
+
+.btn-group {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}

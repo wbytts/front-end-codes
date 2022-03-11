@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 id="one">aaaa</h1>
+  <h1 class="ccc">bbb</h1>
+  <h1 class="ccc">ccc</h1>
+  <h1 name="ddd">ddd</h1>
+  <script>
+    // querySelector：返回匹配选择器的第一个元素对象（一个对象）
+    var obj = document.querySelector('#one');
+    console.log(obj)
+    // querySelectorAll：返回匹配选择器的所有元素对象（伪数组）
+    var objs = document.querySelectorAll('.ccc');
+    console.log(objs);
+  </script>
+</body>
+
+</html>

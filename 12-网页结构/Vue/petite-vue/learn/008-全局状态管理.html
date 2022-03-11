@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script type="module">
+    import { createApp, reactive } from 'https://unpkg.com/petite-vue?module';
+
+    const store = reactive({
+      count: 0,
+      increment() { this.count++ }
+    });
+
+    store.increment();
+
+    createApp({
+      store
+    }).mount()
+  </script>
+
+  <div v-scope>
+    <span>{{ store.count }}</span>
+  </div>
+
+  <div v-scope>
+    <button @click="store.increment">+</button>
+  </div>
+
+</body>
+
+</html>

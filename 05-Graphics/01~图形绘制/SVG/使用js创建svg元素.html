@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<!--<svg xmlns="http://www.w3.org/2000/svg" version="1.1">-->
+<svg>
+<!--  <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="orange" />-->
+</svg>
+
+<script>
+  const svgroot = document.querySelector('svg');
+
+  function draw(parent, node, {fillStyle = 'rgba(0, 0, 0, 0.2)', textColor = 'white'} = {}) {
+    const {x, y, r} = node;
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', x);
+    circle.setAttribute('cy', y);
+    circle.setAttribute('r', r);
+    circle.setAttribute('fill', fillStyle);
+    parent.appendChild(circle);
+  }
+
+  draw(svgroot, {x: 100, y: 100, r: 50});
+
+
+</script>
+</body>
+</html>

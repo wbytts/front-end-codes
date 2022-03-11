@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 可以监听每个元素的生命周期事件 -->
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/petite-vue?module';
+
+    function Counter(props) {
+      return {
+        $template: '#counter-template',
+        count: props.initialCount,
+        increment() { this.count++ },
+        decrement() { this.count-- }
+      }
+    }
+    createApp({
+      Counter
+    }).mount();
+  </script>
+
+  <template id="counter-template">
+    <button @click="decrement">-</button>
+    <span>{{ count }}</span>
+    <button @click="increment">+</button>
+  </template>
+
+  <div v-scope="Counter({ initialCount: 666 })"></div>
+  <div v-scope="Counter({ initialCount: 999 })"></div>
+
+</body>
+
+</html>

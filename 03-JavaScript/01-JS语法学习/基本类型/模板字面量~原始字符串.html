@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+  获取原始的模板字面量内容：
+      1. String.raw 标签函数
+      2. 也可以通过标签函数的第一个参数的 .raw 属性获取
+-->
+<script>
+
+  console.log(`\u00A9`);
+  console.log(String.raw`\u00A9`);
+
+  function sraw(strings) {
+    console.log(strings.raw);
+  }
+
+  let s2 = sraw`\u00A9`;
+
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>样式的继承</title>
+</head>
+<body>
+<!--
+    后代元素可以继承祖先元素的某些样式
+    利用继承，可以将某些样式设置给祖先元素
+
+    并不是所有的样式都会被继承，例如背景相关样式，边框，02-定位。。。等
+-->
+    <!--对p设置了字体颜色，里面的span也会被影响-->
+    <p style="color: red;">p标签中的文字
+        <span>p元素中的span</span>
+    </p>
+    <span>p元素外的span中的文字</span>
+</body>
+</html>

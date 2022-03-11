@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="module">
+    import { h, Component, render } from 'https://unpkg.com/preact?module';
+    import htm from 'https://unpkg.com/htm?module';
+    const html = htm.bind(h); // 初始化 htm with Preact
+
+    // App 组件
+    const App = props => html`<div>Hello ${props.name}!</div>`
+
+    // 渲染
+    render(html`<${App} name="World" />`, document.body);
+  </script>
+</body>
+
+</html>
