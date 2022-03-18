@@ -7,17 +7,24 @@
 <body>
 <script>
     /*
-        pending 未决定的
-        resolved / fullfilled 成功的
-        rejected 失败的
+        pending(未决定的) 表示待定
+        resolved(解决) / fullfilled(兑现) 表示成功的
+        rejected(拒绝) 表示失败
 
-        可以发生的改变：
-            pending -> resolved / fullfilled
-            pending -> rejected
+        pending 是期约最初始的状态
 
-            只有这两种状态的变化，且同一个Promise对象只能改变一次
-            无论成功还是失败，都会有一个结果数据
-            成功的结果数据一般叫做 value，失败的结果数据一般叫做 reason
+        pending -> fulfilled：落定 settled / 解决 resolve
+        pending -> rejected：拒绝 reject
+
+        只有这两种状态的变化，且同一个Promise对象只能改变一次
+        无论成功还是失败，都会有一个结果数据，可选，默认是undefined
+        成功的结果数据一般叫做 value(解决值)
+        失败的结果数据一般叫做 reason(拒绝理由)
+
+        期约的状态是私有的，不能直接通过JS检测到
+        这主要是为了避免根据读取到的期约状态，以同步的方式处理期约对象
+        期约状态也不能被外部JS修改
+        期约故意将异步行为封装起来，从而隔离外部的同步代码
      */
 </script>
 </body>

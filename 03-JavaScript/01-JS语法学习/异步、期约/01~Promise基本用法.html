@@ -16,10 +16,13 @@
         let btn = document.querySelector('#btn');
 
         /*
-            new Promise 接收一个函数，这个函数有两个参数 resolve 和 reject
+            new Promise 接收一个函数（执行器）
+            这个函数有两个参数 resolve 和 reject
                 resolve：解决
                 reject：拒绝
                 它们的参数，传给接下来处理的函数
+
+            创建Promise对象的时候，执行器里面的代码会立即执行
          */
 
         // 创建一个需要时间的 Promise
