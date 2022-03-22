@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.js"></script>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="start()">开始</button>
+  <div class="box"></div>
+
+  <script>
+    /*
+      Stagger
+      Stagger允许你通过 跟随和重叠动作 为多个元素设置动画。
+      anime.stagger(value, options)
+        value	   Number, String, Array	操纵值	    必填
+        options	 Object	                交错参数	  可选
+    */
+
+    function start() {
+      anime({
+        targets: '.box',
+        translateX: 250,
+        duration: 10000,
+        delay: 3000
+      });
+    }
+  </script>
+</body>
+
+</html>

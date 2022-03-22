@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.js"></script>
+  <style>
+    .box {
+      border: 1px solid green;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button onclick="start()">开始</button>
+  <div class="box">
+    <svg></svg>
+  </div>
+
+  <script>
+    /*
+      与任何其他DOM属性一样，包含至少一个数值的所有SVG属性都可以设置动画
+      可接受的数值设置信息可查看动画赋值部分。 SVG 动画可查看SVG 部分。
+    */
+    function start() {
+      anime({
+        targets: ['.box svg'],
+        points: '64 128 8.574 96 8.574 32 64 0 119.426 32 119.426 96',
+        baseFrequency: 0,
+        scale: 1,
+        loop: true,
+        direction: 'alternate',
+        easing: 'easeInOutExpo'
+      });
+    }
+  </script>
+</body>
+
+</html>

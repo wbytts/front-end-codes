@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.js"></script>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="start()">开始</button>
+  <div class="box"></div>
+
+  <script>
+    /*
+      与动画关键帧类似，属性关键帧是使用属性对象的Array定义的。 属性关键帧允许重叠动画，因为每个属性都有自己的关键帧数组。
+
+      如果关键帧内没有指定duration（持续时间），则每个关键帧的持续时间将等于动画总持续时间除以关键帧数。
+    */
+
+    function start() {
+      anime({
+        targets: '.box',
+        translateX: 250,
+        duration: 10000,
+        delay: 3000
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.js"></script>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="start()">开始</button>
+  <div class="box"></div>
+
+  <script>
+    /*
+      动画关键帧是使用keyframes属性中的数组定义的。
+
+      如果关键帧内没有指定duration（持续时间），则每个关键帧的持续时间将等于动画总持续时间除以关键帧数。
+
+      [
+        {value: 100, easing: 'easeOutExpo'},
+        {value: 200, delay: 500},
+        {value: 300, duration: 1000}
+      ]
+    */
+
+    function start() {
+      anime({
+        targets: '.box',
+        translateX: 250,
+        duration: 10000,
+        delay: 3000
+      });
+    }
+  </script>
+</body>
+
+</html>

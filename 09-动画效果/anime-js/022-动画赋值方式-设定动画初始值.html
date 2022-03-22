@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.js"></script>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="start()">开始</button>
+  <div class="box"></div>
+
+  <script>
+    /*
+      强制动画以指定值开始
+      值的类型为一个数组 [初始值, ...]
+    */
+
+    function start() {
+      anime({
+        targets: '.box',
+        translateX: 250,
+        duration: 10000,
+        delay: 3000
+      });
+    }
+  </script>
+</body>
+
+</html>

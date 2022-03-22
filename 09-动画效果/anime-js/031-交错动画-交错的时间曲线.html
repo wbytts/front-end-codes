@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.js"></script>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="start()">开始</button>
+  <div class="box"></div>
+
+  <script>
+    /*
+      Stagger
+      使用easing函数设置交错值。
+
+      anime.stagger(value, {easing: 'easingName'})
+          'string'	All valid easing names are accepted
+          function(i)	Use your own custom easings function
+
+    */
+
+    function start() {
+      anime({
+        targets: '.range-value-staggering-demo .el',
+        translateX: 270,
+        rotate: anime.stagger([-360, 360]), // 旋转将在-360deg到360deg之间均匀分布在所有元素之间
+        easing: 'easeInOutQuad'
+      });
+    }
+  </script>
+</body>
+
+</html>

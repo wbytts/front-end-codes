@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.js"></script>
+  <style>
+    .log {
+      border: 1px solid green;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button onclick="start()">开始</button>
+  <div class="log"></div>
+
+  <script>
+    /*
+      包含数值的任何Object属性都可以设置动画
+      可接受的数值设置信息可查看动画赋值部分
+    */
+    function start() {
+      var objPropLogEl = document.querySelector('.log');
+
+      var myObject = {
+        prop1: 0,
+        prop2: '0%'
+      }
+
+      anime({
+        targets: myObject,
+        prop1: 50,
+        prop2: '100%',
+        easing: 'linear',
+        round: 1,
+        update: function () {
+          objPropLogEl.innerHTML = JSON.stringify(myObject);
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

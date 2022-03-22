@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.js"></script>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="start()">开始</button>
+  <div class="box"></div>
+
+  <script>
+    /*
+      anime.js 接受并转换Haxadecimal(十六进制)，RGB，RGBA，HSL和HSLA颜色值。
+          Haxadecimal	'#FFF' or '#FFFFFF'
+          RGB	'rgb(255, 255, 255)'
+          RGBA	'rgba(255, 255, 255, .2)'
+          HSL	'hsl(0, 100%, 100%)'
+          HSLA	'hsla(0, 100%, 100%, .2)'
+
+      CSS关键词的颜色还不支持
+    */
+
+    function start() {
+      anime({
+        targets: '.box',
+        translateX: 250,
+        duration: 10000,
+        delay: 3000
+      });
+    }
+  </script>
+</body>
+
+</html>
