@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="../libs/jquery/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" href="../libs/jquery-ui/jquery-ui-1.12.1.custom/jquery-ui.css">
-    <script src="../libs/jquery-ui/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+  <script src="https://www.jq22.com/jquery/jquery-ui-1.11.0.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/jquery-ui-1.11.0.css">
+  <style>
+    #mySliderDiv {
+      height: 600px;
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="mySliderDiv"></div>
+  <div id="mySliderDiv"></div>
 
-<script>
-    $(function() {
-        $( "#mySliderDiv" ).slider({
-            orientation: "vertical",
-            min: 0,
-            max: 150,
-            value: 50
-        });
+  <script>
+    $(function () {
+      $("#mySliderDiv").slider({
+        orientation: "vertical",
+        min: 0,
+        max: 800,
+        value: 50
+      });
     })
-</script>
+  </script>
 </body>
+
 </html>
