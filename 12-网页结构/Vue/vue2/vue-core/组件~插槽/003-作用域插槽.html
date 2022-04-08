@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <com-test>
+      <template slot="s1" slot-scope="{c1}">
+        <h1 style="color: red;">1111 --- {{c1}}</h1>
+      </template>
+      <template v-slot:s2="{c2}">
+        <h1 style="color: green;">2222 --- {{c2}}</h1>
+      </template>
+    </com-test>
+
+  </div>
+
+  <script>
+    Vue.component('com-test', {
+      data: function () {
+        return {
+          c1: 'red',
+          c2: 'green'
+        }
+      },
+      template: `
+        <div>
+          <hr />
+            <slot name="s1" :c1="c1"></slot>
+          <hr />
+            <slot name="s2" :c2="c2"></slot>
+          <hr />
+        </div>
+      `
+    });
+
+    let vm = new Vue({
+      el: '#app'
+    });
+  </script>
+</body>
+
+</html>

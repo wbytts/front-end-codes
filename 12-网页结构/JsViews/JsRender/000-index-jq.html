@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8" />
   <title>Title</title>
@@ -9,20 +10,29 @@
   <!-- 加载 JsRender -->
   <script src="https://www.jsviews.com/download/jsrender.js"></script>
 </head>
+
 <body>
-<!-- 定义模板输出区域-->
-<div id="result"></div>
+  <!-- 定义模板输出区域-->
+  <div id="result"></div>
 
-<!-- 声明模板内容 -->
-<script id="myTmpl" type="text/x-jsrender">
-  {{:name}}
-</script>
+  <!-- 声明模板内容 -->
+  <script id="myTmpl" type="text/x-jsrender">
+    {{:name}} --- {{:name}}
+  </script>
 
-<script>
-  var tmpl = $.templates("#myTmpl"); // 获取编译后的模板
-  var data = {name: "Jo"};           // 定义数据
-  var html = tmpl.render(data);      // 使用数据来渲染模板，得到渲染后的字符串
-  $("#result").html(html);           // 将渲染后的字符串填充到指定区域
-</script>
+  <script>
+    var tmpl = $.templates("#myTmpl"); // 获取编译后的模板
+    var data = { name: "Jo" };           // 定义数据
+    var html = tmpl.render(data);      // 使用数据来渲染模板，得到渲染后的字符串
+    $("#result").html(html);           // 将渲染后的字符串填充到指定区域
+
+    console.log('Hello World');
+  </script>
 </body>
+
 </html>
+
+
+
+
+

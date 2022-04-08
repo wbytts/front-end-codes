@@ -1,15 +1,40 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .cls-a {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+    }
+  </style>
 </head>
+
 <body>
-<!--
+  <!--
   Element.classList 是一个只读属性，返回一个元素的类属性的实时 DOMTokenList 集合。
   相比将 element.className 作为以空格分隔的字符串来使用，classList 是一种更方便的访问元素的类列表的方法。
  -->
+  <button onclick="addClsA()">添加cls-a</button>
+  <button onclick="removeClsA()">移除cls-a</button>
+  <div class="box"></div>
+  <script>
+    let box = document.querySelector('.box')
+
+    function addClsA() {
+      box.classList.add('cls-a');
+    }
+
+    function removeClsA() {
+      box.classList.remove('cls-a');
+    }
+
+  </script>
 </body>
+
 </html>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+</head>
+
+<body>
+
+  <div id="movie-list"></div>
+
+  <script>
+    var movies = [
+      { Name: "The Red Violin", ReleaseYear: "1998" },
+      { Name: "Eyes Wide Shut", ReleaseYear: "1999" },
+      { Name: "The Inheritance", ReleaseYear: "1976" }
+    ];
+
+    var markup = "<li><b>${Name}</b> (${ReleaseYear})</li>";
+
+    // 编译标记并作为一个有名字的模板
+    $.template("movieTemplate", markup);
+
+    // 使用数据渲染模板（制定模板的名字）
+    // $.tmpl(模板名字, 渲染用的数据)
+    var $html = $.tmpl("movieTemplate", movies)
+
+    // 将内容添加
+    $html.appendTo("#movie-list");
+  </script>
+</body>
+
+</html>

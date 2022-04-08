@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+</head>
+
+<body>
+  <table cellspacing="0" cellpadding="3" border="1">
+    <tbody id="compileRows">
+    </tbody>
+  </table>
+
+  <!-- 在jQuery .tmpl()中，还可以将模板事先编译并缓存起来，然后在合适的时侯再使用，
+    这对于一些数据嵌套是很有用的 -->
+
+  <div id="compile1" style="display: none;">
+    <div style="width: 200px; height: 200px; border: 1px solid #ccc;">
+      ${ID} - ${Name}
+      <hr>
+      Group: {{tmpl 'cached' }}
+    </div>
+  </div>
+
+  <div id="compile2" style="display: none;">
+    <span>
+      ${Group}
+    </span>
+  </div>
+  <script type="text/javascript">
+    $(function () {
+      var groupUsers = [
+        { ID: 'think8848', Name: 'Joseph Chan', Group: 'Administrators' },
+        { ID: 'aCloud', Name: 'Mary Cheung', Group: 'Users' }
+      ];
+      $('#compile2').template('cached');
+      $('#compile1').tmpl(groupUsers).appendTo('#compileRows');
+    });
+  </script>
+</body>
+
+</html>
+
+
+

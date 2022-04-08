@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+</head>
+
+<body>
+  <div id="target"></div>
+
+  <div id="tpl-test" style="display: none;">
+    <!-- ${xxx} -->
+    <!--
+      {{= field}}
+      必须要注意的是，"="号后必须跟一个空格，不然是没有效果的
+    -->
+
+    <!-- ${}中还可以放表达式 -->
+
+    <!-- $item 代表当前的模板 -->
+
+    <!-- $data 代表当前的数据 -->
+
+    <!-- {{each}} 用来循环 -->
+    {{each arr}}
+    {{/each}}
+
+    {{each(i,lang) Langs}}
+    {{/each}}
+
+    <!-- {{if}}、{{else}} 判断 -->
+    {{if 条件}}
+    {{else}}
+    {{/if}}
+
+    <!-- {{html}} 将数据作为HTML代码解析 -->
+
+    <!-- {{tmpl}} 使用缓存的模板 -->
+
+    <!-- {{wrap}} 包装器，这回不需要指定对哪一个元素使用模板了，直接生成模板的包装器 -->
+    {{wrap "#tpl-id" }}模板内容{{/wrap}}
+  </div>
+
+
+  <script type="text/javascript">
+
+
+
+    let p = new Promise((resolve, reject) => {
+      let len = 10; // 课程时长
+      let t = 0; // 当前已经过去的时长
+      let timerId = setInterval(() => {
+        console.log('你在上课 --- ' + t + ' / ' + len);
+        t++; // 上课状态变化
+        if(t > len) {
+          clearInterval(timerId) // 清理定时器
+          resolve("上课结束");
+        }
+      }, 1000)
+    });
+
+    p.then(res => {
+      console.log(res, "吃午饭");
+    })
+
+  </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="handleClick">修改</button>
+    <ul>
+      <li v-for="p in persons" :key="p">{{p.name}} --- {{p.age}}</li>
+    </ul>
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        persons: [
+          {id: 1, name: '张三', age: 18},
+          {id: 2, name: '李四', age: 19},
+          {id: 3, name: '王五', age: 20},
+        ]
+      },
+      methods: {
+        handleClick() {
+          this.persons.push({id: 4, name: '赵六', age: 30})
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

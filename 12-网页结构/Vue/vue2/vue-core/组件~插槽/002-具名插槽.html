@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <com-test>
+      <h1 slot="s1">1111</h1>
+      <h1 slot="s2">2222</h1>
+    </com-test>
+
+    <!-- 也可以使用 template -->
+    <com-test>
+      <template slot="s1">
+        <h1>1111</h1>
+      </template>
+      <!--
+        v-slot写法： v-slot:插槽名字
+        如果是默认插槽：v-slot:default （不能不写）
+      -->
+      <template v-slot:s2>
+        <h1>2222</h1>
+      </template>
+    </com-test>
+
+    <!-- v-slot 简写方式 #插槽名字 -->
+    <com-test>
+      <template #s1>
+        <h1>1111</h1>
+      </template>
+      <template #s2>
+        <h1>2222</h1>
+      </template>
+    </com-test>
+  </div>
+
+  <script>
+    Vue.component('com-test', {
+      template: `
+        <div>
+          <hr />
+            <slot name="s1"></slot>
+          <hr />
+            <slot name="s2"></slot>
+          <hr />
+        </div>
+      `
+    });
+
+    let vm = new Vue({
+      el: '#app'
+    });
+  </script>
+</body>
+
+</html>

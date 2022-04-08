@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <div id="app">
+    <div :id="message"></div>
+    <todo-list :list="list">
+      <todo-item v-for="item in list" data-x="1" :title="item.title" :del="item.del"></todo-item>
+    </todo-list>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    // 定义一个组件：Vue.component(组件名, 组件选项)
+    Vue.component('todo-item', {
+      props: {
+        title: String,
+        del: {
+          type: Boolean,
+          default: false
+        }
+      },
+      data: function () {
+        return {}
+      },
+      methods: {},
+      template: `
+        <li>
+          <span v-if="!del">{{title}}</span>
+          <span v-else style="text-decoration: line-through;">{{title}}</span>
+          <button v-show="!del">删除</button>
+        </li>
+      `
+    });
+
+    Vue.component('todo-list', {
+      props: {
+        list: {
+          type: Array,
+          default: []
+        }
+      },
+      template: `
+        <div>
+          <ul><slot></slot></ul>
+        </div>
+      `
+    });
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello World',
+        list: [
+          { title: '课程1', del: false },
+          { title: '课程2', del: true }
+        ]
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .done {
+      color: gray;
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- <h2>{{title}}</h2> -->
+    <input type="text" v-model="title" @keydown.enter="addTodo">
+    <ul>
+      <li v-for="todo in todos">
+        <input type="checkbox" v-model="todo.done">
+        <span :class="{done: todo.done}">{{todo.title}}</span>
+      </li>
+    </ul>
+    <div>
+      全选：<input type="checkbox" v-model="allDone">
+    </div>
+    <div>{{active}} / {{all}}</div>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const App = {
+      data() {
+        return {
+          title: "",
+          allDone: false,
+          todos: [
+            { title: "吃饭", done: false },
+            { title: "睡觉", done: true }
+          ]
+        }
+      },
+      methods: {
+        addTodo() {
+          this.todos.push(this.title);
+          this.title = ''
+        }
+      },
+      computed: {
+        active() {
+          return this.todos.filter(v => !v.done).length
+        },
+        all() {
+          return this.todos.length;
+        },
+        allDone: {
+          get() {
+            return this.active === 0;
+          },
+          set(val) {
+            this.todos.forEach(todo => todo.done = val)
+          }
+        }
+      }
+    };
+
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+
+</html>

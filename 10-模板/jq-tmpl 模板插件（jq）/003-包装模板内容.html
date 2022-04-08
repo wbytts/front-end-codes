@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <!-- <script id='tpl-test' type='text/x-jquery-tmpl'></script> -->
+  <!-- 或者 -->
+  <div id="tpl-test" style="display: none;">
+    <label>${ID}</label>
+    <label>${Name}</ label>
+      <br />
+  </div>
+
+
+  <script>
+    // $("模板id").tmpl(模板数据)
+
+    var users = [{ ID: 'think8848', Name: 'Joseph Chan' }, { ID: 'aCloud', Name: 'Mary Cheung' }];
+    $('#tpl-test').tmpl(users).appendTo('#container');
+  </script>
+</body>
+
+</html>

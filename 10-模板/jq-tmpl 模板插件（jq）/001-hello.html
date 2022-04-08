@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+  <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+</head>
+
+<body>
+
+  <div id="target"></div>
+
+  <script>
+
+    // 根据模板和数据构造HTML的jQuery对象
+    // $.tmpl(模板字符串, 数据对象)
+
+    let $html = $.tmpl("<li>${Name}</li>", { "Name": "John Doe" })
+    console.log($html[0]);
+    $html.appendTo("#target");
+  </script>
+</body>
+
+</html>
