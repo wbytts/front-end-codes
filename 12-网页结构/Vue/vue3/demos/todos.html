@@ -19,16 +19,18 @@
   <div id="app">
     <!-- <h2>{{title}}</h2> -->
     <input type="text" v-model="title" @keydown.enter="addTodo">
-    <ul>
+    <ul v-if="todos.length">
       <li v-for="todo in todos">
         <input type="checkbox" v-model="todo.done">
         <span :class="{done: todo.done}">{{todo.title}}</span>
       </li>
     </ul>
+    <div v-else>暂无数据</div>
     <div>
       全选：<input type="checkbox" v-model="allDone">
     </div>
     <div>{{active}} / {{all}}</div>
+    <button v-if="active<all" @click="clear">清理</button>
   </div>
 
   <script src="https://unpkg.com/vue@next"></script>
@@ -48,6 +50,9 @@
         addTodo() {
           this.todos.push(this.title);
           this.title = ''
+        },
+        clear() {
+          this.todos = this.todos.filter(v => !v.done)
         }
       },
       computed: {

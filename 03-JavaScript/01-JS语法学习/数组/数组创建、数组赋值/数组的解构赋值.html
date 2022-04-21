@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>解构赋值</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>解构赋值</title>
+</head>
 
-  <body>
-    <script>
+<body>
+  <script>
 
-      // let arr = [1, 2, 3, 4, 5];
-      // let [a, b, c, ...x] = arr;
-      // console.log(a, b, c, x);
+    // let arr = [1, 2, 3, 4, 5];
+    // let [a, b, c, ...x] = arr;
+    // console.log(a, b, c, x);
 
-      let a = 3;
-      let b = 4;
+    let a = 3;
+    let b = 4;
 
-      [b, a] = [a, b];
+    [b, a] = [a, b];
 
-      console.log(`a=${a}`);
-      console.log(`b=${b}`);
+    console.log(`a=${a}`);
+    console.log(`b=${b}`);
 
 
-      // // 数组的解构赋值
-      // const arr = [1, 2, 3, 4];
-      // const [a, b, c, d] = arr;
-      // console.log(a, b, c, d);
+    // // 数组的解构赋值
+    // const arr = [1, 2, 3, 4];
+    // const [a, b, c, d] = arr;
+    // console.log(a, b, c, d);
 
-      // // 个数不一样的时候
-      // const [e, f] = [1, 2, 3]; // 只会取到前两个
-      // console.log(e, f); // 1 2
+    // // 个数不一样的时候
+    // const [e, f] = [1, 2, 3]; // 只会取到前两个
+    // console.log(e, f); // 1 2
 
-      // // 多余的数组参数可以使用收集参数组成一个数组（三个点）
-      // const [m, n, ...x] = [1, 2, 3, 4, 5, 6, 7]
-      // console.log(m, n, x);
-    </script>
-  </body>
+    // // 多余的数组参数可以使用收集参数组成一个数组（三个点）
+    // const [m, n, ...x] = [1, 2, 3, 4, 5, 6, 7]
+    // console.log(m, n, x);
+
+
+  </script>
+</body>
 
 </html>

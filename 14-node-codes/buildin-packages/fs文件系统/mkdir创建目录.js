@@ -6,4 +6,8 @@ fs.mkdir('f:/temp/test_mkdir', (err) => {
     return;
   }
   console.log('创建成功');
-})
+});
+
+
+
+

@@ -24,6 +24,7 @@
     var x = 0; // div 在页面中的水平偏移
     var y = 0; // div 在页面中的垂直偏移
 
+    // 当鼠标按下的时候
     div.onmousedown = function(event) {
         div.isPress = true; // 记录鼠标按下
         // 记录开始拖动的位置
@@ -34,6 +35,7 @@
         y = div.offsetTop;
     }
 
+    // 当鼠标移动的时候
     div.onmousemove = function(event) {
         if(div.isPress) { // 如果鼠标在div上滑动的时候，isPress是按下的状态，即为拖动
             // 记录拖动到的位置
@@ -45,6 +47,7 @@
         }
     }
 
+    // 当鼠标抬起的时候
     div.onmouseup = function (event) {
         div.isPress = false;
     };

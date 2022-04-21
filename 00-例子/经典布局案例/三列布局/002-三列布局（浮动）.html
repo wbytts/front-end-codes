@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-    <meta charset="UTF-8">
-    <title>三列布局-浮动</title>
-    <style>
-        /*
+  <meta charset="UTF-8">
+  <title>三列布局-浮动</title>
+  <style>
+    /*
             1. 两边固定，中间自适应
             2. 中间列要完整显示
         */
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            min-width: 600px;
-        }
-        div {
-            height: 100px;
-        }
-        #left, #right {
-            width: 200px;
-            background-color: pink;
-        }
-        #middle {
-            background-color: deeppink;
-        }
-        #left {
-            float: left;
-        }
-        #right {
-            float: right;
-        }
-    </style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-width: 600px;
+    }
+
+    div {
+      height: 100px;
+    }
+
+    #left,
+    #right {
+      width: 200px;
+      background-color: pink;
+    }
+
+    #middle {
+      background-color: deeppink;
+    }
+
+    #left {
+      float: left;
+    }
+
+    #right {
+      float: right;
+    }
+  </style>
 </head>
+
 <body>
-    <div id="left">left</div>
-    <div id="right">right</div>
-    <!--把middle放到最下面-->
-    <div id="middle">middle</div>
+  <div id="left">left</div>
+  <div id="right">right</div>
+  <!--把middle放到最下面-->
+  <div id="middle">middle</div>
 </body>
+
 </html>
+
+
+

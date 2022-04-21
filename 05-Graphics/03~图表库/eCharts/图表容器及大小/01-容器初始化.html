@@ -2,53 +2,53 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<!--    <script src="../echarts-520-all.min.js"></script>-->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.0/dist/echarts.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!--    <script src="../echarts-520-all.min.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.0/dist/echarts.js"></script>
 </head>
 
 <body>
-<div id="main" style="width: 600px;height:400px;"></div>
+  <div id="main" style="width: 600px;height:400px;"></div>
 
-<script>
+  <script>
     // 通常来说，需要在 HTML 中先定义一个 <div> 节点，并且通过 CSS 使得该节点具有宽度和高度。
     // 初始化的时候，传入该节点，图表的大小默认即为该节点的大小，除非声明了 opts.width 或 opts.height 将其覆盖。
     // 需要注意的是，使用这种方法在调用 echarts.init 时需保证容器已经有宽度和高度了。
     var myChart = echarts.init(document.getElementById('main'));
     // 指定图表的配置项和数据
     var option = {
-        title: { // 指定图表的标题
-            text: 'ECharts 入门示例', // 指定图表标题的文字
-        },
-        tooltip: { //提示信息
+      title: { // 指定图表的标题
+        text: 'ECharts 入门示例', // 指定图表标题的文字
+      },
+      tooltip: { //提示信息
 
-        },
-        legend: {
-            data: ['销量'],
-        },
-        xAxis: { // x轴
-            data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
-        },
-        yAxis: { // y轴
+      },
+      legend: {
+        data: ['销量'],
+      },
+      xAxis: { // x轴
+        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
+      },
+      yAxis: { // y轴
 
-        },
-        series: [{
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20],
-        }, {
-            name: '销量',
-            type: 'bar',
-            data: [6, 18, 32, 8, 8, 16],
-        }],
+      },
+      series: [{
+        name: '销量',
+        type: 'bar',
+        data: [5, 20, 36, 10, 10, 20],
+      }, {
+        name: '销量',
+        type: 'bar',
+        data: [6, 18, 32, 8, 8, 16],
+      }],
     };
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
-</script>
+  </script>
 </body>
 
 </html>

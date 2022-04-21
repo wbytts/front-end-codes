@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
 
-    <style>
-        #main {
-            border: 1px solid red;
-        }
-    </style>
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+
+  <style>
+    #main {
+      border: 1px solid red;
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="main"></div>
+  <div id="main"></div>
 
-<script type="text/javascript">
+  <script type="text/javascript">
     // 如果图表容器不存在宽度和高度，或者，你希望图表宽度和高度不等于容器大小，也可以在初始化的时候指定大小
     var myChart = echarts.init(document.getElementById('main'), null, {
-        width: 600,
-        height: 400
+      width: 600,
+      height: 400
     });
-</script>
+  </script>
 
 </body>
+
 </html>
