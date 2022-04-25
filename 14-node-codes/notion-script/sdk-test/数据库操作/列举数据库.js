@@ -1,7 +1,11 @@
-const { get_qq_notion_client } = require('../utils/notion-utils.js');
-const dbs = require('../../qq-notion-database-map.js');
+const { Client, LogLevel } = require('@notionhq/client');
 
-const notion = get_qq_notion_client();
+const notion = new Client({
+  auth: 'secret_73m9zLMIECUxfIBQxriXRUuDVIiQ7EdxxwqPulOdDmr',
+  logLevel: LogLevel.DEBUG,
+  timeoutMs: 6000,
+});
+
 
 (async () => {
   const response = await notion.databases.list();

@@ -1,4 +1,4 @@
-const { Client, LogLevel } = require('@notionhq/client');
+﻿const { Client, LogLevel } = require('@notionhq/client');
 
 const notion = new Client({
   auth: 'secret_73m9zLMIECUxfIBQxriXRUuDVIiQ7EdxxwqPulOdDmr',

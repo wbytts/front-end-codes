@@ -40,6 +40,7 @@ function bind(fn, obj, ...args) {
   函数节流：throttle
   在函数需要频繁触发时，函数执行一次后，只有大于设定的执行周期后才会执行第二次
   适合多次事件按时间做平均分配触发
+  新函数 = throttle(原本的函数)
 */
 function throttle(callback, wait) {
     // 定义一个开始时间

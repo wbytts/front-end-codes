@@ -1,15 +1,19 @@
-const { get_qq_notion_client } = require('../utils/notion-utils.js');
-const dbs = require('../../qq-notion-database-map.js');
+const { Client, LogLevel } = require('@notionhq/client');
 
-const notion = get_qq_notion_client();
+const notion = new Client({
+  auth: 'secret_73m9zLMIECUxfIBQxriXRUuDVIiQ7EdxxwqPulOdDmr',
+  logLevel: LogLevel.DEBUG,
+  timeoutMs: 6000,
+});
 
 (async () => {
+  const databaseId = '644d782bf49a47f28379ece1af463c47'
   const response = await notion.databases.query({
-    database_id: dbs['test-database'],
+    database_id: databaseId,
     // start_cursor: '', // 默认是undefined。从上一个响应返回的游标，用于请求下一页的结果。将其视为一个不透明的值。
     page_size: 5, // 分页参数，默认100，最大100
   });
-  console.log(response.results.map(r => r));
+  console.log(response);
 })();
 
 /*
