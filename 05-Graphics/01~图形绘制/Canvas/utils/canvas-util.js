@@ -119,5 +119,5 @@
 
 
   // 将工具对象挂载到全局作用域
-  window.CanvasUtil = CanvasUtil;
+  window.$canvasUtil = CanvasUtil;
 })(window);

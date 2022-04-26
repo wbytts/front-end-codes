@@ -12,3 +12,6 @@ const isOdd = R.complement(isEven);
 
 let res = R.find(isOdd, [4, 3, 2, 1]);
 console.log(res);
+
+
+
