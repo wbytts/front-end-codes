@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>tfjs</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.0/dist/echarts.js"></script>
+</head>
+
+<body>
+  <div id="app" @mouseup="onMouseup">
+
+    <!-- <h3>train_x / test_x:</h3> -->
+    <canvas ref="draw" width="200px" height="200px" style="border-style: dashed;" @mousedown="onMousedown" @mousemove="onMousemove">
+    </canvas><br>
+    <button @click="clearCanvas">清空</button><br><br>
+    <canvas width="28px" height="28px" style="border-style: solid;border-color: red; background-color: black;" ref="preview">
+    </canvas><br><br>
+
+    <!-- <h3>train_y: </h3> -->
+    <input type="text" v-model="targetNum">
+    <button @click="training">训练</button>
+
+    <h3>识别</h3>
+    <button @click="onRegNum">预测</button>
+    <!-- <p>{{reg}}</p> -->
+    <div id="regGraph" style="width: 600px;height:400px;"></div>
+
+  </div>
+
+  <script>
+    window.onload = () => {
+      new Vue({
+        el: '#app',
+        data: {
+          reg: 'xxx',
+          drawing: false,
+          draw: null,
+          preview: null,
+          model: null,
+          targetNum: 0,
+          chart: null,
+          chartOption: {
+            xAxis: {
+              data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+            },
+            yAxis: {},
+            series: [
+              {
+                type: 'bar',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+              },
+            ]
+          }
+        },
+        async mounted() {
+          // 初始化柱状图
+          this.chart = echarts.init(document.getElementById('regGraph'));
+
+          // 加载模型
+          const model = null;
+          try {
+            model = await tf.loadLayersModel('localstorage://test-model-1');
+          } catch (e) {
+
+          }
+          let c2d = this.draw = this.$refs.draw.getContext('2d')
+          this.preview = this.$refs.preview.getContext('2d')
+          c2d.lineWidth = 20
+          c2d.lineCap = 'round'
+          c2d.lineJoin = 'round'
+
+          this.model = tf.sequential({
+            layers: [
+              tf.layers.inputLayer({
+                inputShape: [784]
+              }),
+              tf.layers.dense({ units: 10 }),  //输出空间,10个数字
+              tf.layers.softmax()    //输出空间所有值之和为1
+            ]
+          })
+          this.model.compile({
+            optimizer: 'sgd',    //优化器
+            loss: 'categoricalCrossentropy', //损失函数
+            metrics: ['accuracy']  //logs里的acc
+          });
+
+          if (model) this.model = model;
+
+        },
+        methods: {
+          // 获取图像数据
+          getImageData() {
+            let image = this.preview.getImageData(0, 0, 28, 28)
+            let data = image.data
+            let pixelData = []
+            let color
+            for (let i = 0;i < data.length;i += 4) {
+              color = (data[i] + data[i + 1] + data[i + 2]) / 3
+              //空白的地方保持为0,有颜色的地方才有值,特征才明显,训练出来的效果更好,转成只有0和1,效果最好
+              pixelData.push(Math.round((255 - color) / 255))
+            }
+            //长度转成784,单通道图片
+            return pixelData
+          },
+          onMousedown(e) {
+            this.drawing = true
+            this.draw.beginPath()
+            this.draw.moveTo(e.offsetX, e.offsetY)
+          },
+          onMousemove(e) {
+            if (this.drawing) {
+              this.draw.lineTo(e.offsetX, e.offsetY)
+              this.draw.stroke()
+            }
+          },
+          onMouseup(e) {
+            this.drawing = false
+            //this.preview.clearRect(0,0,28,28)
+            this.preview.fillStyle = 'white'  //实际是透明的,必须填充白色
+            this.preview.fillRect(0, 0, 28, 28)
+            this.preview.drawImage(this.$refs.draw, 0, 0, 28, 28);
+          },
+          clearCanvas() {
+            this.draw.clearRect(0, 0, 200, 200)
+          },
+          // 开始训练
+          async training() {
+            let data = this.getImageData()
+            //tf.tensor(data).print()
+            //[1,0,0,0,0,0,0,0,0,0]  代表1
+            //[0,1,0,0,0,0,0,0,0,0]  代表2...
+            //生成上面的一阶张量
+            let targetTensor = tf.oneHot(parseInt(this.targetNum), 10)
+            console.log('开始训练新数据')
+            await this.model.fit(tf.tensor([data]), tf.tensor([targetTensor.arraySync()]), {
+              epochs: 80, //训练次数
+              callbacks: { //每次的回调
+                onEpochEnd(epoch, logs) {
+                  console.log(epoch, logs)
+                }
+              }
+            });
+            console.log('训练结束');
+            console.log(this.model);
+            // 保存模型
+            await this.model.save('localstorage://test-model-1');
+            // this.clearCanvas();
+          },
+          async onRegNum() {
+            let data = this.getImageData()
+            let predictions = this.model.predict(tf.tensor([data])) //结果也是tensor
+            // console.log('predictions', predictions.arraySync()[0]);
+            // predictions.print();
+            //获取tensor第一层里的最大值的index,正好就是数字本身
+            // let result = predictions.argMax(1).arraySync()
+            this.reg = predictions.arraySync()[0]
+            this.chartOption.series[0].data = this.reg;
+            this.chart.setOption(this.chartOption);
+            // this.clearCanvas();
+          }
+        }
+
+      })
+    }
+  </script>
+</body>
+
+</html>

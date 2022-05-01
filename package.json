@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "ts:build": "tsc",
     "ts:start": "tsc -w",
     "re:build": "rescript",
@@ -66,6 +67,7 @@
   },
   "devDependencies": {
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.0.2",
     "rescript": "*",
     "typescript": "^4.5.4",
     "typescript-loader": "^1.1.3",

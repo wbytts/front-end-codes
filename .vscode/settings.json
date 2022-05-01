@@ -8,5 +8,6 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/*.map": true
-  }
+  },
+  "liveServer.settings.port": 5501
 }
