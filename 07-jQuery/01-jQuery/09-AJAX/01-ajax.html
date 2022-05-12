@@ -1,20 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-</head>
-<body>
 
-<script>
-    $.ajax({
-        url: 'http://127.0.0.1:3000/hello',
-        method: 'GET',
-        success: function(res) {
-            console.log(res);
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+
+<body>
+  <input type="text" id="user-name">
+  <input type="text" id="user-age">
+  <button id="btn-add">添加</button>
+  <button id="btn-search">查询</button>
+
+  <table id="user-table">
+  </table>
+
+  <script>
+    let baseUrl = 'http://127.0.0.1:33300'
+
+    $(function () {
+      $('#btn-add').click(addUser);
+      $('#btn-search').click(queryUserList);
+      $('#user-table').on('click', '.btn-user-delete', function() {
+        deleteUser($(this).data('id'));
+      });
+
+      queryUserList();
+    });
+
+    function queryUserList() {
+      $get(baseUrl + '/user', renderUserTable);
+    }
+
+    function deleteUser(userId) {
+      $.ajax({
+        url: baseUrl + '/user/' + userId,
+        type: 'DELETE',
+        success: function() {
+          queryUserList();
         }
-    })
-</script>
+      })
+    }
+
+    function renderUserTable(users) {
+      let tableHtml = "<tr>";
+      tableHtml += "<th>ID</th>";
+      tableHtml += "<th>用户名</th>";
+      tableHtml += "<th>年龄</th>";
+      tableHtml += "<th>操作</th>";
+      tableHtml += "</tr>";
+      $.each(users, function (i, obj) {
+        tableHtml += "<tr>";
+        tableHtml += "<td>" + obj.id + "</td>";
+        tableHtml += "<td>" + obj.name + "</td>";
+        tableHtml += "<td>" + obj.age + "</td>";
+        tableHtml += "<td>"
+          + '<button class="btn-user-edit">编辑</button>'
+          + '<button class="btn-user-delete" data-id="' + obj.id + '">删除</button>'
+          + "</td>";
+        tableHtml += "</tr>";
+      });
+      $('#user-table').html(tableHtml);
+    }
+
+    function addUser() {
+      let user = {
+        name: $('#user-name').val(),
+        age: $('#user-age').val()
+      };
+      $.ajax({
+        url: baseUrl + '/user',
+        type: 'POST',
+        data: user,
+        success: function (res) {
+          queryUserList();
+        }
+      });
+      $('#user-name').val('');
+      $('#user-age').val('');
+    }
+
+    function $get(url, callback) {
+      $.ajax({
+        url: url,
+        type: 'GET',
+        success: callback
+      });
+    }
+
+  </script>
 </body>
+
 </html>

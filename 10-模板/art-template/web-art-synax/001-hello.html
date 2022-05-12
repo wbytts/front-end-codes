@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/art-template/lib/template-web.js"></script>
+</head>
+
+<body>
+  <div id="content"></div>
+
+  <!-- 以下是模板 -->
+  <script id="tpl-test" type="text/html">
+    {{if isAdmin}}
+    <h3>{{title}}</h3>
+    <ul>
+        {{each list value i}}
+            <li>索引 {{i + 1}} ：{{value}}</li>
+        {{/each}}
+    </ul>
+    {{/if}}
+
+    {{$data}}
+  </script>
+
+  <script>
+    // 定义模板所要用的数据
+    var data = {
+      title: '基本例子',
+      isAdmin: true,
+      list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+    };
+    // 将数据渲染到模板中
+    // 因为浏览器不支持文件系统，所以 template(filename, data) 不支持传入文件路径，它内部使用 document.getElementById(filename).innerHTML 来获取模板
+    var html = template('tpl-test', data);
+    // 将模板渲染后的结果插入到页面元素中
+    document.getElementById('content').innerHTML = html;
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://www.jq22.com/jquery/jquery-1.7.1.js"></script>
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+
+<button id="btn">按钮</button>
+
+<script>
+  $(function () {
+    // 这个方法在 jq1.7版本被废弃，在 jq1.9版本被移除
+    $('#box').live('click', function () {
+      console.log('box')
+    });
+    $('#btn').click(function() {
+      $(document.body).append($('<div id="box"></div>'));
+    })
+  })
+</script>
+</body>
+</html>

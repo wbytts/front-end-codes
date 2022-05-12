@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+</head>
+<body>
+
+  <span data-bind="text: msg"></span>
+
+  <script>
+    window.onload = function() {
+      var vm = {
+        msg: 'Hello World'
+      };
+
+      // 激活 Knockout - 绑定应用
+      ko.applyBindings(vm);
+    }
+  </script>
+</body>
+</html>

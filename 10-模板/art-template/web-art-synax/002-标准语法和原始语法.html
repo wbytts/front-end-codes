@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/art-template/lib/template-web.js"></script>
+</head>
+
+<body>
+
+  <div id="content"></div>
+
+  <script id="tpl-1" type="text/html">
+    {{value}}
+    {{data.key}}
+    {{data['key']}}
+    {{a ? b : c}}
+    {{a || b}}
+    {{a + b}}
+  </script>
+
+  <script id="tpl-2" type="text/html">
+    <%= value %>
+    <%= data.key %>
+    <%= data['key'] %>
+    <%= a ? b : c %>
+    <%= a || b %>
+    <%= a + b %>
+  </script>
+
+  <script>
+    var data = {
+      data: {
+        key: 999,
+      },
+      a: 3,
+      b: 4,
+      c: 5
+    };
+    var html = template('tpl-2', data);
+    document.getElementById('content').innerHTML = html;
+  </script>
+
+</body>
+
+</html>

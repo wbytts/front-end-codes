@@ -10,3 +10,6 @@ console.log(result1.toString('utf8'))
 // 读取文件的时候同时指定编码
 var result2 = fs.readFileSync('E:\\temp\\test.txt', 'utf8');
 console.log(result2);
+
+
+

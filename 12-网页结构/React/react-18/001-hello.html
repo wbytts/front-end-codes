@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/react@18.1.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="text/babel">
+    let app真实DOM = document.getElementById('app');
+    ReactDOM.render(<App />, app真实DOM);
+
+    function App() {
+      return <div>123</div>
+    }
+
+  </script>
+</body>
+
+</html>

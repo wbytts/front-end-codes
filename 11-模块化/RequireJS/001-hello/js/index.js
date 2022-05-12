@@ -1,4 +1,4 @@
-﻿console.log("RequireJS加载成功！");
+﻿console.log('RequireJS加载成功！');
 
 /*
 require.js采用 AMD模块规范
@@ -6,6 +6,8 @@ require.js采用 AMD模块规范
 require(['moduleA', 'moduleB', 'moduleC'], function (moduleA, moduleB, moduleC){});
 第一个参数是一个数组，表示所依赖的模块
 第二个参数是一个回调函数，当前面指定的模块都加载成功后，它将被调用
+
+requirejs 是 require的别名
 
 加载的模块会以参数形式传入该函数，从而在回调函数内部就可以使用这些模块
 require()异步加载，浏览器不会丢失响应，指定的回调函数只有前面的模块都加载成功后才会运行，解决了依赖性的问题
@@ -16,24 +18,30 @@ require()异步加载，浏览器不会丢失响应，指定的回调函数只�
 
 require.config({
   // baseUrl: "/",
-  paths: { // 指定各个模块的加载路径
+  paths: {
+    // 指定各个模块的加载路径
     // 注意：这里要省掉 js 文件的后缀名
-    "jquery": ["https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery"]
+    jquery: ['https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery'],
+    lodash: ['https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash'],
+    ramda: ['https://cdn.bootcdn.net/ajax/libs/ramda/0.28.0/ramda'],
+    axios: ['https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios'],
+    backbone: ['https://cdn.bootcdn.net/ajax/libs/backbone.js/1.4.1/backbone'],
   },
-  shim: { // 用来配置不兼容的模块
-    'backbone': {
+  shim: {
+    // 用来配置不兼容的模块
+    backbone: {
       deps: ['underscore', 'jquery'],
-      exports: 'Backbone'
+      exports: 'Backbone',
     },
-    "underscore": {
-      exports: "_"
+    underscore: {
+      exports: '_',
     },
-    "jquery.form": {
-      deps: ["jquery"]
-    }
-  }
+    'jquery.form': {
+      deps: ['jquery'],
+    },
+  },
 });
 
-require(['jquery'], function ($) {
-  console.log($);
+require(['jquery', 'lodash'], function ($, _) {
+  console.log(_);
 });

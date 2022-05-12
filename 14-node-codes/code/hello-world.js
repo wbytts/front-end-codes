@@ -1,5 +1,2 @@
-console.log("Hello World");
-
-console.log('Hello World');
-
-var d = new Date();
+console.log(a);
+var a = 3;

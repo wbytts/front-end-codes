@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<!--
+  注册过滤器： 过滤器函数第一个参数接受目标值
+    template.defaults.imports.dateFormat = function(date, format){/*[code..]*/};
+    template.defaults.imports.timestamp = function(value){return value * 1000};
+
+  {{date | timestamp | dateFormat 'yyyy-MM-dd hh:mm:ss'}}
+  {{value | filter}} 过滤器语法类似管道操作符，它的上一个输出作为下一个输入。
+
+  <%= $imports.dateFormat($imports.timestamp(date), 'yyyy-MM-dd hh:mm:ss') %>
+ -->
+</body>
+</html>

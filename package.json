@@ -22,6 +22,7 @@
     "by-utils": "0.0.1",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.10",
+    "commander": "^9.2.0",
     "cookie": "^0.4.1",
     "cowsay": "^1.5.0",
     "crypto-js": "^4.1.1",
