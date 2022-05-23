@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/react@18.1.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+
+  <style>
+    .btn {
+      color: red;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let vDOM = React.createElement('button', {
+      type: 'button',
+      className: 'btn',
+    }, '点我')
+
+    // 可以理解为，将原来的 ReactDOM.render 拆分成两个了
+    // 根元素中所有的内容都会被删除，被React的内容所替换
+    let root = ReactDOM.createRoot(document.getElementById('app'));
+
+    /*
+      当首次调用时，容器节点里的所有 DOM 元素都会被替换，
+      后续的调用则会使用 React 的 DOM 差分算法（DOM diffing algorithm）进行高效的更新。
+
+      不会修改容器节点（只会修改容器的子节点）。
+      可以在不覆盖现有子节点的情况下，将组件插入已有的 DOM 节点中
+    */
+    root.render(vDOM);
+  </script>
+</body>
+
+</html>

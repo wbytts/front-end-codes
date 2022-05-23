@@ -136,9 +136,6 @@
           // 开始训练
           async training() {
             let data = this.getImageData()
-            //tf.tensor(data).print()
-            //[1,0,0,0,0,0,0,0,0,0]  代表1
-            //[0,1,0,0,0,0,0,0,0,0]  代表2...
             //生成上面的一阶张量
             let targetTensor = tf.oneHot(parseInt(this.targetNum), 10)
             console.log('开始训练新数据')
@@ -157,11 +154,7 @@
             // this.clearCanvas();
             this.modelSummery = this.model.summary();
 
-            const headers = [
-              'Col 1',
-              'Col 2',
-              'Col 3',
-            ];
+            const headers = ['Col 1','Col 2','Col 3'];
 
             const values = [
               [1, 2, 3],
@@ -175,14 +168,10 @@
           async onRegNum() {
             let data = this.getImageData()
             let predictions = this.model.predict(tf.tensor([data])) //结果也是tensor
-            // console.log('predictions', predictions.arraySync()[0]);
-            // predictions.print();
             //获取tensor第一层里的最大值的index,正好就是数字本身
-            // let result = predictions.argMax(1).arraySync()
             this.reg = predictions.arraySync()[0]
             this.chartOption.series[0].data = this.reg;
             this.chart.setOption(this.chartOption);
-            // this.clearCanvas();
           }
         }
 

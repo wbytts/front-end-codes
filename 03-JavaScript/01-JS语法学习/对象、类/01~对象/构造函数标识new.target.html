@@ -12,7 +12,11 @@
 
 <script>
   function Person() {
-    console.log(new.target);
+    if(new.target) {
+      console.log('我被当做构造函数调用了！');
+    } else {
+      console.log('正常调用......');
+    }
   }
 
   Person();

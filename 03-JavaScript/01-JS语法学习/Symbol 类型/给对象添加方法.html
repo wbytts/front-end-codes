@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>给对象添加方法</title>
 </head>
+
 <body>
-<script>
-  let xxx = {}; // 一个对象，不知道具体内部结构
+  <script>
+    let xxx = {
+      show() {
+        console.log('对象内部的show方法');
+      }
+    };
 
-  // 要添加 a 和 b 方法
+    let show = Symbol();
 
-  let methods = {
-    a: Symbol(),
-    b: Symbol()
-  };
+    // 不会覆盖对象内部的 show
+    xxx[show] = function () {
+      console.log('通过Symbol添加的show方法');
+    };
 
-  xxx[methods.a] = function(){};
-  xxx[methods.b] = function(){};
+    xxx.show();
+    xxx['show']();
+    xxx[show]();
 
-</script>
+  </script>
 </body>
+
 </html>

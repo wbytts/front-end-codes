@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
 </head>
+
 <body>
 
-    <script>
-        class Person {
-            constructor(name, age) {
-                this.name = name
-                this.age = age
-            }
-            speak() {
-                console.log(`我叫 ${this.name}, 我 ${this.age} 岁了`)
-            }
-        }
+  <script>
+    class Person {
+      constructor(name, age) {
+        this.name = name
+        this.age = age
+      }
+      speak() {
+        console.log(`我叫 ${this.name}, 我 ${this.age} 岁了`)
+      }
+    }
 
-        // 创建一个 Student，继承 Person
-        class Student extends Person {
-            // 如果子类不写构造器，则默认把父类的构造器拿过来用了
-            constructor(name, age, grade) {
-                super(name, age) // 如果子类中定义了自己的构造器，则super是必须写的
-                this.grade = grade
-            }
-        }
+    // 创建一个 Student，继承 Person
+    // 通过继承，可以拥有所继承的类的属性和方法
+    class Student extends Person {
+      // 如果子类不写构造器，则默认把父类的构造器拿过来用
+      constructor(name, age, grade) {
+        // 如果子类中定义了自己的构造器并且想要操作this，则super是必须写的
+        // super调用实际，constructor中操作this之前
+        super(name, age)
+        this.grade = grade
+        console.table({name, age})
+      }
+    }
 
-        const s = new Student('zhangsan', 18)
-    </script>
+    const s = new Student('张三', 18)
+  </script>
 </body>
+
 </html>

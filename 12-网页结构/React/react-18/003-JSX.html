@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    function handleClick() {
+      console.log('我被点了');
+    }
+
+    // JSX：JavaScript Syntax Extension
+    // JSX语法可以理解为，直接在JS中写HTML
+    // 我们所编写的JSX代码，最终都会转换为以调用React.createElement()创建元素的代码
+
+    // JSX中使用一个大括号，可以进行表达式的嵌入
+    // html标签小写开头，React组件大写开头
+    // 标签必须正常闭合
+    // 布尔类型、Null 以及 Undefined 将会忽略
+    // 如果值是一个数组，则会自动拆分
+    // JSX中有且只有一个根标签
+    let vDOM = <div>
+      {/*在JSX中，class之前是JS关键字，可以用 className 替代*/}
+      {/*有时候写class好像也没问题*/}
+      <button className="btn" onClick={handleClick}>点我</button>
+      {/*style不能再直接写样式字符串， 需要使用对象来设置*/}
+      <div style={{ width: '200px', height: '200px', border: '1px solid red' }}></div>
+    </div>
+
+
+    let root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(vDOM);
+  </script>
+</body>
+
+</html>

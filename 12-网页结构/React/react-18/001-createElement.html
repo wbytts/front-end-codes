@@ -10,18 +10,35 @@
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+
+  <style>
+    .btn {
+      color: red;
+      font-size: 18px;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app"></div>
 
   <script type="text/babel">
-    let app真实DOM = document.getElementById('app');
-    ReactDOM.render(<App />, app真实DOM);
 
-    function App() {
-      return <div>123</div>
-    }
+    let 真实DOM = document.getElementById('app');
+
+    // 虚拟DOM一旦创建即不能修改，只能通过重新创建进行替换
+    let 虚拟DOM = React.createElement('button', {
+      type: 'button',
+      className: 'btn',
+      onClick: function () {
+        console.log('我被点击了');
+      }
+    }, '点我');
+
+    // 当我们调用render去渲染页面
+    // 会自动比较两次渲染的内容
+    // 只在真实DOM中，更新发生变化的部分，没发生变化的部分保持不变
+    ReactDOM.render(虚拟DOM, 真实DOM);
 
   </script>
 </body>

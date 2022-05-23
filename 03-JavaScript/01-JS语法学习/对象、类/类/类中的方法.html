@@ -12,12 +12,15 @@
                 this.name = name
                 this.age = age
             }
-            // 类的方法（实际上放到了类的原型对象上，供实例使用）
+
+            // 类的方法（相当于放到了类的原型对象上，供实例使用）
             speak() {
-                // 类中定义的方法，默认开启了局部的严格模式
+                // 类中定义的方法，默认开启了局部的严格模式！
                 console.log(`我叫 ${this.name}, 我 ${this.age} 岁了`)
             }
         }
+
+
 
         const p = new Person('Tom', 18)
         p.speak()

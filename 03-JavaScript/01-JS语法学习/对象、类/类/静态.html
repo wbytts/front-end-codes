@@ -11,6 +11,24 @@
 -->
 <script>
 
+class Person {
+  // 在类中，加上了 static的属性，会被当做静态属性
+  static type = '人类';
+
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  // 静态方法中，this不能访问，因为此时方法不属于单独的一个对象
+  static fun = () => {
+
+  }
+}
+
+let p = new Person('张三', 18);
+console.log(p);
+
 </script>
 </body>
 </html>

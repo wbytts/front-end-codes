@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8">
   <title>构造函数</title>
 </head>
+
 <body>
-<!--
+  <!--
   使用 constructor 构造函数传递参数，下例中show为构造函数方法，getName为原型方法
 
   constructor 会在 new 时自动执行
@@ -14,22 +16,23 @@
     至于 super 的概念会在后面讲到
 
   原理分析：
-    类其实是函数
+    类其实是函数（可以看做）
     constructor 用于定义函数代码，与普通函数的对比，结构是一致的
     在类中定义的方法也保存在函数原型中
 
   在 class 中定义的属性为每个new 出的对象独立创建，下面定义了 site 与 name 两个对象属性
 -->
-<script>
+  <script>
     class Person {
-        constructor(name, age) {
-            this.name = name
-            this.age = age
-        }
+      constructor(name, age) {
+        this.name = name
+        this.age = age
+      }
     }
 
     const p = new Person('Tom', 18);
     console.log(p)
-</script>
+  </script>
 </body>
+
 </html>

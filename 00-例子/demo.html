@@ -6,62 +6,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-<<<<<<< HEAD
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
   <style>
-    .box {
-      width: 200px;
-      height: 200px;
-      border: 1px solid #ccc;
-=======
-  <style>
-    .content {
-      display: flex;
-    }
-
-    .left {
-      height: 100px;
-      width: 200px;
-      background-color: red;
-    }
-
-    .middle {
-      height: 100px;
-      width: 100%;
-      background-color: yellow;
-    }
-
-    .right {
-      height: 100px;
-      width: 200px;
-      background-color: green;
->>>>>>> cb72fdc45ee27389f2a0dfe1b464c7e2cd466085
-    }
   </style>
 </head>
 
 <body>
 
-<<<<<<< HEAD
-  <div class="box"></div>
-
   <script>
+    var val = 0;
+    Object.defineProperty(window, 'a', {
+      get: function () {
+        return ++val;
+      }
+    });
+    console.log(a == 1 && a == 2 && a == 3)
 
   </script>
-=======
-  <div class="content">
-    <div class="left"></div>
-    <div class="middle"></div>
-    <div class="right"></div>
-  </div>
-
->>>>>>> cb72fdc45ee27389f2a0dfe1b464c7e2cd466085
 
 </body>
 
 </html>
-
-
-
-
-

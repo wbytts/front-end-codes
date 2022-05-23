@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    let { useState, useEffect } = React;
+
+    /*
+      我们操作的元素并不是真正的DOM元素，而是被称为React虚拟DOM
+      React通过虚拟DOM将React元素与真实DOM进行映射
+      虽然操作的是虚拟DOM，但是操作的最终变化会在真实DOM中体现
+
+      1. 降低API复杂度
+      2. 解决兼容性问题
+      3. 提升性能，减少不必要的DOM操作
+
+      每当使用root.render时，页面就会发生重新渲染
+      React会通过diff算法，将新的元素和旧的元素进行比较
+      通过比较找到发生变化的元素，并且只对发生变化的元素进行修改
+
+      比较两次元素时，React会先比较父元素，如果父元素类型不同，则直接替换父元素及其所有子元素
+      如果父元素一直，再去比较子元素，直到找到所有发生变化的元素为止
+
+      当我们遍历数组的时候，相关的节点都需要加一个 key 属性（虽然不加也可以运行）
+      key的用处在于，React进行比较的时候，用来确认对应元素的身份
+      如果列表的顺序不会发生变化，则不加key没有任何问题
+      如果列表的顺序会发生变化，则可能会导致数据的错乱，或者性能的消耗
+
+      一般会采用数据的id作为key
+      尽量不要使用顺序索引作为key（如果是顺序不会改变则可以）
+
+    */
+
+    const data = ['AAA', 'BBB', 'CCC'];
+
+    function App() {
+      return (
+        <div>
+          <ul>{data.map(item => <li key={item}>{item}</li>)}</ul>
+        </div>
+      )
+    }
+
+    let root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+
+</html>
