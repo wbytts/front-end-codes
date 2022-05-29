@@ -27,10 +27,12 @@
     "cowsay": "^1.5.0",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.10.7",
+    "docdash": "^1.2.0",
     "dotenv": "^9.0.2",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "form-data": "^4.0.0",
+    "fs-extra": "^10.1.0",
     "graphql": "^15.5.3",
     "inquirer": "^7.3.3",
     "jose": "^4.4.0",
@@ -67,8 +69,10 @@
     "timer.js": "^1.0.4"
   },
   "devDependencies": {
+    "better-docs": "^2.7.2",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.0.2",
+    "jsdoc": "^3.6.10",
     "rescript": "*",
     "typescript": "^4.5.4",
     "typescript-loader": "^1.1.3",

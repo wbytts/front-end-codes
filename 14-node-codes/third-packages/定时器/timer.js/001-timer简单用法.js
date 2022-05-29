@@ -19,4 +19,5 @@ var myTimer = new Timer({
   },
 });
 
+// 启动一个倒计时
 myTimer.start(10);
