@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="../../d3.js"></script>
+<script>
+var width = 960,
+    height = 960;
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+    
+var color=d3.scale.category20c();
+var projection = d3.geo.mercator()
+						.center([120, 35])
+						.scale(540);
+var path = d3.geo.path()
+				.projection(projection);
+
+d3.json("china.json", function(error, china) {
+	svg.selectAll("path")
+		.data( china.features )
+		.enter()
+		.append("path")
+		.attr("d",path)
+		.attr("fill",function(d,i){ return color(i);})
+		.attr("stroke","black")
+		.attr("stroke-width",1);
+});
+
+//添加南海诸岛示意图
+//此图截自Echarts：http://echarts.baidu.com/doc/example/map9.html
+svg.append("svg:image")
+	.attr("xlink:href","southchinasea.png")
+	.attr({
+		x:550,
+		y:350,
+		"width":50,
+		"height":70
+	});
+</script>
