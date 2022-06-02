@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/libs/d3js/d3-v3.min.js"></script>
+</head>
+<body>
+  <div class="box">你好</div>
+  <div class="box">你好</div>
+  <div class="box">你好</div>
+  <div class="box">你好</div>
+  <div class="box">你好</div>
+
+  <script>
+    /*
+      selection.attr(name[, value])
+      如果指定了value参数，将为所有选中的元素通过指定的name为指定的value设置属性。
+      如果value是一个常数，那么所有的元素都将设置为相同的属性值；
+      如果value是一个函数，那么这个函数会为每个选中的元素（按顺序）计算。
+          入参是当前数据元素d和当前索引i，以及代表当前DOM元素的this上下文 （注意是数据元素，不是元素）
+          这个函数的返回值接下来用来设置每个元素的属性。
+          null值将移除指定的属性。
+      如果value参数没有指定，就会返回为选择中第一个非空（null）元素所指定的属性值。一般来说，只有当你知道选择中恰好包含一个元素时才有用。
+    */
+
+    d3.selectAll('.box').attr('style', function (d, index) {
+      console.log(d, index, `color: rgb(${index*1}, ${index*10}, ${index*20});`)
+      return `color: rgb(${index*1}, ${index*10}, ${index*50});`
+    });
+
+  </script>
+</body>
+</html>

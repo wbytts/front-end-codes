@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g2/4.1.49/dist/g2.min.js"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script>
+    /*
+      坐标轴文本的内容同样也受 scale 度量的控制，G2 默认会生成所有的 label 内容，我们可以通过 chart.scale()  接口改变对应坐标轴 label 的显示
+    */
+
+    const data = [
+      { year: '1951 年', sales: 38 },
+      { year: '1952 年', sales: 52 },
+      { year: '1956 年', sales: 61 },
+      { year: '1957 年', sales: 145 },
+      { year: '1958 年', sales: 48 },
+      { year: '1959 年', sales: 38 },
+      { year: '1960 年', sales: 38 },
+      { year: '1962 年', sales: 38 },
+    ];
+    const chart = new G2.Chart({
+      container: 'container',
+      autoFit: false,
+      width: 400,
+      height: 300,
+    });
+
+    chart.data(data);
+    chart.scale('sales', {
+      ticks: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200],
+      // 当需要对数值进行格式化时
+      formatter: (val) => `￥${val}`,
+    });
+    chart.axis('sales', {
+      title: {},
+    });
+
+    chart.interval().position('year*sales');
+
+    chart.render();
+  </script>
+</body>
+
+</html>

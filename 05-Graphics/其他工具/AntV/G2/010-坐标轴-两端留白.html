@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g2/4.1.49/dist/g2.min.js"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script>
+    /*
+      对于分类数据的坐标轴两边默认会留下一定的留白，连续数据的坐标轴的两端则没有留白。
+
+      两端的留白可通过 chart.scale()  接口中的 range  属性进行配置，
+      分类数据的 range  的默认值是 [ 1 / (count - 1), 1 - 1 / (count - 1) ]，count 代表数据的个数，可以修改这个值达到改变留白大小的目的。
+    */
+
+    const data = [
+      { year: '1951 年', sales: 38 },
+      { year: '1952 年', sales: 52 },
+      { year: '1956 年', sales: 61 },
+      { year: '1957 年', sales: 145 },
+      { year: '1958 年', sales: 48 },
+      { year: '1959 年', sales: 38 },
+      { year: '1960 年', sales: 38 },
+      { year: '1962 年', sales: 38 },
+    ];
+    const chart = new G2.Chart({
+      container: 'container',
+      autoFit: false,
+      width: 400,
+      height: 300,
+    });
+
+    chart.data(data);
+    chart.scale('year', {
+      range: [0.25, 0.75],
+    });
+    chart.scale('sales', {
+      // ticks: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200],
+      // 当需要对数值进行格式化时
+      formatter: (val) => `￥${val}`,
+      min: 0,
+      max: 200,
+      // tickCount: 20, // 刻度线个数
+      tickInterval: 5, // 刻度线间距
+    });
+    chart.axis('sales', {
+      title: {},
+    });
+
+    chart.interval().position('year*sales');
+
+    chart.render();
+  </script>
+</body>
+
+</html>

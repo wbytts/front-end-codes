@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/libs/d3js/d3-v3.min.js"></script>
+</head>
+
+<body>
+
+  <div id="box">你好</div>
+
+  <script>
+    // 一个选择就是从当前文档中抽取的一组元素。D3使用CSS3来选择页面元素。
+    // 如果你的浏览器不支持选择器，你可以在D3前包含Sizzle来支持向后兼容。
+
+    /*
+      当选择完元素之后你可以添加操作。这些操作可以设置或者获取属性、样式、特性、选择器和文本内容。
+      属性值等可以被指定为常量或者函数；后者为每个元素求值。
+      你也可以为数据选择器加入到data操作；这个数据就可以用做数据驱动的变换的操作符。
+      另外，加上数据产生enter和exit子选择器，你就可以add和remove元素来响应数据中的改变。
+
+      一般来说，在D3中你不需要使用for循环后者递归来修改文档。因为你可以一次操作这个选择器而不是遍历各个元素。
+      当然，你也可以手动地遍历各个元素，有一个each操作可以调用任意一个函数，选择器的结果是数组，所以元素可以访问(例如selection[0][0])。
+      为了简便D3支持方法链：这个操作返回值是一个选择器。
+    */
+
+    // d3.select(选择器)
+    // d3.select(节点)
+    // d3.selectAll(选择器): 会按照文档的遍历顺序（从上到下）选择, 如果没有会返回空白选择
+    // d3.selectAll(节点数组): 节点的参数不用恰好是数组；任何可以转化为一个数组的伪数组（例一个NodeList或者 arguments）都可以，这个函数不会遍历DOM树。
+
+    d3.select('#box').attr('style', 'color: red');
+  </script>
+</body>
+
+</html>

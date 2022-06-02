@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g2/4.1.49/dist/g2.min.js"></script>
+</head>
+
+<body>
+
+  <!-- 在绘图前我们需要为 G2 准备一个 DOM 容器 -->
+  <div id="container"></div>
+
+  <script>
+    const data = [
+      { genre: 'Sports', sold: 275 },
+      { genre: 'Strategy', sold: 115 },
+      { genre: 'Action', sold: 120 },
+      { genre: 'Shooter', sold: 350 },
+      { genre: 'Other', sold: 150 },
+    ];
+    /*
+      1. new Chart() 创建 Chart 图表对象，指定图表所在的容器 id、图表的宽高、边距等信息；
+      2. chart.data() 载入图表数据源；
+      3. 使用图形语法进行图表的绘制；
+      4. chart.render() 渲染图表。
+
+      !销毁：在图表容器被销毁时，总是应调用 chart.destroy() 以销毁实例释放资源，避免内存泄漏。
+    */
+
+    // 创建Chart图表对象
+    const chart = new G2.Chart({
+      container: 'container', // 指定图表容器 ID
+      width: 600, // 指定图表宽度
+      height: 300, // 指定图表高度
+    });
+
+    // 载入数据
+    chart.data(data);
+
+    // 绘制图表
+    chart.interval().position('genre*sold');
+
+    // 渲染图表
+    chart.render();
+  </script>
+</body>
+
+</html>

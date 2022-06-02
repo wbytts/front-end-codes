@@ -1,0 +1,5 @@
+unpkg.com/:package@:version/:file
+
+基本上npm有的，都有
+
+https://unpkg.com/bignumber.js

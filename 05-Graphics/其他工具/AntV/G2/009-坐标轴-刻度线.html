@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g2/4.1.49/dist/g2.min.js"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script>
+    /*
+      默认的坐标轴刻度线个数是 5 个，同样可以通过 chart.scale()，用户可以自定义坐标轴刻度线的个数。
+
+      对于连续类型的数据，G2 还支持设置坐标轴刻度线的间距（tickInterval  属性），同样需要在 chart.scale()  中进行配置，
+      但是需要说明的是，tickInterval  为原始数据值的差值，并且  tickCount  和  tickInterval  不可以同时声明。
+    */
+
+    const data = [
+      { year: '1951 年', sales: 38 },
+      { year: '1952 年', sales: 52 },
+      { year: '1956 年', sales: 61 },
+      { year: '1957 年', sales: 145 },
+      { year: '1958 年', sales: 48 },
+      { year: '1959 年', sales: 38 },
+      { year: '1960 年', sales: 38 },
+      { year: '1962 年', sales: 38 },
+    ];
+    const chart = new G2.Chart({
+      container: 'container',
+      autoFit: false,
+      width: 400,
+      height: 300,
+    });
+
+    chart.data(data);
+    chart.scale('sales', {
+      // ticks: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200],
+      // 当需要对数值进行格式化时
+      formatter: (val) => `￥${val}`,
+      min: 0,
+      max: 200,
+      // tickCount: 20, // 刻度线个数
+      tickInterval: 5, // 刻度线间距
+    });
+    chart.axis('sales', {
+      title: {},
+    });
+
+    chart.interval().position('year*sales');
+
+    chart.render();
+  </script>
+</body>
+
+</html>

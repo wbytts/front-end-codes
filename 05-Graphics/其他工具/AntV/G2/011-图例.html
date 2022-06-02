@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g2/4.1.49/dist/g2.min.js"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script>
+    /*
+      图例（legend）是图表的辅助元素，使用颜色、大小、形状区分不同的数据类型，用于图表中数据的筛选。
+      G2 会根据设置图形属性映射以及数据的类型自动生成不同的图例，当一个变量对应了多个图形属性时，G2 会对图例进行合并，以达到精简的目的。
+          shape, color, size 这三个图形属性如果判断接收的参数是数据源的字段时，会自动生成不同的图例；
+          shape 属性，会根据不同的 shape 类型生成图例；
+          color 属性，会赋予不同的图例项不同的颜色来区分图形；
+          size 属性，在图例上显示图形的大小。
+
+      在 G2 中，根据数据的类型，目前提供了以下两种图例：
+          1. 分类图例
+          2. 连续图例
+          由于这两种图例的结构不同，所以配置项也存在差异
+
+      分类图例：marker、title、itemName
+          marker 的形状对应使用的几何标记类型，举例来说，如果你使用了 point 这个几何标记，那么你将在图例中得到点，如果你使用了线，那么你将会得到线
+
+      连续图例：rail、label、handler、track
+          图例同坐标轴一样，其内容也是由 scale 度量控制的，而渲染的细节，则是由主题控制，G2 同样开放了 chart.legend()  接口供用户进行个性化配置
+
+
+      隐藏图例：
+          chart.legend(false); // 隐藏全部图例
+          chart.legend('x', false); // 只隐藏 x 维度对应的图例
+
+      G2 为图例提供了 12 个显示位置，通过 position  属性进行配置：
+          chart.legend('x', {
+            position: 'bottom',
+          }); // 只更改 x 维度对应的图例的显示位置
+    */
+
+    const data = [
+      { year: '1951 年', sales: 38 },
+      { year: '1952 年', sales: 52 },
+      { year: '1956 年', sales: 61 },
+      { year: '1957 年', sales: 145 },
+      { year: '1958 年', sales: 48 },
+      { year: '1959 年', sales: 38 },
+      { year: '1960 年', sales: 38 },
+      { year: '1962 年', sales: 38 },
+    ];
+    const chart = new G2.Chart({
+      container: 'container',
+      autoFit: false,
+      width: 400,
+      height: 300,
+    });
+
+    chart.data(data);
+    chart.scale('year', {
+      range: [0.25, 0.75],
+    });
+    chart.scale('sales', {
+      // ticks: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200],
+      // 当需要对数值进行格式化时
+      formatter: (val) => `￥${val}`,
+      min: 0,
+      max: 200,
+      // tickCount: 20, // 刻度线个数
+      tickInterval: 5, // 刻度线间距
+    });
+    chart.axis('sales', {
+      title: {},
+    });
+
+    chart.interval().position('year*sales');
+
+    chart.render();
+  </script>
+</body>
+
+</html>

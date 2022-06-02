@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>导航栏</title>
+  <link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/bootstrap-3.3.4.css">
+</head>
+
+<body>
+
+  <div class="navbar navbar-inverse navbar-fixed-top">
+
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#responsive-navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Title</a>
+      </div>
+
+
+      <div class="collapse navbar-collapse" id="responsive-navbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">首页</a></li>
+          <li><a href="#">博客</a></li>
+          <li><a href="#">博客</a></li>
+          <li><a href="#">博客</a></li>
+          <li><a href="#">博客</a></li>
+        </ul>
+
+        <form action="" class="navbar-form navbar-left">
+          <input type="text" placeholder="搜索" class="form-control">
+          <button type="submit">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </form>
+        <a href="#" class="btn btn-primary btn-sm navbar-btn navbar-right hidden-xs">订阅一下</a>
+
+        <div class="profile navbar-right">
+          <ul class="nav navbar-nav ">
+            <li><a href="">登录</a></li>
+            <li><a href="">注册</a></li>
+          </ul>
+          <p class="navbar-text">您好，<a href="#" class="navbar-link">xxx</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#modal-id'>Trigger modal</a>
+  <div class="modal fade" id="modal-id">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <input type="text">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+  <script src="https://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+</body>
+
+</html>

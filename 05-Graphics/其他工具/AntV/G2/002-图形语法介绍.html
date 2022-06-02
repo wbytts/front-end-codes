@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g2/4.1.49/dist/g2.min.js"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script>
+    /*
+      《The Grammar of Graphics》(Leland Wilkinson 著)是一套用来描述所有统计图表深层特性的语法规则，
+      该语法回答了『什么是统计图表』这一问题，以自底向上的方式组织最基本的元素形成更高级的元素。，它为 G2 提供了理论依据和设计实践指导。
+
+      主要观点：一张图表就是从数据到几何标记对象的图形属性的一个映射，此外图形中还可能包含数据的统计变换，最后绘制在某个特定的坐标系中
+
+      G2 所构建出的图表是由一系列独立的图形语法元素组合而成的：
+          数据 Data：可视化最基础的部分。
+          图形属性 Attribute：负责将数据中的变量映射至图形空间。
+          几何标记 Geometry：即你在图表中实际看到的图形元素，如点、线、多边形等，每个几何标记对象含有多个图形属性，
+              G2 的核心就是建立数据中的一系列变量到图形属性的映射。
+          度量 Scale：数据空间到图形属性空间的转换桥梁，每一个图形属性都对应着一个或者多个度量。
+          坐标系 Coordinate：描述了数据是如何映射到图形所在的平面的，同一个几何标记在不同坐标系下会有不同的表现。
+              G2 提供了多种坐标系的支持：笛卡尔坐标、极坐标以及螺旋坐标等。
+          可视化组件 Component：也可以成为图表辅助元素，用于增强图表的可读性和可理解性，
+              在 G2 中，提供了丰富的可视化组件，包括坐标轴 Axis，图例 Legend，提示信息 Tooltip，图形标记 Annotation，滑动条 Slider 等。
+          分面 Facet：描述了如何将数据分解为各个子集，以及如何对这些子集作图并联合进行展示，主要用于多维数据分析。
+    */
+  </script>
+</body>
+
+</html>
