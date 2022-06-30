@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,18 +8,19 @@
   </head>
   <body>
     <script>
-      // JS中，函数是按值传递的
 
-      function setName(obj) {
-        obj.name = "张三";
-        obj = new Object();
-        obj.name = "李四";
+      function fun() {
+        let a = 3;
+
+        return function get_a() { return a; }
       }
 
-      let person = new Object();
-      setName(person);
-      console.log(person);
+      let get_a = fun();
+      // 此处想获取fun函数里a的值
+      let 里面的a = get_a();
 
+      console.log('get_a', get_a)
+      console.log('里面的a = ', 里面的a)
     </script>
   </body>
 </html>

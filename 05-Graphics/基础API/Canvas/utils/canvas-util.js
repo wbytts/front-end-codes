@@ -32,8 +32,8 @@
 
   /**
    * 坐标系转换
-   * @param {*}} event
-   * @returns {x: 数字, y: 数字}
+   * @param {*} event
+   * @returns {x: number, y: number}
    */
   CanvasUtil.eventWrapper = function (event) {
     let { pageX, pageY, target } = event;

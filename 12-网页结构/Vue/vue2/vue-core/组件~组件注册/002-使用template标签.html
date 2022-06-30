@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <test-com></test-com>
+</div>
+
+<template id="tpl-test-com">
+  <div>
+    你好啊
+  </div>
+</template>
+
+<script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+<script>
+
+  Vue.component('test-com', {
+    template: '#tpl-test-com',
+    // 一个组件的 data 选项必须是一个函数 ！！！
+    // 因此每个实例可以维护一份被返回对象的独立的拷贝
+    data() {
+      return {
+
+      }
+    }
+  });
+
+  let app = new Vue({
+    el: "#app", // el 选项是根实例特有的选项
+    data: {}
+  });
+
+</script>
+</body>
+</html>

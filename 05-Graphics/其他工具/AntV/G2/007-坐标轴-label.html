@@ -28,18 +28,22 @@
       { year: '1962 年', sales: 38 },
     ];
     const chart = new G2.Chart({
-      container: 'container',
-      autoFit: false,
-      width: 400,
-      height: 300,
+      container: 'container', // 图表挂载的元素id
+      autoFit: false, // 是否自适应
+      width: 400, // 图表宽度
+      height: 300, // 图表高度
     });
 
+    // 加载数据
     chart.data(data);
+
     chart.scale('sales', {
       ticks: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200],
       // 当需要对数值进行格式化时
       formatter: (val) => `￥${val}`,
     });
+
+    // 坐标轴设置
     chart.axis('sales', {
       title: {},
     });

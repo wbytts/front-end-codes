@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="input" type="text" />
+
+    <script>
+      const input = document.getElementById('input');
+      const limit = 4;
+
+      input.oninput = function(event) {
+        // 清除"数字"和"."以外的字符
+        this.value = this.value.replace(/[^\d.]/g, "");
+        // 不能连续输入两个及以上小数点
+        this.value = this.value.replace(/\.{2,}/g, ".");
+        // 只保留第一个".", 清除多余的"."
+        this.value = this.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+        // 只能输入四位小数
+        this.value = this.value.replace(new RegExp("^(-)*(\\d+)\.(\\d).*$"), "$1$2.$3");
+        // 如果没有小数点，首位不能为类似于 01、02的值
+        if ( this.value && this.value.indexOf(".") < 0 && this.value != "") {
+          this.value = parseFloat(this.value);
+          this.value = this.value + ""; // 变回为字符串
+        }
+      }
+
+      // 失去焦点的时候，清除小数点后面无用的0
+      input.onblur = function(event) {
+        if (this.value.indexOf(".") > 0) {
+          let str = this.value;
+          while(str.endsWith('0')) {
+            str = str.slice(0, str.length - 1);
+          }
+          this.value = str;
+        }
+      }
+    </script>
+  </body>
+</html>

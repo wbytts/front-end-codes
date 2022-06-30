@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+    <script src="https://unpkg.com/axios"></script>
+  </head>
+
+  <body>
+    <button id="btn-login">login</button>
+    <button id="btn-post-body">post-body</button>
+
+    <script>
+      const baseUrl = 'http://127.0.0.1:8181';
+      $(function () {
+        $('#btn-login').click(function () {
+          axios.post(`${baseUrl}/login`, {
+            username: 'admin',
+            password: '123456'
+          }).then(res => {
+            console.log('结果', res.data)
+          });
+        });
+        $("#btn-post-body").click(function () {
+          axios.post(`${baseUrl}/test/post-body`, {
+            a: 3,
+            b: 4
+          }).then(res => {
+            console.log('res', res.data);
+          });
+        });
+      })
+    </script>
+  </body>
+</html>

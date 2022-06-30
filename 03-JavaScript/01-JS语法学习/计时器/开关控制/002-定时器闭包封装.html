@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">开始</button>
+
+    <script>
+      const btn = document.getElementById('btn');
+
+      function createTimer(callback, time) {
+        let timerId = null;
+        return {
+          start: function() {
+            if(timerId) {
+              console.error("定时器处于开启状态，请勿重复开启");
+              return;
+            }
+            timerId = setInterval(callback, time);
+          },
+          stop: function() {
+            if(timerId == null) {
+              console.error("当前定时器未运行，无法关闭");
+              return;
+            }
+            clearInterval(timerId);
+            timerId = null;
+          },
+          isRunning: function() {
+            return timerId !== null;
+          }
+        }
+      }
+
+      let timer = createTimer(function() {
+        console.log("Hello World");
+      }, 1000);
+
+      btn.onclick = function() {
+        if(timer.isRunning()) {
+          timer.stop();
+          btn.innerHTML = "开始";
+        } else {
+          timer.start();
+          btn.innerHTML = "停止";
+        }
+      }
+    </script>
+  </body>
+</html>

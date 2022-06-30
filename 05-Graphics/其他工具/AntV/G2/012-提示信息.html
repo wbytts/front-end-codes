@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g2/4.1.49/dist/g2.min.js"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script>
+    /*
+      提示信息 (Tooltip)，是指当鼠标悬停在图形上时，以提示框的形式展示该点的数据，比如该点的值，数据单位等，帮助用户快速获取图形的关键数据。
+
+      提示信息的组成部分：
+          crosshairs: tooltip 辅助线，用于辅助定位数据在坐标系的位置，不同坐标系下的有不同的展现方式。
+          marker: 突出当前数据点的位置
+          tooltip: 展示数据信息的内容框，我们使用 HTML 的方案，包含 title 以及 items 数据项信息
+              <div class="g2-tooltip">
+                <div class="g2-tooltip-title">Language</div>
+                <ul class="g2-tooltip-list">
+                  <li class="g2-tooltip-list-item">
+                    <span class="g2-tooltip-marker"></span>
+                    <span class="g2-tooltip-name">a</span>:<span class="g2-tooltip-value">70</span>
+                  </li>
+                  <li class="g2-tooltip-list-item">
+                    <span class="g2-tooltip-marker"></span>
+                    <span class="g2-tooltip-name">b</span>:<span class="g2-tooltip-value">50</span>
+                  </li>
+                </ul>
+              </div>
+
+        G2 提供了三个层级的 Tooltip 开关配置：
+            Chart：控制整个图表的 tooltip 开关，当 chart.tooltip(false) 将 tooltip 关闭时，view 及 geometry 上的 tooltip 配置均不生效，整个图表 tooltip 关闭。
+            View：控制当前 View 的 tooltip 开关，当 view.tooltip(false)  将 tooltip 关闭时，当前 view tooltip 将被关闭，其下所有 Geometry 几何标记的 tooltip 配置均不生效。
+            Geometry：控制当前 Geometry 几何标记的 tooltip 开关，当 geometry.tooltip(false) 将 tooltip 关闭时，该 Geometry 的数据将不展示在 tooltip 内容框中
+        其中 Chart/View 上的 tooltip() 接口用于控制 tooltip 的显示样式配置，Geometry 上的 tooltip() 接口用于 tooltip 显示内容的配置。
+
+        辅助线：
+            showCrosshairs: true, // 展示 Tooltip 辅助线
+    */
+
+    const data = [
+      { year: '1951 年', sales: 38 },
+      { year: '1952 年', sales: 52 },
+      { year: '1956 年', sales: 61 },
+      { year: '1957 年', sales: 145 },
+      { year: '1958 年', sales: 48 },
+      { year: '1959 年', sales: 38 },
+      { year: '1960 年', sales: 38 },
+      { year: '1962 年', sales: 38 },
+    ];
+    const chart = new G2.Chart({
+      container: 'container',
+      autoFit: false,
+      width: 400,
+      height: 300,
+    });
+
+    chart.data(data);
+
+    // chart.scale('year', {
+    //   range: [0.25, 0.75],
+    // });
+
+    chart.scale('sales', {
+      // ticks: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200],
+      // 当需要对数值进行格式化时
+      formatter: (val) => `￥${val}`,
+      min: 0,
+      max: 200,
+      tickCount: 10, // 刻度线个数
+      // tickInterval: 5, // 刻度线间距
+    });
+    chart.axis('sales', {
+      title: {},
+    });
+
+    chart.interval().position('year*sales').label('sales');
+
+    chart.tooltip({
+      showCrosshairs: true, // 展示 Tooltip 辅助线
+      crosshairs: {
+        type: 'xy', // 展示十字辅助线
+      },
+    });
+
+    chart.interaction('active-region'); // 使用 active-region 交互行为
+
+    chart.render();
+  </script>
+</body>
+
+</html>

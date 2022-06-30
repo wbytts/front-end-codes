@@ -65,5 +65,5 @@ const server = http.createServer((req, res) => {
     server.listen(端口, 主机, 启动成功回调函数)
 */
 server.listen(port, hostname, () => {
-  console.log(`服务器运行在 http://${hostname}:${port}/`);
+  console.log(`服务运行在 http://${hostname}:${port}/`);
 });
