@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+       /*
+         每个RegExp实例都有以下属性，提供有关模式的各方面信息
+           global: 布尔值，表示是否使用了 g 标记
+           ignoreCase: 布尔值，表示是否使用了 i 标记
+           unicode: 布尔值，表示是否使用了 u 标记
+           sticky: 布尔值，表示是否使用了 y 标记
+           lastIndex: 整数，表示在源字符串中下一次搜索开始的位置，始终从0开始
+           multiline: 布尔值，表示是否设置了 m 标记
+           dotAll: 布尔值，表示是否设置了 s 标记
+           source: 字符串，正则表达式的字面量字符串（不是传给构造函数的模式字符串），没有开头和结尾的斜杠
+           flags: 正则表达式的标记字符串。始终以字面量而非传入构造函数的字符串模式形式返回（没有前后的斜杠）
+       */
+      let reg = /asd/gi;
+      console.dir(reg);
+    </script>
+  </body>
+</html>

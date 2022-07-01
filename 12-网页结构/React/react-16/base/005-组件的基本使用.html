@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script type="text/babel">
+      // 1. 定义组件
 
-
-  <script type="text/babel">
-    // 1. 定义组件
-
-    /*方式1：函数组件（简单组件）适合没有state的组件*/
-    // 函数式的组件可以接收一个 props参数，也就是传给组件标签的属性对象
-    function MyFunctionComponent() {
-      return (<h1>工厂函数组件（简单组件）</h1>);
-    }
-
-    /*方式2：ES6类组件（复杂组件）*/
-    // 类式的组件功能更丰富一点
-    class MyClassComponent extends React.Component {
-      render() {
-        return (
-          <h1>ES6类组件（复杂组件）</h1>
-        );
+      /*方式1：函数组件（简单组件）适合没有state的组件*/
+      // 函数式的组件可以接收一个 props参数，也就是传给组件标签的属性对象
+      function MyFunctionComponent() {
+        return (<h1>工厂函数组件（简单组件）</h1>);
       }
-    }
 
-    // 2. 渲染组件标签
-    const vDom = (
-      <div>
-        <MyFunctionComponent />
-        <MyClassComponent />
-      </div>
-    );
-    ReactDOM.render(vDom, document.getElementById('root'));
-  </script>
-</body>
+      /*方式2：ES6类组件（复杂组件）*/
+      // 类式的组件功能更丰富一点
+      class MyClassComponent extends React.Component {
+        render() {
+          return (
+            <h1>ES6类组件（复杂组件）</h1>
+          );
+        }
+      }
 
+      // 2. 渲染组件标签
+      const vDom = (
+        <div>
+          <MyFunctionComponent />
+          <MyClassComponent />
+        </div>
+      );
+      ReactDOM.render(vDom, document.getElementById('root'));
+    </script>
+  </body>
 </html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // RegExp构造函数，可以接收字符串（注意某些情况下需要二次转义）
+      let reg1 = new RegExp("asd");
+      // 也可以基于已有的正则表达式实例，选择性的修改标记
+      let reg2 = new RegExp(reg1, "g")
+    </script>
+  </body>
+</html>

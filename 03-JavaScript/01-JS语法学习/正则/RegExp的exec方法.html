@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let reg = /aabb/;
+      let result = reg.exec('123aabbdfasaabbsdfgsd');
+
+      // 返回的是一个数组：如果找到了匹配项，则返回包含第一个匹配信息的数组，如果没有找到匹配项，则返回null
+      // 数组额外有 index 和 input属性
+      // index: 字符串中匹配模式的起始位置
+      // input: 要查找的字符串
+      // 这个数组的第一个元素是匹配整个模式的字符串，其他元素是与表达式中的捕获组匹配的字符串（如果没有捕获组，则只包含一个元素）
+
+
+      // 如果模式中设置了全局标记，则每次调用exec都会在字符串中向前搜索下一个匹配项
+      // 全局模式下，每次调用exec都会更新 lastIndex值，以反映上次匹配的最后一个字符的索引
+      // 如果没有设置全局标记，则无论调用多少次，只会返回第一个匹配的信息
+      console.log(reg.exec('123aabbdfasaabbsdfgsd'));
+      console.log(reg.exec('123aabbdfasaabbsdfgsd'));
+      console.log(reg.exec('123aabbdfasaabbsdfgsd'));
+
+      reg = new RegExp(reg, 'g');
+      console.log("添加了g标记之后");
+      console.log(reg.exec('123aabbdfasaabbsdfgsd'));
+      console.log(reg.exec('123aabbdfasaabbsdfgsd'));
+      console.log(reg.exec('123aabbdfasaabbsdfgsd'));
+
+      // 如果设置了粘附标记 y，则每次调用exec就只会在lastIndex的位置上寻找匹配项
+      // 粘附标记覆盖全局标记
+    </script>
+  </body>
+</html>
